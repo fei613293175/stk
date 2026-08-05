@@ -6,7 +6,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
-import androidx.compose.ui.test.junit4.getActivityFromTestRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
@@ -32,7 +31,11 @@ class V100InteractionSmokeTest {
     private val activityRule = ActivityScenarioRule<MainActivity>(
         Intent(Intent.ACTION_MAIN).setComponent(ComponentName("com.zzyihao.stk", MainActivity::class.java.name))
     )
-    @get:Rule val composeRule = AndroidComposeTestRule(activityRule) { getActivityFromTestRule(it) }
+    @get:Rule val composeRule = AndroidComposeTestRule(activityRule) { rule ->
+        var activity: MainActivity? = null
+        rule.scenario.onActivity { activity = it }
+        checkNotNull(activity)
+    }
 
     @Test fun loginInputsModesCaptchaAndRoutesAreInteractive() {
         val api = FakeApi()
