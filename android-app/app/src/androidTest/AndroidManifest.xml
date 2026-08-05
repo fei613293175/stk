@@ -1,0 +1,5 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.zzyihao.stk.test">
+    <application>
+        <activity android:name=".TestHostActivity" android:exported="true" />
+    </application>
+</manifest>
