@@ -117,7 +117,7 @@ jobs:
           disk-size: 8192M
           ram-size: 4096M
           heap-size: 512M
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-snapshot -no-metrics
+          emulator-options: -no-window -gpu swiftshader -noaudio -no-boot-anim -camera-back none -no-snapshot -no-metrics
           disable-animations: true
           script: bash scripts/ci/run_exact_release_acceptance.sh
       - run: python scripts/compare_visuals.py --release "$STK_RELEASE_ID" --fail-on-diff
