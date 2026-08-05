@@ -1,5 +1,6 @@
 package com.zzyihao.stk
 
+import androidx.activity.compose.setContent
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasTestTag
