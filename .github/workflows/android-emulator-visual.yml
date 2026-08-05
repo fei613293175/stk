@@ -29,6 +29,7 @@ jobs:
       STK_RELEASE_STORE_PASSWORD: ${{ secrets.STK_RELEASE_STORE_PASSWORD }}
       STK_RELEASE_KEY_ALIAS: ${{ secrets.STK_RELEASE_KEY_ALIAS }}
       STK_RELEASE_KEY_PASSWORD: ${{ secrets.STK_RELEASE_KEY_PASSWORD }}
+      STK_SIGNING_MODE: ci-test
       STK_RELEASE_ID: ${{ inputs.release_id }}
     steps:
       - uses: actions/checkout@v7.0.1
