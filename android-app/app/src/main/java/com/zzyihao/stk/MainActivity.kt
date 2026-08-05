@@ -57,14 +57,16 @@ private fun StkApp() {
     var session by remember { mutableStateOf(StkSessionStore.read(context)) }
     var route by rememberSaveable { mutableStateOf(if (session == null) Route.LOGIN else Route.HOME) }
     var tab by rememberSaveable { mutableStateOf(0) }
+    var selectedProjectId by rememberSaveable { mutableStateOf(0) }
+    var legalReturnRoute by rememberSaveable { mutableStateOf(Route.LOGIN) }
     val authenticated = route == Route.HOME || route == Route.PUBLISH_STAGE || route == Route.ME || route == Route.DETAIL
     if (!authenticated) {
         when (route) {
-            Route.LOGIN -> LoginScreen(api, deviceId, { session = it; StkSessionStore.save(context, it); route = Route.HOME }, { route = Route.REGISTER }, { route = Route.RESET }, { route = Route.LEGAL_AGREEMENT }, { route = Route.LEGAL_PRIVACY })
-            Route.REGISTER -> RegisterScreen({ route = Route.LOGIN }, { route = Route.LEGAL_AGREEMENT }, { route = Route.LEGAL_PRIVACY }, { route = Route.HOME })
-            Route.RESET -> ResetScreen { route = Route.LOGIN }
-            Route.LEGAL_AGREEMENT -> LegalScreen("用户协议") { route = Route.LOGIN }
-            Route.LEGAL_PRIVACY -> LegalScreen("隐私政策") { route = Route.LOGIN }
+            Route.LOGIN -> LoginScreen(api, deviceId, { session = it; StkSessionStore.save(context, it); route = Route.HOME }, { route = Route.REGISTER }, { route = Route.RESET }, { legalReturnRoute = Route.LOGIN; route = Route.LEGAL_AGREEMENT }, { legalReturnRoute = Route.LOGIN; route = Route.LEGAL_PRIVACY })
+            Route.REGISTER -> ApiRegisterScreen(api, deviceId, { route = Route.LOGIN }, { legalReturnRoute = Route.REGISTER; route = Route.LEGAL_AGREEMENT }, { legalReturnRoute = Route.REGISTER; route = Route.LEGAL_PRIVACY }) { newSession -> session = newSession; StkSessionStore.save(context, newSession); route = Route.HOME }
+            Route.RESET -> ApiResetScreen(api, deviceId) { route = Route.LOGIN }
+            Route.LEGAL_AGREEMENT -> ApiLegalScreen(api, "user_agreement") { route = legalReturnRoute }
+            Route.LEGAL_PRIVACY -> ApiLegalScreen(api, "privacy_policy") { route = legalReturnRoute }
             else -> Unit
         }
         return
@@ -77,10 +79,10 @@ private fun StkApp() {
         }
     }) { padding ->
         when (route) {
-            Route.HOME -> HomeScreen(Modifier.padding(padding)) { route = Route.DETAIL }
+            Route.HOME -> ApiHomeScreen(api, session!!, Modifier.padding(padding), { tab = 2; route = Route.ME }) { projectId -> selectedProjectId = projectId; route = Route.DETAIL }
             Route.PUBLISH_STAGE -> StageScreen(Modifier.padding(padding))
-            Route.ME -> MeScreen(Modifier.padding(padding)) { session = null; StkSessionStore.clear(context); route = Route.LOGIN }
-            Route.DETAIL -> DetailScreen(Modifier.padding(padding)) { route = Route.HOME }
+            Route.ME -> ApiMeScreen(api, session!!, deviceId, Modifier.padding(padding)) { session = null; StkSessionStore.clear(context); route = Route.LOGIN }
+            Route.DETAIL -> ApiDetailScreen(api, session!!, selectedProjectId, deviceId, Modifier.padding(padding)) { route = Route.HOME }
             else -> Unit
         }
     }

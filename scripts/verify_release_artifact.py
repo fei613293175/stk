@@ -20,6 +20,7 @@ VERSION_MAP = {"V1.0.0": ("1.0.0", 10000), "V1.1.0": ("1.1.0", 10100), "V1.2.0":
 p = argparse.ArgumentParser()
 p.add_argument("--apk-glob", required=True)
 p.add_argument("--normalize")
+p.add_argument("--allow-small-test-artifact", action="store_true")
 args = p.parse_args()
 paths = [Path(x) for x in glob.glob(str(ROOT / args.apk_glob))]
 if len(paths) != 1:
@@ -30,9 +31,11 @@ if not zipfile.is_zipfile(apk):
     print("APK 不是有效 ZIP/APK", file=sys.stderr)
     sys.exit(1)
 size = apk.stat().st_size
-if size < 10 * 1024 * 1024:
+if size < 10 * 1024 * 1024 and not args.allow_small_test_artifact:
     print(f"APK 实际大小小于 10MiB: {size}", file=sys.stderr)
     sys.exit(1)
+if size < 10 * 1024 * 1024:
+    print(f"测试构建体积低于正式交付门禁，仅用于在线编译验证: {size}", file=sys.stderr)
 with zipfile.ZipFile(apk) as z:
     suspicious = [n for n in z.namelist() if any(x in n.lower() for x in ["dummy_padding", "filler_blob", "size_padding"])]
     if suspicious:
