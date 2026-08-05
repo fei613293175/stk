@@ -16,4 +16,4 @@
 
 ## 下一步
 
-在具备 JDK 17、Gradle 9.5、Android SDK 37、PHP/Discuz 测试环境后，继续完成认证纵向闭环、API/后台测试和同一 Commit 的 CI Release Artifact；完成交付关闭清单后暂停推进。
+在具备 JDK 17+（线上已有 JDK 21 时优先复用）、Gradle 9.5、Android SDK 37、PHP/Discuz 测试环境后，继续完成认证纵向闭环、API/后台测试和同一 Commit 的 CI Release Artifact；完成交付关闭清单后暂停推进。

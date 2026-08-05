@@ -25,7 +25,8 @@ android:
   min_sdk: 26
   compile_sdk: 37
   target_sdk: 37
-  jdk: 17
+  jdk: 21
+  jdk_compatibility: "JDK 17+; JDK 21 preferred when already available on the online server"
   kotlin: 2.4.10
   compose_bom: 2026.06.00
   agp_policy: Exact pins are authoritative in references/VERSION_PINS.md and gradle/libs.versions.toml; dynamic versions are
@@ -77,6 +78,12 @@ fixed_scope:
 execution_environment_policy:
   build_and_release_authority: online_server_only
   allowed_online_environment: server_reported_ready_and_github_actions
+  reuse_first_policy: true
+  reuse_first_order: existing_server_runtime,existing_docker_images_and_caches,isolated_server_volume,github_actions
+  compatibility_policy: "Use any existing online toolchain that satisfies the pinned contract; JDK 17+ is accepted and JDK 21 is preferred when already available."
+  inventory_required_before_mutation: true
+  business_protection: "Do not replace system runtimes, alter existing Nginx/PHP-FPM/MySQL/Discuz configuration, bind business ports, or restart business services."
+  per_version_evidence_required: inventory,actual_paths,versions,reuse_or_supplement_decision,validation_logs
   prohibited_local_actions:
   - install_or_download_android_sdk
   - install_or_download_jdk_gradle_agp

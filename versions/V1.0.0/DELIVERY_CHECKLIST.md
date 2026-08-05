@@ -1,6 +1,7 @@
 # 1.0.0 交付关闭清单
 
 - [ ] 环境唯一性硬门禁：V1.0.0 的 Android SDK/JDK/Gradle/AGP、PHP/Discuz、签名、模拟器、部署和验收只能在线上服务器或 GitHub Actions 执行；本机不得安装、下载、配置、升级或运行这些环境。本机仅允许源码编辑、合同/静态检查和证据整理。
+- [ ] 环境复用记录：先只读盘点并复用线上已有 JDK 17+（JDK 21 优先）、Gradle、Android SDK/模拟器、PHP/Discuz、镜像和缓存；仅缺失项可在独立目录/容器/volume 补齐，且不得替换系统运行时、改业务配置、占端口或重启服务。
 
 - [ ] 构建、签名、模拟器、PHP/Discuz 测试和 Release Artifact 均来自线上服务器/GitHub Actions；不得使用本机构建
 

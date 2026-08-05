@@ -72,7 +72,7 @@
 
 ### 构建环境硬门禁（全部版本）
 
-Android SDK/JDK/Gradle/AGP、PHP/Discuz、签名、模拟器、部署和 Release 验收只能在线上服务器或 GitHub Actions 执行。本机不得安装、下载、配置、升级或运行这些环境；本机只允许源码编辑、合同/静态检查和线上证据整理。该门禁分别写入 `versions/V1.0.0` 至 `versions/V1.4.0` 的开发规格、启动提示和交付清单。
+Android SDK/JDK/Gradle/AGP、PHP/Discuz、签名、模拟器、部署和 Release 验收只能在线上服务器或 GitHub Actions 执行。本机不得安装、下载、配置、升级或运行这些环境；本机只允许源码编辑、合同/静态检查和线上证据整理。线上执行遵循“复用优先”：先只读盘点服务器已有环境，满足合同就直接复用；优先复用已有 Docker 镜像、SDK/Gradle 缓存和独立 volume；只有缺失且不影响现有业务时，才在独立目录/容器补齐。禁止替换系统运行时、改动现有 Nginx/PHP-FPM/MySQL/Discuz 配置、占用业务端口或重启业务服务。该门禁分别写入 `versions/V1.0.0` 至 `versions/V1.4.0` 的开发规格、启动提示和交付清单，并要求每版记录实际环境路径、版本、复用/补齐决策和验证证据。
 
 - 不允许把原生 APK 做成远程 H5 WebView 外壳。
 - 不开发 PC 用户前端；Discuz 管理后台仍供管理员在电脑使用。

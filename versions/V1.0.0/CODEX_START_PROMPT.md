@@ -1,6 +1,7 @@
 # 发送给 Codex：开始商推客 1.0.0
 
 **环境硬门禁：** V1.0.0 的 Android/PHP/Discuz 构建、签名、模拟器、部署和 Release 验收只允许在线上服务器或 GitHub Actions；本机不得安装或运行这些环境，本机只做源码和静态合同检查。
+**环境复用顺序：** 开发前先只读盘点线上已有 JDK/Gradle/Android SDK/模拟器/PHP/Discuz、Docker 镜像和缓存；满足合同即复用，JDK 17+ 均可，已有 JDK 21 优先。只在缺失且不影响现有业务时用独立目录/容器/volume 补齐，禁止替换系统运行时、改业务配置、占业务端口或重启服务，并记录实际路径、版本和证据。
 
 继续开发商推客，但不要根据聊天记忆重新规划项目或选择版本。先确认仓库 remote 是 `https://github.com/fei613293175/stk.git`，读取 `CURRENT_RELEASE.yaml`；只有当前版本为 `V1.0.0` 时才继续。
 

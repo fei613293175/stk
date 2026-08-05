@@ -3,7 +3,7 @@
 ## Android
 
 - Kotlin 2.4.10；Jetpack Compose；Material 3 仅作为底层能力，视觉由 STK-DS-1.0 覆盖。
-- applicationId 固定 `com.zzyihao.stk`；minSdk 26；compile/target SDK 37；JDK 17。
+- applicationId 固定 `com.zzyihao.stk`；minSdk 26；compile/target SDK 37；JDK 17+，线上已有 JDK 21 时优先复用 JDK 21。
 - AGP 9.3.0、Gradle 9.5.0、SDK Build Tools 36.0.0；依赖全部写入 Version Catalog，禁止 `+` 动态版本。
 - 模块：`app`、`core-designsystem`、`core-network`、`core-database`、`core-data`、`core-security`、`core-external`、`core-update`、`feature-auth`、`feature-home`、`feature-project-detail`、`feature-publish`、`feature-profile`。
 - 单向数据流：UI State → User Intent → ViewModel → Use Case/Repository → Local/Remote Data Source。
