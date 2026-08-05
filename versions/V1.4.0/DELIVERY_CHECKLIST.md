@@ -1,5 +1,7 @@
 # 1.4.0 交付关闭清单
 
+- [ ] 环境唯一性硬门禁：V1.4.0 的 Android SDK/JDK/Gradle/AGP、PHP/Discuz、签名、模拟器、部署和验收只能在线上服务器或 GitHub Actions 执行；本机不得安装、下载、配置、升级或运行这些环境。本机仅允许源码编辑、合同/静态检查和证据整理。
+
 - [ ] 构建、签名、全量终验和交付证据全部来自线上服务器/GitHub Actions，禁止本机 APK
 
 - [ ] 所有本版效果图 APPROVED 且 SHA 匹配
