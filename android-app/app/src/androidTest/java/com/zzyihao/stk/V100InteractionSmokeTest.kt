@@ -25,7 +25,7 @@ import java.util.Collections
 
 @RunWith(AndroidJUnit4::class)
 class V100InteractionSmokeTest {
-    @get:Rule val composeRule = createAndroidComposeRule<TestHostActivity>()
+    @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
 
     @Test fun loginInputsModesCaptchaAndRoutesAreInteractive() {
         val api = FakeApi()
