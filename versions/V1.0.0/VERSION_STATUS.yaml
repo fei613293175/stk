@@ -12,6 +12,7 @@ implementation_notes:
 - Initial repository scaffold established on release/1.0.0 because the configured remote was empty.
 - Android native Compose app and Discuz plugin entry points are in source control.
 - Local machine lacks JDK/Gradle/PHP; CI build, emulator, deployment and owner acceptance remain pending.
+- Online server build verified on host `obx-test` using reused image `hhy-android-toolchain:r08-api36-cache`, JDK 21.0.9, Gradle 9.5.0 and isolated `/opt/stk-build` paths; release and AndroidTest APK tasks succeeded for commit `93245ff` with temporary CI test signing only.
 finish_gate: Code, backend, admin, tests, CI artifact and owner delivery complete
 online_environment:
   discuz_version: X5.0
@@ -28,3 +29,5 @@ online_environment:
 known_issues:
 - 'CI-API37-BLOCKED: GitHub Actions run 30996722343 sdkmanager 找不到 platforms;android-37；不得降级 API 版本绕过 V1.0.0 合同。'
 - 'CI-INTERACTION-COVERAGE: Release instrumentation APK 已在线生成，但全量 V1.0.0 交互与视觉截图尚未取得模拟器证据。'
+- 'ONLINE-API-ROUTES: 线上服务器 TLS 可达，但 stk-api.zz-yihao.com/healthz 与 /readyz 当前返回 HTTP 404，不能作为 API 验收通过。'
+- 'ONLINE-EMULATOR-NO-KVM: 服务器无 /dev/kvm；API 37 x86_64 仅软件加速，ADB 可上线但 system services 未完成初始化，Instrumentation 未运行。'
