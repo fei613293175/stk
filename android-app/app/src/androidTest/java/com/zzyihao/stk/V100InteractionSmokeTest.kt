@@ -1,11 +1,9 @@
 package com.zzyihao.stk
 
-import android.content.ComponentName
-import android.content.Intent
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasTestTag
-import androidx.compose.ui.test.junit4.AndroidComposeTestRule
+import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
@@ -14,7 +12,6 @@ import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipeDown
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry
 import android.util.Log
 import com.zzyihao.stk.designsystem.StkTheme
@@ -28,14 +25,7 @@ import java.util.Collections
 
 @RunWith(AndroidJUnit4::class)
 class V100InteractionSmokeTest {
-    private val activityRule = ActivityScenarioRule<MainActivity>(
-        Intent(Intent.ACTION_MAIN).setComponent(ComponentName("com.zzyihao.stk", MainActivity::class.java.name))
-    )
-    @get:Rule val composeRule = AndroidComposeTestRule(activityRule) { rule ->
-        var activity: MainActivity? = null
-        rule.scenario.onActivity { activity = it }
-        checkNotNull(activity)
-    }
+    @get:Rule val composeRule = createComposeRule()
 
     @Test fun loginInputsModesCaptchaAndRoutesAreInteractive() {
         val api = FakeApi()
