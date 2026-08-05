@@ -53,6 +53,17 @@ jobs:
         run: bash scripts/ci/prepare_release_signing.sh
       - name: Test Discuz plugins
         run: bash scripts/ci/run_backend_tests.sh
+      - name: PHP 8.3 online lint for every plugin file
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: curl,openssl,mbstring,mysqli
+          coverage: none
+      - name: Run PHP lint online
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' file; do php -l "$file"; done < <(find source/plugin/stk_auth source/plugin/stk_project -type f -name '*.php' -print0)
       - name: Android lint and signed release build
         working-directory: android-app
         run: gradle --no-daemon --stacktrace lintRelease assembleRelease
