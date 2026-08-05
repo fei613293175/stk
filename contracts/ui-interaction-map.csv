@@ -1,0 +1,166 @@
+﻿interaction_id,page_id,feature_id,name,interaction_type,test_tag,precondition,action,target,api_operation_id,introduced_in,expected_result,functional_authority
+INT-NAV-001,HOME-001,FND-001,底部导航进入首页,TAP,nav_home,页面处于允许该动作的状态,点击首页,stk://home,LOCAL_NAVIGATION,V1.0.0,进入首页并保留或恢复滚动位置；在首页再次点击回到顶部,contracts/feature-map.yaml
+INT-NAV-002,HOME-001,FND-001,底部导航进入发布,TAP,nav_publish,页面处于允许该动作的状态,点击发布,版本化路由,LOCAL_VERSIONED_NAVIGATION,V1.0.0,V1.0/V1.1 打开阶段说明；V1.2 起进入 PUB-001,contracts/feature-map.yaml
+INT-NAV-003,HOME-001,FND-001,底部导航进入我的,TAP,nav_me,页面处于允许该动作的状态,点击我的,stk://me,LOCAL_NAVIGATION,V1.0.0,进入我的页面并保留首页状态,contracts/feature-map.yaml
+INT-SYS-001,SYS-001,FND-002,重试启动配置,TAP,bootstrap_retry,页面处于允许该动作的状态,点击重试,重新执行启动编排,getBootstrap,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SYS-002,SYS-001,FND-002,离线进入缓存首页,TAP,bootstrap_continue_offline,存在有效本地登录态与首页缓存,点击离线进入,stk://home,LOCAL_CACHE_ROUTE,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SYS-003,SYS-002,FND-002,服务异常重试,TAP,system_retry,页面处于允许该动作的状态,点击重试,上一次安全请求,LOCAL_RETRY,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SYS-004,SYS-002,PROFILE-005,打开客服,TAP,system_open_support,页面处于允许该动作的状态,点击联系客服,stk://me/support,LOCAL_NAVIGATION,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-UPD-001,SYS-003,SYS-001,检查更新,TAP,update_check,页面处于允许该动作的状态,点击检查更新,版本服务,getCurrentRelease,V1.4.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-UPD-002,SYS-003,SYS-001,开始下载更新,TAP,update_download,页面处于允许该动作的状态,点击下载,受控 APK 下载,DOWNLOAD_RELEASE_APK,V1.4.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-UPD-003,SYS-003,SYS-001,重试更新下载,TAP,update_retry,页面处于允许该动作的状态,点击重试,受控 APK 下载,DOWNLOAD_RELEASE_APK,V1.4.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-UPD-004,SYS-003,SYS-001,启动系统安装器,TAP,update_install,APK SHA-256、包名和签名校验通过,点击安装,Android Package Installer,LOCAL_PACKAGE_INSTALL,V1.4.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-UPD-005,SYS-OV-001,SYS-001,可选更新立即更新,TAP,optional_update_now,页面处于允许该动作的状态,点击立即更新,stk://system/update,LOCAL_NAVIGATION,V1.4.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-UPD-006,SYS-OV-001,SYS-001,可选更新稍后,TAP,optional_update_later,页面处于允许该动作的状态,点击稍后,关闭弹窗,LOCAL_DISMISS,V1.4.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-UPD-007,SYS-OV-002,SYS-001,强制更新立即更新,TAP,forced_update_now,页面处于允许该动作的状态,点击立即更新,stk://system/update,LOCAL_NAVIGATION,V1.4.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-EXT-001,COM-OV-001,HOME-005,确认打开白名单外链,TAP,external_continue,页面处于允许该动作的状态,点击继续,Custom Tabs 或目标 App,LOCAL_EXTERNAL_OPEN,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-EXT-002,COM-OV-001,HOME-005,取消外部跳转,TAP,external_cancel,页面处于允许该动作的状态,点击取消,关闭弹层,LOCAL_DISMISS,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-STAGE-001,COM-OV-002,FND-001,关闭阶段说明,TAP,stage_scope_close,页面处于允许该动作的状态,点击返回,关闭弹层,LOCAL_DISMISS,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-AUTH-001,AUTH-001,AUTH-001,切换密码登录,TAP,login_mode_password,页面处于允许该动作的状态,点击密码登录,密码表单,LOCAL_UI_STATE,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-AUTH-002,AUTH-001,AUTH-002,切换短信登录,TAP,login_mode_sms,页面处于允许该动作的状态,点击短信登录,短信表单,LOCAL_UI_STATE,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-AUTH-003,AUTH-001,AUTH-001,输入手机号,INPUT,login_phone,页面处于允许该动作的状态,输入并格式化手机号,手机号字段,LOCAL_VALIDATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-AUTH-004,AUTH-001,AUTH-001,输入登录密码,INPUT,login_password,页面处于允许该动作的状态,输入密码,密码字段,LOCAL_VALIDATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-AUTH-005,AUTH-001,AUTH-001,切换密码可见性,TAP,login_password_visibility,页面处于允许该动作的状态,点击眼睛图标,密码可见性,LOCAL_UI_STATE,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-AUTH-006,AUTH-001,AUTH-002,输入短信验证码,INPUT,login_sms_code,页面处于允许该动作的状态,输入 6 位验证码,短信码字段,LOCAL_VALIDATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-AUTH-007,AUTH-001,AUTH-002,发送登录短信验证码,TAP,login_send_sms,页面处于允许该动作的状态,点击发送验证码,先打开安全验证码,sendSmsCode,V1.0.0,安全验证码通过后服务端发送阿里云短信并启动倒计时,contracts/feature-map.yaml
+INT-AUTH-008,AUTH-001,AUTH-001,提交密码登录,TAP,login_password_submit,页面处于允许该动作的状态,点击登录,先打开安全验证码,loginWithPassword,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-AUTH-009,AUTH-001,AUTH-002,提交短信登录,TAP,login_sms_submit,页面处于允许该动作的状态,点击登录,先打开安全验证码,loginWithSms,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-AUTH-010,AUTH-001,AUTH-003,进入注册,TAP,login_open_register,页面处于允许该动作的状态,点击注册,stk://auth/register,LOCAL_NAVIGATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-AUTH-011,AUTH-001,AUTH-005,进入找回密码,TAP,login_open_reset,页面处于允许该动作的状态,点击忘记密码,stk://auth/reset-password,LOCAL_NAVIGATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-AUTH-012,AUTH-001,AUTH-007,打开用户协议,TAP,login_open_agreement,页面处于允许该动作的状态,点击用户协议,stk://legal/user-agreement,LOCAL_NAVIGATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-AUTH-013,AUTH-001,AUTH-007,打开隐私政策,TAP,login_open_privacy,页面处于允许该动作的状态,点击隐私政策,stk://legal/privacy-policy,LOCAL_NAVIGATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-REG-001,AUTH-002,AUTH-003,输入注册手机号,INPUT,register_phone,页面处于允许该动作的状态,输入手机号,手机号字段,LOCAL_VALIDATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-REG-002,AUTH-002,AUTH-003,输入注册密码,INPUT,register_password,页面处于允许该动作的状态,输入密码,密码字段,LOCAL_VALIDATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-REG-003,AUTH-002,AUTH-003,输入确认密码,INPUT,register_password_confirm,页面处于允许该动作的状态,再次输入密码,确认密码字段,LOCAL_VALIDATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-REG-004,AUTH-002,AUTH-003,切换密码可见性,TAP,register_password_visibility,页面处于允许该动作的状态,点击眼睛图标,密码可见性,LOCAL_UI_STATE,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-REG-005,AUTH-002,AUTH-003,同意用户协议,TAP,register_agreement_check,页面处于允许该动作的状态,点击勾选,协议状态,LOCAL_UI_STATE,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-REG-006,AUTH-002,AUTH-003,提交注册,TAP,register_submit,页面处于允许该动作的状态,点击注册,先打开安全验证码,registerUser,V1.0.0,不发送短信；创建 Discuz UID、手机号绑定、会员基础记录和双账户记录,contracts/feature-map.yaml
+INT-REG-007,AUTH-002,AUTH-001,返回登录,TAP,register_back_login,页面处于允许该动作的状态,点击已有账号登录,stk://auth/login,LOCAL_NAVIGATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-REG-008,AUTH-002,AUTH-007,注册页打开协议,TAP,register_open_agreement,页面处于允许该动作的状态,点击用户协议,stk://legal/user-agreement,LOCAL_NAVIGATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-REG-009,AUTH-002,AUTH-007,注册页打开隐私政策,TAP,register_open_privacy,页面处于允许该动作的状态,点击隐私政策,stk://legal/privacy-policy,LOCAL_NAVIGATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-RESET-001,AUTH-003,AUTH-005,输入重置手机号,INPUT,reset_phone,页面处于允许该动作的状态,输入手机号,手机号字段,LOCAL_VALIDATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-RESET-002,AUTH-003,AUTH-005,发送重置短信,TAP,reset_send_sms,页面处于允许该动作的状态,点击发送验证码,安全验证码,sendSmsCode,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-RESET-003,AUTH-003,AUTH-005,输入重置短信码,INPUT,reset_sms_code,页面处于允许该动作的状态,输入验证码,短信码字段,LOCAL_VALIDATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-RESET-004,AUTH-003,AUTH-005,输入新密码,INPUT,reset_new_password,页面处于允许该动作的状态,输入新密码,新密码字段,LOCAL_VALIDATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-RESET-005,AUTH-003,AUTH-005,输入确认新密码,INPUT,reset_new_password_confirm,页面处于允许该动作的状态,再次输入新密码,确认字段,LOCAL_VALIDATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-RESET-006,AUTH-003,AUTH-005,提交密码重置,TAP,reset_submit,页面处于允许该动作的状态,点击确认重置,安全验证码,resetPassword,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-RESET-007,AUTH-003,AUTH-001,重置页返回登录,TAP,reset_back_login,页面处于允许该动作的状态,点击返回,stk://auth/login,LOCAL_NAVIGATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-LEGAL-001,AUTH-004,AUTH-007,用户协议返回,TAP,agreement_back,页面处于允许该动作的状态,点击返回,上一页,LOCAL_BACK,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-LEGAL-002,AUTH-004,AUTH-007,重试加载用户协议,TAP,agreement_retry,页面处于允许该动作的状态,点击重试,协议服务,getLegalDocument,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-LEGAL-003,AUTH-005,AUTH-007,隐私政策返回,TAP,privacy_back,页面处于允许该动作的状态,点击返回,上一页,LOCAL_BACK,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-LEGAL-004,AUTH-005,AUTH-007,重试加载隐私政策,TAP,privacy_retry,页面处于允许该动作的状态,点击重试,协议服务,getLegalDocument,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CAPTCHA-001,AUTH-OV-001,AUTH-004,输入安全验证码,INPUT,captcha_input,页面处于允许该动作的状态,输入验证码,验证码字段,LOCAL_VALIDATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CAPTCHA-002,AUTH-OV-001,AUTH-004,刷新安全验证码,TAP,captcha_refresh,页面处于允许该动作的状态,点击刷新,新 challenge,getCaptchaChallenge,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CAPTCHA-003,AUTH-OV-001,AUTH-004,确认安全验证码,TAP,captcha_confirm,页面处于允许该动作的状态,点击确认,一次性 ticket,verifyCaptcha,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CAPTCHA-004,AUTH-OV-001,AUTH-004,取消安全验证码,TAP,captcha_cancel,页面处于允许该动作的状态,点击取消,关闭弹窗,LOCAL_DISMISS,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-RISK-001,AUTH-OV-002,AUTH-008,关闭风控提示,TAP,auth_risk_confirm,页面处于允许该动作的状态,点击我知道了,关闭弹窗,LOCAL_DISMISS,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-HOME-001,HOME-001,HOME-001,下拉刷新项目流,SWIPE,home_pull_refresh,页面处于允许该动作的状态,下拉刷新,最新游标,listProjects,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-HOME-002,HOME-001,HOME-002,打开搜索,TAP,home_search,页面处于允许该动作的状态,点击搜索框,stk://search,LOCAL_NAVIGATION,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-HOME-003,HOME-001,HOME-002,打开分类筛选,TAP,home_category_filter,页面处于允许该动作的状态,点击分类,HOME-003,LOCAL_OVERLAY,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-HOME-004,HOME-001,HOME-003,打开项目详情,TAP,project_card_{projectId},页面处于允许该动作的状态,点击项目卡,stk://project/{project_id},getProjectDetail,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-HOME-005,HOME-001,HOME-001,下一页自动加载,SCROLL,home_project_list,页面处于允许该动作的状态,滚动接近底部,下一游标,listProjects,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-HOME-006,HOME-001,HOME-001,重试首屏,TAP,home_retry,页面处于允许该动作的状态,点击重试,项目流,listProjects,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-HOME-007,HOME-001,HOME-001,重试下一页,TAP,home_load_more_retry,页面处于允许该动作的状态,点击重试,下一游标,listProjects,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-HOME-008,HOME-001,PROFILE-001,顶部头像进入我的,TAP,home_avatar,页面处于允许该动作的状态,点击头像,stk://me,LOCAL_NAVIGATION,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SEARCH-001,HOME-002,HOME-002,输入搜索关键词,INPUT,search_query,页面处于允许该动作的状态,输入关键词,搜索字段,LOCAL_DEBOUNCE,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SEARCH-002,HOME-002,HOME-002,提交搜索,IME_ACTION,search_submit,页面处于允许该动作的状态,键盘搜索,搜索 API,listProjects,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SEARCH-003,HOME-002,HOME-002,清空搜索,TAP,search_clear,页面处于允许该动作的状态,点击清除,默认搜索页,LOCAL_UI_STATE,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SEARCH-004,HOME-002,HOME-003,打开搜索结果详情,TAP,search_project_{projectId},页面处于允许该动作的状态,点击项目,stk://project/{project_id},getProjectDetail,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SEARCH-005,HOME-002,HOME-002,搜索重试,TAP,search_retry,页面处于允许该动作的状态,点击重试,搜索 API,listProjects,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SEARCH-006,HOME-002,HOME-002,返回首页,TAP,search_back,页面处于允许该动作的状态,点击返回,stk://home,LOCAL_BACK,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CAT-001,HOME-003,HOME-002,选择分类,TAP,category_{categoryId},页面处于允许该动作的状态,点击分类,选中状态,LOCAL_UI_STATE,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CAT-002,HOME-003,HOME-002,确认分类,TAP,category_confirm,页面处于允许该动作的状态,点击确认,筛选首页,listProjects,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CAT-003,HOME-003,HOME-002,重置分类,TAP,category_reset,页面处于允许该动作的状态,点击重置,全部分类,LOCAL_UI_STATE,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CAT-004,HOME-003,HOME-002,关闭分类,TAP,category_close,页面处于允许该动作的状态,点击关闭,关闭面板,LOCAL_DISMISS,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-DETAIL-001,HOME-004,HOME-003,详情返回,TAP,project_detail_back,页面处于允许该动作的状态,点击返回,上一页,LOCAL_BACK,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-DETAIL-002,HOME-004,HOME-003,打开图片查看器,TAP,project_image_{index},页面处于允许该动作的状态,点击图片,HOME-OV-001,LOCAL_OVERLAY,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-DETAIL-003,HOME-004,HOME-005,打开联系方式,TAP,project_contact,页面处于允许该动作的状态,点击联系,HOME-OV-002,LOCAL_OVERLAY,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-DETAIL-004,HOME-004,HOME-005,复制项目链接,TAP,project_share,页面处于允许该动作的状态,点击分享,系统分享面板,LOCAL_SHARE,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-DETAIL-005,HOME-004,HOME-003,详情重试,TAP,project_detail_retry,页面处于允许该动作的状态,点击重试,详情 API,getProjectDetail,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-DETAIL-006,HOME-004,PUBLISH-003,本人项目编辑,TAP,owner_project_edit,页面处于允许该动作的状态,点击编辑,PUB-004,LOCAL_NAVIGATION,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-DETAIL-007,HOME-004,PUBLISH-003,本人项目下架,TAP,owner_project_offline,页面处于允许该动作的状态,点击下架,状态 API,offlineProject,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-DETAIL-008,HOME-004,PUBLISH-003,本人驳回项目重提,TAP,owner_project_resubmit,页面处于允许该动作的状态,点击重新提交,状态 API,resubmitProject,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-IMG-001,HOME-OV-001,HOME-003,切换项目图片,SWIPE,image_viewer_pager,页面处于允许该动作的状态,左右滑动,相邻图片,LOCAL_UI_STATE,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-IMG-002,HOME-OV-001,HOME-003,缩放项目图片,PINCH,image_viewer_image,页面处于允许该动作的状态,双指缩放,当前图片,LOCAL_UI_STATE,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-IMG-003,HOME-OV-001,HOME-003,重试图片加载,TAP,image_viewer_retry,页面处于允许该动作的状态,点击重试,当前图片 URL,LOCAL_IMAGE_RETRY,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-IMG-004,HOME-OV-001,HOME-003,关闭图片查看器,TAP,image_viewer_close,页面处于允许该动作的状态,点击关闭,项目详情,LOCAL_DISMISS,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CONTACT-001,HOME-OV-002,HOME-005,复制联系方式,TAP,contact_copy,页面处于允许该动作的状态,点击复制,系统剪贴板,LOCAL_CLIPBOARD,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CONTACT-002,HOME-OV-002,HOME-005,拨打手机号,TAP,contact_call,页面处于允许该动作的状态,点击拨打,系统拨号器,LOCAL_DIAL,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CONTACT-003,HOME-OV-002,HOME-005,打开微信,TAP,contact_open_wechat,页面处于允许该动作的状态,点击打开微信,微信或回退,LOCAL_EXTERNAL_OPEN,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CONTACT-004,HOME-OV-002,HOME-005,打开 QQ,TAP,contact_open_qq,页面处于允许该动作的状态,点击打开 QQ,QQ 或回退,LOCAL_EXTERNAL_OPEN,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CONTACT-005,HOME-OV-002,HOME-005,打开网址,TAP,contact_open_url,页面处于允许该动作的状态,点击打开网址,外链确认,LOCAL_EXTERNAL_OPEN,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CONTACT-006,HOME-OV-002,HOME-005,关闭联系面板,TAP,contact_close,页面处于允许该动作的状态,点击关闭,项目详情,LOCAL_DISMISS,V1.1.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PUB-001,PUB-001,PUBLISH-002,输入项目标题,INPUT,publish_title,页面处于允许该动作的状态,输入标题,标题字段,LOCAL_VALIDATION,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PUB-002,PUB-001,PUBLISH-002,输入项目简介,INPUT,publish_summary,页面处于允许该动作的状态,输入简介,简介字段,LOCAL_VALIDATION,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PUB-003,PUB-001,PUBLISH-002,选择项目分类,TAP,publish_category,页面处于允许该动作的状态,点击分类,分类选择,listProjectCategories,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PUB-004,PUB-001,PUBLISH-001,打开系统相册,TAP,publish_add_images,页面处于允许该动作的状态,点击添加图片,Android Photo Picker,LOCAL_PHOTO_PICKER,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PUB-005,PUB-001,PUBLISH-001,上传已选图片,SYSTEM_RESULT,publish_image_upload,页面处于允许该动作的状态,Photo Picker 返回,上传队列,uploadProjectImage,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PUB-006,PUB-001,PUBLISH-001,重试单张图片上传,TAP,publish_image_retry_{assetId},页面处于允许该动作的状态,点击重试,上传队列,uploadProjectImage,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PUB-007,PUB-001,PUBLISH-001,删除已选图片,TAP,publish_image_delete_{assetId},页面处于允许该动作的状态,点击删除,PUB-OV-001,LOCAL_OVERLAY,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PUB-008,PUB-001,PUBLISH-001,进入图片排序,TAP,publish_image_sort,页面处于允许该动作的状态,点击排序,PUB-002,LOCAL_NAVIGATION,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PUB-009,PUB-001,PUBLISH-002,选择联系方式类型,TAP,publish_contact_type,页面处于允许该动作的状态,点击类型,PUB-OV-003,LOCAL_OVERLAY,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PUB-010,PUB-001,PUBLISH-002,输入联系方式,INPUT,publish_contact_value,页面处于允许该动作的状态,输入联系方式,联系方式字段,LOCAL_VALIDATION,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PUB-011,PUB-001,PUBLISH-002,输入联系人,INPUT,publish_contact_name,页面处于允许该动作的状态,输入联系人,联系人字段,LOCAL_VALIDATION,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PUB-012,PUB-001,PUBLISH-002,同意发布规范,TAP,publish_agreement,页面处于允许该动作的状态,点击勾选,协议状态,LOCAL_UI_STATE,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PUB-013,PUB-001,PUBLISH-002,提交发布,TAP,publish_submit,页面处于允许该动作的状态,点击发布,创建项目,createProject,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PUB-014,PUB-001,PUBLISH-002,发布页返回,TAP,publish_back,页面处于允许该动作的状态,点击返回,未保存检查,LOCAL_BACK,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SORT-001,PUB-002,PUBLISH-001,拖动图片排序,DRAG,image_sort_grid,页面处于允许该动作的状态,拖动图片,本地排序,LOCAL_UI_STATE,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SORT-002,PUB-002,PUBLISH-001,设为封面,TAP,image_set_cover_{assetId},页面处于允许该动作的状态,点击设为封面,封面状态,LOCAL_UI_STATE,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SORT-003,PUB-002,PUBLISH-001,完成图片排序,TAP,image_sort_done,页面处于允许该动作的状态,点击完成,发布表单,LOCAL_BACK_WITH_RESULT,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SORT-004,PUB-002,PUBLISH-001,排序页返回,TAP,image_sort_back,页面处于允许该动作的状态,点击返回,发布表单,LOCAL_BACK,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-RESULT-001,PUB-003,PUBLISH-002,查看已提交项目,TAP,publish_result_view,页面处于允许该动作的状态,点击查看,项目详情,getProjectDetail,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-RESULT-002,PUB-003,PUBLISH-002,继续发布,TAP,publish_result_again,页面处于允许该动作的状态,点击继续发布,PUB-001,LOCAL_NAVIGATION,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-RESULT-003,PUB-003,PUBLISH-004,进入我的发布,TAP,publish_result_my_projects,页面处于允许该动作的状态,点击我的发布,ME-002,LOCAL_NAVIGATION,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-EDIT-001,PUB-004,PUBLISH-003,保存项目修改,TAP,project_edit_save,页面处于允许该动作的状态,点击保存,更新项目,updateProject,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-EDIT-002,PUB-004,PUBLISH-003,编辑页返回,TAP,project_edit_back,页面处于允许该动作的状态,点击返回,未保存检查,LOCAL_BACK,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-DELIMG-001,PUB-OV-001,PUBLISH-001,确认删除图片,TAP,delete_image_confirm,页面处于允许该动作的状态,点击删除,删除上传资产,deleteUploadedImage,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-DELIMG-002,PUB-OV-001,PUBLISH-001,取消删除图片,TAP,delete_image_cancel,页面处于允许该动作的状态,点击取消,关闭弹层,LOCAL_DISMISS,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-DRAFT-001,PUB-OV-002,PUBLISH-002,继续编辑草稿,TAP,draft_continue,页面处于允许该动作的状态,点击继续编辑,发布表单,LOCAL_DISMISS,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-DRAFT-002,PUB-OV-002,PUBLISH-002,放弃草稿,TAP,draft_discard,页面处于允许该动作的状态,点击放弃,安全返回,LOCAL_DISCARD,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CTYPE-001,PUB-OV-003,PUBLISH-002,选择联系方式类型,TAP,contact_type_{type},页面处于允许该动作的状态,点击类型,发布表单,LOCAL_BACK_WITH_RESULT,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-CTYPE-002,PUB-OV-003,PUBLISH-002,关闭类型选择,TAP,contact_type_close,页面处于允许该动作的状态,点击关闭,发布表单,LOCAL_DISMISS,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ME-001,ME-001,PROFILE-001,打开个人资料,TAP,me_profile,页面处于允许该动作的状态,点击资料卡,ME-003,LOCAL_NAVIGATION,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ME-002,ME-001,PUBLISH-004,打开我的发布,TAP,me_projects,页面处于允许该动作的状态,点击我的发布,ME-002,listMyProjects,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ME-003,ME-001,PROFILE-003,打开账户余额,TAP,me_wallets,页面处于允许该动作的状态,点击账户卡,ME-005,getMyWallets,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ME-004,ME-001,PROFILE-002,打开会员中心,TAP,me_member,页面处于允许该动作的状态,点击会员卡,ME-004,getMyMember,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ME-005,ME-001,PROFILE-004,打开道具中心,TAP,me_props,页面处于允许该动作的状态,点击道具中心,ME-006,getPropDisplay,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ME-006,ME-001,PROFILE-005,打开浏览记录占位,TAP,me_history,页面处于允许该动作的状态,点击浏览记录,ME-007,LOCAL_NAVIGATION,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ME-007,ME-001,PROFILE-005,打开收藏占位,TAP,me_favorites,页面处于允许该动作的状态,点击收藏,ME-008,LOCAL_NAVIGATION,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ME-008,ME-001,PROFILE-005,打开实名认证占位,TAP,me_real_name,页面处于允许该动作的状态,点击实名认证,ME-009,LOCAL_NAVIGATION,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ME-009,ME-001,PROFILE-005,打开客服,TAP,me_support,页面处于允许该动作的状态,点击联系客服,ME-010,getSupportConfig,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ME-010,ME-001,PROFILE-005,打开设置,TAP,me_settings,页面处于允许该动作的状态,点击设置,ME-011,LOCAL_NAVIGATION,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ME-011,ME-001,PROFILE-001,我的页面重试,TAP,me_retry,页面处于允许该动作的状态,点击重试,资料摘要,getMySummary,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-MYPROJ-001,ME-002,PUBLISH-004,切换项目状态标签,TAP,my_projects_tab_{status},页面处于允许该动作的状态,点击状态标签,本人项目列表,listMyProjects,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-MYPROJ-002,ME-002,PUBLISH-004,打开本人项目详情,TAP,my_project_{projectId},页面处于允许该动作的状态,点击项目,HOME-004,getProjectDetail,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-MYPROJ-003,ME-002,PUBLISH-004,打开项目操作面板,TAP,my_project_more_{projectId},页面处于允许该动作的状态,点击更多,ME-OV-002,LOCAL_OVERLAY,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-MYPROJ-004,ME-002,PUBLISH-004,我的项目加载更多,SCROLL,my_projects_list,页面处于允许该动作的状态,滚动到底部,下一游标,listMyProjects,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-MYPROJ-005,ME-002,PUBLISH-004,我的项目重试,TAP,my_projects_retry,页面处于允许该动作的状态,点击重试,本人项目列表,listMyProjects,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-MYPROJ-006,ME-002,PUBLISH-002,空列表去发布,TAP,my_projects_publish,页面处于允许该动作的状态,点击发布项目,PUB-001,LOCAL_NAVIGATION,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PROFILE-001,ME-003,PROFILE-001,个人资料返回,TAP,profile_back,页面处于允许该动作的状态,点击返回,ME-001,LOCAL_BACK,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-MEMBER-001,ME-004,PROFILE-002,会员开通引导,TAP,member_open_action,页面处于允许该动作的状态,点击立即开通,阶段说明,LOCAL_STAGE_SCOPE,V1.3.0,明确本期不实现在线开通，不创建订单或假支付,contracts/feature-map.yaml
+INT-MEMBER-002,ME-004,PROFILE-002,会员页返回,TAP,member_back,页面处于允许该动作的状态,点击返回,ME-001,LOCAL_BACK,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-WALLET-001,ME-005,PROFILE-003,账户操作说明,TAP,wallet_action_info,页面处于允许该动作的状态,点击余额卡,阶段说明,LOCAL_STAGE_SCOPE,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-WALLET-002,ME-005,PROFILE-003,账户页返回,TAP,wallet_back,页面处于允许该动作的状态,点击返回,ME-001,LOCAL_BACK,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PROP-001,ME-006,PROFILE-004,查看道具说明,TAP,prop_{propCode},页面处于允许该动作的状态,点击道具卡,阶段说明,LOCAL_STAGE_SCOPE,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PROP-002,ME-006,PROFILE-004,道具页返回,TAP,props_back,页面处于允许该动作的状态,点击返回,ME-001,LOCAL_BACK,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PLACE-001,ME-007,PROFILE-005,占位页返回,TAP,history_back,页面处于允许该动作的状态,点击返回,ME-001,LOCAL_BACK,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PLACE-002,ME-008,PROFILE-005,占位页返回,TAP,favorites_back,页面处于允许该动作的状态,点击返回,ME-001,LOCAL_BACK,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-PLACE-003,ME-009,PROFILE-005,占位页返回,TAP,real_name_back,页面处于允许该动作的状态,点击返回,ME-001,LOCAL_BACK,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SUPPORT-001,ME-010,PROFILE-005,复制客服信息,TAP,support_copy,页面处于允许该动作的状态,点击复制,系统剪贴板,LOCAL_CLIPBOARD,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SUPPORT-002,ME-010,PROFILE-005,打开客服外部应用,TAP,support_external,页面处于允许该动作的状态,点击打开,白名单外部应用,LOCAL_EXTERNAL_OPEN,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SUPPORT-003,ME-010,PROFILE-005,客服配置重试,TAP,support_retry,页面处于允许该动作的状态,点击重试,客服配置,getSupportConfig,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SET-001,ME-011,PROFILE-005,清理图片与列表缓存,TAP,settings_clear_cache,页面处于允许该动作的状态,点击清理缓存,本地缓存,LOCAL_CLEAR_CACHE,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SET-002,ME-011,AUTH-007,设置页打开协议,TAP,settings_agreement,页面处于允许该动作的状态,点击用户协议,AUTH-004,LOCAL_NAVIGATION,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SET-003,ME-011,AUTH-007,设置页打开隐私,TAP,settings_privacy,页面处于允许该动作的状态,点击隐私政策,AUTH-005,LOCAL_NAVIGATION,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SET-004,ME-011,PROFILE-005,打开关于,TAP,settings_about,页面处于允许该动作的状态,点击关于,ME-012,LOCAL_NAVIGATION,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-SET-005,ME-011,AUTH-006,打开退出确认,TAP,settings_logout,页面处于允许该动作的状态,点击退出登录,ME-OV-001,LOCAL_OVERLAY,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ABOUT-001,ME-012,SYS-001,关于页检查更新,TAP,about_check_update,页面处于允许该动作的状态,点击检查更新,版本服务,getCurrentRelease,V1.4.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ABOUT-002,ME-012,PROFILE-005,关于页返回,TAP,about_back,页面处于允许该动作的状态,点击返回,ME-011,LOCAL_BACK,V1.3.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-LOGOUT-001,ME-OV-001,AUTH-006,确认退出登录,TAP,logout_confirm,页面处于允许该动作的状态,点击退出,撤销令牌并清理本地,logout,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-LOGOUT-002,ME-OV-001,AUTH-006,取消退出登录,TAP,logout_cancel,页面处于允许该动作的状态,点击取消,关闭弹层,LOCAL_DISMISS,V1.0.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ACT-001,ME-OV-002,PUBLISH-003,项目操作查看,TAP,project_action_view,页面处于允许该动作的状态,点击查看,HOME-004,getProjectDetail,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ACT-002,ME-OV-002,PUBLISH-003,项目操作编辑,TAP,project_action_edit,页面处于允许该动作的状态,点击编辑,PUB-004,LOCAL_NAVIGATION,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ACT-003,ME-OV-002,PUBLISH-003,项目操作下架,TAP,project_action_offline,页面处于允许该动作的状态,点击下架,状态 API,offlineProject,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ACT-004,ME-OV-002,PUBLISH-003,项目操作重提,TAP,project_action_resubmit,页面处于允许该动作的状态,点击重提,状态 API,resubmitProject,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ACT-005,ME-OV-002,PUBLISH-003,项目操作删除,TAP,project_action_delete,页面处于允许该动作的状态,点击删除,删除 API,deleteProject,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml
+INT-ACT-006,ME-OV-002,PUBLISH-003,关闭项目操作,TAP,project_action_close,页面处于允许该动作的状态,点击关闭,我的发布,LOCAL_DISMISS,V1.2.0,产生合同规定的唯一结果,contracts/feature-map.yaml

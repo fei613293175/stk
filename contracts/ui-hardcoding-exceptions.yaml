@@ -1,0 +1,3 @@
+schema_version: 1
+exceptions: []
+rule: 任何例外必须包含文件、行、原因、批准人、到期版本；默认无例外

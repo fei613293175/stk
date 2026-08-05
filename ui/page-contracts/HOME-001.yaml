@@ -1,0 +1,263 @@
+schema_version: 1
+page:
+  page_id: HOME-001
+  name: 首页项目流
+  surface: android
+  visual_type: PAGE
+  route: stk://home
+  introduced_in: V1.0.0
+  layout_profile: ROOT_FEED
+  parent_page_id: null
+  identity_signature: 品牌顶部栏+搜索+分类+单列项目卡+底部导航
+  notes: 首页只展示 published 项目
+  design_system_version: STK-DS-1.0
+  functional_authority: contracts/feature-map.yaml
+  visual_authority: contracts/mockup-manifest.csv
+  sample_content_is_not_functional_scope: true
+fixed_layout:
+  profile: ROOT_FEED
+  profile_values:
+    top_bar: 56
+    bottom_nav: 64
+    horizontal_padding: 16
+    search_height: 44
+    list_gap: 12
+    dominant: single_column_project_feed
+  global_token_authority: contracts/ui-design-tokens.yaml
+  page_matrix_authority: contracts/ui-page-layout-matrix.csv
+required_identity:
+- 品牌顶部栏+搜索+分类+单列项目卡+底部导航
+- 首页只展示 published 项目
+required_states:
+- state_id: HOME-001-S01
+  state_code: FIRST_LOADING
+  name: 首次骨架
+  description: 无缓存时显示结构化骨架
+  introduced_in: V1.0.0
+  mockup_id: M-HOME-001-S01
+  mockup_path: ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S01__FIRST_LOADING__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-001-S02
+  state_code: CONTENT
+  name: 正常内容
+  description: 缓存或网络项目流
+  introduced_in: V1.0.0
+  mockup_id: M-HOME-001-S02
+  mockup_path: ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S02__CONTENT__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-001-S03
+  state_code: REFRESHING
+  name: 下拉刷新
+  description: 保留列表并显示刷新进度
+  introduced_in: V1.0.0
+  mockup_id: M-HOME-001-S03
+  mockup_path: ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S03__REFRESHING__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-001-S04
+  state_code: FILTERED
+  name: 分类筛选结果
+  description: 显示当前分类和项目
+  introduced_in: V1.1.0
+  mockup_id: M-HOME-001-S04
+  mockup_path: ui/mockups/approved/V1.1.0/HOME-001/M-HOME-001-S04__FILTERED__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-001-S05
+  state_code: PAGINATING
+  name: 加载下一页
+  description: 底部加载
+  introduced_in: V1.0.0
+  mockup_id: M-HOME-001-S05
+  mockup_path: ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S05__PAGINATING__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-001-S06
+  state_code: PAGINATION_FAILED
+  name: 下一页失败
+  description: 保留已有列表并局部重试
+  introduced_in: V1.0.0
+  mockup_id: M-HOME-001-S06
+  mockup_path: ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S06__PAGINATION_FAILED__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-001-S07
+  state_code: EMPTY
+  name: 暂无项目
+  description: 后台无 published 项目
+  introduced_in: V1.0.0
+  mockup_id: M-HOME-001-S07
+  mockup_path: ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S07__EMPTY__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-001-S08
+  state_code: OFFLINE_WITH_CACHE
+  name: 离线缓存
+  description: 保留缓存列表和离线提示
+  introduced_in: V1.1.0
+  mockup_id: M-HOME-001-S08
+  mockup_path: ui/mockups/approved/V1.1.0/HOME-001/M-HOME-001-S08__OFFLINE_WITH_CACHE__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-001-S09
+  state_code: OFFLINE_EMPTY
+  name: 离线无缓存
+  description: 明确离线且无历史数据
+  introduced_in: V1.1.0
+  mockup_id: M-HOME-001-S09
+  mockup_path: ui/mockups/approved/V1.1.0/HOME-001/M-HOME-001-S09__OFFLINE_EMPTY__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-001-S10
+  state_code: NETWORK_ERROR
+  name: 网络错误
+  description: 首屏重试
+  introduced_in: V1.0.0
+  mockup_id: M-HOME-001-S10
+  mockup_path: ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S10__NETWORK_ERROR__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-001-S11
+  state_code: TIMEOUT
+  name: 请求超时
+  description: 首屏超时重试
+  introduced_in: V1.0.0
+  mockup_id: M-HOME-001-S11
+  mockup_path: ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S11__TIMEOUT__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-001-S12
+  state_code: SERVER_ERROR
+  name: 服务异常
+  description: 请求编号和重试
+  introduced_in: V1.0.0
+  mockup_id: M-HOME-001-S12
+  mockup_path: ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S12__SERVER_ERROR__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-001-S13
+  state_code: SESSION_EXPIRED
+  name: 登录过期
+  description: 转登录前提示
+  introduced_in: V1.0.0
+  mockup_id: M-HOME-001-S13
+  mockup_path: ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S13__SESSION_EXPIRED__1170x2532.png
+  mockup_status: APPROVED
+allowed_interactions:
+- interaction_id: INT-NAV-001
+  feature_id: FND-001
+  name: 底部导航进入首页
+  interaction_type: TAP
+  test_tag: nav_home
+  action: 点击首页
+  target: stk://home
+  api_operation_id: LOCAL_NAVIGATION
+  introduced_in: V1.0.0
+  expected_result: 进入首页并保留或恢复滚动位置；在首页再次点击回到顶部
+- interaction_id: INT-NAV-002
+  feature_id: FND-001
+  name: 底部导航进入发布
+  interaction_type: TAP
+  test_tag: nav_publish
+  action: 点击发布
+  target: 版本化路由
+  api_operation_id: LOCAL_VERSIONED_NAVIGATION
+  introduced_in: V1.0.0
+  expected_result: V1.0/V1.1 打开阶段说明；V1.2 起进入 PUB-001
+- interaction_id: INT-NAV-003
+  feature_id: FND-001
+  name: 底部导航进入我的
+  interaction_type: TAP
+  test_tag: nav_me
+  action: 点击我的
+  target: stk://me
+  api_operation_id: LOCAL_NAVIGATION
+  introduced_in: V1.0.0
+  expected_result: 进入我的页面并保留首页状态
+- interaction_id: INT-HOME-001
+  feature_id: HOME-001
+  name: 下拉刷新项目流
+  interaction_type: SWIPE
+  test_tag: home_pull_refresh
+  action: 下拉刷新
+  target: 最新游标
+  api_operation_id: listProjects
+  introduced_in: V1.0.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-HOME-002
+  feature_id: HOME-002
+  name: 打开搜索
+  interaction_type: TAP
+  test_tag: home_search
+  action: 点击搜索框
+  target: stk://search
+  api_operation_id: LOCAL_NAVIGATION
+  introduced_in: V1.1.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-HOME-003
+  feature_id: HOME-002
+  name: 打开分类筛选
+  interaction_type: TAP
+  test_tag: home_category_filter
+  action: 点击分类
+  target: HOME-003
+  api_operation_id: LOCAL_OVERLAY
+  introduced_in: V1.1.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-HOME-004
+  feature_id: HOME-003
+  name: 打开项目详情
+  interaction_type: TAP
+  test_tag: project_card_{projectId}
+  action: 点击项目卡
+  target: stk://project/{project_id}
+  api_operation_id: getProjectDetail
+  introduced_in: V1.0.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-HOME-005
+  feature_id: HOME-001
+  name: 下一页自动加载
+  interaction_type: SCROLL
+  test_tag: home_project_list
+  action: 滚动接近底部
+  target: 下一游标
+  api_operation_id: listProjects
+  introduced_in: V1.0.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-HOME-006
+  feature_id: HOME-001
+  name: 重试首屏
+  interaction_type: TAP
+  test_tag: home_retry
+  action: 点击重试
+  target: 项目流
+  api_operation_id: listProjects
+  introduced_in: V1.0.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-HOME-007
+  feature_id: HOME-001
+  name: 重试下一页
+  interaction_type: TAP
+  test_tag: home_load_more_retry
+  action: 点击重试
+  target: 下一游标
+  api_operation_id: listProjects
+  introduced_in: V1.0.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-HOME-008
+  feature_id: PROFILE-001
+  name: 顶部头像进入我的
+  interaction_type: TAP
+  test_tag: home_avatar
+  action: 点击头像
+  target: stk://me
+  api_operation_id: LOCAL_NAVIGATION
+  introduced_in: V1.0.0
+  expected_result: 产生合同规定的唯一结果
+content_authority: ui/FIXTURE_DATA.yaml for visual tests; runtime data from contracted APIs
+forbidden:
+- page-local arbitrary colors/dp/sp/radius
+- function not listed in allowed_interactions
+- remote HTML layout
+- sample text treated as feature
+- empty click target
+- unapproved mockup used as final baseline
+acceptance:
+  canonical: 390x844dp / 1170x2532px
+  responsive_widths_dp:
+  - 360
+  - 390
+  - 412
+  - 430
+  visual_diff: approved baseline required
+  accessibility: 48dp touch targets and content descriptions

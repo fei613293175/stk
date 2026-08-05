@@ -1,0 +1,76 @@
+schema_version: 1
+project:
+  name_zh: 商推客
+  code: STK
+  package_version: 1.0.0
+  document_date: '2026-08-05'
+repository:
+  url: https://github.com/fei613293175/stk.git
+  default_branch: main
+  visibility: public
+  initial_state: empty_remote_confirmed
+domains:
+  registrable_domain: zz-yihao.com
+  public_entry: stk.zz-yihao.com
+  api: stk-api.zz-yihao.com
+  admin: stk-admin.zz-yihao.com
+  static: stk-static.zz-yihao.com
+  download: stk-download.zz-yihao.com
+  future_payment_reserved: stk-pay.zz-yihao.com
+android:
+  application_id: com.zzyihao.stk
+  display_name: 商推客
+  language: Kotlin
+  ui: Jetpack Compose + Material 3 foundation + STK custom design system
+  min_sdk: 26
+  compile_sdk: 37
+  target_sdk: 37
+  jdk: 17
+  kotlin: 2.4.10
+  compose_bom: 2026.06.00
+  agp_policy: Exact pins are authoritative in references/VERSION_PINS.md and gradle/libs.versions.toml; dynamic versions are
+    forbidden.
+  form_factor: Android phone portrait only
+  universal_release_apk_min_mb: 10
+  android_gradle_plugin: 9.3.0
+  gradle_wrapper: 9.5.0
+  sdk_build_tools: 36.0.0
+  lifecycle: 2.11.0
+  navigation: 2.9.8
+  room: 2.8.4
+backend:
+  framework: Discuz! X5.0
+  plugins:
+  - stk_auth
+  - stk_project
+  rule: standard plugin APIs only; no Discuz core modification
+  transport: HTTPS JSON API v1
+  database: existing Discuz-compatible MySQL/MariaDB using pre_ table prefix
+online_environment:
+  owner_reported_ready: true
+  discuz_version: X5.0
+  discuz_root: /www/wwwroot/stk_zz_yihao_com
+  public_site: https://stk.zz-yihao.com
+  api_host: stk-api.zz-yihao.com
+  api_dns_status: resolved_by_owner
+  admin_host: stk-admin.zz-yihao.com
+  admin_dns_status: resolved_by_owner
+  android_build_environment: available_on_server
+  admin_username: admin
+  admin_credential_file: ADMIN_ACCESS_HANDOFF.local.md
+  admin_password_storage: local_only_not_in_repository
+  sms_configuration_owner: project_owner
+  sms_configuration_status: pending_owner_entry
+external:
+  sms: Alibaba Cloud SMS via server-side RAM credentials
+  images: Discuz-compatible attachment adapter with static host
+  payments: not implemented in these five releases; external H5 opening capability only
+fixed_scope:
+- Android native user frontend
+- mobile phone portrait only
+- 'three bottom navigation items: Home, Publish, Me'
+- registration does not send SMS
+- security captcha required for login/register/SMS send/password reset
+- member/wallet/props are display-only in these five releases
+- no PC user frontend
+- no internal business WebView

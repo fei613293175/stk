@@ -1,0 +1,53 @@
+schema_version: 1
+android:
+  application_id: com.zzyihao.stk
+  signing_identity_policy: ONE_STABLE_OWNER_RELEASE_CERTIFICATE
+  version_code_policy: MONOTONIC
+  apk_type: universal_release_apk
+  minimum_real_size_mb: 10
+releases:
+- id: V1.0.0
+  version_name: 1.0.0
+  version_code: 10000
+  title: 原生底座、统一设计系统、登录注册与最小可浏览闭环
+  branch: release/1.0.0
+  tag: stk-android-v1.0.0
+  summary: 交付可覆盖安装的首个原生 APK、完整登录注册插件、管理员后台、基础项目列表/详情和我的基础资料。
+  owner_facing: true
+  upgrade_from: null
+- id: V1.1.0
+  version_name: 1.1.0
+  version_code: 10100
+  title: 首页发现、搜索筛选、缓存与外部联系动作
+  branch: release/1.1.0
+  tag: stk-android-v1.1.0
+  summary: 完善项目发现、搜索、分类、游标分页、离线缓存、图片查看和受控外部跳转。
+  owner_facing: true
+  upgrade_from: 1.0.0
+- id: V1.2.0
+  version_name: 1.2.0
+  version_code: 10200
+  title: 项目发布、图片上传、我的发布与后台审核闭环
+  branch: release/1.2.0
+  tag: stk-android-v1.2.0
+  summary: 完成用户发布、编辑、下架、删除、驳回重提、多图上传和后台审核管理。
+  owner_facing: true
+  upgrade_from: 1.1.0
+- id: V1.3.0
+  version_name: 1.3.0
+  version_code: 10300
+  title: 我的页面、会员/账户/道具展示与运营配置
+  branch: release/1.3.0
+  tag: stk-android-v1.3.0
+  summary: 完成我的页面信息展示、会员状态、双账户只读余额、道具展示和所有明确占位页面。
+  owner_facing: true
+  upgrade_from: 1.2.0
+- id: V1.4.0
+  version_name: 1.4.0
+  version_code: 10400
+  title: 更新分发、App Links、生产加固与全量验收
+  branch: release/1.4.0
+  tag: stk-android-v1.4.0
+  summary: 完成更新检查、下载分发、深链、维护模式、安全性能加固和五版本全链路终验。
+  owner_facing: true
+  upgrade_from: 1.3.0

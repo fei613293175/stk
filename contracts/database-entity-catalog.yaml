@@ -1,0 +1,194 @@
+schema_version: 1
+entities:
+- entity_id: DB-AUTH-001
+  table: pre_stk_auth_mobile
+  version: V1.0.0
+  owner: stk_auth
+  purpose: Discuz UID 与手机号安全绑定
+  key_fields: uid PK; mobile_hash UNIQUE; mobile_ciphertext; mobile_last4; verified_at; status
+  indexes: UNIQUE mobile_hash; status+created_at
+  retention: 账号存在期间；解绑保留审计摘要
+  pii: mobile_ciphertext encrypted; hash keyed HMAC
+- entity_id: DB-AUTH-002
+  table: pre_stk_auth_sms_code
+  version: V1.0.0
+  owner: stk_auth
+  purpose: 短信发送、验证码使用与阿里云回执
+  key_fields: id; scene; mobile_hash; code_hash; code_ciphertext; send_status; use_status; expires_at; biz_id
+  indexes: mobile_hash+scene+created_at; biz_id; use_status+expires_at
+  retention: 默认90天后清理敏感密文，统计摘要保留180天
+  pii: mobile/code encrypted; admin reveal audited
+- entity_id: DB-AUTH-003
+  table: pre_stk_auth_captcha_challenge
+  version: V1.0.0
+  owner: stk_auth
+  purpose: 动作绑定安全验证码 challenge/ticket
+  key_fields: challenge_id; action; answer_hash; session_hash; device_hash; expires_at; attempts; used_at
+  indexes: challenge_id UNIQUE; expires_at; session_hash+action
+  retention: 过期24小时清理
+  pii: 不保存明文答案
+- entity_id: DB-AUTH-004
+  table: pre_stk_auth_token
+  version: V1.0.0
+  owner: stk_auth
+  purpose: Access/Refresh token 族、轮换与撤销
+  key_fields: id; uid; token_family; access_jti_hash; refresh_hash; device_id_hash; expires_at; status
+  indexes: refresh_hash UNIQUE; uid+status; token_family
+  retention: 失效后90天保留安全审计
+  pii: 仅哈希，不保存明文 token
+- entity_id: DB-AUTH-005
+  table: pre_stk_auth_login_log
+  version: V1.0.0
+  owner: stk_auth
+  purpose: 登录成功失败日志
+  key_fields: id; uid; mobile_hash; login_type; result; error_code; ip_hash; device_hash; created_at
+  indexes: uid+created_at; mobile_hash+created_at; result+created_at
+  retention: 180天
+  pii: 手机号/IP/设备只存安全摘要和脱敏展示
+- entity_id: DB-AUTH-006
+  table: pre_stk_auth_risk_event
+  version: V1.0.0
+  owner: stk_auth
+  purpose: 限流、锁定和异常事件
+  key_fields: id; scene; subject_type; subject_hash; rule_code; action; unlock_at; created_at
+  indexes: subject_hash+scene+created_at; action+unlock_at
+  retention: 180天
+  pii: 主体值只存哈希
+- entity_id: DB-AUTH-007
+  table: pre_stk_secret_config
+  version: V1.0.0
+  owner: shared
+  purpose: 阿里云 Secret 等敏感配置密文
+  key_fields: config_key PK; ciphertext; key_version; updated_by; updated_at
+  indexes: updated_at
+  retention: 当前值+变更审计
+  pii: 主密钥只存在服务器环境变量
+- entity_id: DB-AUTH-008
+  table: pre_stk_admin_audit
+  version: V1.0.0
+  owner: shared
+  purpose: 后台敏感操作不可抵赖审计
+  key_fields: id; admin_uid; module; action; target_type; target_id; before_digest; after_digest; ip_hash; created_at
+  indexes: admin_uid+created_at; target_type+target_id; action+created_at
+  retention: 至少365天
+  pii: 不记录 Secret 明文
+- entity_id: DB-PROJ-001
+  table: pre_stk_project_category
+  version: V1.0.0
+  owner: stk_project
+  purpose: 项目分类、排序和可见性
+  key_fields: category_id; name; icon_asset; sort_order; enabled
+  indexes: enabled+sort_order
+  retention: 软删除
+  pii: 无
+- entity_id: DB-PROJ-002
+  table: pre_stk_project
+  version: V1.0.0
+  owner: stk_project
+  purpose: 项目主体、状态机、联系信息和统计
+  key_fields: project_id; uid; category_id; title; summary; contact_type; contact_ciphertext; status; version; view_count;
+    cover_asset_id
+  indexes: status+recommended+published_at+project_id; uid+status+updated_at; category_id+status+published_at; FULLTEXT title+summary
+    where supported
+  retention: 软删除；删除后按政策清理联系密文
+  pii: 联系方式加密，日志不得输出明文
+- entity_id: DB-PROJ-003
+  table: pre_stk_upload_asset
+  version: V1.2.0
+  owner: stk_project
+  purpose: 上传会话、图片元数据和生命周期
+  key_fields: asset_id; uid; upload_session_id; storage_key; mime; size; width; height; sha256; status; attached_project_id
+  indexes: uid+status+created_at; upload_session_id; attached_project_id+sort_order; sha256
+  retention: 未绑定资产24小时清理；已绑定随项目策略
+  pii: 图片 EXIF 在服务端移除
+- entity_id: DB-PROJ-004
+  table: pre_stk_project_image
+  version: V1.2.0
+  owner: stk_project
+  purpose: 项目与图片关联、顺序和封面
+  key_fields: project_id+asset_id; sort_order; is_cover
+  indexes: project_id+sort_order UNIQUE; project_id+is_cover
+  retention: 随项目软删除/清理
+  pii: 无
+- entity_id: DB-PROJ-005
+  table: pre_stk_project_audit_log
+  version: V1.2.0
+  owner: stk_project
+  purpose: 项目审核、驳回、上下架与用户状态动作
+  key_fields: id; project_id; actor_type; actor_uid; action; from_status; to_status; reason; snapshot_digest; created_at
+  indexes: project_id+created_at; actor_uid+created_at; action+created_at
+  retention: 至少365天
+  pii: reason 过滤敏感内容
+- entity_id: DB-PROJ-006
+  table: pre_stk_project_view
+  version: V1.0.0
+  owner: stk_project
+  purpose: 短时浏览去重
+  key_fields: project_id; viewer_uid; bucket_key; created_at
+  indexes: project_id+viewer_uid+bucket_key UNIQUE; created_at
+  retention: 30天后聚合清理
+  pii: 只使用 UID
+- entity_id: DB-PROJ-007
+  table: pre_stk_project_view_daily
+  version: V1.0.0
+  owner: stk_project
+  purpose: 项目日浏览统计
+  key_fields: project_id+date_key; view_count
+  indexes: date_key; project_id+date_key UNIQUE
+  retention: 长期统计
+  pii: 无
+- entity_id: DB-ME-001
+  table: pre_stk_member_status
+  version: V1.0.0
+  owner: stk_project
+  purpose: 会员展示状态与有效期
+  key_fields: uid PK; status; level_code; level_name; started_at; expires_at; source; updated_by
+  indexes: status+expires_at
+  retention: 账号存在期间+审计
+  pii: 无
+- entity_id: DB-ME-002
+  table: pre_stk_wallet_account
+  version: V1.0.0
+  owner: stk_project
+  purpose: 佣金/任务账户只读余额基础记录
+  key_fields: uid+account_type PK; balance DECIMAL(18,2); frozen_balance; currency; row_version
+  indexes: account_type+updated_at
+  retention: 账号存在期间
+  pii: 金融展示数据；本期无写入业务
+- entity_id: DB-ME-003
+  table: pre_stk_prop_catalog
+  version: V1.3.0
+  owner: stk_project
+  purpose: 道具展示目录，不代表库存或可购买
+  key_fields: prop_code PK; name; icon_asset; description; sort_order; enabled
+  indexes: enabled+sort_order
+  retention: 软删除
+  pii: 无
+- entity_id: DB-SYS-001
+  table: pre_stk_external_link_whitelist
+  version: V1.1.0
+  owner: stk_project
+  purpose: 外部域名、Scheme、包名白名单
+  key_fields: id; target_type; host_or_package; path_prefix; action; enabled; expires_at
+  indexes: target_type+host_or_package+enabled
+  retention: 当前配置+审计
+  pii: 无
+- entity_id: DB-SYS-002
+  table: pre_stk_app_release
+  version: V1.3.0
+  owner: stk_project
+  purpose: App 版本、最低版本、APK 校验和与发布状态
+  key_fields: id; application_id; version_name; version_code; min_supported_code; apk_url; apk_sha256; size_bytes; release_notes;
+    status
+  indexes: application_id+status+version_code; version_code UNIQUE
+  retention: 保留全部正式版本记录
+  pii: 无
+- entity_id: DB-SYS-003
+  table: pre_stk_idempotency_key
+  version: V1.0.0
+  owner: shared
+  purpose: 写操作幂等去重
+  key_fields: idempotency_key_hash; uid_or_subject; operation_id; request_digest; response_digest; status; expires_at
+  indexes: operation_id+idempotency_key_hash UNIQUE; expires_at
+  retention: 默认24小时，关键写操作按需延长
+  pii: 不保存请求明文

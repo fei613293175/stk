@@ -1,0 +1,90 @@
+schema_version: 1
+page:
+  page_id: AUTH-OV-002
+  name: 账号与风控提示
+  surface: android
+  visual_type: OVERLAY
+  route: overlay://auth-risk
+  introduced_in: V1.0.0
+  layout_profile: OVERLAY
+  parent_page_id: AUTH-001
+  identity_signature: 状态图标+原因+恢复建议+确认
+  notes: 不能暴露账户是否存在等敏感细节
+  design_system_version: STK-DS-1.0
+  functional_authority: contracts/feature-map.yaml
+  visual_authority: contracts/mockup-manifest.csv
+  sample_content_is_not_functional_scope: true
+fixed_layout:
+  profile: OVERLAY
+  profile_values:
+    top_bar: parent
+    bottom_nav: parent
+    dialog_width: 326
+    scrim: '#00000066'
+    dominant: dialog_or_bottom_sheet
+  global_token_authority: contracts/ui-design-tokens.yaml
+  page_matrix_authority: contracts/ui-page-layout-matrix.csv
+required_identity:
+- 状态图标+原因+恢复建议+确认
+- 不能暴露账户是否存在等敏感细节
+required_states:
+- state_id: AUTH-OV-002-S01
+  state_code: LOGIN_LOCKED
+  name: 登录暂时锁定
+  description: 显示解锁时间
+  introduced_in: V1.0.0
+  mockup_id: M-AUTH-OV-002-S01
+  mockup_path: ui/mockups/approved/V1.0.0/AUTH-OV-002/M-AUTH-OV-002-S01__LOGIN_LOCKED__1170x2532.png
+  mockup_status: APPROVED
+- state_id: AUTH-OV-002-S02
+  state_code: ACCOUNT_DISABLED
+  name: 账号被禁用
+  description: 显示客服入口
+  introduced_in: V1.0.0
+  mockup_id: M-AUTH-OV-002-S02
+  mockup_path: ui/mockups/approved/V1.0.0/AUTH-OV-002/M-AUTH-OV-002-S02__ACCOUNT_DISABLED__1170x2532.png
+  mockup_status: APPROVED
+- state_id: AUTH-OV-002-S03
+  state_code: RISK_REVIEW
+  name: 需要人工核验
+  description: 不暴露内部风控规则
+  introduced_in: V1.0.0
+  mockup_id: M-AUTH-OV-002-S03
+  mockup_path: ui/mockups/approved/V1.0.0/AUTH-OV-002/M-AUTH-OV-002-S03__RISK_REVIEW__1170x2532.png
+  mockup_status: APPROVED
+- state_id: AUTH-OV-002-S04
+  state_code: SERVICE_DISABLED
+  name: 登录方式暂不可用
+  description: 提示使用另一登录方式
+  introduced_in: V1.0.0
+  mockup_id: M-AUTH-OV-002-S04
+  mockup_path: ui/mockups/approved/V1.0.0/AUTH-OV-002/M-AUTH-OV-002-S04__SERVICE_DISABLED__1170x2532.png
+  mockup_status: APPROVED
+allowed_interactions:
+- interaction_id: INT-RISK-001
+  feature_id: AUTH-008
+  name: 关闭风控提示
+  interaction_type: TAP
+  test_tag: auth_risk_confirm
+  action: 点击我知道了
+  target: 关闭弹窗
+  api_operation_id: LOCAL_DISMISS
+  introduced_in: V1.0.0
+  expected_result: 产生合同规定的唯一结果
+content_authority: ui/FIXTURE_DATA.yaml for visual tests; runtime data from contracted APIs
+forbidden:
+- page-local arbitrary colors/dp/sp/radius
+- function not listed in allowed_interactions
+- remote HTML layout
+- sample text treated as feature
+- empty click target
+- unapproved mockup used as final baseline
+acceptance:
+  canonical: 390x844dp / 1170x2532px
+  responsive_widths_dp:
+  - 360
+  - 390
+  - 412
+  - 430
+  visual_diff: approved baseline required
+  accessibility: 48dp touch targets and content descriptions

@@ -1,0 +1,30 @@
+schema_version: 1
+release_id: V1.0.0
+version_name: 1.0.0
+status: BLOCKED
+feature_statuses:
+  FND-001: NOT_STARTED
+  FND-002: NOT_STARTED
+  AUTH-001: NOT_STARTED
+  AUTH-002: NOT_STARTED
+  AUTH-003: NOT_STARTED
+  AUTH-004: NOT_STARTED
+  AUTH-005: NOT_STARTED
+  AUTH-006: NOT_STARTED
+  AUTH-007: NOT_STARTED
+  AUTH-008: NOT_STARTED
+  HOME-001: NOT_STARTED
+  HOME-003: NOT_STARTED
+  PROFILE-001: NOT_STARTED
+  OPS-001: NOT_STARTED
+  OPS-002: NOT_STARTED
+  OPS-003: NOT_STARTED
+automated_test_status: NOT_RUN
+visual_status: NOT_RUN
+upgrade_status: NOT_RUN
+deployment_status: NOT_DEPLOYED
+deployment_endpoints: {}
+known_issues:
+- 'REQUIRED_BEFORE_RELEASE: 开发完成后据实填写；不得隐藏阻断问题'
+required_transition: Only Codex may set READY_FOR_DELIVERY after all referenced CI evidence exists; owner acceptance remains
+  pending until desktop test.

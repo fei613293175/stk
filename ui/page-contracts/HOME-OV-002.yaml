@@ -1,0 +1,164 @@
+schema_version: 1
+page:
+  page_id: HOME-OV-002
+  name: 联系方式操作面板
+  surface: android
+  visual_type: OVERLAY
+  route: overlay://contact-actions
+  introduced_in: V1.1.0
+  layout_profile: OVERLAY
+  parent_page_id: HOME-004
+  identity_signature: 联系方式类型+脱敏/完整值+复制/拨打/打开
+  notes: 根据 contact_type 白名单显示动作
+  design_system_version: STK-DS-1.0
+  functional_authority: contracts/feature-map.yaml
+  visual_authority: contracts/mockup-manifest.csv
+  sample_content_is_not_functional_scope: true
+fixed_layout:
+  profile: OVERLAY
+  profile_values:
+    top_bar: parent
+    bottom_nav: parent
+    dialog_width: 326
+    scrim: '#00000066'
+    dominant: dialog_or_bottom_sheet
+  global_token_authority: contracts/ui-design-tokens.yaml
+  page_matrix_authority: contracts/ui-page-layout-matrix.csv
+required_identity:
+- 联系方式类型+脱敏/完整值+复制/拨打/打开
+- 根据 contact_type 白名单显示动作
+required_states:
+- state_id: HOME-OV-002-S01
+  state_code: PHONE
+  name: 手机号操作
+  description: 复制或拨打
+  introduced_in: V1.1.0
+  mockup_id: M-HOME-OV-002-S01
+  mockup_path: ui/mockups/approved/V1.1.0/HOME-OV-002/M-HOME-OV-002-S01__PHONE__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-OV-002-S02
+  state_code: WECHAT
+  name: 微信操作
+  description: 复制微信号或尝试打开微信
+  introduced_in: V1.1.0
+  mockup_id: M-HOME-OV-002-S02
+  mockup_path: ui/mockups/approved/V1.1.0/HOME-OV-002/M-HOME-OV-002-S02__WECHAT__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-OV-002-S03
+  state_code: QQ
+  name: QQ 操作
+  description: 复制 QQ 或尝试打开
+  introduced_in: V1.1.0
+  mockup_id: M-HOME-OV-002-S03
+  mockup_path: ui/mockups/approved/V1.1.0/HOME-OV-002/M-HOME-OV-002-S03__QQ__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-OV-002-S04
+  state_code: WEBSITE
+  name: 网址操作
+  description: 受控 Custom Tabs
+  introduced_in: V1.1.0
+  mockup_id: M-HOME-OV-002-S04
+  mockup_path: ui/mockups/approved/V1.1.0/HOME-OV-002/M-HOME-OV-002-S04__WEBSITE__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-OV-002-S05
+  state_code: CONFIRM_EXTERNAL
+  name: 外链确认
+  description: 显示目标域名
+  introduced_in: V1.1.0
+  mockup_id: M-HOME-OV-002-S05
+  mockup_path: ui/mockups/approved/V1.1.0/HOME-OV-002/M-HOME-OV-002-S05__CONFIRM_EXTERNAL__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-OV-002-S06
+  state_code: APP_UNAVAILABLE
+  name: 应用未安装
+  description: 浏览器或复制回退
+  introduced_in: V1.1.0
+  mockup_id: M-HOME-OV-002-S06
+  mockup_path: ui/mockups/approved/V1.1.0/HOME-OV-002/M-HOME-OV-002-S06__APP_UNAVAILABLE__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-OV-002-S07
+  state_code: INVALID_TARGET
+  name: 无效目标
+  description: 阻断并记录
+  introduced_in: V1.1.0
+  mockup_id: M-HOME-OV-002-S07
+  mockup_path: ui/mockups/approved/V1.1.0/HOME-OV-002/M-HOME-OV-002-S07__INVALID_TARGET__1170x2532.png
+  mockup_status: APPROVED
+allowed_interactions:
+- interaction_id: INT-CONTACT-001
+  feature_id: HOME-005
+  name: 复制联系方式
+  interaction_type: TAP
+  test_tag: contact_copy
+  action: 点击复制
+  target: 系统剪贴板
+  api_operation_id: LOCAL_CLIPBOARD
+  introduced_in: V1.1.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-CONTACT-002
+  feature_id: HOME-005
+  name: 拨打手机号
+  interaction_type: TAP
+  test_tag: contact_call
+  action: 点击拨打
+  target: 系统拨号器
+  api_operation_id: LOCAL_DIAL
+  introduced_in: V1.1.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-CONTACT-003
+  feature_id: HOME-005
+  name: 打开微信
+  interaction_type: TAP
+  test_tag: contact_open_wechat
+  action: 点击打开微信
+  target: 微信或回退
+  api_operation_id: LOCAL_EXTERNAL_OPEN
+  introduced_in: V1.1.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-CONTACT-004
+  feature_id: HOME-005
+  name: 打开 QQ
+  interaction_type: TAP
+  test_tag: contact_open_qq
+  action: 点击打开 QQ
+  target: QQ 或回退
+  api_operation_id: LOCAL_EXTERNAL_OPEN
+  introduced_in: V1.1.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-CONTACT-005
+  feature_id: HOME-005
+  name: 打开网址
+  interaction_type: TAP
+  test_tag: contact_open_url
+  action: 点击打开网址
+  target: 外链确认
+  api_operation_id: LOCAL_EXTERNAL_OPEN
+  introduced_in: V1.1.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-CONTACT-006
+  feature_id: HOME-005
+  name: 关闭联系面板
+  interaction_type: TAP
+  test_tag: contact_close
+  action: 点击关闭
+  target: 项目详情
+  api_operation_id: LOCAL_DISMISS
+  introduced_in: V1.1.0
+  expected_result: 产生合同规定的唯一结果
+content_authority: ui/FIXTURE_DATA.yaml for visual tests; runtime data from contracted APIs
+forbidden:
+- page-local arbitrary colors/dp/sp/radius
+- function not listed in allowed_interactions
+- remote HTML layout
+- sample text treated as feature
+- empty click target
+- unapproved mockup used as final baseline
+acceptance:
+  canonical: 390x844dp / 1170x2532px
+  responsive_widths_dp:
+  - 360
+  - 390
+  - 412
+  - 430
+  visual_diff: approved baseline required
+  accessibility: 48dp touch targets and content descriptions

@@ -1,0 +1,7 @@
+schema_version: 1
+current_release: V1.0.0
+status: READY_FOR_DEVELOPMENT
+reason: All 236 contract-bound mockups are present, independently rendered, SHA-256 recorded, and APPROVED by contract-constrained visual QA.
+only_valid_next_action: Run scripts/validate_package.py and scripts/check_mockup_readiness.py --release V1.0.0 once, then begin actual V1.0.0
+  coding from versions/V1.0.0/CODEX_START_PROMPT.md.
+chat_memory_is_not_project_state: true

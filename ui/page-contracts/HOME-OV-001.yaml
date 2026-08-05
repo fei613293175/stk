@@ -1,0 +1,112 @@
+schema_version: 1
+page:
+  page_id: HOME-OV-001
+  name: 项目图片查看器
+  surface: android
+  visual_type: OVERLAY
+  route: overlay://project-images
+  introduced_in: V1.1.0
+  layout_profile: OVERLAY
+  parent_page_id: HOME-004
+  identity_signature: 沉浸式图片+页码+缩放+关闭
+  notes: 不提供未规划的保存到相册按钮
+  design_system_version: STK-DS-1.0
+  functional_authority: contracts/feature-map.yaml
+  visual_authority: contracts/mockup-manifest.csv
+  sample_content_is_not_functional_scope: true
+fixed_layout:
+  profile: OVERLAY
+  profile_values:
+    top_bar: parent
+    bottom_nav: parent
+    dialog_width: 326
+    scrim: '#00000066'
+    dominant: dialog_or_bottom_sheet
+  global_token_authority: contracts/ui-design-tokens.yaml
+  page_matrix_authority: contracts/ui-page-layout-matrix.csv
+required_identity:
+- 沉浸式图片+页码+缩放+关闭
+- 不提供未规划的保存到相册按钮
+required_states:
+- state_id: HOME-OV-001-S01
+  state_code: CONTENT
+  name: 图片正常
+  description: 当前图片和页码
+  introduced_in: V1.1.0
+  mockup_id: M-HOME-OV-001-S01
+  mockup_path: ui/mockups/approved/V1.1.0/HOME-OV-001/M-HOME-OV-001-S01__CONTENT__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-OV-001-S02
+  state_code: ZOOMED
+  name: 缩放查看
+  description: 双指缩放和拖动
+  introduced_in: V1.1.0
+  mockup_id: M-HOME-OV-001-S02
+  mockup_path: ui/mockups/approved/V1.1.0/HOME-OV-001/M-HOME-OV-001-S02__ZOOMED__1170x2532.png
+  mockup_status: APPROVED
+- state_id: HOME-OV-001-S03
+  state_code: LOAD_FAILED
+  name: 单图加载失败
+  description: 重试或切换下一张
+  introduced_in: V1.1.0
+  mockup_id: M-HOME-OV-001-S03
+  mockup_path: ui/mockups/approved/V1.1.0/HOME-OV-001/M-HOME-OV-001-S03__LOAD_FAILED__1170x2532.png
+  mockup_status: APPROVED
+allowed_interactions:
+- interaction_id: INT-IMG-001
+  feature_id: HOME-003
+  name: 切换项目图片
+  interaction_type: SWIPE
+  test_tag: image_viewer_pager
+  action: 左右滑动
+  target: 相邻图片
+  api_operation_id: LOCAL_UI_STATE
+  introduced_in: V1.1.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-IMG-002
+  feature_id: HOME-003
+  name: 缩放项目图片
+  interaction_type: PINCH
+  test_tag: image_viewer_image
+  action: 双指缩放
+  target: 当前图片
+  api_operation_id: LOCAL_UI_STATE
+  introduced_in: V1.1.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-IMG-003
+  feature_id: HOME-003
+  name: 重试图片加载
+  interaction_type: TAP
+  test_tag: image_viewer_retry
+  action: 点击重试
+  target: 当前图片 URL
+  api_operation_id: LOCAL_IMAGE_RETRY
+  introduced_in: V1.1.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-IMG-004
+  feature_id: HOME-003
+  name: 关闭图片查看器
+  interaction_type: TAP
+  test_tag: image_viewer_close
+  action: 点击关闭
+  target: 项目详情
+  api_operation_id: LOCAL_DISMISS
+  introduced_in: V1.1.0
+  expected_result: 产生合同规定的唯一结果
+content_authority: ui/FIXTURE_DATA.yaml for visual tests; runtime data from contracted APIs
+forbidden:
+- page-local arbitrary colors/dp/sp/radius
+- function not listed in allowed_interactions
+- remote HTML layout
+- sample text treated as feature
+- empty click target
+- unapproved mockup used as final baseline
+acceptance:
+  canonical: 390x844dp / 1170x2532px
+  responsive_widths_dp:
+  - 360
+  - 390
+  - 412
+  - 430
+  visual_diff: approved baseline required
+  accessibility: 48dp touch targets and content descriptions

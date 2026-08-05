@@ -1,0 +1,2912 @@
+schema_version: 1
+features:
+- id: FND-001
+  name: Android 原生底座与统一设计系统
+  user_value: 打开即显示本地原生页面，所有页面使用统一视觉参数与组件。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - DS-001
+  - DS-002
+  - DS-003
+  - HOME-001
+  - ME-001
+  - COM-OV-002
+  state_ids:
+  - DS-001-S01
+  - DS-002-S01
+  - DS-003-S01
+  - HOME-001-S01
+  - HOME-001-S02
+  - HOME-001-S03
+  - HOME-001-S04
+  - HOME-001-S05
+  - HOME-001-S06
+  - HOME-001-S07
+  - HOME-001-S08
+  - HOME-001-S09
+  - HOME-001-S10
+  - HOME-001-S11
+  - HOME-001-S12
+  - HOME-001-S13
+  - ME-001-S01
+  - ME-001-S02
+  - ME-001-S03
+  - ME-001-S04
+  - ME-001-S05
+  - ME-001-S06
+  - ME-001-S07
+  - ME-001-S08
+  - COM-OV-002-S01
+  - COM-OV-002-S02
+  - COM-OV-002-S03
+  - COM-OV-002-S04
+  interaction_ids:
+  - INT-NAV-001
+  - INT-NAV-002
+  - INT-NAV-003
+  - INT-STAGE-001
+  api_operation_ids: []
+  backend_modules:
+  - android/app
+  - android/core-designsystem
+  - android/navigation
+  entity_ids: []
+  admin_menu_ids: []
+  config_ids: []
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - UI
+  metrics:
+  - stk_fnd_001_success_total
+  - stk_fnd_001_failure_total
+  test_ids:
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  - T-UI-INT-NAV-001
+  - T-UI-INT-NAV-002
+  - T-UI-INT-NAV-003
+  - T-UI-INT-STAGE-001
+  - T-VIS-COM-OV-002-S01
+  - T-VIS-COM-OV-002-S02
+  - T-VIS-COM-OV-002-S03
+  - T-VIS-COM-OV-002-S04
+  - T-VIS-DS-001-S01
+  - T-VIS-DS-002-S01
+  - T-VIS-DS-003-S01
+  - T-VIS-HOME-001-S01
+  - T-VIS-HOME-001-S02
+  - T-VIS-HOME-001-S03
+  - T-VIS-HOME-001-S04
+  - T-VIS-HOME-001-S05
+  - T-VIS-HOME-001-S06
+  - T-VIS-HOME-001-S07
+  - T-VIS-HOME-001-S08
+  - T-VIS-HOME-001-S09
+  - T-VIS-HOME-001-S10
+  - T-VIS-HOME-001-S11
+  - T-VIS-HOME-001-S12
+  - T-VIS-HOME-001-S13
+  - T-VIS-ME-001-S01
+  - T-VIS-ME-001-S02
+  - T-VIS-ME-001-S03
+  - T-VIS-ME-001-S04
+  - T-VIS-ME-001-S05
+  - T-VIS-ME-001-S06
+  - T-VIS-ME-001-S07
+  - T-VIS-ME-001-S08
+  status: PLANNED
+  explicit_exclusions:
+  - 内部业务 WebView
+  - 动态颜色
+  - 暗色模式
+  - 横屏和平板专用布局
+- id: FND-002
+  name: 启动、配置和版本化路由
+  user_value: 启动无白屏，按维护、更新、登录和缓存状态进入唯一正确页面。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - SYS-001
+  - SYS-002
+  state_ids:
+  - SYS-001-S01
+  - SYS-001-S02
+  - SYS-001-S03
+  - SYS-001-S04
+  - SYS-001-S05
+  - SYS-001-S06
+  - SYS-001-S07
+  - SYS-001-S08
+  - SYS-002-S01
+  - SYS-002-S02
+  - SYS-002-S03
+  - SYS-002-S04
+  - SYS-002-S05
+  interaction_ids:
+  - INT-SYS-001
+  - INT-SYS-002
+  - INT-SYS-003
+  api_operation_ids:
+  - getBootstrap
+  - healthLive
+  - healthReady
+  backend_modules:
+  - android/bootstrap
+  - stk_auth/api/bootstrap
+  - platform/health
+  entity_ids:
+  - DB-SYS-003
+  admin_menu_ids: []
+  config_ids: []
+  permissions:
+  - anonymous
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - SYS
+  metrics:
+  - stk_fnd_002_success_total
+  - stk_fnd_002_failure_total
+  test_ids:
+  - T-API-getBootstrap
+  - T-API-healthLive
+  - T-API-healthReady
+  - T-DB-DB-SYS-003
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  - T-UI-INT-SYS-001
+  - T-UI-INT-SYS-002
+  - T-UI-INT-SYS-003
+  - T-VIS-SYS-001-S01
+  - T-VIS-SYS-001-S02
+  - T-VIS-SYS-001-S03
+  - T-VIS-SYS-001-S04
+  - T-VIS-SYS-001-S05
+  - T-VIS-SYS-001-S06
+  - T-VIS-SYS-001-S07
+  - T-VIS-SYS-001-S08
+  - T-VIS-SYS-002-S01
+  - T-VIS-SYS-002-S02
+  - T-VIS-SYS-002-S03
+  - T-VIS-SYS-002-S04
+  - T-VIS-SYS-002-S05
+  status: PLANNED
+  explicit_exclusions: []
+- id: AUTH-001
+  name: 手机号密码登录
+  user_value: 用户通过手机号和密码安全登录 Discuz 账号。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - AUTH-001
+  - AUTH-OV-002
+  state_ids:
+  - AUTH-001-S01
+  - AUTH-001-S02
+  - AUTH-001-S03
+  - AUTH-001-S04
+  - AUTH-001-S05
+  - AUTH-001-S06
+  - AUTH-001-S07
+  - AUTH-001-S08
+  - AUTH-001-S09
+  - AUTH-001-S10
+  - AUTH-001-S11
+  - AUTH-001-S12
+  - AUTH-001-S13
+  - AUTH-001-S14
+  - AUTH-001-S15
+  - AUTH-001-S16
+  - AUTH-OV-002-S01
+  - AUTH-OV-002-S02
+  - AUTH-OV-002-S03
+  - AUTH-OV-002-S04
+  interaction_ids:
+  - INT-AUTH-001
+  - INT-AUTH-003
+  - INT-AUTH-004
+  - INT-AUTH-005
+  - INT-AUTH-008
+  - INT-REG-007
+  - INT-RESET-007
+  api_operation_ids:
+  - loginWithPassword
+  - getMySummary
+  backend_modules:
+  - android/feature-auth
+  - stk_auth/service/password_login
+  entity_ids:
+  - DB-AUTH-001
+  - DB-AUTH-004
+  - DB-AUTH-005
+  - DB-AUTH-006
+  - DB-SYS-003
+  admin_menu_ids:
+  - ADM-AUTH-001
+  - ADM-AUTH-003
+  - ADM-AUTH-008
+  - ADM-AUTH-009
+  - ADM-AUTH-010
+  - ADM-AUTH-011
+  config_ids:
+  - CFG-AUTH-001
+  - CFG-AUTH-002
+  - CFG-AUTH-003
+  - CFG-AUTH-004
+  - CFG-AUTH-005
+  - CFG-AUTH-006
+  - CFG-AUTH-007
+  - CFG-AUTH-008
+  - CFG-AUTH-009
+  - CFG-AUTH-010
+  - CFG-AUTH-011
+  - CFG-AUTH-012
+  - CFG-AUTH-013
+  - CFG-AUTH-014
+  - CFG-AUTH-015
+  - CFG-AUTH-016
+  - CFG-AUTH-017
+  - CFG-AUTH-018
+  - CFG-AUTH-019
+  - CFG-AUTH-020
+  permissions:
+  - anonymous
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - AUTH
+  metrics:
+  - stk_auth_001_success_total
+  - stk_auth_001_failure_total
+  test_ids:
+  - T-ADM-ADM-AUTH-001
+  - T-ADM-ADM-AUTH-003
+  - T-ADM-ADM-AUTH-008
+  - T-ADM-ADM-AUTH-009
+  - T-ADM-ADM-AUTH-010
+  - T-ADM-ADM-AUTH-011
+  - T-API-getMySummary
+  - T-API-loginWithPassword
+  - T-DB-DB-AUTH-001
+  - T-DB-DB-AUTH-004
+  - T-DB-DB-AUTH-005
+  - T-DB-DB-AUTH-006
+  - T-DB-DB-SYS-003
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  - T-UI-INT-AUTH-001
+  - T-UI-INT-AUTH-003
+  - T-UI-INT-AUTH-004
+  - T-UI-INT-AUTH-005
+  - T-UI-INT-AUTH-008
+  - T-UI-INT-REG-007
+  - T-UI-INT-RESET-007
+  - T-VIS-AUTH-001-S01
+  - T-VIS-AUTH-001-S02
+  - T-VIS-AUTH-001-S03
+  - T-VIS-AUTH-001-S04
+  - T-VIS-AUTH-001-S05
+  - T-VIS-AUTH-001-S06
+  - T-VIS-AUTH-001-S07
+  - T-VIS-AUTH-001-S08
+  - T-VIS-AUTH-001-S09
+  - T-VIS-AUTH-001-S10
+  - T-VIS-AUTH-001-S11
+  - T-VIS-AUTH-001-S12
+  - T-VIS-AUTH-001-S13
+  - T-VIS-AUTH-001-S14
+  - T-VIS-AUTH-001-S15
+  - T-VIS-AUTH-001-S16
+  - T-VIS-AUTH-OV-002-S01
+  - T-VIS-AUTH-OV-002-S02
+  - T-VIS-AUTH-OV-002-S03
+  - T-VIS-AUTH-OV-002-S04
+  status: PLANNED
+  explicit_exclusions: []
+- id: AUTH-002
+  name: 手机号短信验证码登录
+  user_value: 用户经阿里云短信验证码登录并完成手机号持有验证。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - AUTH-001
+  - AUTH-OV-001
+  - AUTH-OV-002
+  state_ids:
+  - AUTH-001-S01
+  - AUTH-001-S02
+  - AUTH-001-S03
+  - AUTH-001-S04
+  - AUTH-001-S05
+  - AUTH-001-S06
+  - AUTH-001-S07
+  - AUTH-001-S08
+  - AUTH-001-S09
+  - AUTH-001-S10
+  - AUTH-001-S11
+  - AUTH-001-S12
+  - AUTH-001-S13
+  - AUTH-001-S14
+  - AUTH-001-S15
+  - AUTH-001-S16
+  - AUTH-OV-001-S01
+  - AUTH-OV-001-S02
+  - AUTH-OV-001-S03
+  - AUTH-OV-001-S04
+  - AUTH-OV-001-S05
+  - AUTH-OV-001-S06
+  - AUTH-OV-001-S07
+  - AUTH-OV-001-S08
+  - AUTH-OV-002-S01
+  - AUTH-OV-002-S02
+  - AUTH-OV-002-S03
+  - AUTH-OV-002-S04
+  interaction_ids:
+  - INT-AUTH-002
+  - INT-AUTH-006
+  - INT-AUTH-007
+  - INT-AUTH-009
+  api_operation_ids:
+  - sendSmsCode
+  - loginWithSms
+  backend_modules:
+  - android/feature-auth
+  - stk_auth/service/sms
+  - stk_auth/integration/aliyun_sms
+  entity_ids:
+  - DB-AUTH-001
+  - DB-AUTH-002
+  - DB-AUTH-004
+  - DB-AUTH-005
+  - DB-AUTH-006
+  - DB-SYS-003
+  admin_menu_ids:
+  - ADM-AUTH-006
+  - ADM-AUTH-007
+  - ADM-AUTH-009
+  - ADM-AUTH-011
+  - ADM-AUTH-014
+  config_ids:
+  - CFG-SMS-001
+  - CFG-SMS-002
+  - CFG-SMS-003
+  - CFG-SMS-004
+  - CFG-SMS-005
+  - CFG-SMS-006
+  - CFG-SMS-007
+  - CFG-SMS-008
+  - CFG-SMS-009
+  - CFG-SMS-010
+  - CFG-SMS-011
+  - CFG-SMS-012
+  - CFG-SMS-013
+  - CFG-SMS-014
+  - CFG-SMS-015
+  - CFG-SMS-016
+  - CFG-SMS-017
+  - CFG-SMS-018
+  - CFG-SMS-019
+  - CFG-SMS-020
+  permissions:
+  - anonymous
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - SMS
+  - AUTH
+  metrics:
+  - stk_auth_002_success_total
+  - stk_auth_002_failure_total
+  test_ids:
+  - T-ADM-ADM-AUTH-006
+  - T-ADM-ADM-AUTH-007
+  - T-ADM-ADM-AUTH-009
+  - T-ADM-ADM-AUTH-011
+  - T-ADM-ADM-AUTH-014
+  - T-API-loginWithSms
+  - T-API-sendSmsCode
+  - T-DB-DB-AUTH-001
+  - T-DB-DB-AUTH-002
+  - T-DB-DB-AUTH-004
+  - T-DB-DB-AUTH-005
+  - T-DB-DB-AUTH-006
+  - T-DB-DB-SYS-003
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  - T-UI-INT-AUTH-002
+  - T-UI-INT-AUTH-006
+  - T-UI-INT-AUTH-007
+  - T-UI-INT-AUTH-009
+  - T-VIS-AUTH-001-S01
+  - T-VIS-AUTH-001-S02
+  - T-VIS-AUTH-001-S03
+  - T-VIS-AUTH-001-S04
+  - T-VIS-AUTH-001-S05
+  - T-VIS-AUTH-001-S06
+  - T-VIS-AUTH-001-S07
+  - T-VIS-AUTH-001-S08
+  - T-VIS-AUTH-001-S09
+  - T-VIS-AUTH-001-S10
+  - T-VIS-AUTH-001-S11
+  - T-VIS-AUTH-001-S12
+  - T-VIS-AUTH-001-S13
+  - T-VIS-AUTH-001-S14
+  - T-VIS-AUTH-001-S15
+  - T-VIS-AUTH-001-S16
+  - T-VIS-AUTH-OV-001-S01
+  - T-VIS-AUTH-OV-001-S02
+  - T-VIS-AUTH-OV-001-S03
+  - T-VIS-AUTH-OV-001-S04
+  - T-VIS-AUTH-OV-001-S05
+  - T-VIS-AUTH-OV-001-S06
+  - T-VIS-AUTH-OV-001-S07
+  - T-VIS-AUTH-OV-001-S08
+  - T-VIS-AUTH-OV-002-S01
+  - T-VIS-AUTH-OV-002-S02
+  - T-VIS-AUTH-OV-002-S03
+  - T-VIS-AUTH-OV-002-S04
+  status: PLANNED
+  explicit_exclusions: []
+- id: AUTH-003
+  name: 不发短信的手机号注册
+  user_value: 用户只输入手机号、密码、确认密码即可注册，创建真实 Discuz UID 和基础账户。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - AUTH-002
+  state_ids:
+  - AUTH-002-S01
+  - AUTH-002-S02
+  - AUTH-002-S03
+  - AUTH-002-S04
+  - AUTH-002-S05
+  - AUTH-002-S06
+  - AUTH-002-S07
+  - AUTH-002-S08
+  - AUTH-002-S09
+  - AUTH-002-S10
+  - AUTH-002-S11
+  - AUTH-002-S12
+  interaction_ids:
+  - INT-AUTH-010
+  - INT-REG-001
+  - INT-REG-002
+  - INT-REG-003
+  - INT-REG-004
+  - INT-REG-005
+  - INT-REG-006
+  api_operation_ids:
+  - registerUser
+  backend_modules:
+  - android/feature-auth
+  - stk_auth/service/registration
+  - stk_project/service/account_bootstrap
+  entity_ids:
+  - DB-AUTH-001
+  - DB-AUTH-004
+  - DB-AUTH-005
+  - DB-ME-001
+  - DB-ME-002
+  - DB-SYS-003
+  admin_menu_ids:
+  - ADM-AUTH-004
+  - ADM-AUTH-008
+  - ADM-AUTH-013
+  config_ids:
+  - CFG-AUTH-007
+  - CFG-AUTH-008
+  - CFG-AUTH-009
+  - CFG-AUTH-010
+  - CFG-AUTH-011
+  - CFG-AUTH-012
+  - CFG-AUTH-013
+  permissions:
+  - anonymous
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - AUTH
+  - LEGAL
+  metrics:
+  - stk_auth_003_success_total
+  - stk_auth_003_failure_total
+  test_ids:
+  - T-ADM-ADM-AUTH-004
+  - T-ADM-ADM-AUTH-008
+  - T-ADM-ADM-AUTH-013
+  - T-API-registerUser
+  - T-DB-DB-AUTH-001
+  - T-DB-DB-AUTH-004
+  - T-DB-DB-AUTH-005
+  - T-DB-DB-ME-001
+  - T-DB-DB-ME-002
+  - T-DB-DB-SYS-003
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  - T-UI-INT-AUTH-010
+  - T-UI-INT-REG-001
+  - T-UI-INT-REG-002
+  - T-UI-INT-REG-003
+  - T-UI-INT-REG-004
+  - T-UI-INT-REG-005
+  - T-UI-INT-REG-006
+  - T-VIS-AUTH-002-S01
+  - T-VIS-AUTH-002-S02
+  - T-VIS-AUTH-002-S03
+  - T-VIS-AUTH-002-S04
+  - T-VIS-AUTH-002-S05
+  - T-VIS-AUTH-002-S06
+  - T-VIS-AUTH-002-S07
+  - T-VIS-AUTH-002-S08
+  - T-VIS-AUTH-002-S09
+  - T-VIS-AUTH-002-S10
+  - T-VIS-AUTH-002-S11
+  - T-VIS-AUTH-002-S12
+  status: PLANNED
+  explicit_exclusions:
+  - 注册短信验证码
+  - 公开展示手机号作为用户名
+- id: AUTH-004
+  name: 动作绑定安全验证码
+  user_value: 登录、注册、短信发送和密码重置提交前均必须通过一次一用安全验证码。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - AUTH-OV-001
+  state_ids:
+  - AUTH-OV-001-S01
+  - AUTH-OV-001-S02
+  - AUTH-OV-001-S03
+  - AUTH-OV-001-S04
+  - AUTH-OV-001-S05
+  - AUTH-OV-001-S06
+  - AUTH-OV-001-S07
+  - AUTH-OV-001-S08
+  interaction_ids:
+  - INT-CAPTCHA-001
+  - INT-CAPTCHA-002
+  - INT-CAPTCHA-003
+  - INT-CAPTCHA-004
+  api_operation_ids:
+  - getCaptchaChallenge
+  - verifyCaptcha
+  backend_modules:
+  - android/feature-auth
+  - stk_auth/service/captcha
+  entity_ids:
+  - DB-AUTH-003
+  - DB-AUTH-006
+  admin_menu_ids:
+  - ADM-AUTH-005
+  - ADM-AUTH-011
+  config_ids:
+  - CFG-CAP-001
+  - CFG-CAP-002
+  - CFG-CAP-003
+  - CFG-CAP-004
+  - CFG-CAP-005
+  - CFG-CAP-006
+  - CFG-CAP-007
+  - CFG-CAP-008
+  permissions:
+  - anonymous
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - CAPTCHA
+  metrics:
+  - stk_auth_004_success_total
+  - stk_auth_004_failure_total
+  test_ids:
+  - T-ADM-ADM-AUTH-005
+  - T-ADM-ADM-AUTH-011
+  - T-API-getCaptchaChallenge
+  - T-API-verifyCaptcha
+  - T-DB-DB-AUTH-003
+  - T-DB-DB-AUTH-006
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  - T-UI-INT-CAPTCHA-001
+  - T-UI-INT-CAPTCHA-002
+  - T-UI-INT-CAPTCHA-003
+  - T-UI-INT-CAPTCHA-004
+  - T-VIS-AUTH-OV-001-S01
+  - T-VIS-AUTH-OV-001-S02
+  - T-VIS-AUTH-OV-001-S03
+  - T-VIS-AUTH-OV-001-S04
+  - T-VIS-AUTH-OV-001-S05
+  - T-VIS-AUTH-OV-001-S06
+  - T-VIS-AUTH-OV-001-S07
+  - T-VIS-AUTH-OV-001-S08
+  status: PLANNED
+  explicit_exclusions: []
+- id: AUTH-005
+  name: 找回与重置密码
+  user_value: 用户通过短信和安全验证码重置密码，旧令牌全部撤销。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - AUTH-003
+  - AUTH-OV-001
+  state_ids:
+  - AUTH-003-S01
+  - AUTH-003-S02
+  - AUTH-003-S03
+  - AUTH-003-S04
+  - AUTH-003-S05
+  - AUTH-003-S06
+  - AUTH-003-S07
+  - AUTH-003-S08
+  - AUTH-003-S09
+  - AUTH-003-S10
+  - AUTH-003-S11
+  - AUTH-OV-001-S01
+  - AUTH-OV-001-S02
+  - AUTH-OV-001-S03
+  - AUTH-OV-001-S04
+  - AUTH-OV-001-S05
+  - AUTH-OV-001-S06
+  - AUTH-OV-001-S07
+  - AUTH-OV-001-S08
+  interaction_ids:
+  - INT-AUTH-011
+  - INT-RESET-001
+  - INT-RESET-002
+  - INT-RESET-003
+  - INT-RESET-004
+  - INT-RESET-005
+  - INT-RESET-006
+  api_operation_ids:
+  - sendSmsCode
+  - resetPassword
+  backend_modules:
+  - android/feature-auth
+  - stk_auth/service/password_reset
+  entity_ids:
+  - DB-AUTH-002
+  - DB-AUTH-004
+  - DB-AUTH-005
+  - DB-AUTH-006
+  admin_menu_ids:
+  - ADM-AUTH-003
+  - ADM-AUTH-006
+  - ADM-AUTH-007
+  - ADM-AUTH-009
+  config_ids:
+  - CFG-AUTH-020
+  - CFG-SMS-006
+  - CFG-SMS-010
+  - CFG-SMS-011
+  permissions:
+  - anonymous
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - AUTH
+  - SMS
+  - CAPTCHA
+  metrics:
+  - stk_auth_005_success_total
+  - stk_auth_005_failure_total
+  test_ids:
+  - T-ADM-ADM-AUTH-003
+  - T-ADM-ADM-AUTH-006
+  - T-ADM-ADM-AUTH-007
+  - T-ADM-ADM-AUTH-009
+  - T-API-resetPassword
+  - T-API-sendSmsCode
+  - T-DB-DB-AUTH-002
+  - T-DB-DB-AUTH-004
+  - T-DB-DB-AUTH-005
+  - T-DB-DB-AUTH-006
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  - T-UI-INT-AUTH-011
+  - T-UI-INT-RESET-001
+  - T-UI-INT-RESET-002
+  - T-UI-INT-RESET-003
+  - T-UI-INT-RESET-004
+  - T-UI-INT-RESET-005
+  - T-UI-INT-RESET-006
+  - T-VIS-AUTH-003-S01
+  - T-VIS-AUTH-003-S02
+  - T-VIS-AUTH-003-S03
+  - T-VIS-AUTH-003-S04
+  - T-VIS-AUTH-003-S05
+  - T-VIS-AUTH-003-S06
+  - T-VIS-AUTH-003-S07
+  - T-VIS-AUTH-003-S08
+  - T-VIS-AUTH-003-S09
+  - T-VIS-AUTH-003-S10
+  - T-VIS-AUTH-003-S11
+  - T-VIS-AUTH-OV-001-S01
+  - T-VIS-AUTH-OV-001-S02
+  - T-VIS-AUTH-OV-001-S03
+  - T-VIS-AUTH-OV-001-S04
+  - T-VIS-AUTH-OV-001-S05
+  - T-VIS-AUTH-OV-001-S06
+  - T-VIS-AUTH-OV-001-S07
+  - T-VIS-AUTH-OV-001-S08
+  status: PLANNED
+  explicit_exclusions: []
+- id: AUTH-006
+  name: Token 轮换与退出登录
+  user_value: 登录态可安全续期、撤销并在覆盖安装后保持兼容。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - ME-OV-001
+  state_ids:
+  - ME-OV-001-S01
+  - ME-OV-001-S02
+  - ME-OV-001-S03
+  interaction_ids:
+  - INT-SET-005
+  - INT-LOGOUT-001
+  - INT-LOGOUT-002
+  api_operation_ids:
+  - refreshToken
+  - logout
+  backend_modules:
+  - android/core-network
+  - android/core-security
+  - stk_auth/service/token
+  entity_ids:
+  - DB-AUTH-004
+  - DB-AUTH-008
+  admin_menu_ids:
+  - ADM-AUTH-003
+  - ADM-AUTH-010
+  - ADM-AUTH-013
+  config_ids:
+  - CFG-AUTH-016
+  - CFG-AUTH-017
+  - CFG-AUTH-018
+  - CFG-AUTH-019
+  - CFG-AUTH-020
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - AUTH
+  metrics:
+  - stk_auth_006_success_total
+  - stk_auth_006_failure_total
+  test_ids:
+  - T-ADM-ADM-AUTH-003
+  - T-ADM-ADM-AUTH-010
+  - T-ADM-ADM-AUTH-013
+  - T-API-logout
+  - T-API-refreshToken
+  - T-DB-DB-AUTH-004
+  - T-DB-DB-AUTH-008
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  - T-UI-INT-LOGOUT-001
+  - T-UI-INT-LOGOUT-002
+  - T-UI-INT-SET-005
+  - T-VIS-ME-OV-001-S01
+  - T-VIS-ME-OV-001-S02
+  - T-VIS-ME-OV-001-S03
+  status: PLANNED
+  explicit_exclusions: []
+- id: AUTH-007
+  name: 用户协议与隐私政策
+  user_value: 登录注册可查看版本化协议，注册记录同意版本。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - AUTH-004
+  - AUTH-005
+  state_ids:
+  - AUTH-004-S01
+  - AUTH-004-S02
+  - AUTH-004-S03
+  - AUTH-004-S04
+  - AUTH-005-S01
+  - AUTH-005-S02
+  - AUTH-005-S03
+  - AUTH-005-S04
+  interaction_ids:
+  - INT-AUTH-012
+  - INT-AUTH-013
+  - INT-REG-008
+  - INT-REG-009
+  - INT-LEGAL-001
+  - INT-LEGAL-002
+  - INT-LEGAL-003
+  - INT-LEGAL-004
+  - INT-SET-002
+  - INT-SET-003
+  api_operation_ids:
+  - getLegalDocument
+  backend_modules:
+  - android/feature-auth
+  - stk_auth/service/legal
+  entity_ids: []
+  admin_menu_ids:
+  - ADM-AUTH-012
+  config_ids:
+  - CFG-LEGAL-001
+  - CFG-LEGAL-002
+  - CFG-LEGAL-003
+  permissions:
+  - anonymous
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - LEGAL
+  metrics:
+  - stk_auth_007_success_total
+  - stk_auth_007_failure_total
+  test_ids:
+  - T-ADM-ADM-AUTH-012
+  - T-API-getLegalDocument
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  - T-UI-INT-AUTH-012
+  - T-UI-INT-AUTH-013
+  - T-UI-INT-LEGAL-001
+  - T-UI-INT-LEGAL-002
+  - T-UI-INT-LEGAL-003
+  - T-UI-INT-LEGAL-004
+  - T-UI-INT-REG-008
+  - T-UI-INT-REG-009
+  - T-UI-INT-SET-002
+  - T-UI-INT-SET-003
+  - T-VIS-AUTH-004-S01
+  - T-VIS-AUTH-004-S02
+  - T-VIS-AUTH-004-S03
+  - T-VIS-AUTH-004-S04
+  - T-VIS-AUTH-005-S01
+  - T-VIS-AUTH-005-S02
+  - T-VIS-AUTH-005-S03
+  - T-VIS-AUTH-005-S04
+  status: PLANNED
+  explicit_exclusions: []
+- id: AUTH-008
+  name: 认证后台与审计
+  user_value: 管理员可配置、查询、诊断认证链路，敏感操作完整审计。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - AUTH-OV-002
+  state_ids:
+  - AUTH-OV-002-S01
+  - AUTH-OV-002-S02
+  - AUTH-OV-002-S03
+  - AUTH-OV-002-S04
+  interaction_ids:
+  - INT-RISK-001
+  api_operation_ids: []
+  backend_modules:
+  - stk_auth/admin
+  - stk_auth/audit
+  entity_ids:
+  - DB-AUTH-005
+  - DB-AUTH-006
+  - DB-AUTH-007
+  - DB-AUTH-008
+  admin_menu_ids:
+  - ADM-AUTH-001
+  - ADM-AUTH-002
+  - ADM-AUTH-003
+  - ADM-AUTH-004
+  - ADM-AUTH-005
+  - ADM-AUTH-006
+  - ADM-AUTH-007
+  - ADM-AUTH-008
+  - ADM-AUTH-009
+  - ADM-AUTH-010
+  - ADM-AUTH-011
+  - ADM-AUTH-012
+  - ADM-AUTH-013
+  - ADM-AUTH-014
+  config_ids: []
+  permissions:
+  - super_admin
+  - auth_operator
+  - security_auditor
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - ADMIN
+  - AUTH
+  metrics:
+  - stk_auth_008_success_total
+  - stk_auth_008_failure_total
+  test_ids:
+  - T-ADM-ADM-AUTH-001
+  - T-ADM-ADM-AUTH-002
+  - T-ADM-ADM-AUTH-003
+  - T-ADM-ADM-AUTH-004
+  - T-ADM-ADM-AUTH-005
+  - T-ADM-ADM-AUTH-006
+  - T-ADM-ADM-AUTH-007
+  - T-ADM-ADM-AUTH-008
+  - T-ADM-ADM-AUTH-009
+  - T-ADM-ADM-AUTH-010
+  - T-ADM-ADM-AUTH-011
+  - T-ADM-ADM-AUTH-012
+  - T-ADM-ADM-AUTH-013
+  - T-ADM-ADM-AUTH-014
+  - T-DB-DB-AUTH-005
+  - T-DB-DB-AUTH-006
+  - T-DB-DB-AUTH-007
+  - T-DB-DB-AUTH-008
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  - T-UI-INT-RISK-001
+  - T-VIS-AUTH-OV-002-S01
+  - T-VIS-AUTH-OV-002-S02
+  - T-VIS-AUTH-OV-002-S03
+  - T-VIS-AUTH-OV-002-S04
+  status: PLANNED
+  explicit_exclusions: []
+- id: HOME-001
+  name: 首页项目信息流
+  user_value: 用户查看后台允许发布的项目，支持稳定游标分页。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - HOME-001
+  state_ids:
+  - HOME-001-S01
+  - HOME-001-S02
+  - HOME-001-S03
+  - HOME-001-S04
+  - HOME-001-S05
+  - HOME-001-S06
+  - HOME-001-S07
+  - HOME-001-S08
+  - HOME-001-S09
+  - HOME-001-S10
+  - HOME-001-S11
+  - HOME-001-S12
+  - HOME-001-S13
+  interaction_ids:
+  - INT-HOME-001
+  - INT-HOME-005
+  - INT-HOME-006
+  - INT-HOME-007
+  api_operation_ids:
+  - listProjectCategories
+  - listProjects
+  backend_modules:
+  - android/feature-home
+  - stk_project/service/feed
+  entity_ids:
+  - DB-PROJ-001
+  - DB-PROJ-002
+  admin_menu_ids:
+  - ADM-PROJ-001
+  - ADM-PROJ-002
+  - ADM-PROJ-003
+  - ADM-PROJ-004
+  config_ids:
+  - CFG-HOME-001
+  - CFG-HOME-002
+  - CFG-HOME-003
+  - CFG-HOME-004
+  - CFG-HOME-005
+  - CFG-HOME-006
+  - CFG-HOME-007
+  - CFG-HOME-008
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - PROJECT
+  metrics:
+  - stk_home_001_success_total
+  - stk_home_001_failure_total
+  test_ids:
+  - T-ADM-ADM-PROJ-001
+  - T-ADM-ADM-PROJ-002
+  - T-ADM-ADM-PROJ-003
+  - T-ADM-ADM-PROJ-004
+  - T-API-listProjectCategories
+  - T-API-listProjects
+  - T-DB-DB-PROJ-001
+  - T-DB-DB-PROJ-002
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  - T-UI-INT-HOME-001
+  - T-UI-INT-HOME-005
+  - T-UI-INT-HOME-006
+  - T-UI-INT-HOME-007
+  - T-VIS-HOME-001-S01
+  - T-VIS-HOME-001-S02
+  - T-VIS-HOME-001-S03
+  - T-VIS-HOME-001-S04
+  - T-VIS-HOME-001-S05
+  - T-VIS-HOME-001-S06
+  - T-VIS-HOME-001-S07
+  - T-VIS-HOME-001-S08
+  - T-VIS-HOME-001-S09
+  - T-VIS-HOME-001-S10
+  - T-VIS-HOME-001-S11
+  - T-VIS-HOME-001-S12
+  - T-VIS-HOME-001-S13
+  status: PLANNED
+  explicit_exclusions: []
+- id: HOME-002
+  name: 搜索与分类筛选
+  user_value: 用户按标题/简介和分类快速查找项目。
+  release_id: V1.1.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - HOME-002
+  - HOME-003
+  state_ids:
+  - HOME-002-S01
+  - HOME-002-S02
+  - HOME-002-S03
+  - HOME-002-S04
+  - HOME-002-S05
+  - HOME-002-S06
+  - HOME-002-S07
+  - HOME-003-S01
+  - HOME-003-S02
+  - HOME-003-S03
+  - HOME-003-S04
+  interaction_ids:
+  - INT-HOME-002
+  - INT-HOME-003
+  - INT-SEARCH-001
+  - INT-SEARCH-002
+  - INT-SEARCH-003
+  - INT-SEARCH-005
+  - INT-SEARCH-006
+  - INT-CAT-001
+  - INT-CAT-002
+  - INT-CAT-003
+  - INT-CAT-004
+  api_operation_ids:
+  - listProjectCategories
+  - listProjects
+  backend_modules:
+  - android/feature-home
+  - stk_project/service/search
+  entity_ids:
+  - DB-PROJ-001
+  - DB-PROJ-002
+  admin_menu_ids:
+  - ADM-PROJ-003
+  - ADM-PROJ-007
+  config_ids:
+  - CFG-SEARCH-001
+  - CFG-SEARCH-002
+  - CFG-SEARCH-003
+  - CFG-SEARCH-004
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - PROJECT
+  metrics:
+  - stk_home_002_success_total
+  - stk_home_002_failure_total
+  test_ids:
+  - T-ADM-ADM-PROJ-003
+  - T-ADM-ADM-PROJ-007
+  - T-API-listProjectCategories
+  - T-API-listProjects
+  - T-DB-DB-PROJ-001
+  - T-DB-DB-PROJ-002
+  - T-REL-V1.1.0-BUILD
+  - T-REL-V1.1.0-DESKTOP
+  - T-REL-V1.1.0-EMULATOR
+  - T-REL-V1.1.0-UPGRADE
+  - T-REL-V1.1.0-VISUAL
+  - T-UI-INT-CAT-001
+  - T-UI-INT-CAT-002
+  - T-UI-INT-CAT-003
+  - T-UI-INT-CAT-004
+  - T-UI-INT-HOME-002
+  - T-UI-INT-HOME-003
+  - T-UI-INT-SEARCH-001
+  - T-UI-INT-SEARCH-002
+  - T-UI-INT-SEARCH-003
+  - T-UI-INT-SEARCH-005
+  - T-UI-INT-SEARCH-006
+  - T-VIS-HOME-002-S01
+  - T-VIS-HOME-002-S02
+  - T-VIS-HOME-002-S03
+  - T-VIS-HOME-002-S04
+  - T-VIS-HOME-002-S05
+  - T-VIS-HOME-002-S06
+  - T-VIS-HOME-002-S07
+  - T-VIS-HOME-003-S01
+  - T-VIS-HOME-003-S02
+  - T-VIS-HOME-003-S03
+  - T-VIS-HOME-003-S04
+  status: PLANNED
+  explicit_exclusions: []
+- id: HOME-003
+  name: 项目详情与浏览统计
+  user_value: 用户查看项目完整信息，浏览量去重记录。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - HOME-004
+  - HOME-OV-001
+  state_ids:
+  - HOME-004-S01
+  - HOME-004-S02
+  - HOME-004-S03
+  - HOME-004-S04
+  - HOME-004-S05
+  - HOME-004-S06
+  - HOME-004-S07
+  - HOME-004-S08
+  - HOME-004-S09
+  - HOME-004-S10
+  - HOME-004-S11
+  - HOME-OV-001-S01
+  - HOME-OV-001-S02
+  - HOME-OV-001-S03
+  interaction_ids:
+  - INT-HOME-004
+  - INT-SEARCH-004
+  - INT-DETAIL-001
+  - INT-DETAIL-002
+  - INT-DETAIL-005
+  - INT-IMG-001
+  - INT-IMG-002
+  - INT-IMG-003
+  - INT-IMG-004
+  api_operation_ids:
+  - getProjectDetail
+  - recordProjectView
+  backend_modules:
+  - android/feature-project-detail
+  - stk_project/service/detail
+  - stk_project/service/view_counter
+  entity_ids:
+  - DB-PROJ-002
+  - DB-PROJ-006
+  - DB-PROJ-007
+  admin_menu_ids:
+  - ADM-PROJ-002
+  - ADM-PROJ-005
+  config_ids:
+  - CFG-DETAIL-001
+  - CFG-DETAIL-002
+  - CFG-DETAIL-003
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - PROJECT
+  metrics:
+  - stk_home_003_success_total
+  - stk_home_003_failure_total
+  test_ids:
+  - T-ADM-ADM-PROJ-002
+  - T-ADM-ADM-PROJ-005
+  - T-API-getProjectDetail
+  - T-API-recordProjectView
+  - T-DB-DB-PROJ-002
+  - T-DB-DB-PROJ-006
+  - T-DB-DB-PROJ-007
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  - T-UI-INT-DETAIL-001
+  - T-UI-INT-DETAIL-002
+  - T-UI-INT-DETAIL-005
+  - T-UI-INT-HOME-004
+  - T-UI-INT-IMG-001
+  - T-UI-INT-IMG-002
+  - T-UI-INT-IMG-003
+  - T-UI-INT-IMG-004
+  - T-UI-INT-SEARCH-004
+  - T-VIS-HOME-004-S01
+  - T-VIS-HOME-004-S02
+  - T-VIS-HOME-004-S03
+  - T-VIS-HOME-004-S04
+  - T-VIS-HOME-004-S05
+  - T-VIS-HOME-004-S06
+  - T-VIS-HOME-004-S07
+  - T-VIS-HOME-004-S08
+  - T-VIS-HOME-004-S09
+  - T-VIS-HOME-004-S10
+  - T-VIS-HOME-004-S11
+  - T-VIS-HOME-OV-001-S01
+  - T-VIS-HOME-OV-001-S02
+  - T-VIS-HOME-OV-001-S03
+  status: PLANNED
+  explicit_exclusions: []
+- id: HOME-004
+  name: 首页与详情离线优先缓存
+  user_value: 弱网或断网仍可立即显示已缓存项目和明确离线状态。
+  release_id: V1.1.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - HOME-001
+  - HOME-002
+  - HOME-004
+  state_ids:
+  - HOME-001-S01
+  - HOME-001-S02
+  - HOME-001-S03
+  - HOME-001-S04
+  - HOME-001-S05
+  - HOME-001-S06
+  - HOME-001-S07
+  - HOME-001-S08
+  - HOME-001-S09
+  - HOME-001-S10
+  - HOME-001-S11
+  - HOME-001-S12
+  - HOME-001-S13
+  - HOME-002-S01
+  - HOME-002-S02
+  - HOME-002-S03
+  - HOME-002-S04
+  - HOME-002-S05
+  - HOME-002-S06
+  - HOME-002-S07
+  - HOME-004-S01
+  - HOME-004-S02
+  - HOME-004-S03
+  - HOME-004-S04
+  - HOME-004-S05
+  - HOME-004-S06
+  - HOME-004-S07
+  - HOME-004-S08
+  - HOME-004-S09
+  - HOME-004-S10
+  - HOME-004-S11
+  interaction_ids: []
+  api_operation_ids:
+  - listProjects
+  - getProjectDetail
+  backend_modules:
+  - android/core-database
+  - android/core-data
+  - android/feature-home
+  entity_ids: []
+  admin_menu_ids: []
+  config_ids:
+  - CFG-HOME-009
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - CACHE
+  - NETWORK
+  metrics:
+  - stk_home_004_success_total
+  - stk_home_004_failure_total
+  test_ids:
+  - T-API-getProjectDetail
+  - T-API-listProjects
+  - T-REL-V1.1.0-BUILD
+  - T-REL-V1.1.0-DESKTOP
+  - T-REL-V1.1.0-EMULATOR
+  - T-REL-V1.1.0-UPGRADE
+  - T-REL-V1.1.0-VISUAL
+  - T-VIS-HOME-001-S01
+  - T-VIS-HOME-001-S02
+  - T-VIS-HOME-001-S03
+  - T-VIS-HOME-001-S04
+  - T-VIS-HOME-001-S05
+  - T-VIS-HOME-001-S06
+  - T-VIS-HOME-001-S07
+  - T-VIS-HOME-001-S08
+  - T-VIS-HOME-001-S09
+  - T-VIS-HOME-001-S10
+  - T-VIS-HOME-001-S11
+  - T-VIS-HOME-001-S12
+  - T-VIS-HOME-001-S13
+  - T-VIS-HOME-002-S01
+  - T-VIS-HOME-002-S02
+  - T-VIS-HOME-002-S03
+  - T-VIS-HOME-002-S04
+  - T-VIS-HOME-002-S05
+  - T-VIS-HOME-002-S06
+  - T-VIS-HOME-002-S07
+  - T-VIS-HOME-004-S01
+  - T-VIS-HOME-004-S02
+  - T-VIS-HOME-004-S03
+  - T-VIS-HOME-004-S04
+  - T-VIS-HOME-004-S05
+  - T-VIS-HOME-004-S06
+  - T-VIS-HOME-004-S07
+  - T-VIS-HOME-004-S08
+  - T-VIS-HOME-004-S09
+  - T-VIS-HOME-004-S10
+  - T-VIS-HOME-004-S11
+  status: PLANNED
+  explicit_exclusions: []
+- id: HOME-005
+  name: 联系方式与受控外部跳转
+  user_value: 用户复制、拨号或打开微信/QQ/白名单网址，失败有回退。
+  release_id: V1.1.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - COM-OV-001
+  - HOME-OV-002
+  state_ids:
+  - COM-OV-001-S01
+  - COM-OV-001-S02
+  - COM-OV-001-S03
+  - HOME-OV-002-S01
+  - HOME-OV-002-S02
+  - HOME-OV-002-S03
+  - HOME-OV-002-S04
+  - HOME-OV-002-S05
+  - HOME-OV-002-S06
+  - HOME-OV-002-S07
+  interaction_ids:
+  - INT-EXT-001
+  - INT-EXT-002
+  - INT-DETAIL-003
+  - INT-DETAIL-004
+  - INT-CONTACT-001
+  - INT-CONTACT-002
+  - INT-CONTACT-003
+  - INT-CONTACT-004
+  - INT-CONTACT-005
+  - INT-CONTACT-006
+  api_operation_ids:
+  - getProjectDetail
+  backend_modules:
+  - android/core-external
+  - stk_project/service/external_policy
+  entity_ids:
+  - DB-SYS-001
+  admin_menu_ids:
+  - ADM-PROJ-005
+  - ADM-PROJ-006
+  config_ids:
+  - CFG-EXT-001
+  - CFG-EXT-002
+  - CFG-EXT-003
+  - CFG-EXT-004
+  - CFG-EXT-005
+  - CFG-EXT-006
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - EXTERNAL
+  - PROJECT
+  metrics:
+  - stk_home_005_success_total
+  - stk_home_005_failure_total
+  test_ids:
+  - T-ADM-ADM-PROJ-005
+  - T-ADM-ADM-PROJ-006
+  - T-API-getProjectDetail
+  - T-DB-DB-SYS-001
+  - T-REL-V1.1.0-BUILD
+  - T-REL-V1.1.0-DESKTOP
+  - T-REL-V1.1.0-EMULATOR
+  - T-REL-V1.1.0-UPGRADE
+  - T-REL-V1.1.0-VISUAL
+  - T-UI-INT-CONTACT-001
+  - T-UI-INT-CONTACT-002
+  - T-UI-INT-CONTACT-003
+  - T-UI-INT-CONTACT-004
+  - T-UI-INT-CONTACT-005
+  - T-UI-INT-CONTACT-006
+  - T-UI-INT-DETAIL-003
+  - T-UI-INT-DETAIL-004
+  - T-UI-INT-EXT-001
+  - T-UI-INT-EXT-002
+  - T-VIS-COM-OV-001-S01
+  - T-VIS-COM-OV-001-S02
+  - T-VIS-COM-OV-001-S03
+  - T-VIS-HOME-OV-002-S01
+  - T-VIS-HOME-OV-002-S02
+  - T-VIS-HOME-OV-002-S03
+  - T-VIS-HOME-OV-002-S04
+  - T-VIS-HOME-OV-002-S05
+  - T-VIS-HOME-OV-002-S06
+  - T-VIS-HOME-OV-002-S07
+  status: PLANNED
+  explicit_exclusions: []
+- id: PUBLISH-001
+  name: Photo Picker、多图处理与上传
+  user_value: 用户只授权选中图片，获得压缩、进度、重试、排序和封面能力。
+  release_id: V1.2.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - PUB-001
+  - PUB-002
+  - PUB-OV-001
+  state_ids:
+  - PUB-001-S01
+  - PUB-001-S02
+  - PUB-001-S03
+  - PUB-001-S04
+  - PUB-001-S05
+  - PUB-001-S06
+  - PUB-001-S07
+  - PUB-001-S08
+  - PUB-001-S09
+  - PUB-001-S10
+  - PUB-001-S11
+  - PUB-001-S12
+  - PUB-001-S13
+  - PUB-002-S01
+  - PUB-002-S02
+  - PUB-002-S03
+  - PUB-002-S04
+  - PUB-OV-001-S01
+  - PUB-OV-001-S02
+  - PUB-OV-001-S03
+  interaction_ids:
+  - INT-PUB-004
+  - INT-PUB-005
+  - INT-PUB-006
+  - INT-PUB-007
+  - INT-PUB-008
+  - INT-SORT-001
+  - INT-SORT-002
+  - INT-SORT-003
+  - INT-SORT-004
+  - INT-DELIMG-001
+  - INT-DELIMG-002
+  api_operation_ids:
+  - uploadProjectImage
+  - deleteUploadedImage
+  backend_modules:
+  - android/feature-publish
+  - android/core-image
+  - stk_project/service/upload
+  - stk_project/storage
+  entity_ids:
+  - DB-PROJ-003
+  - DB-PROJ-004
+  - DB-SYS-003
+  admin_menu_ids:
+  - ADM-PROJ-010
+  config_ids:
+  - CFG-UPL-001
+  - CFG-UPL-002
+  - CFG-UPL-003
+  - CFG-UPL-004
+  - CFG-UPL-005
+  - CFG-UPL-006
+  - CFG-UPL-007
+  - CFG-UPL-008
+  - CFG-UPL-009
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - UPLOAD
+  metrics:
+  - stk_publish_001_success_total
+  - stk_publish_001_failure_total
+  test_ids:
+  - T-ADM-ADM-PROJ-010
+  - T-API-deleteUploadedImage
+  - T-API-uploadProjectImage
+  - T-DB-DB-PROJ-003
+  - T-DB-DB-PROJ-004
+  - T-DB-DB-SYS-003
+  - T-REL-V1.2.0-BUILD
+  - T-REL-V1.2.0-DESKTOP
+  - T-REL-V1.2.0-EMULATOR
+  - T-REL-V1.2.0-UPGRADE
+  - T-REL-V1.2.0-VISUAL
+  - T-UI-INT-DELIMG-001
+  - T-UI-INT-DELIMG-002
+  - T-UI-INT-PUB-004
+  - T-UI-INT-PUB-005
+  - T-UI-INT-PUB-006
+  - T-UI-INT-PUB-007
+  - T-UI-INT-PUB-008
+  - T-UI-INT-SORT-001
+  - T-UI-INT-SORT-002
+  - T-UI-INT-SORT-003
+  - T-UI-INT-SORT-004
+  - T-VIS-PUB-001-S01
+  - T-VIS-PUB-001-S02
+  - T-VIS-PUB-001-S03
+  - T-VIS-PUB-001-S04
+  - T-VIS-PUB-001-S05
+  - T-VIS-PUB-001-S06
+  - T-VIS-PUB-001-S07
+  - T-VIS-PUB-001-S08
+  - T-VIS-PUB-001-S09
+  - T-VIS-PUB-001-S10
+  - T-VIS-PUB-001-S11
+  - T-VIS-PUB-001-S12
+  - T-VIS-PUB-001-S13
+  - T-VIS-PUB-002-S01
+  - T-VIS-PUB-002-S02
+  - T-VIS-PUB-002-S03
+  - T-VIS-PUB-002-S04
+  - T-VIS-PUB-OV-001-S01
+  - T-VIS-PUB-OV-001-S02
+  - T-VIS-PUB-OV-001-S03
+  status: PLANNED
+  explicit_exclusions: []
+- id: PUBLISH-002
+  name: 发布项目
+  user_value: 用户提交标题、简介、图片、分类和联系方式，获得真实审核状态。
+  release_id: V1.2.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - PUB-001
+  - PUB-003
+  - PUB-OV-002
+  - PUB-OV-003
+  state_ids:
+  - PUB-001-S01
+  - PUB-001-S02
+  - PUB-001-S03
+  - PUB-001-S04
+  - PUB-001-S05
+  - PUB-001-S06
+  - PUB-001-S07
+  - PUB-001-S08
+  - PUB-001-S09
+  - PUB-001-S10
+  - PUB-001-S11
+  - PUB-001-S12
+  - PUB-001-S13
+  - PUB-003-S01
+  - PUB-003-S02
+  - PUB-003-S03
+  - PUB-OV-002-S01
+  - PUB-OV-003-S01
+  - PUB-OV-003-S02
+  - PUB-OV-003-S03
+  interaction_ids:
+  - INT-PUB-001
+  - INT-PUB-002
+  - INT-PUB-003
+  - INT-PUB-009
+  - INT-PUB-010
+  - INT-PUB-011
+  - INT-PUB-012
+  - INT-PUB-013
+  - INT-PUB-014
+  - INT-RESULT-001
+  - INT-RESULT-002
+  - INT-DRAFT-001
+  - INT-DRAFT-002
+  - INT-CTYPE-001
+  - INT-CTYPE-002
+  - INT-MYPROJ-006
+  api_operation_ids:
+  - createProject
+  - listProjectCategories
+  backend_modules:
+  - android/feature-publish
+  - stk_project/service/publish
+  entity_ids:
+  - DB-PROJ-002
+  - DB-PROJ-003
+  - DB-PROJ-004
+  - DB-PROJ-005
+  - DB-SYS-003
+  admin_menu_ids:
+  - ADM-PROJ-008
+  - ADM-PROJ-009
+  - ADM-PROJ-010
+  config_ids:
+  - CFG-PUB-001
+  - CFG-PUB-002
+  - CFG-PUB-003
+  - CFG-PUB-004
+  - CFG-PUB-005
+  - CFG-PUB-006
+  - CFG-PUB-007
+  - CFG-PUB-008
+  - CFG-PUB-009
+  - CFG-PUB-010
+  - CFG-PUB-011
+  - CFG-PUB-012
+  - CFG-PUB-013
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - PROJECT
+  - UPLOAD
+  metrics:
+  - stk_publish_002_success_total
+  - stk_publish_002_failure_total
+  test_ids:
+  - T-ADM-ADM-PROJ-008
+  - T-ADM-ADM-PROJ-009
+  - T-ADM-ADM-PROJ-010
+  - T-API-createProject
+  - T-API-listProjectCategories
+  - T-DB-DB-PROJ-002
+  - T-DB-DB-PROJ-003
+  - T-DB-DB-PROJ-004
+  - T-DB-DB-PROJ-005
+  - T-DB-DB-SYS-003
+  - T-REL-V1.2.0-BUILD
+  - T-REL-V1.2.0-DESKTOP
+  - T-REL-V1.2.0-EMULATOR
+  - T-REL-V1.2.0-UPGRADE
+  - T-REL-V1.2.0-VISUAL
+  - T-UI-INT-CTYPE-001
+  - T-UI-INT-CTYPE-002
+  - T-UI-INT-DRAFT-001
+  - T-UI-INT-DRAFT-002
+  - T-UI-INT-MYPROJ-006
+  - T-UI-INT-PUB-001
+  - T-UI-INT-PUB-002
+  - T-UI-INT-PUB-003
+  - T-UI-INT-PUB-009
+  - T-UI-INT-PUB-010
+  - T-UI-INT-PUB-011
+  - T-UI-INT-PUB-012
+  - T-UI-INT-PUB-013
+  - T-UI-INT-PUB-014
+  - T-UI-INT-RESULT-001
+  - T-UI-INT-RESULT-002
+  - T-VIS-PUB-001-S01
+  - T-VIS-PUB-001-S02
+  - T-VIS-PUB-001-S03
+  - T-VIS-PUB-001-S04
+  - T-VIS-PUB-001-S05
+  - T-VIS-PUB-001-S06
+  - T-VIS-PUB-001-S07
+  - T-VIS-PUB-001-S08
+  - T-VIS-PUB-001-S09
+  - T-VIS-PUB-001-S10
+  - T-VIS-PUB-001-S11
+  - T-VIS-PUB-001-S12
+  - T-VIS-PUB-001-S13
+  - T-VIS-PUB-003-S01
+  - T-VIS-PUB-003-S02
+  - T-VIS-PUB-003-S03
+  - T-VIS-PUB-OV-002-S01
+  - T-VIS-PUB-OV-003-S01
+  - T-VIS-PUB-OV-003-S02
+  - T-VIS-PUB-OV-003-S03
+  status: PLANNED
+  explicit_exclusions: []
+- id: PUBLISH-003
+  name: 项目编辑和状态机
+  user_value: 用户按状态编辑、下架、重提和软删除本人项目。
+  release_id: V1.2.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - PUB-004
+  - ME-OV-002
+  - HOME-004
+  state_ids:
+  - PUB-004-S01
+  - PUB-004-S02
+  - PUB-004-S03
+  - PUB-004-S04
+  - PUB-004-S05
+  - PUB-004-S06
+  - PUB-004-S07
+  - PUB-004-S08
+  - ME-OV-002-S01
+  - ME-OV-002-S02
+  - ME-OV-002-S03
+  - ME-OV-002-S04
+  - HOME-004-S01
+  - HOME-004-S02
+  - HOME-004-S03
+  - HOME-004-S04
+  - HOME-004-S05
+  - HOME-004-S06
+  - HOME-004-S07
+  - HOME-004-S08
+  - HOME-004-S09
+  - HOME-004-S10
+  - HOME-004-S11
+  interaction_ids:
+  - INT-DETAIL-006
+  - INT-DETAIL-007
+  - INT-DETAIL-008
+  - INT-EDIT-001
+  - INT-EDIT-002
+  - INT-ACT-001
+  - INT-ACT-002
+  - INT-ACT-003
+  - INT-ACT-004
+  - INT-ACT-005
+  - INT-ACT-006
+  api_operation_ids:
+  - updateProject
+  - offlineProject
+  - resubmitProject
+  - deleteProject
+  backend_modules:
+  - android/feature-publish
+  - stk_project/service/project_state_machine
+  entity_ids:
+  - DB-PROJ-002
+  - DB-PROJ-005
+  - DB-SYS-003
+  admin_menu_ids:
+  - ADM-PROJ-002
+  - ADM-PROJ-008
+  - ADM-PROJ-012
+  config_ids:
+  - CFG-PUB-010
+  - CFG-PUB-011
+  - CFG-PUB-012
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - PROJECT
+  metrics:
+  - stk_publish_003_success_total
+  - stk_publish_003_failure_total
+  test_ids:
+  - T-ADM-ADM-PROJ-002
+  - T-ADM-ADM-PROJ-008
+  - T-ADM-ADM-PROJ-012
+  - T-API-deleteProject
+  - T-API-offlineProject
+  - T-API-resubmitProject
+  - T-API-updateProject
+  - T-DB-DB-PROJ-002
+  - T-DB-DB-PROJ-005
+  - T-DB-DB-SYS-003
+  - T-REL-V1.2.0-BUILD
+  - T-REL-V1.2.0-DESKTOP
+  - T-REL-V1.2.0-EMULATOR
+  - T-REL-V1.2.0-UPGRADE
+  - T-REL-V1.2.0-VISUAL
+  - T-UI-INT-ACT-001
+  - T-UI-INT-ACT-002
+  - T-UI-INT-ACT-003
+  - T-UI-INT-ACT-004
+  - T-UI-INT-ACT-005
+  - T-UI-INT-ACT-006
+  - T-UI-INT-DETAIL-006
+  - T-UI-INT-DETAIL-007
+  - T-UI-INT-DETAIL-008
+  - T-UI-INT-EDIT-001
+  - T-UI-INT-EDIT-002
+  - T-VIS-HOME-004-S01
+  - T-VIS-HOME-004-S02
+  - T-VIS-HOME-004-S03
+  - T-VIS-HOME-004-S04
+  - T-VIS-HOME-004-S05
+  - T-VIS-HOME-004-S06
+  - T-VIS-HOME-004-S07
+  - T-VIS-HOME-004-S08
+  - T-VIS-HOME-004-S09
+  - T-VIS-HOME-004-S10
+  - T-VIS-HOME-004-S11
+  - T-VIS-ME-OV-002-S01
+  - T-VIS-ME-OV-002-S02
+  - T-VIS-ME-OV-002-S03
+  - T-VIS-ME-OV-002-S04
+  - T-VIS-PUB-004-S01
+  - T-VIS-PUB-004-S02
+  - T-VIS-PUB-004-S03
+  - T-VIS-PUB-004-S04
+  - T-VIS-PUB-004-S05
+  - T-VIS-PUB-004-S06
+  - T-VIS-PUB-004-S07
+  - T-VIS-PUB-004-S08
+  status: PLANNED
+  explicit_exclusions: []
+- id: PUBLISH-004
+  name: 我的发布
+  user_value: 用户按状态查看和管理本人项目。
+  release_id: V1.2.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - ME-002
+  - ME-OV-002
+  state_ids:
+  - ME-002-S01
+  - ME-002-S02
+  - ME-002-S03
+  - ME-002-S04
+  - ME-002-S05
+  - ME-002-S06
+  - ME-002-S07
+  - ME-002-S08
+  - ME-002-S09
+  - ME-002-S10
+  - ME-002-S11
+  - ME-OV-002-S01
+  - ME-OV-002-S02
+  - ME-OV-002-S03
+  - ME-OV-002-S04
+  interaction_ids:
+  - INT-RESULT-003
+  - INT-ME-002
+  - INT-MYPROJ-001
+  - INT-MYPROJ-002
+  - INT-MYPROJ-003
+  - INT-MYPROJ-004
+  - INT-MYPROJ-005
+  api_operation_ids:
+  - listMyProjects
+  - getProjectDetail
+  backend_modules:
+  - android/feature-profile
+  - stk_project/service/my_projects
+  entity_ids:
+  - DB-PROJ-002
+  - DB-PROJ-005
+  admin_menu_ids:
+  - ADM-PROJ-011
+  config_ids: []
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - PROJECT
+  metrics:
+  - stk_publish_004_success_total
+  - stk_publish_004_failure_total
+  test_ids:
+  - T-ADM-ADM-PROJ-011
+  - T-API-getProjectDetail
+  - T-API-listMyProjects
+  - T-DB-DB-PROJ-002
+  - T-DB-DB-PROJ-005
+  - T-REL-V1.2.0-BUILD
+  - T-REL-V1.2.0-DESKTOP
+  - T-REL-V1.2.0-EMULATOR
+  - T-REL-V1.2.0-UPGRADE
+  - T-REL-V1.2.0-VISUAL
+  - T-UI-INT-ME-002
+  - T-UI-INT-MYPROJ-001
+  - T-UI-INT-MYPROJ-002
+  - T-UI-INT-MYPROJ-003
+  - T-UI-INT-MYPROJ-004
+  - T-UI-INT-MYPROJ-005
+  - T-UI-INT-RESULT-003
+  - T-VIS-ME-002-S01
+  - T-VIS-ME-002-S02
+  - T-VIS-ME-002-S03
+  - T-VIS-ME-002-S04
+  - T-VIS-ME-002-S05
+  - T-VIS-ME-002-S06
+  - T-VIS-ME-002-S07
+  - T-VIS-ME-002-S08
+  - T-VIS-ME-002-S09
+  - T-VIS-ME-002-S10
+  - T-VIS-ME-002-S11
+  - T-VIS-ME-OV-002-S01
+  - T-VIS-ME-OV-002-S02
+  - T-VIS-ME-OV-002-S03
+  - T-VIS-ME-OV-002-S04
+  status: PLANNED
+  explicit_exclusions: []
+- id: PUBLISH-005
+  name: 项目后台审核闭环
+  user_value: 审核员可审核、驳回、推荐、上下架和追溯全部动作。
+  release_id: V1.2.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids: []
+  state_ids: []
+  interaction_ids: []
+  api_operation_ids: []
+  backend_modules:
+  - stk_project/admin/review
+  - stk_project/audit
+  entity_ids:
+  - DB-PROJ-002
+  - DB-PROJ-005
+  - DB-AUTH-008
+  admin_menu_ids:
+  - ADM-PROJ-001
+  - ADM-PROJ-002
+  - ADM-PROJ-008
+  - ADM-PROJ-011
+  - ADM-PROJ-012
+  config_ids:
+  - CFG-PUB-002
+  permissions:
+  - project_reviewer
+  - super_admin
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - ADMIN
+  - PROJECT
+  metrics:
+  - stk_publish_005_success_total
+  - stk_publish_005_failure_total
+  test_ids:
+  - T-ADM-ADM-PROJ-001
+  - T-ADM-ADM-PROJ-002
+  - T-ADM-ADM-PROJ-008
+  - T-ADM-ADM-PROJ-011
+  - T-ADM-ADM-PROJ-012
+  - T-DB-DB-AUTH-008
+  - T-DB-DB-PROJ-002
+  - T-DB-DB-PROJ-005
+  - T-REL-V1.2.0-BUILD
+  - T-REL-V1.2.0-DESKTOP
+  - T-REL-V1.2.0-EMULATOR
+  - T-REL-V1.2.0-UPGRADE
+  - T-REL-V1.2.0-VISUAL
+  status: PLANNED
+  explicit_exclusions: []
+- id: PROFILE-001
+  name: 我的基础资料
+  user_value: 展示头像、昵称、UID、会员标识和脱敏手机号。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - ME-001
+  - ME-003
+  state_ids:
+  - ME-001-S01
+  - ME-001-S02
+  - ME-001-S03
+  - ME-001-S04
+  - ME-001-S05
+  - ME-001-S06
+  - ME-001-S07
+  - ME-001-S08
+  - ME-003-S01
+  - ME-003-S02
+  - ME-003-S03
+  interaction_ids:
+  - INT-HOME-008
+  - INT-ME-001
+  - INT-ME-011
+  - INT-PROFILE-001
+  api_operation_ids:
+  - getMySummary
+  backend_modules:
+  - android/feature-profile
+  - stk_auth/service/profile_summary
+  entity_ids:
+  - DB-AUTH-001
+  - DB-ME-001
+  - DB-ME-002
+  admin_menu_ids:
+  - ADM-AUTH-008
+  config_ids: []
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - AUTH
+  metrics:
+  - stk_profile_001_success_total
+  - stk_profile_001_failure_total
+  test_ids:
+  - T-ADM-ADM-AUTH-008
+  - T-API-getMySummary
+  - T-DB-DB-AUTH-001
+  - T-DB-DB-ME-001
+  - T-DB-DB-ME-002
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  - T-UI-INT-HOME-008
+  - T-UI-INT-ME-001
+  - T-UI-INT-ME-011
+  - T-UI-INT-PROFILE-001
+  - T-VIS-ME-001-S01
+  - T-VIS-ME-001-S02
+  - T-VIS-ME-001-S03
+  - T-VIS-ME-001-S04
+  - T-VIS-ME-001-S05
+  - T-VIS-ME-001-S06
+  - T-VIS-ME-001-S07
+  - T-VIS-ME-001-S08
+  - T-VIS-ME-003-S01
+  - T-VIS-ME-003-S02
+  - T-VIS-ME-003-S03
+  status: PLANNED
+  explicit_exclusions: []
+- id: PROFILE-002
+  name: 会员状态展示
+  user_value: 展示未开通、有效和过期状态及后台配置权益文案。
+  release_id: V1.3.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - ME-001
+  - ME-004
+  - COM-OV-002
+  state_ids:
+  - ME-001-S01
+  - ME-001-S02
+  - ME-001-S03
+  - ME-001-S04
+  - ME-001-S05
+  - ME-001-S06
+  - ME-001-S07
+  - ME-001-S08
+  - ME-004-S01
+  - ME-004-S02
+  - ME-004-S03
+  - ME-004-S04
+  - ME-004-S05
+  - COM-OV-002-S01
+  - COM-OV-002-S02
+  - COM-OV-002-S03
+  - COM-OV-002-S04
+  interaction_ids:
+  - INT-ME-004
+  - INT-MEMBER-001
+  - INT-MEMBER-002
+  api_operation_ids:
+  - getMyMember
+  backend_modules:
+  - android/feature-profile
+  - stk_project/service/member_display
+  entity_ids:
+  - DB-ME-001
+  - DB-AUTH-008
+  admin_menu_ids:
+  - ADM-ME-001
+  - ADM-ME-002
+  config_ids:
+  - CFG-MEMBER-001
+  - CFG-MEMBER-002
+  - CFG-MEMBER-003
+  - CFG-MEMBER-004
+  - CFG-ME-004
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - MEMBER
+  metrics:
+  - stk_profile_002_success_total
+  - stk_profile_002_failure_total
+  test_ids:
+  - T-ADM-ADM-ME-001
+  - T-ADM-ADM-ME-002
+  - T-API-getMyMember
+  - T-DB-DB-AUTH-008
+  - T-DB-DB-ME-001
+  - T-REL-V1.3.0-BUILD
+  - T-REL-V1.3.0-DESKTOP
+  - T-REL-V1.3.0-EMULATOR
+  - T-REL-V1.3.0-UPGRADE
+  - T-REL-V1.3.0-VISUAL
+  - T-UI-INT-ME-004
+  - T-UI-INT-MEMBER-001
+  - T-UI-INT-MEMBER-002
+  - T-VIS-COM-OV-002-S01
+  - T-VIS-COM-OV-002-S02
+  - T-VIS-COM-OV-002-S03
+  - T-VIS-COM-OV-002-S04
+  - T-VIS-ME-001-S01
+  - T-VIS-ME-001-S02
+  - T-VIS-ME-001-S03
+  - T-VIS-ME-001-S04
+  - T-VIS-ME-001-S05
+  - T-VIS-ME-001-S06
+  - T-VIS-ME-001-S07
+  - T-VIS-ME-001-S08
+  - T-VIS-ME-004-S01
+  - T-VIS-ME-004-S02
+  - T-VIS-ME-004-S03
+  - T-VIS-ME-004-S04
+  - T-VIS-ME-004-S05
+  status: PLANNED
+  explicit_exclusions:
+  - 在线开通
+  - 支付
+  - 折扣结算
+  - 返佣结算
+- id: PROFILE-003
+  name: 双账户余额只读展示
+  user_value: 展示真实佣金账户和任务账户余额，默认 0.00。
+  release_id: V1.3.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - ME-001
+  - ME-005
+  - COM-OV-002
+  state_ids:
+  - ME-001-S01
+  - ME-001-S02
+  - ME-001-S03
+  - ME-001-S04
+  - ME-001-S05
+  - ME-001-S06
+  - ME-001-S07
+  - ME-001-S08
+  - ME-005-S01
+  - ME-005-S02
+  - ME-005-S03
+  - COM-OV-002-S01
+  - COM-OV-002-S02
+  - COM-OV-002-S03
+  - COM-OV-002-S04
+  interaction_ids:
+  - INT-ME-003
+  - INT-WALLET-001
+  - INT-WALLET-002
+  api_operation_ids:
+  - getMyWallets
+  backend_modules:
+  - android/feature-profile
+  - stk_project/service/wallet_display
+  entity_ids:
+  - DB-ME-002
+  admin_menu_ids:
+  - ADM-ME-001
+  - ADM-ME-003
+  config_ids:
+  - CFG-ME-001
+  - CFG-ME-002
+  - CFG-ME-003
+  - CFG-WALLET-001
+  - CFG-WALLET-002
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - WALLET
+  metrics:
+  - stk_profile_003_success_total
+  - stk_profile_003_failure_total
+  test_ids:
+  - T-ADM-ADM-ME-001
+  - T-ADM-ADM-ME-003
+  - T-API-getMyWallets
+  - T-DB-DB-ME-002
+  - T-REL-V1.3.0-BUILD
+  - T-REL-V1.3.0-DESKTOP
+  - T-REL-V1.3.0-EMULATOR
+  - T-REL-V1.3.0-UPGRADE
+  - T-REL-V1.3.0-VISUAL
+  - T-UI-INT-ME-003
+  - T-UI-INT-WALLET-001
+  - T-UI-INT-WALLET-002
+  - T-VIS-COM-OV-002-S01
+  - T-VIS-COM-OV-002-S02
+  - T-VIS-COM-OV-002-S03
+  - T-VIS-COM-OV-002-S04
+  - T-VIS-ME-001-S01
+  - T-VIS-ME-001-S02
+  - T-VIS-ME-001-S03
+  - T-VIS-ME-001-S04
+  - T-VIS-ME-001-S05
+  - T-VIS-ME-001-S06
+  - T-VIS-ME-001-S07
+  - T-VIS-ME-001-S08
+  - T-VIS-ME-005-S01
+  - T-VIS-ME-005-S02
+  - T-VIS-ME-005-S03
+  status: PLANNED
+  explicit_exclusions:
+  - 余额流水
+  - 提现
+  - 转账
+  - 后台直接改余额
+- id: PROFILE-004
+  name: 道具目录展示
+  user_value: 展示刷新卡、超级头条、头条和变色卡。
+  release_id: V1.3.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - ME-001
+  - ME-006
+  - COM-OV-002
+  state_ids:
+  - ME-001-S01
+  - ME-001-S02
+  - ME-001-S03
+  - ME-001-S04
+  - ME-001-S05
+  - ME-001-S06
+  - ME-001-S07
+  - ME-001-S08
+  - ME-006-S01
+  - ME-006-S02
+  - ME-006-S03
+  - ME-006-S04
+  - ME-006-S05
+  - COM-OV-002-S01
+  - COM-OV-002-S02
+  - COM-OV-002-S03
+  - COM-OV-002-S04
+  interaction_ids:
+  - INT-ME-005
+  - INT-PROP-001
+  - INT-PROP-002
+  api_operation_ids:
+  - getPropDisplay
+  backend_modules:
+  - android/feature-profile
+  - stk_project/service/prop_display
+  entity_ids:
+  - DB-ME-003
+  admin_menu_ids:
+  - ADM-ME-001
+  - ADM-ME-004
+  config_ids:
+  - CFG-PROP-001
+  - CFG-ME-005
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - PROP
+  metrics:
+  - stk_profile_004_success_total
+  - stk_profile_004_failure_total
+  test_ids:
+  - T-ADM-ADM-ME-001
+  - T-ADM-ADM-ME-004
+  - T-API-getPropDisplay
+  - T-DB-DB-ME-003
+  - T-REL-V1.3.0-BUILD
+  - T-REL-V1.3.0-DESKTOP
+  - T-REL-V1.3.0-EMULATOR
+  - T-REL-V1.3.0-UPGRADE
+  - T-REL-V1.3.0-VISUAL
+  - T-UI-INT-ME-005
+  - T-UI-INT-PROP-001
+  - T-UI-INT-PROP-002
+  - T-VIS-COM-OV-002-S01
+  - T-VIS-COM-OV-002-S02
+  - T-VIS-COM-OV-002-S03
+  - T-VIS-COM-OV-002-S04
+  - T-VIS-ME-001-S01
+  - T-VIS-ME-001-S02
+  - T-VIS-ME-001-S03
+  - T-VIS-ME-001-S04
+  - T-VIS-ME-001-S05
+  - T-VIS-ME-001-S06
+  - T-VIS-ME-001-S07
+  - T-VIS-ME-001-S08
+  - T-VIS-ME-006-S01
+  - T-VIS-ME-006-S02
+  - T-VIS-ME-006-S03
+  - T-VIS-ME-006-S04
+  - T-VIS-ME-006-S05
+  status: PLANNED
+  explicit_exclusions:
+  - 购买
+  - 库存
+  - 使用
+  - 有效期
+- id: PROFILE-005
+  name: 常用功能、客服、设置和明确占位
+  user_value: 所有入口有真实页面或明确占位，不出现空链接和假功能。
+  release_id: V1.3.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - SYS-002
+  - ME-007
+  - ME-008
+  - ME-009
+  - ME-010
+  - ME-011
+  - ME-012
+  state_ids:
+  - SYS-002-S01
+  - SYS-002-S02
+  - SYS-002-S03
+  - SYS-002-S04
+  - SYS-002-S05
+  - ME-007-S01
+  - ME-008-S01
+  - ME-009-S01
+  - ME-010-S01
+  - ME-010-S02
+  - ME-010-S03
+  - ME-010-S04
+  - ME-010-S05
+  - ME-011-S01
+  - ME-011-S02
+  - ME-011-S03
+  - ME-011-S04
+  - ME-011-S05
+  - ME-012-S01
+  - ME-012-S02
+  - ME-012-S03
+  - ME-012-S04
+  - ME-012-S05
+  interaction_ids:
+  - INT-SYS-004
+  - INT-ME-006
+  - INT-ME-007
+  - INT-ME-008
+  - INT-ME-009
+  - INT-ME-010
+  - INT-PLACE-001
+  - INT-PLACE-002
+  - INT-PLACE-003
+  - INT-SUPPORT-001
+  - INT-SUPPORT-002
+  - INT-SUPPORT-003
+  - INT-SET-001
+  - INT-SET-004
+  - INT-ABOUT-002
+  api_operation_ids:
+  - getSupportConfig
+  - getLegalDocument
+  - getCurrentRelease
+  backend_modules:
+  - android/feature-profile
+  - stk_project/service/support
+  entity_ids:
+  - DB-SYS-001
+  admin_menu_ids:
+  - ADM-ME-001
+  - ADM-ME-005
+  config_ids:
+  - CFG-ME-006
+  - CFG-SUPPORT-001
+  - CFG-SUPPORT-002
+  - CFG-SUPPORT-003
+  - CFG-SUPPORT-004
+  permissions:
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - SUPPORT
+  - EXTERNAL
+  metrics:
+  - stk_profile_005_success_total
+  - stk_profile_005_failure_total
+  test_ids:
+  - T-ADM-ADM-ME-001
+  - T-ADM-ADM-ME-005
+  - T-API-getCurrentRelease
+  - T-API-getLegalDocument
+  - T-API-getSupportConfig
+  - T-DB-DB-SYS-001
+  - T-REL-V1.3.0-BUILD
+  - T-REL-V1.3.0-DESKTOP
+  - T-REL-V1.3.0-EMULATOR
+  - T-REL-V1.3.0-UPGRADE
+  - T-REL-V1.3.0-VISUAL
+  - T-UI-INT-ABOUT-002
+  - T-UI-INT-ME-006
+  - T-UI-INT-ME-007
+  - T-UI-INT-ME-008
+  - T-UI-INT-ME-009
+  - T-UI-INT-ME-010
+  - T-UI-INT-PLACE-001
+  - T-UI-INT-PLACE-002
+  - T-UI-INT-PLACE-003
+  - T-UI-INT-SET-001
+  - T-UI-INT-SET-004
+  - T-UI-INT-SUPPORT-001
+  - T-UI-INT-SUPPORT-002
+  - T-UI-INT-SUPPORT-003
+  - T-UI-INT-SYS-004
+  - T-VIS-ME-007-S01
+  - T-VIS-ME-008-S01
+  - T-VIS-ME-009-S01
+  - T-VIS-ME-010-S01
+  - T-VIS-ME-010-S02
+  - T-VIS-ME-010-S03
+  - T-VIS-ME-010-S04
+  - T-VIS-ME-010-S05
+  - T-VIS-ME-011-S01
+  - T-VIS-ME-011-S02
+  - T-VIS-ME-011-S03
+  - T-VIS-ME-011-S04
+  - T-VIS-ME-011-S05
+  - T-VIS-ME-012-S01
+  - T-VIS-ME-012-S02
+  - T-VIS-ME-012-S03
+  - T-VIS-ME-012-S04
+  - T-VIS-ME-012-S05
+  - T-VIS-SYS-002-S01
+  - T-VIS-SYS-002-S02
+  - T-VIS-SYS-002-S03
+  - T-VIS-SYS-002-S04
+  - T-VIS-SYS-002-S05
+  status: PLANNED
+  explicit_exclusions: []
+- id: SYS-001
+  name: App 更新与覆盖安装
+  user_value: App 检查、下载、校验并交给系统安装器，保持同包名同签名覆盖更新。
+  release_id: V1.4.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - SYS-003
+  - SYS-OV-001
+  - SYS-OV-002
+  - ME-012
+  state_ids:
+  - SYS-003-S01
+  - SYS-003-S02
+  - SYS-003-S03
+  - SYS-003-S04
+  - SYS-003-S05
+  - SYS-003-S06
+  - SYS-003-S07
+  - SYS-003-S08
+  - SYS-OV-001-S01
+  - SYS-OV-001-S02
+  - SYS-OV-001-S03
+  - SYS-OV-002-S01
+  - SYS-OV-002-S02
+  - SYS-OV-002-S03
+  - ME-012-S01
+  - ME-012-S02
+  - ME-012-S03
+  - ME-012-S04
+  - ME-012-S05
+  interaction_ids:
+  - INT-UPD-001
+  - INT-UPD-002
+  - INT-UPD-003
+  - INT-UPD-004
+  - INT-UPD-005
+  - INT-UPD-006
+  - INT-UPD-007
+  - INT-ABOUT-001
+  api_operation_ids:
+  - getCurrentRelease
+  backend_modules:
+  - android/core-update
+  - stk_project/service/release
+  entity_ids:
+  - DB-SYS-002
+  admin_menu_ids:
+  - ADM-SYS-001
+  - ADM-SYS-002
+  - ADM-SYS-003
+  - ADM-SYS-004
+  config_ids:
+  - CFG-REL-001
+  - CFG-REL-002
+  - CFG-REL-003
+  - CFG-REL-004
+  - CFG-MAINT-001
+  - CFG-MAINT-002
+  - CFG-MAINT-003
+  - CFG-MAINT-004
+  permissions:
+  - anonymous
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - RELEASE
+  metrics:
+  - stk_sys_001_success_total
+  - stk_sys_001_failure_total
+  test_ids:
+  - T-ADM-ADM-SYS-001
+  - T-ADM-ADM-SYS-002
+  - T-ADM-ADM-SYS-003
+  - T-ADM-ADM-SYS-004
+  - T-API-getCurrentRelease
+  - T-DB-DB-SYS-002
+  - T-REL-V1.4.0-BUILD
+  - T-REL-V1.4.0-DESKTOP
+  - T-REL-V1.4.0-EMULATOR
+  - T-REL-V1.4.0-UPGRADE
+  - T-REL-V1.4.0-VISUAL
+  - T-UI-INT-ABOUT-001
+  - T-UI-INT-UPD-001
+  - T-UI-INT-UPD-002
+  - T-UI-INT-UPD-003
+  - T-UI-INT-UPD-004
+  - T-UI-INT-UPD-005
+  - T-UI-INT-UPD-006
+  - T-UI-INT-UPD-007
+  - T-VIS-ME-012-S01
+  - T-VIS-ME-012-S02
+  - T-VIS-ME-012-S03
+  - T-VIS-ME-012-S04
+  - T-VIS-ME-012-S05
+  - T-VIS-SYS-003-S01
+  - T-VIS-SYS-003-S02
+  - T-VIS-SYS-003-S03
+  - T-VIS-SYS-003-S04
+  - T-VIS-SYS-003-S05
+  - T-VIS-SYS-003-S06
+  - T-VIS-SYS-003-S07
+  - T-VIS-SYS-003-S08
+  - T-VIS-SYS-OV-001-S01
+  - T-VIS-SYS-OV-001-S02
+  - T-VIS-SYS-OV-001-S03
+  - T-VIS-SYS-OV-002-S01
+  - T-VIS-SYS-OV-002-S02
+  - T-VIS-SYS-OV-002-S03
+  status: PLANNED
+  explicit_exclusions: []
+- id: SYS-002
+  name: App Links 与下载落地
+  user_value: stk.zz-yihao.com 项目链接打开 App，未安装时进入移动下载落地页。
+  release_id: V1.4.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - SYS-001
+  - SYS-003
+  state_ids:
+  - SYS-001-S01
+  - SYS-001-S02
+  - SYS-001-S03
+  - SYS-001-S04
+  - SYS-001-S05
+  - SYS-001-S06
+  - SYS-001-S07
+  - SYS-001-S08
+  - SYS-003-S01
+  - SYS-003-S02
+  - SYS-003-S03
+  - SYS-003-S04
+  - SYS-003-S05
+  - SYS-003-S06
+  - SYS-003-S07
+  - SYS-003-S08
+  interaction_ids: []
+  api_operation_ids:
+  - resolveAppLink
+  backend_modules:
+  - android/app-links
+  - stk_project/service/app_links
+  - web/mobile_landing
+  entity_ids:
+  - DB-SYS-001
+  - DB-SYS-002
+  admin_menu_ids:
+  - ADM-SYS-003
+  config_ids:
+  - CFG-LINK-001
+  - CFG-LINK-002
+  - CFG-REL-002
+  permissions:
+  - anonymous
+  - authenticated_user
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - APP_LINK
+  - EXTERNAL
+  metrics:
+  - stk_sys_002_success_total
+  - stk_sys_002_failure_total
+  test_ids:
+  - T-ADM-ADM-SYS-003
+  - T-API-resolveAppLink
+  - T-DB-DB-SYS-001
+  - T-DB-DB-SYS-002
+  - T-REL-V1.4.0-BUILD
+  - T-REL-V1.4.0-DESKTOP
+  - T-REL-V1.4.0-EMULATOR
+  - T-REL-V1.4.0-UPGRADE
+  - T-REL-V1.4.0-VISUAL
+  - T-VIS-SYS-001-S01
+  - T-VIS-SYS-001-S02
+  - T-VIS-SYS-001-S03
+  - T-VIS-SYS-001-S04
+  - T-VIS-SYS-001-S05
+  - T-VIS-SYS-001-S06
+  - T-VIS-SYS-001-S07
+  - T-VIS-SYS-001-S08
+  - T-VIS-SYS-003-S01
+  - T-VIS-SYS-003-S02
+  - T-VIS-SYS-003-S03
+  - T-VIS-SYS-003-S04
+  - T-VIS-SYS-003-S05
+  - T-VIS-SYS-003-S06
+  - T-VIS-SYS-003-S07
+  - T-VIS-SYS-003-S08
+  status: PLANNED
+  explicit_exclusions: []
+- id: OPS-001
+  name: 域名、部署和管理员交付
+  user_value: 按版本提醒解析、部署 API/后台/静态/下载，并在 V1.0 安全交付管理员入口。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids: []
+  state_ids: []
+  interaction_ids: []
+  api_operation_ids:
+  - healthLive
+  - healthReady
+  backend_modules:
+  - infra/nginx
+  - infra/deployment
+  - ops/admin_handoff
+  entity_ids: []
+  admin_menu_ids:
+  - ADM-AUTH-014
+  config_ids: []
+  permissions:
+  - super_admin
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - DEPLOY
+  metrics:
+  - stk_ops_001_success_total
+  - stk_ops_001_failure_total
+  test_ids:
+  - T-ADM-ADM-AUTH-014
+  - T-API-healthLive
+  - T-API-healthReady
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  status: PLANNED
+  explicit_exclusions: []
+- id: OPS-002
+  name: GitHub Actions、视觉验收和桌面交付
+  user_value: 每版同一 commit 的 APK 经模拟器、全部交互和截图验收后复制到桌面。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids: []
+  state_ids: []
+  interaction_ids: []
+  api_operation_ids: []
+  backend_modules:
+  - ci/contracts
+  - ci/android
+  - ci/release
+  - ops/desktop_delivery
+  entity_ids: []
+  admin_menu_ids: []
+  config_ids: []
+  permissions:
+  - developer
+  - owner
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - CI
+  - RELEASE
+  metrics:
+  - stk_ops_002_success_total
+  - stk_ops_002_failure_total
+  test_ids:
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  status: PLANNED
+  explicit_exclusions: []
+- id: OPS-003
+  name: 安全、性能、日志与诊断
+  user_value: 认证、上传、项目和发布链路具有限流、审计、健康检查、日志和性能门禁。
+  release_id: V1.0.0
+  surfaces:
+  - android
+  - discuz_plugin_api
+  - discuz_admin
+  page_ids:
+  - SYS-002
+  state_ids:
+  - SYS-002-S01
+  - SYS-002-S02
+  - SYS-002-S03
+  - SYS-002-S04
+  - SYS-002-S05
+  interaction_ids: []
+  api_operation_ids:
+  - healthLive
+  - healthReady
+  backend_modules:
+  - platform/security
+  - platform/observability
+  - platform/performance
+  entity_ids:
+  - DB-AUTH-005
+  - DB-AUTH-006
+  - DB-AUTH-008
+  - DB-SYS-003
+  admin_menu_ids:
+  - ADM-AUTH-013
+  - ADM-AUTH-014
+  config_ids: []
+  permissions:
+  - super_admin
+  - developer
+  billing_rules:
+  - NONE_IN_V1.0_TO_V1.4
+  job_types: []
+  error_prefixes:
+  - SYS
+  - SECURITY
+  - PERFORMANCE
+  metrics:
+  - stk_ops_003_success_total
+  - stk_ops_003_failure_total
+  test_ids:
+  - T-ADM-ADM-AUTH-013
+  - T-ADM-ADM-AUTH-014
+  - T-API-healthLive
+  - T-API-healthReady
+  - T-DB-DB-AUTH-005
+  - T-DB-DB-AUTH-006
+  - T-DB-DB-AUTH-008
+  - T-DB-DB-SYS-003
+  - T-REL-V1.0.0-BUILD
+  - T-REL-V1.0.0-DESKTOP
+  - T-REL-V1.0.0-EMULATOR
+  - T-REL-V1.0.0-UPGRADE
+  - T-REL-V1.0.0-VISUAL
+  - T-VIS-SYS-002-S01
+  - T-VIS-SYS-002-S02
+  - T-VIS-SYS-002-S03
+  - T-VIS-SYS-002-S04
+  - T-VIS-SYS-002-S05
+  status: PLANNED
+  explicit_exclusions: []

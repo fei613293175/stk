@@ -1,0 +1,82 @@
+schema_version: 1
+page:
+  page_id: SYS-OV-002
+  name: 强制更新弹窗
+  surface: android
+  visual_type: SYSTEM_OVERLAY
+  route: overlay://forced-update
+  introduced_in: V1.4.0
+  layout_profile: OVERLAY
+  parent_page_id: SYS-001
+  identity_signature: 版本号+强制说明+立即更新
+  notes: 不提供关闭进入业务的路径
+  design_system_version: STK-DS-1.0
+  functional_authority: contracts/feature-map.yaml
+  visual_authority: contracts/mockup-manifest.csv
+  sample_content_is_not_functional_scope: true
+fixed_layout:
+  profile: OVERLAY
+  profile_values:
+    top_bar: parent
+    bottom_nav: parent
+    dialog_width: 326
+    scrim: '#00000066'
+    dominant: dialog_or_bottom_sheet
+  global_token_authority: contracts/ui-design-tokens.yaml
+  page_matrix_authority: contracts/ui-page-layout-matrix.csv
+required_identity:
+- 版本号+强制说明+立即更新
+- 不提供关闭进入业务的路径
+required_states:
+- state_id: SYS-OV-002-S01
+  state_code: DEFAULT
+  name: 强制更新
+  description: 只有立即更新按钮
+  introduced_in: V1.4.0
+  mockup_id: M-SYS-OV-002-S01
+  mockup_path: ui/mockups/approved/V1.4.0/SYS-OV-002/M-SYS-OV-002-S01__DEFAULT__1170x2532.png
+  mockup_status: APPROVED
+- state_id: SYS-OV-002-S02
+  state_code: DOWNLOADING
+  name: 强制更新下载中
+  description: 不可关闭
+  introduced_in: V1.4.0
+  mockup_id: M-SYS-OV-002-S02
+  mockup_path: ui/mockups/approved/V1.4.0/SYS-OV-002/M-SYS-OV-002-S02__DOWNLOADING__1170x2532.png
+  mockup_status: APPROVED
+- state_id: SYS-OV-002-S03
+  state_code: FAILED
+  name: 强制更新失败
+  description: 重试和客服入口
+  introduced_in: V1.4.0
+  mockup_id: M-SYS-OV-002-S03
+  mockup_path: ui/mockups/approved/V1.4.0/SYS-OV-002/M-SYS-OV-002-S03__FAILED__1170x2532.png
+  mockup_status: APPROVED
+allowed_interactions:
+- interaction_id: INT-UPD-007
+  feature_id: SYS-001
+  name: 强制更新立即更新
+  interaction_type: TAP
+  test_tag: forced_update_now
+  action: 点击立即更新
+  target: stk://system/update
+  api_operation_id: LOCAL_NAVIGATION
+  introduced_in: V1.4.0
+  expected_result: 产生合同规定的唯一结果
+content_authority: ui/FIXTURE_DATA.yaml for visual tests; runtime data from contracted APIs
+forbidden:
+- page-local arbitrary colors/dp/sp/radius
+- function not listed in allowed_interactions
+- remote HTML layout
+- sample text treated as feature
+- empty click target
+- unapproved mockup used as final baseline
+acceptance:
+  canonical: 390x844dp / 1170x2532px
+  responsive_widths_dp:
+  - 360
+  - 390
+  - 412
+  - 430
+  visual_diff: approved baseline required
+  accessibility: 48dp touch targets and content descriptions

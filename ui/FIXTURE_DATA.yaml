@@ -1,0 +1,62 @@
+schema_version: 1
+authority: visual_test_only
+functional_scope: false
+fixed_clock: '2026-08-05T10:00:00+08:00'
+user:
+  uid: 100001
+  display_name: 商推客用户0001
+  masked_mobile: 138****5678
+  avatar: fixture://avatar/user-001
+  mobile_verified: false
+member:
+  inactive:
+    status: inactive
+    title: 开通会员，推广更省心
+  active:
+    status: active
+    level_name: 商推客会员
+    expires_at: '2027-08-05'
+  expired:
+    status: expired
+    expired_at: '2026-07-31'
+wallets:
+- type: commission
+  name: 佣金账户
+  balance: '0.00'
+  currency: CNY
+- type: task
+  name: 任务账户
+  balance: '0.00'
+  currency: CNY
+projects:
+- id: 10001
+  title: 本地生活服务合作项目
+  summary: 用于效果图与自动测试的固定项目简介，不代表真实招商内容。
+  category: 本地生活
+  publisher: 商推客用户0258
+  views: 128
+  status: published
+- id: 10002
+  title: 社区团购渠道推广计划
+  summary: 固定测试数据，用于列表分页、搜索和详情状态。
+  category: 渠道推广
+  publisher: 商推客用户1036
+  views: 86
+  status: published
+- id: 10003
+  title: 企业服务项目合作招募
+  summary: 固定测试数据，不产生任何真实联系、收益或承诺。
+  category: 企业服务
+  publisher: 商推客用户0865
+  views: 42
+  status: pending
+contact:
+  phone: '13800138000'
+  masked_phone: 138****8000
+  wechat: stk_fixture_001
+  qq: '100001'
+  website: https://example.invalid/stk-fixture
+rules:
+- All values are deterministic visual fixtures
+- No fixture value creates business scope
+- No real person, merchant, balance, payment or contact information

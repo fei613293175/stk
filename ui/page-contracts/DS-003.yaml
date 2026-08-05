@@ -1,0 +1,55 @@
+schema_version: 1
+page:
+  page_id: DS-003
+  name: 全局状态与反馈规范板
+  surface: android
+  visual_type: SYSTEM_STATE_BOARD
+  route: design://states
+  introduced_in: V1.0.0
+  layout_profile: DESIGN_BOARD
+  parent_page_id: null
+  identity_signature: 骨架+空状态+错误+成功+Snackbar+Dialog
+  notes: 统一所有页面反馈，不得逐页自由设计
+  design_system_version: STK-DS-1.0
+  functional_authority: contracts/feature-map.yaml
+  visual_authority: contracts/mockup-manifest.csv
+  sample_content_is_not_functional_scope: true
+fixed_layout:
+  profile: DESIGN_BOARD
+  profile_values:
+    top_bar: none
+    bottom_nav: none
+    canvas: 1170x2532
+    dominant: design_reference_board
+  global_token_authority: contracts/ui-design-tokens.yaml
+  page_matrix_authority: contracts/ui-page-layout-matrix.csv
+required_identity:
+- 骨架+空状态+错误+成功+Snackbar+Dialog
+- 统一所有页面反馈，不得逐页自由设计
+required_states:
+- state_id: DS-003-S01
+  state_code: REFERENCE
+  name: 完整状态
+  description: 展示加载、空、离线、错误、成功、Snackbar、Dialog 和 Bottom Sheet
+  introduced_in: V1.0.0
+  mockup_id: M-DS-003-S01
+  mockup_path: ui/mockups/approved/V1.0.0/DS-003/M-DS-003-S01__REFERENCE__1170x2532.png
+  mockup_status: APPROVED
+allowed_interactions: []
+content_authority: ui/FIXTURE_DATA.yaml for visual tests; runtime data from contracted APIs
+forbidden:
+- page-local arbitrary colors/dp/sp/radius
+- function not listed in allowed_interactions
+- remote HTML layout
+- sample text treated as feature
+- empty click target
+- unapproved mockup used as final baseline
+acceptance:
+  canonical: 390x844dp / 1170x2532px
+  responsive_widths_dp:
+  - 360
+  - 390
+  - 412
+  - 430
+  visual_diff: approved baseline required
+  accessibility: 48dp touch targets and content descriptions

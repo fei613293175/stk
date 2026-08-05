@@ -1,0 +1,283 @@
+schema_version: 1
+admin_root: 商推客插件管理
+menus:
+- admin_menu_id: ADM-AUTH-001
+  name: 登录注册概览
+  plugin: stk_auth
+  introduced_in: V1.0.0
+  capabilities: 今日注册/登录/短信/失败/风控摘要
+  roles: 超级管理员|认证运营
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-AUTH-002
+  name: 基础与跳转设置
+  plugin: stk_auth
+  introduced_in: V1.0.0
+  capabilities: 插件开关、登录/注册/退出跳转、协议入口
+  roles: 超级管理员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-AUTH-003
+  name: 登录策略
+  plugin: stk_auth
+  introduced_in: V1.0.0
+  capabilities: 登录方式、Token、失败锁定和设备策略
+  roles: 超级管理员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-AUTH-004
+  name: 注册策略
+  plugin: stk_auth
+  introduced_in: V1.0.0
+  capabilities: 注册开关、密码规则、用户名/昵称规则
+  roles: 超级管理员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-AUTH-005
+  name: 安全验证码设置
+  plugin: stk_auth
+  introduced_in: V1.0.0
+  capabilities: 类型、长度、有效期、错误上限、动作绑定
+  roles: 超级管理员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-AUTH-006
+  name: 阿里云短信设置
+  plugin: stk_auth
+  introduced_in: V1.0.0
+  capabilities: RAM AccessKey、签名、模板、发送策略、测试
+  roles: 超级管理员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-AUTH-007
+  name: 短信验证码记录
+  plugin: stk_auth
+  introduced_in: V1.0.0
+  capabilities: 日期、验证码授权查看、发送/使用状态、BizId
+  roles: 超级管理员|短信审计员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-AUTH-008
+  name: 注册用户列表
+  plugin: stk_auth
+  introduced_in: V1.0.0
+  capabilities: UID、手机号、日期、验证状态、最近登录
+  roles: 超级管理员|用户运营
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-AUTH-009
+  name: 登录日志
+  plugin: stk_auth
+  introduced_in: V1.0.0
+  capabilities: 方式、结果、错误码、IP/设备摘要
+  roles: 超级管理员|安全审计员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-AUTH-010
+  name: Token 与设备会话
+  plugin: stk_auth
+  introduced_in: V1.0.0
+  capabilities: 活跃 Token 族、设备、撤销
+  roles: 超级管理员|安全审计员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-AUTH-011
+  name: 风控与限流事件
+  plugin: stk_auth
+  introduced_in: V1.0.0
+  capabilities: 手机号/IP/设备摘要、规则、锁定和解锁
+  roles: 超级管理员|安全审计员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-AUTH-012
+  name: 协议与隐私版本
+  plugin: stk_auth
+  introduced_in: V1.0.0
+  capabilities: 正文版本、生效日期、发布和历史
+  roles: 超级管理员|内容管理员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-AUTH-013
+  name: 管理操作审计
+  plugin: stk_auth
+  introduced_in: V1.0.0
+  capabilities: 验证码查看、手机号修改、Secret 更新等
+  roles: 超级管理员|安全审计员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-AUTH-014
+  name: 认证系统诊断
+  plugin: stk_auth
+  introduced_in: V1.0.0
+  capabilities: 数据库、短信、加密主密钥、计划任务和 API 健康
+  roles: 超级管理员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-PROJ-001
+  name: 项目运营概览
+  plugin: stk_project
+  introduced_in: V1.0.0
+  capabilities: 项目状态、发布者、浏览和审核摘要
+  roles: 超级管理员|项目运营
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-PROJ-002
+  name: 项目管理
+  plugin: stk_project
+  introduced_in: V1.0.0
+  capabilities: 查询、查看、创建测试数据、编辑、推荐、上下架、删除
+  roles: 超级管理员|项目运营
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-PROJ-003
+  name: 项目分类
+  plugin: stk_project
+  introduced_in: V1.0.0
+  capabilities: 分类增改、排序、启停
+  roles: 超级管理员|项目运营
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-PROJ-004
+  name: 首页展示设置
+  plugin: stk_project
+  introduced_in: V1.0.0
+  capabilities: 每页数量、默认排序、显示字段、空状态文案
+  roles: 超级管理员|项目运营
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-PROJ-005
+  name: 项目详情设置
+  plugin: stk_project
+  introduced_in: V1.0.0
+  capabilities: 发布者字段、联系方式展示和分享规则
+  roles: 超级管理员|项目运营
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-PROJ-006
+  name: 外部联系方式与白名单
+  plugin: stk_project
+  introduced_in: V1.1.0
+  capabilities: 电话/微信/QQ/网址类型、域名/Scheme/包名白名单
+  roles: 超级管理员|安全审计员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-PROJ-007
+  name: 搜索与发现设置
+  plugin: stk_project
+  introduced_in: V1.1.0
+  capabilities: 搜索开关、字段、关键词限制和游标分页
+  roles: 超级管理员|项目运营
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-PROJ-008
+  name: 待审核项目
+  plugin: stk_project
+  introduced_in: V1.2.0
+  capabilities: 批量/单项审核、驳回原因
+  roles: 超级管理员|项目审核员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-PROJ-009
+  name: 发布规则
+  plugin: stk_project
+  introduced_in: V1.2.0
+  capabilities: 字段长度、每日上限、待审核上限、编辑后审核
+  roles: 超级管理员|项目运营
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-PROJ-010
+  name: 图片上传设置
+  plugin: stk_project
+  introduced_in: V1.2.0
+  capabilities: 数量、体积、格式、尺寸、压缩、清理
+  roles: 超级管理员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-PROJ-011
+  name: 用户项目查询
+  plugin: stk_project
+  introduced_in: V1.2.0
+  capabilities: 按 UID/手机号/昵称/状态查询
+  roles: 超级管理员|项目审核员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-PROJ-012
+  name: 项目审核与状态日志
+  plugin: stk_project
+  introduced_in: V1.2.0
+  capabilities: 全部审核/上下架/删除动作审计
+  roles: 超级管理员|安全审计员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-ME-001
+  name: 我的页面展示配置
+  plugin: stk_project
+  introduced_in: V1.3.0
+  capabilities: 账户名称、会员文案、常用功能显示、占位说明
+  roles: 超级管理员|项目运营
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-ME-002
+  name: 会员状态管理
+  plugin: stk_project
+  introduced_in: V1.3.0
+  capabilities: 查询、人工开通/续期/关闭、审计
+  roles: 超级管理员|会员运营
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-ME-003
+  name: 账户余额查询
+  plugin: stk_project
+  introduced_in: V1.3.0
+  capabilities: 佣金/任务账户只读查询，禁止后台直接改余额
+  roles: 超级管理员|财务查看员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-ME-004
+  name: 道具展示目录
+  plugin: stk_project
+  introduced_in: V1.3.0
+  capabilities: 名称、图标、说明、排序、启停
+  roles: 超级管理员|项目运营
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-ME-005
+  name: 客服与关于配置
+  plugin: stk_project
+  introduced_in: V1.3.0
+  capabilities: 客服渠道、备案、版权、品牌信息
+  roles: 超级管理员|内容管理员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-SYS-001
+  name: App 版本发布配置
+  plugin: stk_project
+  introduced_in: V1.3.0
+  capabilities: 版本号、最低版本、更新类型、APK URL/SHA/日志
+  roles: 超级管理员|发布管理员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-SYS-002
+  name: 维护模式与功能开关
+  plugin: stk_project
+  introduced_in: V1.4.0
+  capabilities: 维护开关、提示、功能版本门控
+  roles: 超级管理员|发布管理员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-SYS-003
+  name: App Links 与下载配置
+  plugin: stk_project
+  introduced_in: V1.4.0
+  capabilities: 深链路由、fallback、下载域名和校验文件
+  roles: 超级管理员|发布管理员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv
+- admin_menu_id: ADM-SYS-004
+  name: 项目系统诊断
+  plugin: stk_project
+  introduced_in: V1.4.0
+  capabilities: 数据库索引、存储、CDN、版本、深链、队列和健康
+  roles: 超级管理员
+  audit_required: 'true'
+  frontend_dependency: 见 contracts/frontend-backend-traceability.csv

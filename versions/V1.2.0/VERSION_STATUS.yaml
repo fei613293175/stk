@@ -1,0 +1,22 @@
+release_id: V1.2.0
+version_name: 1.2.0
+version_code: 10200
+status: PLANNED_WAITING_FOR_PREVIOUS_RELEASE
+branch: release/1.2.0
+tag: stk-android-v1.2.0
+mockups_required: 53
+mockups_approved: 53
+start_gate: Previous release delivered; all release mockups APPROVED; package validation passing
+finish_gate: Code, backend, admin, tests, CI artifact and owner delivery complete
+online_environment:
+  discuz_version: X5.0
+  discuz_root: /www/wwwroot/stk_zz_yihao_com
+  public_site: https://stk.zz-yihao.com
+  api_host: stk-api.zz-yihao.com
+  api_dns_status: resolved_by_owner
+  admin_host: stk-admin.zz-yihao.com
+  admin_dns_status: resolved_by_owner
+  android_build_environment: available_on_server
+  admin_username: admin
+  admin_credential_file: ADMIN_ACCESS_HANDOFF.local.md
+  sms_configuration: owner_will_fill_later

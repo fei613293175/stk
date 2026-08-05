@@ -1,0 +1,30 @@
+# Secrets and local-only handoff
+*.local.md
+*.local.yaml
+.env
+.env.*
+!.env.example
+secrets/
+release-keystore/
+*.jks
+*.keystore
+
+# Android/Gradle
+.gradle/
+**/build/
+local.properties
+.idea/
+*.iml
+captures/
+
+# Generated delivery and test output
+deliveries/
+visual-results/
+test-results/
+*.apk
+*.aab
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

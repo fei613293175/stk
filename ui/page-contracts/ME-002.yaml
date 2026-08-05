@@ -1,0 +1,196 @@
+schema_version: 1
+page:
+  page_id: ME-002
+  name: 我的发布
+  surface: android
+  visual_type: PAGE
+  route: stk://me/projects
+  introduced_in: V1.2.0
+  layout_profile: LIST
+  parent_page_id: ME-001
+  identity_signature: 状态标签页+本人项目列表+项目操作
+  notes: 只能操作本人项目
+  design_system_version: STK-DS-1.0
+  functional_authority: contracts/feature-map.yaml
+  visual_authority: contracts/mockup-manifest.csv
+  sample_content_is_not_functional_scope: true
+fixed_layout:
+  profile: LIST
+  profile_values:
+    top_bar: 56
+    bottom_nav: none
+    horizontal_padding: 16
+    list_gap: 12
+    dominant: status_tabs_and_list
+  global_token_authority: contracts/ui-design-tokens.yaml
+  page_matrix_authority: contracts/ui-page-layout-matrix.csv
+required_identity:
+- 状态标签页+本人项目列表+项目操作
+- 只能操作本人项目
+required_states:
+- state_id: ME-002-S01
+  state_code: LOADING
+  name: 项目列表加载
+  description: 状态标签页骨架
+  introduced_in: V1.2.0
+  mockup_id: M-ME-002-S01
+  mockup_path: ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S01__LOADING__1170x2532.png
+  mockup_status: APPROVED
+- state_id: ME-002-S02
+  state_code: ALL
+  name: 全部项目
+  description: 本人所有非删除项目
+  introduced_in: V1.2.0
+  mockup_id: M-ME-002-S02
+  mockup_path: ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S02__ALL__1170x2532.png
+  mockup_status: APPROVED
+- state_id: ME-002-S03
+  state_code: PENDING
+  name: 待审核
+  description: 可查看/编辑/撤回策略
+  introduced_in: V1.2.0
+  mockup_id: M-ME-002-S03
+  mockup_path: ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S03__PENDING__1170x2532.png
+  mockup_status: APPROVED
+- state_id: ME-002-S04
+  state_code: PUBLISHED
+  name: 已发布
+  description: 可查看/编辑/下架
+  introduced_in: V1.2.0
+  mockup_id: M-ME-002-S04
+  mockup_path: ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S04__PUBLISHED__1170x2532.png
+  mockup_status: APPROVED
+- state_id: ME-002-S05
+  state_code: REJECTED
+  name: 已驳回
+  description: 原因和重提
+  introduced_in: V1.2.0
+  mockup_id: M-ME-002-S05
+  mockup_path: ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S05__REJECTED__1170x2532.png
+  mockup_status: APPROVED
+- state_id: ME-002-S06
+  state_code: OFFLINE
+  name: 已下架
+  description: 查看/编辑/删除
+  introduced_in: V1.2.0
+  mockup_id: M-ME-002-S06
+  mockup_path: ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S06__OFFLINE__1170x2532.png
+  mockup_status: APPROVED
+- state_id: ME-002-S07
+  state_code: EMPTY
+  name: 无项目
+  description: 引导发布
+  introduced_in: V1.2.0
+  mockup_id: M-ME-002-S07
+  mockup_path: ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S07__EMPTY__1170x2532.png
+  mockup_status: APPROVED
+- state_id: ME-002-S08
+  state_code: PAGINATING
+  name: 加载更多
+  description: 底部进度
+  introduced_in: V1.2.0
+  mockup_id: M-ME-002-S08
+  mockup_path: ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S08__PAGINATING__1170x2532.png
+  mockup_status: APPROVED
+- state_id: ME-002-S09
+  state_code: PAGINATION_FAILED
+  name: 加载更多失败
+  description: 局部重试
+  introduced_in: V1.2.0
+  mockup_id: M-ME-002-S09
+  mockup_path: ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S09__PAGINATION_FAILED__1170x2532.png
+  mockup_status: APPROVED
+- state_id: ME-002-S10
+  state_code: OFFLINE_CACHED
+  name: 离线缓存
+  description: 操作类按钮禁用并说明
+  introduced_in: V1.2.0
+  mockup_id: M-ME-002-S10
+  mockup_path: ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S10__OFFLINE_CACHED__1170x2532.png
+  mockup_status: APPROVED
+- state_id: ME-002-S11
+  state_code: ERROR
+  name: 列表失败
+  description: 重试
+  introduced_in: V1.2.0
+  mockup_id: M-ME-002-S11
+  mockup_path: ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S11__ERROR__1170x2532.png
+  mockup_status: APPROVED
+allowed_interactions:
+- interaction_id: INT-MYPROJ-001
+  feature_id: PUBLISH-004
+  name: 切换项目状态标签
+  interaction_type: TAP
+  test_tag: my_projects_tab_{status}
+  action: 点击状态标签
+  target: 本人项目列表
+  api_operation_id: listMyProjects
+  introduced_in: V1.2.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-MYPROJ-002
+  feature_id: PUBLISH-004
+  name: 打开本人项目详情
+  interaction_type: TAP
+  test_tag: my_project_{projectId}
+  action: 点击项目
+  target: HOME-004
+  api_operation_id: getProjectDetail
+  introduced_in: V1.2.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-MYPROJ-003
+  feature_id: PUBLISH-004
+  name: 打开项目操作面板
+  interaction_type: TAP
+  test_tag: my_project_more_{projectId}
+  action: 点击更多
+  target: ME-OV-002
+  api_operation_id: LOCAL_OVERLAY
+  introduced_in: V1.2.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-MYPROJ-004
+  feature_id: PUBLISH-004
+  name: 我的项目加载更多
+  interaction_type: SCROLL
+  test_tag: my_projects_list
+  action: 滚动到底部
+  target: 下一游标
+  api_operation_id: listMyProjects
+  introduced_in: V1.2.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-MYPROJ-005
+  feature_id: PUBLISH-004
+  name: 我的项目重试
+  interaction_type: TAP
+  test_tag: my_projects_retry
+  action: 点击重试
+  target: 本人项目列表
+  api_operation_id: listMyProjects
+  introduced_in: V1.2.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-MYPROJ-006
+  feature_id: PUBLISH-002
+  name: 空列表去发布
+  interaction_type: TAP
+  test_tag: my_projects_publish
+  action: 点击发布项目
+  target: PUB-001
+  api_operation_id: LOCAL_NAVIGATION
+  introduced_in: V1.2.0
+  expected_result: 产生合同规定的唯一结果
+content_authority: ui/FIXTURE_DATA.yaml for visual tests; runtime data from contracted APIs
+forbidden:
+- page-local arbitrary colors/dp/sp/radius
+- function not listed in allowed_interactions
+- remote HTML layout
+- sample text treated as feature
+- empty click target
+- unapproved mockup used as final baseline
+acceptance:
+  canonical: 390x844dp / 1170x2532px
+  responsive_widths_dp:
+  - 360
+  - 390
+  - 412
+  - 430
+  visual_diff: approved baseline required
+  accessibility: 48dp touch targets and content descriptions

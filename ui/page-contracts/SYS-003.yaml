@@ -1,0 +1,152 @@
+schema_version: 1
+page:
+  page_id: SYS-003
+  name: 版本更新与下载状态
+  surface: android
+  visual_type: PAGE
+  route: stk://system/update
+  introduced_in: V1.4.0
+  layout_profile: STANDARD
+  parent_page_id: null
+  identity_signature: 当前版本+新版本+更新日志+下载状态
+  notes: 只接受服务器签名配置和白名单下载域名
+  design_system_version: STK-DS-1.0
+  functional_authority: contracts/feature-map.yaml
+  visual_authority: contracts/mockup-manifest.csv
+  sample_content_is_not_functional_scope: true
+fixed_layout:
+  profile: STANDARD
+  profile_values:
+    top_bar: 56
+    bottom_nav: none
+    horizontal_padding: 16
+    section_gap: 20
+    dominant: standard_content
+  global_token_authority: contracts/ui-design-tokens.yaml
+  page_matrix_authority: contracts/ui-page-layout-matrix.csv
+required_identity:
+- 当前版本+新版本+更新日志+下载状态
+- 只接受服务器签名配置和白名单下载域名
+required_states:
+- state_id: SYS-003-S01
+  state_code: LOADING
+  name: 检查版本
+  description: 请求当前发布配置
+  introduced_in: V1.4.0
+  mockup_id: M-SYS-003-S01
+  mockup_path: ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S01__LOADING__1170x2532.png
+  mockup_status: APPROVED
+- state_id: SYS-003-S02
+  state_code: UP_TO_DATE
+  name: 已是最新版
+  description: 展示当前版本及检查时间
+  introduced_in: V1.4.0
+  mockup_id: M-SYS-003-S02
+  mockup_path: ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S02__UP_TO_DATE__1170x2532.png
+  mockup_status: APPROVED
+- state_id: SYS-003-S03
+  state_code: OPTIONAL_AVAILABLE
+  name: 可选更新可用
+  description: 展示新版本、大小和更新日志
+  introduced_in: V1.4.0
+  mockup_id: M-SYS-003-S03
+  mockup_path: ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S03__OPTIONAL_AVAILABLE__1170x2532.png
+  mockup_status: APPROVED
+- state_id: SYS-003-S04
+  state_code: FORCED_AVAILABLE
+  name: 强制更新可用
+  description: 展示最低版本限制
+  introduced_in: V1.4.0
+  mockup_id: M-SYS-003-S04
+  mockup_path: ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S04__FORCED_AVAILABLE__1170x2532.png
+  mockup_status: APPROVED
+- state_id: SYS-003-S05
+  state_code: DOWNLOADING
+  name: 正在下载
+  description: 展示进度、大小和取消策略
+  introduced_in: V1.4.0
+  mockup_id: M-SYS-003-S05
+  mockup_path: ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S05__DOWNLOADING__1170x2532.png
+  mockup_status: APPROVED
+- state_id: SYS-003-S06
+  state_code: DOWNLOAD_FAILED
+  name: 下载失败
+  description: 保留重试并解释网络/存储错误
+  introduced_in: V1.4.0
+  mockup_id: M-SYS-003-S06
+  mockup_path: ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S06__DOWNLOAD_FAILED__1170x2532.png
+  mockup_status: APPROVED
+- state_id: SYS-003-S07
+  state_code: READY_TO_INSTALL
+  name: 等待安装
+  description: 校验 SHA-256 后交给系统安装器
+  introduced_in: V1.4.0
+  mockup_id: M-SYS-003-S07
+  mockup_path: ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S07__READY_TO_INSTALL__1170x2532.png
+  mockup_status: APPROVED
+- state_id: SYS-003-S08
+  state_code: INSTALL_BLOCKED
+  name: 安装受阻
+  description: 未知来源权限或包签名不匹配提示
+  introduced_in: V1.4.0
+  mockup_id: M-SYS-003-S08
+  mockup_path: ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S08__INSTALL_BLOCKED__1170x2532.png
+  mockup_status: APPROVED
+allowed_interactions:
+- interaction_id: INT-UPD-001
+  feature_id: SYS-001
+  name: 检查更新
+  interaction_type: TAP
+  test_tag: update_check
+  action: 点击检查更新
+  target: 版本服务
+  api_operation_id: getCurrentRelease
+  introduced_in: V1.4.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-UPD-002
+  feature_id: SYS-001
+  name: 开始下载更新
+  interaction_type: TAP
+  test_tag: update_download
+  action: 点击下载
+  target: 受控 APK 下载
+  api_operation_id: DOWNLOAD_RELEASE_APK
+  introduced_in: V1.4.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-UPD-003
+  feature_id: SYS-001
+  name: 重试更新下载
+  interaction_type: TAP
+  test_tag: update_retry
+  action: 点击重试
+  target: 受控 APK 下载
+  api_operation_id: DOWNLOAD_RELEASE_APK
+  introduced_in: V1.4.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-UPD-004
+  feature_id: SYS-001
+  name: 启动系统安装器
+  interaction_type: TAP
+  test_tag: update_install
+  action: 点击安装
+  target: Android Package Installer
+  api_operation_id: LOCAL_PACKAGE_INSTALL
+  introduced_in: V1.4.0
+  expected_result: 产生合同规定的唯一结果
+content_authority: ui/FIXTURE_DATA.yaml for visual tests; runtime data from contracted APIs
+forbidden:
+- page-local arbitrary colors/dp/sp/radius
+- function not listed in allowed_interactions
+- remote HTML layout
+- sample text treated as feature
+- empty click target
+- unapproved mockup used as final baseline
+acceptance:
+  canonical: 390x844dp / 1170x2532px
+  responsive_widths_dp:
+  - 360
+  - 390
+  - 412
+  - 430
+  visual_diff: approved baseline required
+  accessibility: 48dp touch targets and content descriptions

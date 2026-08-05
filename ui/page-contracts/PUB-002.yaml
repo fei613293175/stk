@@ -1,0 +1,123 @@
+schema_version: 1
+page:
+  page_id: PUB-002
+  name: 图片排序与封面
+  surface: android
+  visual_type: PAGE
+  route: stk://publish/images
+  introduced_in: V1.2.0
+  layout_profile: FORM
+  parent_page_id: PUB-001
+  identity_signature: 可拖动图片网格+封面标识+完成
+  notes: 图片数量和大小同时由客户端及服务端校验
+  design_system_version: STK-DS-1.0
+  functional_authority: contracts/feature-map.yaml
+  visual_authority: contracts/mockup-manifest.csv
+  sample_content_is_not_functional_scope: true
+fixed_layout:
+  profile: FORM
+  profile_values:
+    top_bar: 56
+    bottom_nav: none_or_root_publish
+    horizontal_padding: 16
+    field_gap: 12
+    textarea_min: 120
+    image_tile: 112
+    sticky_action_height: 72
+    dominant: project_form
+  global_token_authority: contracts/ui-design-tokens.yaml
+  page_matrix_authority: contracts/ui-page-layout-matrix.csv
+required_identity:
+- 可拖动图片网格+封面标识+完成
+- 图片数量和大小同时由客户端及服务端校验
+required_states:
+- state_id: PUB-002-S01
+  state_code: CONTENT
+  name: 图片排序
+  description: 网格和封面标识
+  introduced_in: V1.2.0
+  mockup_id: M-PUB-002-S01
+  mockup_path: ui/mockups/approved/V1.2.0/PUB-002/M-PUB-002-S01__CONTENT__1170x2532.png
+  mockup_status: APPROVED
+- state_id: PUB-002-S02
+  state_code: DRAGGING
+  name: 拖动排序
+  description: 拖动反馈和占位
+  introduced_in: V1.2.0
+  mockup_id: M-PUB-002-S02
+  mockup_path: ui/mockups/approved/V1.2.0/PUB-002/M-PUB-002-S02__DRAGGING__1170x2532.png
+  mockup_status: APPROVED
+- state_id: PUB-002-S03
+  state_code: COVER_CHANGED
+  name: 已更换封面
+  description: 新封面高亮
+  introduced_in: V1.2.0
+  mockup_id: M-PUB-002-S03
+  mockup_path: ui/mockups/approved/V1.2.0/PUB-002/M-PUB-002-S03__COVER_CHANGED__1170x2532.png
+  mockup_status: APPROVED
+- state_id: PUB-002-S04
+  state_code: SAVE_FAILED
+  name: 排序保存失败
+  description: 保留本地顺序并重试
+  introduced_in: V1.2.0
+  mockup_id: M-PUB-002-S04
+  mockup_path: ui/mockups/approved/V1.2.0/PUB-002/M-PUB-002-S04__SAVE_FAILED__1170x2532.png
+  mockup_status: APPROVED
+allowed_interactions:
+- interaction_id: INT-SORT-001
+  feature_id: PUBLISH-001
+  name: 拖动图片排序
+  interaction_type: DRAG
+  test_tag: image_sort_grid
+  action: 拖动图片
+  target: 本地排序
+  api_operation_id: LOCAL_UI_STATE
+  introduced_in: V1.2.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-SORT-002
+  feature_id: PUBLISH-001
+  name: 设为封面
+  interaction_type: TAP
+  test_tag: image_set_cover_{assetId}
+  action: 点击设为封面
+  target: 封面状态
+  api_operation_id: LOCAL_UI_STATE
+  introduced_in: V1.2.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-SORT-003
+  feature_id: PUBLISH-001
+  name: 完成图片排序
+  interaction_type: TAP
+  test_tag: image_sort_done
+  action: 点击完成
+  target: 发布表单
+  api_operation_id: LOCAL_BACK_WITH_RESULT
+  introduced_in: V1.2.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-SORT-004
+  feature_id: PUBLISH-001
+  name: 排序页返回
+  interaction_type: TAP
+  test_tag: image_sort_back
+  action: 点击返回
+  target: 发布表单
+  api_operation_id: LOCAL_BACK
+  introduced_in: V1.2.0
+  expected_result: 产生合同规定的唯一结果
+content_authority: ui/FIXTURE_DATA.yaml for visual tests; runtime data from contracted APIs
+forbidden:
+- page-local arbitrary colors/dp/sp/radius
+- function not listed in allowed_interactions
+- remote HTML layout
+- sample text treated as feature
+- empty click target
+- unapproved mockup used as final baseline
+acceptance:
+  canonical: 390x844dp / 1170x2532px
+  responsive_widths_dp:
+  - 360
+  - 390
+  - 412
+  - 430
+  visual_diff: approved baseline required
+  accessibility: 48dp touch targets and content descriptions

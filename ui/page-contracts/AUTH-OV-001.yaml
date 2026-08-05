@@ -1,0 +1,152 @@
+schema_version: 1
+page:
+  page_id: AUTH-OV-001
+  name: 安全验证码弹窗
+  surface: android
+  visual_type: OVERLAY
+  route: overlay://captcha
+  introduced_in: V1.0.0
+  layout_profile: OVERLAY
+  parent_page_id: AUTH-001
+  identity_signature: 验证码图片+输入框+刷新+确认
+  notes: challenge/ticket 与动作、会话、IP、设备绑定且一次一用
+  design_system_version: STK-DS-1.0
+  functional_authority: contracts/feature-map.yaml
+  visual_authority: contracts/mockup-manifest.csv
+  sample_content_is_not_functional_scope: true
+fixed_layout:
+  profile: OVERLAY
+  profile_values:
+    top_bar: parent
+    bottom_nav: parent
+    dialog_width: 326
+    scrim: '#00000066'
+    dominant: dialog_or_bottom_sheet
+  global_token_authority: contracts/ui-design-tokens.yaml
+  page_matrix_authority: contracts/ui-page-layout-matrix.csv
+required_identity:
+- 验证码图片+输入框+刷新+确认
+- challenge/ticket 与动作、会话、IP、设备绑定且一次一用
+required_states:
+- state_id: AUTH-OV-001-S01
+  state_code: LOADING
+  name: 验证码加载
+  description: 加载图片和 challenge
+  introduced_in: V1.0.0
+  mockup_id: M-AUTH-OV-001-S01
+  mockup_path: ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S01__LOADING__1170x2532.png
+  mockup_status: APPROVED
+- state_id: AUTH-OV-001-S02
+  state_code: READY
+  name: 等待输入
+  description: 验证码图片、输入和刷新
+  introduced_in: V1.0.0
+  mockup_id: M-AUTH-OV-001-S02
+  mockup_path: ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S02__READY__1170x2532.png
+  mockup_status: APPROVED
+- state_id: AUTH-OV-001-S03
+  state_code: INPUT_ERROR
+  name: 输入错误
+  description: 错误反馈并计数
+  introduced_in: V1.0.0
+  mockup_id: M-AUTH-OV-001-S03
+  mockup_path: ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S03__INPUT_ERROR__1170x2532.png
+  mockup_status: APPROVED
+- state_id: AUTH-OV-001-S04
+  state_code: EXPIRED
+  name: 验证码已过期
+  description: 自动刷新 challenge
+  introduced_in: V1.0.0
+  mockup_id: M-AUTH-OV-001-S04
+  mockup_path: ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S04__EXPIRED__1170x2532.png
+  mockup_status: APPROVED
+- state_id: AUTH-OV-001-S05
+  state_code: REFRESHING
+  name: 刷新中
+  description: 防连续刷新
+  introduced_in: V1.0.0
+  mockup_id: M-AUTH-OV-001-S05
+  mockup_path: ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S05__REFRESHING__1170x2532.png
+  mockup_status: APPROVED
+- state_id: AUTH-OV-001-S06
+  state_code: VERIFYING
+  name: 验证中
+  description: 确认按钮加载
+  introduced_in: V1.0.0
+  mockup_id: M-AUTH-OV-001-S06
+  mockup_path: ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S06__VERIFYING__1170x2532.png
+  mockup_status: APPROVED
+- state_id: AUTH-OV-001-S07
+  state_code: SUCCESS
+  name: 验证成功
+  description: 返回一次性 ticket
+  introduced_in: V1.0.0
+  mockup_id: M-AUTH-OV-001-S07
+  mockup_path: ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S07__SUCCESS__1170x2532.png
+  mockup_status: APPROVED
+- state_id: AUTH-OV-001-S08
+  state_code: NETWORK_ERROR
+  name: 验证码网络失败
+  description: 重试或取消
+  introduced_in: V1.0.0
+  mockup_id: M-AUTH-OV-001-S08
+  mockup_path: ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S08__NETWORK_ERROR__1170x2532.png
+  mockup_status: APPROVED
+allowed_interactions:
+- interaction_id: INT-CAPTCHA-001
+  feature_id: AUTH-004
+  name: 输入安全验证码
+  interaction_type: INPUT
+  test_tag: captcha_input
+  action: 输入验证码
+  target: 验证码字段
+  api_operation_id: LOCAL_VALIDATION
+  introduced_in: V1.0.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-CAPTCHA-002
+  feature_id: AUTH-004
+  name: 刷新安全验证码
+  interaction_type: TAP
+  test_tag: captcha_refresh
+  action: 点击刷新
+  target: 新 challenge
+  api_operation_id: getCaptchaChallenge
+  introduced_in: V1.0.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-CAPTCHA-003
+  feature_id: AUTH-004
+  name: 确认安全验证码
+  interaction_type: TAP
+  test_tag: captcha_confirm
+  action: 点击确认
+  target: 一次性 ticket
+  api_operation_id: verifyCaptcha
+  introduced_in: V1.0.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-CAPTCHA-004
+  feature_id: AUTH-004
+  name: 取消安全验证码
+  interaction_type: TAP
+  test_tag: captcha_cancel
+  action: 点击取消
+  target: 关闭弹窗
+  api_operation_id: LOCAL_DISMISS
+  introduced_in: V1.0.0
+  expected_result: 产生合同规定的唯一结果
+content_authority: ui/FIXTURE_DATA.yaml for visual tests; runtime data from contracted APIs
+forbidden:
+- page-local arbitrary colors/dp/sp/radius
+- function not listed in allowed_interactions
+- remote HTML layout
+- sample text treated as feature
+- empty click target
+- unapproved mockup used as final baseline
+acceptance:
+  canonical: 390x844dp / 1170x2532px
+  responsive_widths_dp:
+  - 360
+  - 390
+  - 412
+  - 430
+  visual_diff: approved baseline required
+  accessibility: 48dp touch targets and content descriptions

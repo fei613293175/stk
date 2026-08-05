@@ -1,0 +1,201 @@
+schema_version: 1
+design_system_version: STK-DS-1.0
+components:
+- component_id: CMP-001
+  name: StkRootScaffold
+  type: layout
+  height: screen
+  padding: system insets
+  radius: none
+  typography: N/A
+  colors: background/surface
+  rules: 一级首页/发布/我的统一承载顶部区、内容区和三项底部导航；切换保留状态
+- component_id: CMP-002
+  name: StkPageScaffold
+  type: layout
+  height: screen
+  padding: 16dp horizontal
+  radius: none
+  typography: page_title
+  colors: background
+  rules: 二级页面统一状态栏、56dp 顶部栏、返回按钮和错误/加载容器
+- component_id: CMP-003
+  name: StkTopAppBar
+  type: navigation
+  height: 56dp
+  padding: 16dp horizontal
+  radius: none
+  typography: 18sp/26sp/600
+  colors: surface + text_primary + divider
+  rules: 一级标题左对齐；二级标题居中；返回与右侧操作触控区均 48dp
+- component_id: CMP-004
+  name: StkBottomNavigation
+  type: navigation
+  height: 64dp + bottom inset
+  padding: '0'
+  radius: none
+  typography: 11sp/16sp/500
+  colors: surface; selected primary; unselected tertiary
+  rules: 固定首页/发布/我的三项，图标24dp，等宽；详情和二级页不显示
+- component_id: CMP-005
+  name: StkPrimaryButton
+  type: control
+  height: 48dp
+  padding: 16dp horizontal
+  radius: 12dp
+  typography: 15sp/22sp/600
+  colors: primary/pressed/disabled
+  rules: 全宽或内容宽；加载态禁止重复点击；最小触控48dp
+- component_id: CMP-006
+  name: StkSecondaryButton
+  type: control
+  height: 40dp
+  padding: 14dp horizontal
+  radius: 12dp
+  typography: 14sp/22sp/500
+  colors: surface + primary border
+  rules: 不得用作页面唯一主操作
+- component_id: CMP-007
+  name: StkTextField
+  type: input
+  height: 48dp
+  padding: 12dp horizontal
+  radius: 12dp
+  typography: 14sp/22sp/400
+  colors: surface/border/focus primary/error
+  rules: 标签、计数、帮助、错误占位固定；错误不会改变页面整体宽度
+- component_id: CMP-008
+  name: StkPasswordField
+  type: input
+  height: 48dp
+  padding: 12dp horizontal
+  radius: 12dp
+  typography: 14sp/22sp/400
+  colors: 同 StkTextField
+  rules: 右侧可见性按钮24dp图标、48dp触控；不记录明文
+- component_id: CMP-009
+  name: StkSearchBar
+  type: input
+  height: 44dp
+  padding: 12dp horizontal
+  radius: 12dp
+  typography: 14sp/22sp/400
+  colors: surface_secondary/border
+  rules: 搜索图标20dp、清除触控48dp、输入防抖300ms
+- component_id: CMP-010
+  name: StkProjectCard
+  type: content
+  height: content
+  padding: 16dp
+  radius: 16dp
+  typography: 15sp title;14sp body;12sp caption
+  colors: surface
+  rules: 单列信息流；封面16:9或80dp缩略图按布局合同；标题最多2行、简介最多3行
+- component_id: CMP-011
+  name: StkStatusBadge
+  type: feedback
+  height: 24dp
+  padding: 8dp horizontal
+  radius: 999dp
+  typography: 12sp/18sp/500
+  colors: soft status backgrounds
+  rules: pending warning; published success; rejected error; offline tertiary；文本与颜色固定映射
+- component_id: CMP-012
+  name: StkCaptchaDialog
+  type: overlay
+  height: content
+  padding: 24dp
+  radius: 20dp
+  typography: 18sp title;14sp body
+  colors: surface + scrim
+  rules: 宽326dp；验证码278x96dp；输入48dp；刷新20dp图标/48dp触控；确认48dp
+- component_id: CMP-013
+  name: StkMemberCard
+  type: marketing_display
+  height: 176dp
+  padding: 20dp
+  radius: 20dp
+  typography: 20sp title;14sp body;12sp labels
+  colors: approved accent gradient only
+  rules: 只允许会员卡使用渐变；必须显示真实 inactive/active/expired 状态；在线开通按钮打开阶段说明
+- component_id: CMP-014
+  name: StkWalletCard
+  type: data_display
+  height: 96dp
+  padding: 16dp
+  radius: 16dp
+  typography: 24sp amount;13sp label
+  colors: surface
+  rules: 金额两位小数；取不到数据时显示错误，不得回退假0.00；注册基础值确为0.00时正常显示
+- component_id: CMP-015
+  name: StkPropCard
+  type: content
+  height: 112dp
+  padding: 12dp
+  radius: 16dp
+  typography: 14sp title;12sp caption
+  colors: surface
+  rules: 图标40dp；本期只展示，点击打开阶段说明，不出现购买价格
+- component_id: CMP-016
+  name: StkImageUploadTile
+  type: input
+  height: 112dp
+  padding: 8dp
+  radius: 12dp
+  typography: 12sp caption
+  colors: surface_secondary/border
+  rules: 上传进度、失败、重试、删除、封面标识在同一组件内；网格间距8dp
+- component_id: CMP-017
+  name: StkLoadingSkeleton
+  type: feedback
+  height: target-dependent
+  padding: target-dependent
+  radius: same as target
+  typography: none
+  colors: surface_secondary/divider
+  rules: 骨架结构必须与最终页面结构一致，动画200ms，不允许整页转圈代替
+- component_id: CMP-018
+  name: StkEmptyState
+  type: feedback
+  height: content
+  padding: 24dp
+  radius: none
+  typography: 16sp title;14sp body
+  colors: text_primary/text_secondary
+  rules: 插图96dp；标题与说明间8dp；可选操作按钮48dp
+- component_id: CMP-019
+  name: StkErrorState
+  type: feedback
+  height: content
+  padding: 24dp
+  radius: none
+  typography: 16sp title;14sp body;12sp request id
+  colors: error/text_secondary
+  rules: 插图96dp；错误原因不暴露堆栈；重试按钮48dp
+- component_id: CMP-020
+  name: StkSnackbar
+  type: feedback
+  height: 48dp min
+  padding: 16dp
+  radius: 12dp
+  typography: 14sp/22sp/500
+  colors: text_primary on surface or inverse
+  rules: 默认2500ms；成功/复制/缓存清理等非阻断反馈；同一时刻只显示一条
+- component_id: CMP-021
+  name: StkConfirmDialog
+  type: overlay
+  height: content
+  padding: 24dp
+  radius: 20dp
+  typography: 18sp title;14sp body
+  colors: surface + scrim
+  rules: 宽326dp；最多两个按钮；破坏性操作右侧为 error 色；不能点击遮罩误关关键操作
+- component_id: CMP-022
+  name: StkBottomSheet
+  type: overlay
+  height: content <= 80% screen
+  padding: 16dp
+  radius: 24dp top
+  typography: 16sp title;14sp item
+  colors: surface + scrim
+  rules: 拖拽条32x4dp；每个选项最小48dp；安全区适配

@@ -1,0 +1,90 @@
+schema_version: 1
+page:
+  page_id: COM-OV-002
+  name: 阶段功能说明弹窗
+  surface: android
+  visual_type: OVERLAY
+  route: overlay://stage-scope
+  introduced_in: V1.0.0
+  layout_profile: OVERLAY
+  parent_page_id: null
+  identity_signature: 功能名称+开放版本+返回
+  notes: 用于早期版本的发布/会员等明确占位，禁止无响应
+  design_system_version: STK-DS-1.0
+  functional_authority: contracts/feature-map.yaml
+  visual_authority: contracts/mockup-manifest.csv
+  sample_content_is_not_functional_scope: true
+fixed_layout:
+  profile: OVERLAY
+  profile_values:
+    top_bar: parent
+    bottom_nav: parent
+    dialog_width: 326
+    scrim: '#00000066'
+    dominant: dialog_or_bottom_sheet
+  global_token_authority: contracts/ui-design-tokens.yaml
+  page_matrix_authority: contracts/ui-page-layout-matrix.csv
+required_identity:
+- 功能名称+开放版本+返回
+- 用于早期版本的发布/会员等明确占位，禁止无响应
+required_states:
+- state_id: COM-OV-002-S01
+  state_code: PUBLISH_STAGE
+  name: 发布尚未开放
+  description: V1.0/V1.1 点击发布时显示 V1.2 开放
+  introduced_in: V1.0.0
+  mockup_id: M-COM-OV-002-S01
+  mockup_path: ui/mockups/approved/V1.0.0/COM-OV-002/M-COM-OV-002-S01__PUBLISH_STAGE__1170x2532.png
+  mockup_status: APPROVED
+- state_id: COM-OV-002-S02
+  state_code: MEMBER_STAGE
+  name: 会员在线开通未开放
+  description: 只展示会员状态和权益
+  introduced_in: V1.3.0
+  mockup_id: M-COM-OV-002-S02
+  mockup_path: ui/mockups/approved/V1.3.0/COM-OV-002/M-COM-OV-002-S02__MEMBER_STAGE__1170x2532.png
+  mockup_status: APPROVED
+- state_id: COM-OV-002-S03
+  state_code: WALLET_STAGE
+  name: 账户操作未开放
+  description: 只展示余额
+  introduced_in: V1.3.0
+  mockup_id: M-COM-OV-002-S03
+  mockup_path: ui/mockups/approved/V1.3.0/COM-OV-002/M-COM-OV-002-S03__WALLET_STAGE__1170x2532.png
+  mockup_status: APPROVED
+- state_id: COM-OV-002-S04
+  state_code: PROP_STAGE
+  name: 道具购买未开放
+  description: 只展示道具
+  introduced_in: V1.3.0
+  mockup_id: M-COM-OV-002-S04
+  mockup_path: ui/mockups/approved/V1.3.0/COM-OV-002/M-COM-OV-002-S04__PROP_STAGE__1170x2532.png
+  mockup_status: APPROVED
+allowed_interactions:
+- interaction_id: INT-STAGE-001
+  feature_id: FND-001
+  name: 关闭阶段说明
+  interaction_type: TAP
+  test_tag: stage_scope_close
+  action: 点击返回
+  target: 关闭弹层
+  api_operation_id: LOCAL_DISMISS
+  introduced_in: V1.0.0
+  expected_result: 产生合同规定的唯一结果
+content_authority: ui/FIXTURE_DATA.yaml for visual tests; runtime data from contracted APIs
+forbidden:
+- page-local arbitrary colors/dp/sp/radius
+- function not listed in allowed_interactions
+- remote HTML layout
+- sample text treated as feature
+- empty click target
+- unapproved mockup used as final baseline
+acceptance:
+  canonical: 390x844dp / 1170x2532px
+  responsive_widths_dp:
+  - 360
+  - 390
+  - 412
+  - 430
+  visual_diff: approved baseline required
+  accessibility: 48dp touch targets and content descriptions

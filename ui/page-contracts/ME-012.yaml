@@ -1,0 +1,108 @@
+schema_version: 1
+page:
+  page_id: ME-012
+  name: 关于商推客
+  surface: android
+  visual_type: PAGE
+  route: stk://me/about
+  introduced_in: V1.3.0
+  layout_profile: STANDARD
+  parent_page_id: ME-001
+  identity_signature: Logo+版本号+更新检查+备案/版权信息
+  notes: 更新动作在 V1.4 接入真实版本服务
+  design_system_version: STK-DS-1.0
+  functional_authority: contracts/feature-map.yaml
+  visual_authority: contracts/mockup-manifest.csv
+  sample_content_is_not_functional_scope: true
+fixed_layout:
+  profile: STANDARD
+  profile_values:
+    top_bar: 56
+    bottom_nav: none
+    horizontal_padding: 16
+    section_gap: 20
+    dominant: standard_content
+  global_token_authority: contracts/ui-design-tokens.yaml
+  page_matrix_authority: contracts/ui-page-layout-matrix.csv
+required_identity:
+- Logo+版本号+更新检查+备案/版权信息
+- 更新动作在 V1.4 接入真实版本服务
+required_states:
+- state_id: ME-012-S01
+  state_code: CONTENT
+  name: 关于信息
+  description: 版本和品牌
+  introduced_in: V1.3.0
+  mockup_id: M-ME-012-S01
+  mockup_path: ui/mockups/approved/V1.3.0/ME-012/M-ME-012-S01__CONTENT__1170x2532.png
+  mockup_status: APPROVED
+- state_id: ME-012-S02
+  state_code: CHECKING_UPDATE
+  name: 检查更新
+  description: 进度
+  introduced_in: V1.4.0
+  mockup_id: M-ME-012-S02
+  mockup_path: ui/mockups/approved/V1.4.0/ME-012/M-ME-012-S02__CHECKING_UPDATE__1170x2532.png
+  mockup_status: APPROVED
+- state_id: ME-012-S03
+  state_code: UP_TO_DATE
+  name: 已是最新版
+  description: 结果提示
+  introduced_in: V1.4.0
+  mockup_id: M-ME-012-S03
+  mockup_path: ui/mockups/approved/V1.4.0/ME-012/M-ME-012-S03__UP_TO_DATE__1170x2532.png
+  mockup_status: APPROVED
+- state_id: ME-012-S04
+  state_code: UPDATE_AVAILABLE
+  name: 发现更新
+  description: 进入更新页
+  introduced_in: V1.4.0
+  mockup_id: M-ME-012-S04
+  mockup_path: ui/mockups/approved/V1.4.0/ME-012/M-ME-012-S04__UPDATE_AVAILABLE__1170x2532.png
+  mockup_status: APPROVED
+- state_id: ME-012-S05
+  state_code: CHECK_FAILED
+  name: 检查失败
+  description: 重试
+  introduced_in: V1.4.0
+  mockup_id: M-ME-012-S05
+  mockup_path: ui/mockups/approved/V1.4.0/ME-012/M-ME-012-S05__CHECK_FAILED__1170x2532.png
+  mockup_status: APPROVED
+allowed_interactions:
+- interaction_id: INT-ABOUT-001
+  feature_id: SYS-001
+  name: 关于页检查更新
+  interaction_type: TAP
+  test_tag: about_check_update
+  action: 点击检查更新
+  target: 版本服务
+  api_operation_id: getCurrentRelease
+  introduced_in: V1.4.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-ABOUT-002
+  feature_id: PROFILE-005
+  name: 关于页返回
+  interaction_type: TAP
+  test_tag: about_back
+  action: 点击返回
+  target: ME-011
+  api_operation_id: LOCAL_BACK
+  introduced_in: V1.3.0
+  expected_result: 产生合同规定的唯一结果
+content_authority: ui/FIXTURE_DATA.yaml for visual tests; runtime data from contracted APIs
+forbidden:
+- page-local arbitrary colors/dp/sp/radius
+- function not listed in allowed_interactions
+- remote HTML layout
+- sample text treated as feature
+- empty click target
+- unapproved mockup used as final baseline
+acceptance:
+  canonical: 390x844dp / 1170x2532px
+  responsive_widths_dp:
+  - 360
+  - 390
+  - 412
+  - 430
+  visual_diff: approved baseline required
+  accessibility: 48dp touch targets and content descriptions

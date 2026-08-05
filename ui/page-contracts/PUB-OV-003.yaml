@@ -1,0 +1,92 @@
+schema_version: 1
+page:
+  page_id: PUB-OV-003
+  name: 联系方式类型选择
+  surface: android
+  visual_type: OVERLAY
+  route: overlay://contact-type
+  introduced_in: V1.2.0
+  layout_profile: OVERLAY
+  parent_page_id: PUB-001
+  identity_signature: 手机/微信/QQ/网址等后台允许类型
+  notes: 禁止客户端自行出现未配置类型
+  design_system_version: STK-DS-1.0
+  functional_authority: contracts/feature-map.yaml
+  visual_authority: contracts/mockup-manifest.csv
+  sample_content_is_not_functional_scope: true
+fixed_layout:
+  profile: OVERLAY
+  profile_values:
+    top_bar: parent
+    bottom_nav: parent
+    dialog_width: 326
+    scrim: '#00000066'
+    dominant: dialog_or_bottom_sheet
+  global_token_authority: contracts/ui-design-tokens.yaml
+  page_matrix_authority: contracts/ui-page-layout-matrix.csv
+required_identity:
+- 手机/微信/QQ/网址等后台允许类型
+- 禁止客户端自行出现未配置类型
+required_states:
+- state_id: PUB-OV-003-S01
+  state_code: DEFAULT
+  name: 选择联系方式
+  description: 后台允许类型
+  introduced_in: V1.2.0
+  mockup_id: M-PUB-OV-003-S01
+  mockup_path: ui/mockups/approved/V1.2.0/PUB-OV-003/M-PUB-OV-003-S01__DEFAULT__1170x2532.png
+  mockup_status: APPROVED
+- state_id: PUB-OV-003-S02
+  state_code: TYPE_SELECTED
+  name: 已选类型
+  description: 显示对应输入规则
+  introduced_in: V1.2.0
+  mockup_id: M-PUB-OV-003-S02
+  mockup_path: ui/mockups/approved/V1.2.0/PUB-OV-003/M-PUB-OV-003-S02__TYPE_SELECTED__1170x2532.png
+  mockup_status: APPROVED
+- state_id: PUB-OV-003-S03
+  state_code: EMPTY
+  name: 无可用类型
+  description: 阻断发布并提示管理员配置
+  introduced_in: V1.2.0
+  mockup_id: M-PUB-OV-003-S03
+  mockup_path: ui/mockups/approved/V1.2.0/PUB-OV-003/M-PUB-OV-003-S03__EMPTY__1170x2532.png
+  mockup_status: APPROVED
+allowed_interactions:
+- interaction_id: INT-CTYPE-001
+  feature_id: PUBLISH-002
+  name: 选择联系方式类型
+  interaction_type: TAP
+  test_tag: contact_type_{type}
+  action: 点击类型
+  target: 发布表单
+  api_operation_id: LOCAL_BACK_WITH_RESULT
+  introduced_in: V1.2.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-CTYPE-002
+  feature_id: PUBLISH-002
+  name: 关闭类型选择
+  interaction_type: TAP
+  test_tag: contact_type_close
+  action: 点击关闭
+  target: 发布表单
+  api_operation_id: LOCAL_DISMISS
+  introduced_in: V1.2.0
+  expected_result: 产生合同规定的唯一结果
+content_authority: ui/FIXTURE_DATA.yaml for visual tests; runtime data from contracted APIs
+forbidden:
+- page-local arbitrary colors/dp/sp/radius
+- function not listed in allowed_interactions
+- remote HTML layout
+- sample text treated as feature
+- empty click target
+- unapproved mockup used as final baseline
+acceptance:
+  canonical: 390x844dp / 1170x2532px
+  responsive_widths_dp:
+  - 360
+  - 390
+  - 412
+  - 430
+  visual_diff: approved baseline required
+  accessibility: 48dp touch targets and content descriptions

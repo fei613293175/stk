@@ -1,0 +1,1135 @@
+openapi: 3.1.0
+info:
+  title: 商推客 Android API
+  version: 1.0.0
+  description: Discuz! X5.0 plugins stk_auth and stk_project. api-inventory.csv is the authoritative field and behavior catalog.
+servers:
+- url: https://stk-api.zz-yihao.com
+  description: Production API
+security:
+- bearerAuth: []
+paths:
+  /v1/bootstrap:
+    get:
+      operationId: getBootstrap
+      summary: FND-002 - getBootstrap
+      tags:
+      - stk_auth
+      x-stk-feature-id: FND-002
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: OPTIONAL_BEARER
+      x-stk-request-contract: 'headers: app_version,version_code,device_id,locale'
+      x-stk-success-contract: maintenance,auth_state,feature_flags,legal_versions,external_link_policy,release_policy
+      x-stk-error-codes: SYS_MAINTENANCE|AUTH_TOKEN_EXPIRED|SYS_UNAVAILABLE
+      x-stk-idempotency: N/A
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      parameters:
+      - name: contracted_query
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'headers: app_version,version_code,device_id,locale'
+  /v1/auth/captcha/challenges:
+    post:
+      operationId: getCaptchaChallenge
+      summary: AUTH-004 - getCaptchaChallenge
+      tags:
+      - stk_auth
+      x-stk-feature-id: AUTH-004
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: ANONYMOUS
+      x-stk-request-contract: action,password_login|sms_send|sms_login|register|password_reset; device_id
+      x-stk-success-contract: challenge_id,image_base64_or_url,expires_in
+      x-stk-error-codes: CAPTCHA_RATE_LIMITED|CAPTCHA_UNAVAILABLE
+      x-stk-idempotency: Idempotency-Key optional
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: action,password_login|sms_send|sms_login|register|password_reset; device_id
+  /v1/auth/captcha/verify:
+    post:
+      operationId: verifyCaptcha
+      summary: AUTH-004 - verifyCaptcha
+      tags:
+      - stk_auth
+      x-stk-feature-id: AUTH-004
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: ANONYMOUS
+      x-stk-request-contract: challenge_id,answer,action,device_id
+      x-stk-success-contract: captcha_ticket,ticket_expires_in
+      x-stk-error-codes: CAPTCHA_INVALID|CAPTCHA_EXPIRED|CAPTCHA_ATTEMPTS_EXCEEDED
+      x-stk-idempotency: challenge one-use
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: challenge_id,answer,action,device_id
+  /v1/auth/sms/send:
+    post:
+      operationId: sendSmsCode
+      summary: AUTH-002 - sendSmsCode
+      tags:
+      - stk_auth
+      x-stk-feature-id: AUTH-002
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: ANONYMOUS
+      x-stk-request-contract: mobile,scene=login|password_reset,captcha_ticket,device_id
+      x-stk-success-contract: request_id,resend_after,expires_in,masked_mobile
+      x-stk-error-codes: SMS_RATE_LIMITED|SMS_PROVIDER_FAILED|SMS_SCENE_DISABLED|CAPTCHA_TICKET_INVALID
+      x-stk-idempotency: Idempotency-Key required
+      x-stk-rate-limit: 手机号+IP+设备+场景四维限流
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: mobile,scene=login|password_reset,captcha_ticket,device_id
+  /v1/auth/login/password:
+    post:
+      operationId: loginWithPassword
+      summary: AUTH-001 - loginWithPassword
+      tags:
+      - stk_auth
+      x-stk-feature-id: AUTH-001
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: ANONYMOUS
+      x-stk-request-contract: mobile,password,captcha_ticket,device_id,device_name
+      x-stk-success-contract: access_token,access_expires_in,refresh_token,refresh_expires_in,user,next_route
+      x-stk-error-codes: AUTH_INVALID_CREDENTIALS|AUTH_ACCOUNT_BLOCKED|CAPTCHA_TICKET_INVALID
+      x-stk-idempotency: Idempotency-Key required
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: mobile,password,captcha_ticket,device_id,device_name
+  /v1/auth/login/sms:
+    post:
+      operationId: loginWithSms
+      summary: AUTH-002 - loginWithSms
+      tags:
+      - stk_auth
+      x-stk-feature-id: AUTH-002
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: ANONYMOUS
+      x-stk-request-contract: mobile,sms_code,captcha_ticket,device_id,device_name
+      x-stk-success-contract: access_token,access_expires_in,refresh_token,refresh_expires_in,user,next_route
+      x-stk-error-codes: SMS_CODE_INVALID|SMS_CODE_EXPIRED|AUTH_ACCOUNT_BLOCKED|CAPTCHA_TICKET_INVALID
+      x-stk-idempotency: Idempotency-Key required
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: mobile,sms_code,captcha_ticket,device_id,device_name
+  /v1/auth/register:
+    post:
+      operationId: registerUser
+      summary: AUTH-003 - registerUser
+      tags:
+      - stk_auth
+      x-stk-feature-id: AUTH-003
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: ANONYMOUS
+      x-stk-request-contract: mobile,password,password_confirmation,agreement_version,privacy_version,captcha_ticket,device_id
+      x-stk-success-contract: uid,username,display_name,masked_mobile,mobile_verified=false,tokens,next_route
+      x-stk-error-codes: AUTH_MOBILE_EXISTS|AUTH_PASSWORD_WEAK|LEGAL_VERSION_STALE|CAPTCHA_TICKET_INVALID
+      x-stk-idempotency: Idempotency-Key required
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: mobile,password,password_confirmation,agreement_version,privacy_version,captcha_ticket,device_id
+  /v1/auth/password/reset:
+    post:
+      operationId: resetPassword
+      summary: AUTH-005 - resetPassword
+      tags:
+      - stk_auth
+      x-stk-feature-id: AUTH-005
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: ANONYMOUS
+      x-stk-request-contract: mobile,sms_code,new_password,password_confirmation,captcha_ticket,device_id
+      x-stk-success-contract: reset=true,next_route
+      x-stk-error-codes: SMS_CODE_INVALID|SMS_CODE_EXPIRED|AUTH_PASSWORD_WEAK|CAPTCHA_TICKET_INVALID
+      x-stk-idempotency: Idempotency-Key required
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: mobile,sms_code,new_password,password_confirmation,captcha_ticket,device_id
+  /v1/auth/token/refresh:
+    post:
+      operationId: refreshToken
+      summary: AUTH-006 - refreshToken
+      tags:
+      - stk_auth
+      x-stk-feature-id: AUTH-006
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: REFRESH_TOKEN
+      x-stk-request-contract: refresh_token,device_id
+      x-stk-success-contract: rotated access_token and refresh_token
+      x-stk-error-codes: AUTH_REFRESH_INVALID|AUTH_TOKEN_REUSED|AUTH_ACCOUNT_BLOCKED
+      x-stk-idempotency: refresh token rotates atomically
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: refresh_token,device_id
+  /v1/auth/logout:
+    post:
+      operationId: logout
+      summary: AUTH-006 - logout
+      tags:
+      - stk_auth
+      x-stk-feature-id: AUTH-006
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: refresh_token_family,device_id
+      x-stk-success-contract: revoked=true
+      x-stk-error-codes: AUTH_TOKEN_INVALID
+      x-stk-idempotency: Idempotency-Key required
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: refresh_token_family,device_id
+  /v1/me/summary:
+    get:
+      operationId: getMySummary
+      summary: PROFILE-001 - getMySummary
+      tags:
+      - stk_auth
+      x-stk-feature-id: PROFILE-001
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: none
+      x-stk-success-contract: uid,display_name,avatar_url,masked_mobile,mobile_verified,member_summary,wallet_summary
+      x-stk-error-codes: AUTH_TOKEN_EXPIRED|AUTH_ACCOUNT_BLOCKED
+      x-stk-idempotency: N/A
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /v1/legal/{document_type}:
+    get:
+      operationId: getLegalDocument
+      summary: AUTH-007 - getLegalDocument
+      tags:
+      - stk_auth
+      x-stk-feature-id: AUTH-007
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: ANONYMOUS
+      x-stk-request-contract: document_type=user_agreement|privacy_policy
+      x-stk-success-contract: document_type,version,effective_at,title,content_html_sanitized,content_text,sha256
+      x-stk-error-codes: LEGAL_NOT_FOUND
+      x-stk-idempotency: N/A
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      parameters:
+      - name: document_type
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: contracted_query
+        in: query
+        required: false
+        schema:
+          type: string
+        description: document_type=user_agreement|privacy_policy
+  /v1/project/categories:
+    get:
+      operationId: listProjectCategories
+      summary: HOME-002 - listProjectCategories
+      tags:
+      - stk_project
+      x-stk-feature-id: HOME-002
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: include_all=true
+      x-stk-success-contract: categories[id,name,icon_url,sort_order]
+      x-stk-error-codes: PROJECT_CATEGORY_UNAVAILABLE
+      x-stk-idempotency: N/A
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      parameters:
+      - name: contracted_query
+        in: query
+        required: false
+        schema:
+          type: string
+        description: include_all=true
+  /v1/projects:
+    get:
+      operationId: listProjects
+      summary: HOME-001 - listProjects
+      tags:
+      - stk_project
+      x-stk-feature-id: HOME-001
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: cursor,limit<=30,keyword,category_id,sort=latest|recommended
+      x-stk-success-contract: items, next_cursor, has_more, applied_filters
+      x-stk-error-codes: PROJECT_QUERY_INVALID|PROJECT_SERVICE_UNAVAILABLE
+      x-stk-idempotency: N/A
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      parameters:
+      - name: contracted_query
+        in: query
+        required: false
+        schema:
+          type: string
+        description: cursor,limit<=30,keyword,category_id,sort=latest|recommended
+    post:
+      operationId: createProject
+      summary: PUBLISH-002 - createProject
+      tags:
+      - stk_project
+      x-stk-feature-id: PUBLISH-002
+      x-stk-introduced-in: V1.2.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: title,summary,category_id,asset_ids,cover_asset_id,contact_type,contact_value,contact_name,publish_agreement_version
+      x-stk-success-contract: project_id,status=pending|published,submitted_at,next_route
+      x-stk-error-codes: PROJECT_VALIDATION_FAILED|PROJECT_DAILY_LIMIT|PROJECT_PENDING_LIMIT|PROJECT_DUPLICATE_SUBMISSION
+      x-stk-idempotency: Idempotency-Key required
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: title,summary,category_id,asset_ids,cover_asset_id,contact_type,contact_value,contact_name,publish_agreement_version
+  /v1/projects/{project_id}:
+    get:
+      operationId: getProjectDetail
+      summary: HOME-003 - getProjectDetail
+      tags:
+      - stk_project
+      x-stk-feature-id: HOME-003
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: project_id
+      x-stk-success-contract: project full detail, images, publisher, contact capability, owner_actions
+      x-stk-error-codes: PROJECT_NOT_FOUND|PROJECT_NOT_VISIBLE
+      x-stk-idempotency: N/A
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: contracted_query
+        in: query
+        required: false
+        schema:
+          type: string
+        description: project_id
+    put:
+      operationId: updateProject
+      summary: PUBLISH-003 - updateProject
+      tags:
+      - stk_project
+      x-stk-feature-id: PUBLISH-003
+      x-stk-introduced-in: V1.2.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: project_id,version,title,summary,category_id,asset_ids,cover_asset_id,contact fields
+      x-stk-success-contract: project_id,status,version,updated_at
+      x-stk-error-codes: PROJECT_NOT_OWNER|PROJECT_CONFLICT|PROJECT_VALIDATION_FAILED
+      x-stk-idempotency: Idempotency-Key required
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: project_id,version,title,summary,category_id,asset_ids,cover_asset_id,contact fields
+    delete:
+      operationId: deleteProject
+      summary: PUBLISH-003 - deleteProject
+      tags:
+      - stk_project
+      x-stk-feature-id: PUBLISH-003
+      x-stk-introduced-in: V1.2.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: project_id,version
+      x-stk-success-contract: deleted=true
+      x-stk-error-codes: PROJECT_NOT_OWNER|PROJECT_STATE_INVALID|PROJECT_CONFLICT
+      x-stk-idempotency: Idempotency-Key required
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /v1/projects/{project_id}/views:
+    post:
+      operationId: recordProjectView
+      summary: HOME-003 - recordProjectView
+      tags:
+      - stk_project
+      x-stk-feature-id: HOME-003
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: project_id,view_session_id
+      x-stk-success-contract: counted,view_count
+      x-stk-error-codes: PROJECT_NOT_FOUND
+      x-stk-idempotency: unique project+viewer+time bucket
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: project_id,view_session_id
+  /v1/uploads/project-images:
+    post:
+      operationId: uploadProjectImage
+      summary: PUBLISH-001 - uploadProjectImage
+      tags:
+      - stk_project
+      x-stk-feature-id: PUBLISH-001
+      x-stk-introduced-in: V1.2.0
+      x-stk-auth: BEARER_MULTIPART
+      x-stk-request-contract: file,upload_session_id,client_sha256,width,height,mime
+      x-stk-success-contract: asset_id,thumbnail_url,display_url,width,height,size,mime,status
+      x-stk-error-codes: UPLOAD_TOO_LARGE|UPLOAD_TYPE_INVALID|UPLOAD_IMAGE_INVALID|UPLOAD_QUOTA_EXCEEDED
+      x-stk-idempotency: Idempotency-Key required
+      x-stk-rate-limit: 每用户上传并发2、会话与日配额
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              description: file,upload_session_id,client_sha256,width,height,mime
+  /v1/uploads/project-images/{asset_id}:
+    delete:
+      operationId: deleteUploadedImage
+      summary: PUBLISH-001 - deleteUploadedImage
+      tags:
+      - stk_project
+      x-stk-feature-id: PUBLISH-001
+      x-stk-introduced-in: V1.2.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: asset_id
+      x-stk-success-contract: deleted=true
+      x-stk-error-codes: UPLOAD_NOT_FOUND|UPLOAD_NOT_OWNER|UPLOAD_ALREADY_ATTACHED
+      x-stk-idempotency: Idempotency-Key required
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema:
+          type: string
+  /v1/me/projects:
+    get:
+      operationId: listMyProjects
+      summary: PUBLISH-004 - listMyProjects
+      tags:
+      - stk_project
+      x-stk-feature-id: PUBLISH-004
+      x-stk-introduced-in: V1.2.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: status, cursor, limit<=30
+      x-stk-success-contract: items,next_cursor,has_more,status_counts
+      x-stk-error-codes: PROJECT_QUERY_INVALID
+      x-stk-idempotency: N/A
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      parameters:
+      - name: contracted_query
+        in: query
+        required: false
+        schema:
+          type: string
+        description: status, cursor, limit<=30
+  /v1/projects/{project_id}/offline:
+    post:
+      operationId: offlineProject
+      summary: PUBLISH-003 - offlineProject
+      tags:
+      - stk_project
+      x-stk-feature-id: PUBLISH-003
+      x-stk-introduced-in: V1.2.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: project_id,version
+      x-stk-success-contract: status=offline,version,updated_at
+      x-stk-error-codes: PROJECT_NOT_OWNER|PROJECT_STATE_INVALID|PROJECT_CONFLICT
+      x-stk-idempotency: Idempotency-Key required
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: project_id,version
+  /v1/projects/{project_id}/resubmit:
+    post:
+      operationId: resubmitProject
+      summary: PUBLISH-003 - resubmitProject
+      tags:
+      - stk_project
+      x-stk-feature-id: PUBLISH-003
+      x-stk-introduced-in: V1.2.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: project_id,version
+      x-stk-success-contract: status=pending,version,submitted_at
+      x-stk-error-codes: PROJECT_NOT_OWNER|PROJECT_STATE_INVALID|PROJECT_CONFLICT
+      x-stk-idempotency: Idempotency-Key required
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: project_id,version
+  /v1/me/member:
+    get:
+      operationId: getMyMember
+      summary: PROFILE-002 - getMyMember
+      tags:
+      - stk_project
+      x-stk-feature-id: PROFILE-002
+      x-stk-introduced-in: V1.3.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: none
+      x-stk-success-contract: status,level_name,badge,started_at,expires_at,benefit_copy
+      x-stk-error-codes: MEMBER_UNAVAILABLE
+      x-stk-idempotency: N/A
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /v1/me/wallets:
+    get:
+      operationId: getMyWallets
+      summary: PROFILE-003 - getMyWallets
+      tags:
+      - stk_project
+      x-stk-feature-id: PROFILE-003
+      x-stk-introduced-in: V1.3.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: none
+      x-stk-success-contract: accounts[type,name,balance,currency,operation_enabled=false]
+      x-stk-error-codes: WALLET_UNAVAILABLE
+      x-stk-idempotency: N/A
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /v1/props/display:
+    get:
+      operationId: getPropDisplay
+      summary: PROFILE-004 - getPropDisplay
+      tags:
+      - stk_project
+      x-stk-feature-id: PROFILE-004
+      x-stk-introduced-in: V1.3.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: none
+      x-stk-success-contract: items[code,name,icon_url,description,display_order,operation_enabled=false]
+      x-stk-error-codes: PROP_CONFIG_UNAVAILABLE
+      x-stk-idempotency: N/A
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /v1/support:
+    get:
+      operationId: getSupportConfig
+      summary: PROFILE-005 - getSupportConfig
+      tags:
+      - stk_project
+      x-stk-feature-id: PROFILE-005
+      x-stk-introduced-in: V1.3.0
+      x-stk-auth: BEARER
+      x-stk-request-contract: none
+      x-stk-success-contract: title,description,channels[type,label,value,masked_value,external_target]
+      x-stk-error-codes: SUPPORT_CONFIG_UNAVAILABLE
+      x-stk-idempotency: N/A
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /v1/app/releases/current:
+    get:
+      operationId: getCurrentRelease
+      summary: SYS-001 - getCurrentRelease
+      tags:
+      - stk_project
+      x-stk-feature-id: SYS-001
+      x-stk-introduced-in: V1.3.0
+      x-stk-auth: OPTIONAL_BEARER
+      x-stk-request-contract: application_id,version_code,version_name,device_api,abi
+      x-stk-success-contract: latest,minimum_supported,update_type,apk_url,apk_sha256,size_bytes,release_notes
+      x-stk-error-codes: RELEASE_CONFIG_INVALID
+      x-stk-idempotency: N/A
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      parameters:
+      - name: contracted_query
+        in: query
+        required: false
+        schema:
+          type: string
+        description: application_id,version_code,version_name,device_api,abi
+  /v1/app-links/resolve:
+    get:
+      operationId: resolveAppLink
+      summary: SYS-002 - resolveAppLink
+      tags:
+      - stk_project
+      x-stk-feature-id: SYS-002
+      x-stk-introduced-in: V1.4.0
+      x-stk-auth: OPTIONAL_BEARER
+      x-stk-request-contract: https_url
+      x-stk-success-contract: route,parameters,fallback_url
+      x-stk-error-codes: APP_LINK_UNSUPPORTED|APP_LINK_BLOCKED
+      x-stk-idempotency: N/A
+      x-stk-rate-limit: 按全局与场景策略
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      parameters:
+      - name: contracted_query
+        in: query
+        required: false
+        schema:
+          type: string
+        description: https_url
+  /healthz:
+    get:
+      operationId: healthLive
+      summary: OPS-003 - healthLive
+      tags:
+      - platform
+      x-stk-feature-id: OPS-003
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: INTERNAL_OR_PUBLIC_MINIMAL
+      x-stk-request-contract: none
+      x-stk-success-contract: status=ok,service,build
+      x-stk-error-codes: SYS_UNAVAILABLE
+      x-stk-idempotency: N/A
+      x-stk-rate-limit: 基础限流
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /readyz:
+    get:
+      operationId: healthReady
+      summary: OPS-003 - healthReady
+      tags:
+      - platform
+      x-stk-feature-id: OPS-003
+      x-stk-introduced-in: V1.0.0
+      x-stk-auth: INTERNAL
+      x-stk-request-contract: none
+      x-stk-success-contract: database,discuz,storage,sms_config
+      x-stk-error-codes: SYS_DEPENDENCY_UNREADY
+      x-stk-idempotency: N/A
+      x-stk-rate-limit: 内部监控
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        default:
+          description: Contracted error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque access token
+  schemas:
+    ApiEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - data
+      - request_id
+      - server_time
+      properties:
+        code:
+          type: string
+          examples:
+          - OK
+        message:
+          type: string
+        data:
+          type:
+          - object
+          - array
+          - 'null'
+        request_id:
+          type: string
+        server_time:
+          type: integer
+          description: Unix seconds
+    ErrorEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - request_id
+      - server_time
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        field_errors:
+          type: object
+          additionalProperties:
+            type: string
+        retry_after:
+          type:
+          - integer
+          - 'null'
+        request_id:
+          type: string
+        server_time:
+          type: integer

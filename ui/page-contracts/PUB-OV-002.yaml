@@ -1,0 +1,76 @@
+schema_version: 1
+page:
+  page_id: PUB-OV-002
+  name: 未保存退出确认
+  surface: android
+  visual_type: OVERLAY
+  route: overlay://discard-draft
+  introduced_in: V1.2.0
+  layout_profile: OVERLAY
+  parent_page_id: PUB-001
+  identity_signature: 未保存说明+继续编辑/放弃
+  notes: 只在表单有变化时出现
+  design_system_version: STK-DS-1.0
+  functional_authority: contracts/feature-map.yaml
+  visual_authority: contracts/mockup-manifest.csv
+  sample_content_is_not_functional_scope: true
+fixed_layout:
+  profile: OVERLAY
+  profile_values:
+    top_bar: parent
+    bottom_nav: parent
+    dialog_width: 326
+    scrim: '#00000066'
+    dominant: dialog_or_bottom_sheet
+  global_token_authority: contracts/ui-design-tokens.yaml
+  page_matrix_authority: contracts/ui-page-layout-matrix.csv
+required_identity:
+- 未保存说明+继续编辑/放弃
+- 只在表单有变化时出现
+required_states:
+- state_id: PUB-OV-002-S01
+  state_code: DEFAULT
+  name: 放弃未保存内容
+  description: 继续编辑或放弃
+  introduced_in: V1.2.0
+  mockup_id: M-PUB-OV-002-S01
+  mockup_path: ui/mockups/approved/V1.2.0/PUB-OV-002/M-PUB-OV-002-S01__DEFAULT__1170x2532.png
+  mockup_status: APPROVED
+allowed_interactions:
+- interaction_id: INT-DRAFT-001
+  feature_id: PUBLISH-002
+  name: 继续编辑草稿
+  interaction_type: TAP
+  test_tag: draft_continue
+  action: 点击继续编辑
+  target: 发布表单
+  api_operation_id: LOCAL_DISMISS
+  introduced_in: V1.2.0
+  expected_result: 产生合同规定的唯一结果
+- interaction_id: INT-DRAFT-002
+  feature_id: PUBLISH-002
+  name: 放弃草稿
+  interaction_type: TAP
+  test_tag: draft_discard
+  action: 点击放弃
+  target: 安全返回
+  api_operation_id: LOCAL_DISCARD
+  introduced_in: V1.2.0
+  expected_result: 产生合同规定的唯一结果
+content_authority: ui/FIXTURE_DATA.yaml for visual tests; runtime data from contracted APIs
+forbidden:
+- page-local arbitrary colors/dp/sp/radius
+- function not listed in allowed_interactions
+- remote HTML layout
+- sample text treated as feature
+- empty click target
+- unapproved mockup used as final baseline
+acceptance:
+  canonical: 390x844dp / 1170x2532px
+  responsive_widths_dp:
+  - 360
+  - 390
+  - 412
+  - 430
+  visual_diff: approved baseline required
+  accessibility: 48dp touch targets and content descriptions
