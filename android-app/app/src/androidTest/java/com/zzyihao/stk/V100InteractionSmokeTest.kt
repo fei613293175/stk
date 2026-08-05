@@ -13,6 +13,7 @@ import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipeDown
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import android.util.Log
 import com.zzyihao.stk.designsystem.StkTheme
 import org.json.JSONArray
 import org.json.JSONObject
@@ -285,7 +286,12 @@ class V100InteractionSmokeTest {
         @JvmStatic @AfterClass fun writeEvidence() {
             val context = InstrumentationRegistry.getInstrumentation().targetContext
             val output = JSONObject().put("passed_interaction_ids", JSONArray(passed.sorted())).put("failed_interaction_ids", JSONArray())
-            context.getExternalFilesDir(null)!!.resolve("interaction-results.json").writeText(output.toString())
+            val serialized = output.toString()
+            context.getExternalFilesDir(null)?.let { directory ->
+                directory.mkdirs()
+                directory.resolve("interaction-results.json").writeText(serialized)
+            }
+            Log.i("STK_INTERACTION_RESULTS", serialized)
         }
     }
 }

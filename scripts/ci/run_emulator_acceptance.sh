@@ -26,7 +26,9 @@ adb shell df -h /data | tee artifacts/emulator/logs/data-partition-before-instal
 
 wait_for_package_manager() {
   for attempt in $(seq 1 30); do
-    if adb shell service check package 2>/dev/null | grep -q 'found' && adb shell pm path android >/dev/null 2>&1; then
+    if adb shell service check package 2>/dev/null | grep -q 'found' \
+      && adb shell pm path android >/dev/null 2>&1 \
+      && adb shell sm list-volumes all 2>/dev/null | grep -q 'mounted'; then
       return 0
     fi
     sleep 2
@@ -67,6 +69,7 @@ fi
 install_apk "$test_apk" -t
 runner=$(adb shell pm list instrumentation | tr -d '\r' | grep 'target=com.zzyihao.stk' | head -n1 | sed -E 's/^instrumentation:([^ ]+).*/\1/')
 [[ -n "$runner" ]] || { echo "Instrumentation runner for com.zzyihao.stk not found" >&2; exit 1; }
+adb logcat -c
 set +e
 adb shell am instrument -w -r -e stkReleaseId "$release_id" "$runner" | tee artifacts/emulator/logs/instrumentation.txt
 status=${PIPESTATUS[0]}
@@ -75,6 +78,11 @@ adb logcat -d > artifacts/emulator/logs/logcat.txt || true
 adb shell dumpsys package com.zzyihao.stk > artifacts/emulator/logs/package.txt || true
 adb pull /sdcard/Android/data/com.zzyihao.stk/files/stk-screenshots artifacts/emulator/ >/dev/null 2>&1 || true
 adb pull /sdcard/Android/data/com.zzyihao.stk/files/interaction-results.json artifacts/emulator/interaction-results.json >/dev/null 2>&1 || true
+if [[ ! -s artifacts/emulator/interaction-results.json ]]; then
+  adb logcat -d -s STK_INTERACTION_RESULTS:I '*:S' \
+    | sed -n 's/^.*STK_INTERACTION_RESULTS: //p' \
+    | tail -n1 > artifacts/emulator/interaction-results.json
+fi
 if [[ -d artifacts/emulator/stk-screenshots ]]; then
   find artifacts/emulator/stk-screenshots -type f -name '*.png' -exec cp {} artifacts/emulator/screenshots/ \;
 fi

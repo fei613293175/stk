@@ -10,4 +10,5 @@ if [[ -f composer.json ]]; then
 fi
 python scripts/verify_database_contract.py
 php backend/tests/captcha_service_test.php
+php backend/tests/auth_repository_test.php
 if [[ -x backend/tests/run.sh ]]; then backend/tests/run.sh; fi

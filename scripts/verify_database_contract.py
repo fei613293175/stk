@@ -20,6 +20,12 @@ if args.entity:
 sql_files = sorted((ROOT / "backend/sql").glob("*.sql"))
 sql = "\n".join(p.read_text(encoding="utf-8") for p in sql_files)
 errors = []
+authoritative_v100 = ROOT / "backend/sql/V1.0.0__auth_project_foundation.sql"
+plugin_v100 = ROOT / "source/plugin/stk_auth/migrations/V1.0.0__auth_project_foundation.sql"
+if not plugin_v100.is_file():
+    errors.append("stk_auth 插件缺少自包含 V1.0.0 迁移")
+elif plugin_v100.read_text(encoding="utf-8") != authoritative_v100.read_text(encoding="utf-8"):
+    errors.append("stk_auth 自包含 V1.0.0 迁移与权威 backend/sql 版本不一致")
 for e in entities:
     if f"CREATE TABLE IF NOT EXISTS {e['table']}" not in sql and f"ALTER TABLE {e['table']}" not in sql:
         errors.append(f"{e['entity_id']} 没有 DDL: {e['table']}")
