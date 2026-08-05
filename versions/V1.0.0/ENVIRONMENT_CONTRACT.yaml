@@ -1,0 +1,50 @@
+schema_version: 1
+release: V1.0.0
+authority: online_server_or_github_actions
+local_machine: source_edit_static_check_evidence_only
+reuse_order:
+  - existing_server_runtime
+  - existing_docker_images_and_caches
+  - isolated_server_directory_container_or_volume
+  - github_actions
+jdk:
+  accepted: '>=17'
+  preferred_if_available: '21'
+contract_pins:
+  compile_sdk: 37
+  target_sdk: 37
+  build_tools: 36.0.0
+  gradle: 9.5.0
+  agp: 9.3.0
+business_protection:
+  isolated_paths_required: true
+  do_not_replace_system_runtime: true
+  do_not_change_business_services: true
+  do_not_bind_business_ports: true
+  do_not_restart_business_services: true
+required_evidence:
+  - readonly_inventory
+  - actual_paths_and_versions
+  - reuse_or_supplement_decision
+  - validation_log
+  - same_commit_provenance
+actual_environment:
+  host: obx-test
+  image: hhy-android-toolchain:r08-api36-cache
+  jdk_path: /opt/java/openjdk
+  jdk_version: 21.0.9
+  gradle_path: /opt/stk-build/gradle/gradle-9.5.0/bin/gradle
+  gradle_version: 9.5.0
+  sdk_path: /opt/stk-build/android-sdk
+  sdk_packages:
+    - platforms;android-37.0
+    - build-tools;36.0.0
+    - platform-tools;37.0.1
+    - emulator;37.1.11
+    - system-images;android-37.0;google_apis;x86_64
+  isolated_source_path: /opt/stk-build/src
+  isolated_signing_path: /opt/stk-build/signing
+  decision: reused_server_image_jdk_gradle_cache_and_sdk_then_supplemented_isolated_avd
+  validation: online_release_and_android_test_build_success
+  validation_log: /opt/stk-build/stk-v100-build.log
+  emulator_note: software_acceleration_only_no_dev_kvm_system_services_not_ready_for_instrumentation

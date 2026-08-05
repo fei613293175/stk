@@ -1,0 +1,9 @@
+schema_version: 1
+release: V1.3.0
+authority: online_server_or_github_actions
+local_machine: source_edit_static_check_evidence_only
+reuse_order: [existing_server_runtime, existing_docker_images_and_caches, isolated_server_directory_container_or_volume, github_actions]
+jdk: {accepted: '>=17', preferred_if_available: '21'}
+contract_pins: {compile_sdk: 37, target_sdk: 37, build_tools: 36.0.0, gradle: 9.5.0, agp: 9.3.0}
+business_protection: {isolated_paths_required: true, do_not_replace_system_runtime: true, do_not_change_business_services: true, do_not_bind_business_ports: true, do_not_restart_business_services: true}
+required_evidence: [readonly_inventory, actual_paths_and_versions, reuse_or_supplement_decision, validation_log, same_commit_provenance]

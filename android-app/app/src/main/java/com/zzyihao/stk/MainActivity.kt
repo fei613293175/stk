@@ -41,6 +41,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import com.zzyihao.stk.designsystem.StkTokens
 import com.zzyihao.stk.designsystem.StkTheme
 import org.json.JSONObject
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,12 +56,31 @@ private enum class Route { LOGIN, REGISTER, RESET, LEGAL_AGREEMENT, LEGAL_PRIVAC
 private fun StkApp() {
     val context = LocalContext.current
     val deviceId = remember { Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID) ?: "unknown-device" }
-    val api = remember { StkApiClient() }
     var session by remember { mutableStateOf(StkSessionStore.read(context)) }
+    val api = remember(deviceId) {
+        StkApiClient(defaultHeaders = mapOf(
+            "app_version" to BuildConfig.VERSION_NAME,
+            "version_code" to BuildConfig.VERSION_CODE.toString(),
+            "device_id" to deviceId,
+            "locale" to Locale.getDefault().toLanguageTag(),
+        ))
+    }
+    var bootstrapResolved by rememberSaveable { mutableStateOf(false) }
     var route by rememberSaveable { mutableStateOf(if (session == null) Route.LOGIN else Route.HOME) }
     var tab by rememberSaveable { mutableStateOf(0) }
     var selectedProjectId by rememberSaveable { mutableStateOf(0) }
     var legalReturnRoute by rememberSaveable { mutableStateOf(Route.LOGIN) }
+    if (!bootstrapResolved) {
+        BootstrapGate(api, session?.accessToken, session != null) { authenticated ->
+            if (!authenticated && session != null) {
+                session = null
+                StkSessionStore.clear(context)
+            }
+            route = if (authenticated) Route.HOME else Route.LOGIN
+            bootstrapResolved = true
+        }
+        return
+    }
     val authenticated = route == Route.HOME || route == Route.PUBLISH_STAGE || route == Route.ME || route == Route.DETAIL
     if (!authenticated) {
         when (route) {
@@ -78,7 +98,7 @@ private fun StkApp() {
     }) { padding ->
         when (route) {
             Route.HOME -> ApiHomeScreen(api, session!!, Modifier.padding(padding), { tab = 2; route = Route.ME }) { projectId -> selectedProjectId = projectId; route = Route.DETAIL }
-            Route.PUBLISH_STAGE -> StageScreen(Modifier.padding(padding))
+            Route.PUBLISH_STAGE -> StageScreen(Modifier.padding(padding)) { tab = 0; route = Route.HOME }
             Route.ME -> ApiMeScreen(api, session!!, deviceId, Modifier.padding(padding)) { session = null; StkSessionStore.clear(context); route = Route.LOGIN }
             Route.DETAIL -> ApiDetailScreen(api, session!!, selectedProjectId, deviceId, Modifier.padding(padding)) { route = Route.HOME }
             else -> Unit
@@ -179,5 +199,5 @@ private fun ResetScreen(onBack: () -> Unit) { var phone by rememberSaveable { mu
 @Composable private fun LegalScreen(title: String, onBack: () -> Unit) { Column(Modifier.fillMaxSize().padding(StkTokens.Space24), verticalArrangement = Arrangement.spacedBy(StkTokens.Space16)) { Text(title, style = MaterialTheme.typography.headlineSmall); Text("本协议内容由商推客后台发布并以版本号管理。当前页面用于展示正式协议内容，提交敏感操作前必须确认最新版本。", color = StkTokens.TextSecondary); Button(onClick = onBack, Modifier.testTag(if (title == "用户协议") "agreement_back" else "privacy_back")) { Text("返回") } } }
 @Composable private fun HomeScreen(modifier: Modifier, onDetail: () -> Unit) { Column(modifier.fillMaxSize().padding(StkTokens.Space16), verticalArrangement = Arrangement.spacedBy(StkTokens.Space16)) { Text("商推客", style = MaterialTheme.typography.headlineSmall); Text("项目推荐", style = MaterialTheme.typography.titleMedium); LazyColumn(Modifier.testTag("home_project_list"), verticalArrangement = Arrangement.spacedBy(StkTokens.Space12)) { items(listOf("新媒体推广项目", "本地生活合作项目")) { title -> Card(Modifier.fillMaxWidth().testTag("project_card_1")) { Column(Modifier.padding(StkTokens.Space16)) { Text(title, style = MaterialTheme.typography.titleMedium); Text("查看项目详情与联系方式", color = StkTokens.TextSecondary); TextButton(onClick = onDetail) { Text("查看详情") } } } } } } }
 @Composable private fun DetailScreen(modifier: Modifier, onBack: () -> Unit) { Column(modifier.fillMaxSize().padding(StkTokens.Space24), verticalArrangement = Arrangement.spacedBy(StkTokens.Space16)) { Text("项目详情", style = MaterialTheme.typography.headlineSmall); Text("项目详情将由服务端返回真实内容。", color = StkTokens.TextSecondary); Button(onClick = onBack, Modifier.testTag("project_detail_back")) { Text("返回首页") } } }
-@Composable internal fun StageScreen(modifier: Modifier) { Column(modifier.fillMaxSize().padding(StkTokens.Space24), verticalArrangement = Arrangement.spacedBy(StkTokens.Space16)) { Text("项目发布", style = MaterialTheme.typography.headlineSmall); Text("项目发布功能将在 V1.2 开放", color = StkTokens.TextSecondary); Button(onClick = {}, Modifier.fillMaxWidth().testTag("stage_scope_close")) { Text("知道了") } } }
+@Composable internal fun StageScreen(modifier: Modifier, onClose: () -> Unit) { Column(modifier.fillMaxSize().padding(StkTokens.Space24), verticalArrangement = Arrangement.spacedBy(StkTokens.Space16)) { Text("项目发布", style = MaterialTheme.typography.headlineSmall); Text("项目发布功能将在 V1.2 开放", color = StkTokens.TextSecondary); Button(onClose, Modifier.fillMaxWidth().testTag("stage_scope_close")) { Text("知道了") } } }
 @Composable private fun MeScreen(modifier: Modifier, onLogout: () -> Unit) { Column(modifier.fillMaxSize().padding(StkTokens.Space16), verticalArrangement = Arrangement.spacedBy(StkTokens.Space16)) { Text("我的", style = MaterialTheme.typography.headlineSmall); Card(Modifier.fillMaxWidth()) { Column(Modifier.padding(StkTokens.Space16)) { Text("商推客用户"); Text("UID：待加载", color = StkTokens.TextSecondary); Text("手机号：脱敏显示", color = StkTokens.TextSecondary) } }; OutlinedButton(onClick = onLogout, Modifier.fillMaxWidth().testTag("logout_confirm")) { Text("退出登录") } } }

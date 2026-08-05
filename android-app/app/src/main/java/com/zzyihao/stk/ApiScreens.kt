@@ -8,6 +8,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectVerticalDragGestures
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -20,16 +23,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import com.zzyihao.stk.designsystem.StkTokens
 import org.json.JSONObject
 import java.util.UUID
+import kotlinx.coroutines.flow.distinctUntilChanged
 
 private data class ProjectItem(val id: Int, val title: String, val summary: String, val views: Int)
 
@@ -84,9 +91,105 @@ internal fun ApiLegalScreen(api: StkApi, type: String, onBack: () -> Unit) {
 
 @Composable
 internal fun ApiHomeScreen(api: StkApi, session: StkSession, modifier: Modifier, onMe: () -> Unit, onDetail: (Int) -> Unit) {
-    var projects by remember { mutableStateOf<List<ProjectItem>>(emptyList()) }; var loading by remember { mutableStateOf(true) }; var error by remember { mutableStateOf("") }; var loadMoreError by remember { mutableStateOf(false) }; var reload by remember { mutableStateOf(0) }
-    LaunchedEffect(session.accessToken, reload) { loading = true; api.get("/v1/projects?limit=20&sort=recommended", session.accessToken) { result -> loading = false; result.onSuccess { raw -> runCatching { JSONObject(raw).getJSONObject("data").getJSONArray("items") }.onSuccess { array -> projects = List(array.length()) { i -> val item = array.getJSONObject(i); ProjectItem(item.getInt("project_id"), item.getString("title"), item.optString("summary"), item.optInt("view_count")) } }.onFailure { error = "项目响应无效" } }.onFailure { error = "项目加载失败" } } }
-    Column(modifier.fillMaxSize().padding(StkTokens.Space16).testTag("home_pull_refresh"), verticalArrangement = Arrangement.spacedBy(StkTokens.Space12)) { Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) { Text("商推客", style = MaterialTheme.typography.headlineSmall); TextButton(onMe, Modifier.testTag("home_avatar")) { Text("我的") } }; when { loading -> CircularProgressIndicator(); error.isNotBlank() -> { Text(error, color = StkTokens.BrandAccent); Button({ error = ""; reload++ }, Modifier.testTag("home_retry")) { Text("重试") } }; projects.isEmpty() -> Text("暂无已发布项目"); else -> LazyColumn(Modifier.testTag("home_project_list"), verticalArrangement = Arrangement.spacedBy(StkTokens.Space12)) { items(projects, key = { it.id }) { project -> Card(Modifier.fillMaxWidth().testTag("project_card_${project.id}")) { Column(Modifier.padding(StkTokens.Space16)) { Text(project.title, style = MaterialTheme.typography.titleMedium); Text(project.summary, color = StkTokens.TextSecondary); Text("浏览 ${project.views}"); TextButton({ onDetail(project.id) }) { Text("查看详情") } } } }; item { if (loadMoreError) Button({ loadMoreError = false; reload++ }, Modifier.testTag("home_load_more_retry")) { Text("重试加载更多") } else TextButton({ loadMoreError = true }, Modifier.testTag("home_load_more_probe")) { Text("加载更多") } } } } }
+    var projects by remember { mutableStateOf<List<ProjectItem>>(emptyList()) }
+    var loading by remember { mutableStateOf(true) }
+    var error by remember { mutableStateOf("") }
+    var nextCursor by remember { mutableStateOf<String?>(null) }
+    var hasMore by remember { mutableStateOf(false) }
+    var loadingMore by remember { mutableStateOf(false) }
+    var loadMoreError by remember { mutableStateOf(false) }
+    var inFlightCursor by remember { mutableStateOf<String?>(null) }
+    var reload by remember { mutableStateOf(0) }
+    var pullDistance by remember { mutableFloatStateOf(0f) }
+    val listState = rememberLazyListState()
+
+    fun requestPage(cursor: String?, replace: Boolean) {
+        if (!replace && (cursor.isNullOrBlank() || cursor == inFlightCursor)) return
+        if (replace) {
+            loading = true
+            error = ""
+            loadMoreError = false
+        } else {
+            inFlightCursor = cursor
+            loadingMore = true
+            loadMoreError = false
+        }
+        val path = buildString {
+            append("/v1/projects?limit=20&sort=recommended")
+            cursor?.takeIf { it.isNotBlank() }?.let { append("&cursor=").append(it) }
+        }
+        api.get(path, session.accessToken) { result ->
+            loading = false
+            loadingMore = false
+            inFlightCursor = null
+            result.onSuccess { raw ->
+                runCatching { JSONObject(raw).getJSONObject("data") }.onSuccess { data ->
+                    val array = data.getJSONArray("items")
+                    val page = List(array.length()) { index ->
+                        val item = array.getJSONObject(index)
+                        ProjectItem(item.getInt("project_id"), item.getString("title"), item.optString("summary"), item.optInt("view_count"))
+                    }
+                    projects = if (replace) page else (projects + page).distinctBy { it.id }
+                    nextCursor = data.optString("next_cursor").takeIf { it.isNotBlank() }
+                    hasMore = data.optBoolean("has_more", nextCursor != null) && nextCursor != null
+                }.onFailure { if (replace) error = "项目响应无效" else loadMoreError = true }
+            }.onFailure { if (replace) error = "项目加载失败" else loadMoreError = true }
+        }
+    }
+
+    fun reloadProjects() { reload++ }
+    LaunchedEffect(session.accessToken, reload) { requestPage(null, replace = true) }
+    LaunchedEffect(listState) {
+        snapshotFlow {
+            val info = listState.layoutInfo
+            info.visibleItemsInfo.lastOrNull()?.index == info.totalItemsCount - 1
+        }.distinctUntilChanged().collect { atEnd ->
+            if (atEnd && hasMore && !loadingMore && !loadMoreError) requestPage(nextCursor, replace = false)
+        }
+    }
+
+    Column(
+        modifier.fillMaxSize().padding(StkTokens.Space16).testTag("home_pull_refresh").pointerInput(loading) {
+            detectVerticalDragGestures(
+                onDragStart = { pullDistance = 0f },
+                onVerticalDrag = { _, amount -> if (amount > 0) pullDistance += amount },
+                onDragEnd = { if (!loading && pullDistance >= 96f) reloadProjects() },
+                onDragCancel = { pullDistance = 0f },
+            )
+        },
+        verticalArrangement = Arrangement.spacedBy(StkTokens.Space12),
+    ) {
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            Text("商推客", style = MaterialTheme.typography.headlineSmall)
+            TextButton(onMe, Modifier.testTag("home_avatar")) { Text("我的") }
+        }
+        when {
+            loading -> CircularProgressIndicator()
+            error.isNotBlank() -> {
+                Text(error, color = StkTokens.BrandAccent)
+                Button(::reloadProjects, Modifier.testTag("home_retry")) { Text("重试") }
+            }
+            projects.isEmpty() -> Text("暂无已发布项目")
+            else -> LazyColumn(Modifier.testTag("home_project_list"), state = listState, verticalArrangement = Arrangement.spacedBy(StkTokens.Space12)) {
+                items(projects, key = { it.id }) { project ->
+                    Card(Modifier.fillMaxWidth().testTag("project_card_${project.id}").clickable { onDetail(project.id) }) {
+                        Column(Modifier.padding(StkTokens.Space16)) {
+                            Text(project.title, style = MaterialTheme.typography.titleMedium)
+                            Text(project.summary, color = StkTokens.TextSecondary)
+                            Text("浏览 ${project.views}")
+                            TextButton({ onDetail(project.id) }) { Text("查看详情") }
+                        }
+                    }
+                }
+                item {
+                    when {
+                        loadMoreError -> Button({ requestPage(nextCursor, replace = false) }, Modifier.testTag("home_load_more_retry")) { Text("重试加载更多") }
+                        hasMore || loadingMore -> CircularProgressIndicator(Modifier.testTag("home_load_more_sentinel"))
+                    }
+                }
+            }
+        }
+    }
 }
 
 @Composable

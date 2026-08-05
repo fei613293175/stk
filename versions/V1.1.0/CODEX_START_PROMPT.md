@@ -2,6 +2,7 @@
 
 **环境硬门禁：** 本版本所有构建、签名、覆盖安装、模拟器、PHP/Discuz、部署和交付验收只允许在线上服务器或 GitHub Actions；本机不得安装或运行构建环境。
 **环境复用顺序：** 先只读盘点线上已有运行时、镜像、SDK/Gradle 缓存和模拟器；满足合同即复用，JDK 17+ 均可，已有 JDK 21 优先。缺失项才可在独立目录/容器/volume 补齐，禁止替换系统运行时、改业务配置、占端口或重启服务，并记录版本、路径和验证证据。
+**版本合同文件：** 先读取并填写 `versions/V1.1.0/ENVIRONMENT_CONTRACT.yaml`，统一规则见 `docs/19_ONLINE_ENVIRONMENT_REUSE_CONTRACT.md`。
 
 继续开发商推客，但不要根据聊天记忆重新规划项目或选择版本。先确认仓库 remote 是 `https://github.com/fei613293175/stk.git`，读取 `CURRENT_RELEASE.yaml`；只有当前版本为 `V1.1.0` 时才继续。
 

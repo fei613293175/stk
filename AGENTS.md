@@ -21,3 +21,4 @@
 19. 线上后台账号为 `admin`；密码只允许保存在被 `.gitignore` 保护的 `ADMIN_ACCESS_HANDOFF.local.md`，版本合同、Git、CI、日志和聊天不得出现明文密码。
 20. 构建环境唯一性：Android SDK/JDK/Gradle/AGP、PHP/Discuz、签名、模拟器和发布验收只能使用线上服务器或其线上 CI 环境；禁止在本机安装、下载、配置、升级或执行这些构建/部署环境。开发机只允许做源码编辑、静态合同检查和不依赖构建环境的证据整理；每个版本必须在其版本目录明确遵守本条。
 21. 线上环境复用优先：开始任何版本前必须只读盘点目标线上服务器已有的 JDK、Gradle、Android SDK/Build Tools/模拟器、PHP、数据库、签名代理和部署服务；已有环境满足合同时直接复用，不得重复安装。若仅部分缺失，优先使用已有 Docker 镜像、SDK 缓存、Gradle 缓存或独立 volume；只有无法复用且确认不影响业务时，才在独立目录/容器中补齐。禁止替换系统运行时、覆盖现有版本、占用业务端口、改动现有 Nginx/PHP-FPM/MySQL/Discuz 配置或重启业务服务；每版记录实际复用环境、补齐项、路径、版本和验证证据。
+22. 线上环境合同以 `docs/19_ONLINE_ENVIRONMENT_REUSE_CONTRACT.md` 为统一规则；每个版本必须先读取并填写 `versions/<version>/ENVIRONMENT_CONTRACT.yaml`，未完成只读盘点和证据字段不得构建、部署或宣称交付。后续版本复制该文件并只修改版本绑定和实际环境证据，不得弱化复用顺序或业务保护条款。

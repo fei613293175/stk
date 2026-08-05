@@ -13,7 +13,10 @@ internal interface StkApi {
     fun get(path: String, accessToken: String? = null, callback: (Result<String>) -> Unit)
 }
 
-internal class StkApiClient(private val baseUrl: String = "https://stk-api.zz-yihao.com") : StkApi {
+internal class StkApiClient(
+    private val baseUrl: String = "https://stk-api.zz-yihao.com",
+    private val defaultHeaders: Map<String, String> = emptyMap(),
+) : StkApi {
     private val executor = Executors.newFixedThreadPool(2)
     private val mainHandler = Handler(Looper.getMainLooper())
 
@@ -27,6 +30,7 @@ internal class StkApiClient(private val baseUrl: String = "https://stk-api.zz-yi
                     doOutput = true
                     setRequestProperty("Content-Type", "application/json; charset=utf-8")
                     setRequestProperty("Accept", "application/json")
+                    defaultHeaders.forEach { (name, value) -> setRequestProperty(name, value) }
                     accessToken?.takeIf { it.isNotBlank() }?.let { setRequestProperty("Authorization", "Bearer $it") }
                 }
                 connection.outputStream.use { it.write(body.toByteArray(Charsets.UTF_8)) }
@@ -47,6 +51,7 @@ internal class StkApiClient(private val baseUrl: String = "https://stk-api.zz-yi
                     connectTimeout = 10_000
                     readTimeout = 15_000
                     setRequestProperty("Accept", "application/json")
+                    defaultHeaders.forEach { (name, value) -> setRequestProperty(name, value) }
                     accessToken?.takeIf { it.isNotBlank() }?.let { setRequestProperty("Authorization", "Bearer $it") }
                 }
                 val stream = if (connection.responseCode in 200..299) connection.inputStream else connection.errorStream
