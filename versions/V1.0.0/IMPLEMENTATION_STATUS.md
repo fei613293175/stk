@@ -10,6 +10,7 @@
 ## 当前阻塞
 
 - 当前开发机没有可用 JDK、Gradle 或 PHP，无法在本地执行 Android 编译、签名、PHP lint 和模拟器验收。
+- 构建环境硬门禁已确认：后续不得在本机补装或执行这些环境，必须转到线上服务器/GitHub Actions。
 - 远程仓库为空，尚未推送初始提交；GitHub Actions、部署健康检查、真实 API/后台和 Owner 真机验收尚未发生。
 - V1.0 认证业务、网络层、自动化测试和完整后台页面仍需继续实现，不能标记为 READY_FOR_DELIVERY。
 

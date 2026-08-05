@@ -1,5 +1,7 @@
 # 1.3.0 交付关闭清单
 
+- [ ] 构建、签名和验收证据全部来自线上服务器/GitHub Actions，禁止本机 APK
+
 - [ ] 所有本版效果图 APPROVED 且 SHA 匹配
 - [ ] Android versionName=1.3.0、versionCode=10300、applicationId 固定
 - [ ] 本版 Feature 前端/后端/数据库/后台/配置/错误/日志全部完成

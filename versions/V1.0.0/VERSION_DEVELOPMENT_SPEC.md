@@ -10,6 +10,12 @@
 - applicationId：`com.zzyihao.stk`
 - 摘要：交付可覆盖安装的首个原生 APK、完整登录注册插件、管理员后台、基础项目列表/详情和我的基础资料。
 
+## 1A. V1.0.0 环境执行硬门禁
+
+- 本版本 Android 构建、签名、PHP/Discuz 测试、模拟器验收、部署和 Release Artifact 必须全部在线上服务器或 GitHub Actions 执行。
+- 本机禁止安装、下载、配置或运行 JDK、Android SDK、Gradle、AGP、PHP、Discuz、模拟器和签名工具来替代线上环境。
+- 本机仅可编辑源码、运行不依赖构建运行时的合同/静态检查和整理线上证据；本机任何 APK 不得作为交付物。
+
 ## 2. 线上环境基线
 
 - Discuz! X5.0 根目录：`/www/wwwroot/stk_zz_yihao_com`；公共网站：`https://stk.zz-yihao.com`。

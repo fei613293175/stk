@@ -1,5 +1,7 @@
 # 发送给 Codex：开始商推客 1.1.0
 
+**环境硬门禁：** 本版本所有构建、签名、覆盖安装、模拟器、PHP/Discuz、部署和交付验收只允许在线上服务器或 GitHub Actions；本机不得安装或运行构建环境。
+
 继续开发商推客，但不要根据聊天记忆重新规划项目或选择版本。先确认仓库 remote 是 `https://github.com/fei613293175/stk.git`，读取 `CURRENT_RELEASE.yaml`；只有当前版本为 `V1.1.0` 时才继续。
 
 开发前先读取并确认线上环境基线：Discuz! X5.0 根目录 `/www/wwwroot/stk_zz_yihao_com`，公共站点 `https://stk.zz-yihao.com`，`stk-api.zz-yihao.com` 与 `stk-admin.zz-yihao.com` 已由 Owner 报告解析，线上服务器已有 Android 构建环境。后台用户名为 `admin`，密码只从本机 `ADMIN_ACCESS_HANDOFF.local.md` 读取，不得复制到代码、CI、包清单或聊天；阿里云短信等配置由 Owner 后续填写。以上线上状态仍须在实际使用前按需验证，不得把 Owner 报告当成本机实测证据。

@@ -19,3 +19,4 @@
 17. 线上基础设施事实：Discuz! X5.0 网站根目录为 `/www/wwwroot/stk_zz_yihao_com`，公共网址为 `https://stk.zz-yihao.com`；`stk-api.zz-yihao.com` 与 `stk-admin.zz-yihao.com` 已由项目所有者解析，线上服务器已有 Android 构建环境，可按需使用。
 18. 阿里云短信等外部配置由项目所有者后续在后台填写；未填写前使用正式 Adapter/Fake 和明确 Owner Action，不得伪造短信成功。
 19. 线上后台账号为 `admin`；密码只允许保存在被 `.gitignore` 保护的 `ADMIN_ACCESS_HANDOFF.local.md`，版本合同、Git、CI、日志和聊天不得出现明文密码。
+20. 构建环境唯一性：Android SDK/JDK/Gradle/AGP、PHP/Discuz、签名、模拟器和发布验收只能使用线上服务器或其线上 CI 环境；禁止在本机安装、下载、配置、升级或执行这些构建/部署环境。开发机只允许做源码编辑、静态合同检查和不依赖构建环境的证据整理；每个版本必须在其版本目录明确遵守本条。

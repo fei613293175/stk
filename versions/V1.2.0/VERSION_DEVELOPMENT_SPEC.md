@@ -1,5 +1,10 @@
 # 商推客 1.2.0 开发规格
 
+## V1.2.0 环境执行硬门禁
+
+- Android 构建、签名、图片上传/审核测试、PHP/Discuz、API 37 模拟器、部署和交付只允许在线上服务器或 GitHub Actions 执行。
+- 本机禁止安装/下载/运行 JDK、Android SDK、Gradle、AGP、PHP、Discuz、模拟器和签名工具；本机仅可编辑源码和运行静态合同检查。
+
 ## 1. 版本身份
 
 - release_id：`V1.2.0`

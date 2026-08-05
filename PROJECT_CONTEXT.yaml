@@ -74,3 +74,18 @@ fixed_scope:
 - member/wallet/props are display-only in these five releases
 - no PC user frontend
 - no internal business WebView
+execution_environment_policy:
+  build_and_release_authority: online_server_only
+  allowed_online_environment: server_reported_ready_and_github_actions
+  prohibited_local_actions:
+  - install_or_download_android_sdk
+  - install_or_download_jdk_gradle_agp
+  - run_android_gradle_build_or_signing
+  - install_or_run_php_discuz_stack
+  - run_emulator_or_release_acceptance
+  local_allowed_actions:
+  - source_editing
+  - contract_validation
+  - static_lint_without_build_runtime
+  - evidence_packaging
+  applies_to: V1.0.0,V1.1.0,V1.2.0,V1.3.0,V1.4.0
