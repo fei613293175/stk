@@ -2,6 +2,19 @@
 set -euo pipefail
 release_id="${STK_RELEASE_ID:?STK_RELEASE_ID is required}"
 mkdir -p artifacts/emulator/screenshots artifacts/emulator/logs
+
+capture_failure_diagnostics() {
+  adb logcat -d > artifacts/emulator/logs/logcat-install-failure.txt 2>/dev/null || true
+  adb shell dumpsys package > artifacts/emulator/logs/package-manager-install-failure.txt 2>/dev/null || true
+}
+on_exit() {
+  status=$?
+  trap - EXIT
+  if [[ $status -ne 0 ]]; then capture_failure_diagnostics; fi
+  exit "$status"
+}
+trap on_exit EXIT
+
 adb wait-for-device
 adb shell settings put global window_animation_scale 0
 adb shell settings put global transition_animation_scale 0
@@ -11,19 +24,47 @@ adb shell wm density 480
 adb shell settings put system font_scale 1.0
 adb shell df -h /data | tee artifacts/emulator/logs/data-partition-before-install.txt
 
+wait_for_package_manager() {
+  for attempt in $(seq 1 30); do
+    if adb shell service check package 2>/dev/null | grep -q 'found' && adb shell pm path android >/dev/null 2>&1; then
+      return 0
+    fi
+    sleep 2
+  done
+  echo "Android package manager did not become ready" >&2
+  return 1
+}
+
+install_apk() {
+  apk=$1
+  shift
+  for attempt in 1 2 3; do
+    wait_for_package_manager
+    if adb install --no-streaming -r "$@" "$apk"; then
+      return 0
+    fi
+    echo "APK install attempt $attempt failed; reconnecting ADB before retry" >&2
+    adb reconnect >/dev/null 2>&1 || true
+    adb wait-for-device
+    sleep $((attempt * 2))
+  done
+  echo "APK install failed after three attempts: $apk" >&2
+  return 1
+}
+
 current_apk="${STK_CURRENT_APK:-}"
 if [[ -z "$current_apk" ]]; then
   current_apk=$(find android-app/app/build/outputs/apk/release artifacts/exact -type f -name '*.apk' ! -name '*androidTest*' 2>/dev/null | head -n1 || true)
 fi
 [[ -f "$current_apk" ]] || { echo "Current release APK not found" >&2; exit 1; }
-adb install -r "$current_apk"
+install_apk "$current_apk"
 
 test_apk="${STK_TEST_APK:-}"
 if [[ -z "$test_apk" ]]; then
   test_apk=$(find android-app/app/build/outputs/apk/androidTest/release artifacts/exact -type f -name '*androidTest*.apk' 2>/dev/null | head -n1 || true)
 fi
 [[ -f "$test_apk" ]] || { echo "Release instrumentation APK not found" >&2; exit 1; }
-adb install -r "$test_apk"
+install_apk "$test_apk" -t
 runner=$(adb shell pm list instrumentation | tr -d '\r' | grep 'target=com.zzyihao.stk' | head -n1 | sed -E 's/^instrumentation:([^ ]+).*/\1/')
 [[ -n "$runner" ]] || { echo "Instrumentation runner for com.zzyihao.stk not found" >&2; exit 1; }
 set +e

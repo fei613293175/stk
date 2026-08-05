@@ -65,7 +65,9 @@ jobs:
           profile: pixel_6
           channel: canary
           disk-size: 8192M
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          ram-size: 4096M
+          heap-size: 512M
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-snapshot -no-metrics
           disable-animations: true
           script: bash scripts/ci/run_emulator_acceptance.sh
       - name: Compare actual screenshots against approved mockups

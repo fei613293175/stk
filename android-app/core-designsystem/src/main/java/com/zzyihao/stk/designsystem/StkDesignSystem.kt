@@ -16,6 +16,8 @@ object StkTokens {
     val Space16 = 16.dp
     val Space20 = 20.dp
     val Space24 = 24.dp
+    val CaptchaImageWidth = 278.dp
+    val CaptchaImageHeight = 96.dp
 }
 
 @Composable

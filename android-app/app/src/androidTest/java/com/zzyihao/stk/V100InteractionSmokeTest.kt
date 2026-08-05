@@ -51,9 +51,11 @@ class V100InteractionSmokeTest {
         act("INT-AUTH-004", "login_password") { performTextInput("Password123") }
         act("INT-AUTH-005", "login_password_visibility") { performClick() }
         act("INT-AUTH-008", "login_password_submit") { performClick() }
-        waitForTag("captcha_input")
+        waitForTag("captcha_image")
         act("INT-CAPTCHA-001", "captcha_input") { performTextInput("1234") }
         act("INT-CAPTCHA-002", "captcha_refresh") { performClick() }
+        waitForTag("captcha_image")
+        composeRule.onNodeWithTag("captcha_input").performTextInput("1234")
         act("INT-CAPTCHA-003", "captcha_confirm") { performClick() }
         check(authenticated)
         check(api.posts.contains("/v1/auth/login/password"))
@@ -68,7 +70,7 @@ class V100InteractionSmokeTest {
         waitForTag("captcha_cancel")
         act("INT-CAPTCHA-004", "captcha_cancel") { performClick() }
         act("INT-AUTH-009", "login_sms_submit") { performClick() }
-        waitForTag("captcha_confirm")
+        waitForTag("captcha_image")
         composeRule.onNodeWithTag("captcha_input").performTextInput("1234")
         composeRule.onNodeWithTag("captcha_confirm").performClick()
         composeRule.waitForIdle()
@@ -112,7 +114,7 @@ class V100InteractionSmokeTest {
         act("INT-REG-004", "register_password_visibility") { performClick() }
         act("INT-REG-005", "register_agreement_check") { performClick() }
         act("INT-REG-006", "register_submit") { performClick() }
-        waitForTag("captcha_confirm")
+        waitForTag("captcha_image")
         composeRule.onNodeWithTag("captcha_input").performTextInput("1234")
         composeRule.onNodeWithTag("captcha_confirm").performClick()
         composeRule.waitForIdle()
@@ -135,7 +137,7 @@ class V100InteractionSmokeTest {
         waitForTag("captcha_cancel")
         composeRule.onNodeWithTag("captcha_cancel").performClick()
         act("INT-RESET-006", "reset_submit") { performClick() }
-        waitForTag("captcha_confirm")
+        waitForTag("captcha_image")
         composeRule.onNodeWithTag("captcha_input").performTextInput("1234")
         composeRule.onNodeWithTag("captcha_confirm").performClick()
         composeRule.waitForIdle()
@@ -245,6 +247,29 @@ class V100InteractionSmokeTest {
         check(api.posts.contains("/v1/auth/logout"))
     }
 
+    @Test fun captchaImageLoadFailureRefreshAndExpiryRecoverWithoutDismissal() {
+        val api = FakeApi().apply { failCaptchaChallenge = true }
+        composeRule.setContent { StkTheme { CaptchaDialog(api, "device", "password_login", {}, {}) } }
+        waitForTag("captcha_error")
+
+        api.failCaptchaChallenge = false
+        composeRule.onNodeWithTag("captcha_refresh").performClick()
+        waitForTag("captcha_image")
+        check(api.captchaChallengeRequests == 2)
+
+        api.failCaptchaVerifyWithExpired = true
+        composeRule.onNodeWithTag("captcha_input").performTextInput("1234")
+        composeRule.onNodeWithTag("captcha_confirm").performClick()
+        composeRule.waitUntil(5_000) { api.captchaChallengeRequests >= 3 }
+        waitForTag("captcha_image")
+
+        api.captchaExpiresIn = 1
+        composeRule.onNodeWithTag("captcha_refresh").performClick()
+        val requestsBeforeExpiry = api.captchaChallengeRequests
+        composeRule.waitUntil(5_000) { api.captchaChallengeRequests > requestsBeforeExpiry }
+        waitForTag("captcha_image")
+    }
+
     private fun waitForTag(tag: String) {
         composeRule.waitUntil(5_000) { composeRule.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
     }
@@ -269,12 +294,31 @@ private class FakeApi : StkApi {
     val posts = Collections.synchronizedList(mutableListOf<String>())
     var failGets = false
     var failNextProjectPage = false
+    var failCaptchaChallenge = false
+    var failCaptchaVerifyWithExpired = false
+    var captchaExpiresIn = 120
+    var captchaChallengeRequests = 0
     var projectRequests = 0
 
     override fun post(path: String, body: String, accessToken: String?, callback: (Result<String>) -> Unit) {
         posts += path
+        if (path == "/v1/auth/captcha/challenges") {
+            captchaChallengeRequests++
+            if (failCaptchaChallenge) {
+                callback(Result.failure(IllegalStateException("controlled captcha load failure")))
+                return
+            }
+        }
+        if (path == "/v1/auth/captcha/verify" && failCaptchaVerifyWithExpired) {
+            failCaptchaVerifyWithExpired = false
+            callback(Result.failure(IllegalStateException("CAPTCHA_EXPIRED")))
+            return
+        }
         val data = when (path) {
-            "/v1/auth/captcha/challenges" -> JSONObject().put("data", JSONObject().put("challenge_id", "challenge"))
+            "/v1/auth/captcha/challenges" -> JSONObject().put("data", JSONObject()
+                .put("challenge_id", "challenge-$captchaChallengeRequests")
+                .put("image_base64_or_url", CAPTCHA_PNG_DATA_URI)
+                .put("expires_in", captchaExpiresIn))
             "/v1/auth/captcha/verify" -> JSONObject().put("data", JSONObject().put("captcha_ticket", "ticket"))
             "/v1/auth/login/password", "/v1/auth/login/sms" -> JSONObject().put("data", tokens())
             "/v1/auth/register" -> JSONObject().put("data", JSONObject().put("tokens", tokens()))
@@ -317,4 +361,8 @@ private class FakeApi : StkApi {
         .put("access_token", "access")
         .put("refresh_token", "refresh")
         .put("refresh_token_family", "family")
+
+    companion object {
+        private const val CAPTCHA_PNG_DATA_URI = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+    }
 }

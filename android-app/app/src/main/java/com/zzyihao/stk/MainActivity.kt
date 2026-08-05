@@ -1,10 +1,13 @@
 package com.zzyihao.stk
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Base64
 import androidx.compose.material3.AlertDialog
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
@@ -34,6 +38,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -42,6 +49,7 @@ import com.zzyihao.stk.designsystem.StkTokens
 import com.zzyihao.stk.designsystem.StkTheme
 import org.json.JSONObject
 import java.util.Locale
+import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -172,13 +180,112 @@ internal fun LoginScreen(api: StkApi, deviceId: String, onAuthenticated: (StkSes
 
 @Composable
 internal fun CaptchaDialog(api: StkApi, deviceId: String, action: String, onVerified: (String) -> Unit, onDismiss: () -> Unit) {
-    var challengeId by rememberSaveable { mutableStateOf("") }
-    var answer by rememberSaveable { mutableStateOf("") }
-    var error by rememberSaveable { mutableStateOf("") }
-    fun load() { api.post("/v1/auth/captcha/challenges", JSONObject().put("action", action).put("device_id", deviceId).toString()) { result -> result.onSuccess { raw -> challengeId = runCatching { JSONObject(raw).getJSONObject("data").getString("challenge_id") }.getOrDefault("") }.onFailure { error = "验证码加载失败" } } }
+    var challengeId by remember(action) { mutableStateOf("") }
+    var imageDataUri by remember(action) { mutableStateOf("") }
+    var answer by remember(action) { mutableStateOf("") }
+    var error by remember(action) { mutableStateOf("") }
+    var loading by remember(action) { mutableStateOf(false) }
+    var verifying by remember(action) { mutableStateOf(false) }
+    var expiresAt by remember(action) { mutableStateOf(0L) }
+    val captchaImage = remember(imageDataUri) { decodeCaptchaDataUri(imageDataUri) }
+    fun load() {
+        if (loading || verifying) return
+        loading = true
+        error = ""
+        answer = ""
+        imageDataUri = ""
+        api.post("/v1/auth/captcha/challenges", JSONObject().put("action", action).put("device_id", deviceId).toString()) { result ->
+            loading = false
+            result.onSuccess { raw ->
+                runCatching {
+                    val data = JSONObject(raw).getJSONObject("data")
+                    Triple(data.getString("challenge_id"), data.getString("image_base64_or_url"), data.optInt("expires_in", 120))
+                }.onSuccess { (id, image, expiresIn) ->
+                    if (decodeCaptchaDataUri(image) == null) {
+                        challengeId = ""
+                        error = "验证码图片无效，请刷新"
+                    } else {
+                        challengeId = id
+                        imageDataUri = image
+                        expiresAt = System.currentTimeMillis() + expiresIn.coerceAtLeast(1) * 1_000L
+                    }
+                }.onFailure { error = "验证码响应无效，请刷新" }
+            }.onFailure { error = "验证码加载失败，请重试" }
+        }
+    }
     LaunchedEffect(action) { load() }
-    AlertDialog(onDismissRequest = onDismiss, title = { Text("安全验证") }, text = { Column(verticalArrangement = Arrangement.spacedBy(StkTokens.Space12)) { Text(if (challengeId.isBlank()) "正在加载验证码" else "请输入验证码") ; OutlinedTextField(answer, { answer = it }, Modifier.fillMaxWidth().testTag("captcha_input"), label = { Text("安全验证码") }); if (error.isNotBlank()) Text(error, color = StkTokens.BrandAccent); TextButton(onClick = { load() }, Modifier.testTag("captcha_refresh")) { Text("刷新") } } }, confirmButton = { Button(onClick = { api.post("/v1/auth/captcha/verify", JSONObject().put("challenge_id", challengeId).put("answer", answer).put("action", action).put("device_id", deviceId).toString()) { result -> result.onSuccess { raw -> runCatching { JSONObject(raw).getJSONObject("data").getString("captcha_ticket") }.onSuccess(onVerified).onFailure { error = "验证码验证失败" } }.onFailure { error = "验证码错误或已过期" } } }, Modifier.testTag("captcha_confirm")) { Text("确认") } }, dismissButton = { TextButton(onClick = onDismiss, Modifier.testTag("captcha_cancel")) { Text("取消") } })
+    LaunchedEffect(expiresAt) {
+        if (expiresAt > 0L) {
+            delay((expiresAt - System.currentTimeMillis()).coerceAtLeast(1L))
+            if (expiresAt <= System.currentTimeMillis() && !verifying) {
+                error = "验证码已过期，正在刷新"
+                challengeId = ""
+                load()
+            }
+        }
+    }
+    AlertDialog(
+        onDismissRequest = { if (!verifying) onDismiss() },
+        title = { Text("安全验证") },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(StkTokens.Space12)) {
+                when {
+                    loading -> CircularProgressIndicator(Modifier.testTag("captcha_loading"))
+                    captchaImage != null -> Image(
+                        bitmap = captchaImage,
+                        contentDescription = "安全验证码图片",
+                        modifier = Modifier.size(StkTokens.CaptchaImageWidth, StkTokens.CaptchaImageHeight).testTag("captcha_image"),
+                        contentScale = ContentScale.FillBounds,
+                    )
+                    else -> Text("验证码图片暂不可用")
+                }
+                OutlinedTextField(
+                    answer,
+                    { answer = it.uppercase(Locale.ROOT).take(6) },
+                    Modifier.fillMaxWidth().testTag("captcha_input"),
+                    enabled = !loading && !verifying && challengeId.isNotBlank(),
+                    label = { Text("安全验证码") },
+                )
+                if (error.isNotBlank()) Text(error, Modifier.testTag("captcha_error"), color = StkTokens.BrandAccent)
+                TextButton(onClick = ::load, Modifier.testTag("captcha_refresh"), enabled = !loading && !verifying) { Text("刷新") }
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = {
+                    verifying = true
+                    error = ""
+                    api.post("/v1/auth/captcha/verify", JSONObject().put("challenge_id", challengeId).put("answer", answer).put("action", action).put("device_id", deviceId).toString()) { result ->
+                        verifying = false
+                        result.onSuccess { raw ->
+                            runCatching { JSONObject(raw).getJSONObject("data").getString("captcha_ticket") }
+                                .onSuccess(onVerified)
+                                .onFailure { error = "验证码验证响应无效" }
+                        }.onFailure { failure ->
+                            answer = ""
+                            if (failure.message.orEmpty().contains("CAPTCHA_EXPIRED")) {
+                                error = "验证码已过期，正在刷新"
+                                challengeId = ""
+                                load()
+                            } else {
+                                error = "验证码错误，请重新输入"
+                            }
+                        }
+                    }
+                },
+                Modifier.testTag("captcha_confirm"),
+                enabled = !loading && !verifying && challengeId.isNotBlank() && answer.isNotBlank(),
+            ) { if (verifying) CircularProgressIndicator() else Text("确认") }
+        },
+        dismissButton = { TextButton(onClick = onDismiss, Modifier.testTag("captcha_cancel"), enabled = !verifying) { Text("取消") } },
+    )
 }
+
+internal fun decodeCaptchaDataUri(value: String): ImageBitmap? = runCatching {
+    require(value.startsWith("data:image/png;base64,"))
+    val bytes = Base64.decode(value.substringAfter("base64,"), Base64.DEFAULT)
+    BitmapFactory.decodeByteArray(bytes, 0, bytes.size)?.asImageBitmap() ?: error("Invalid captcha PNG")
+}.getOrNull()
 
 @Composable
 private fun RegisterScreen(onBack: () -> Unit, onAgreement: () -> Unit, onPrivacy: () -> Unit, onSuccess: () -> Unit) {

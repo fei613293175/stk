@@ -4,6 +4,80 @@ if (!defined('IN_DISCUZ')) { exit('Access Denied'); }
 final class StkCaptchaService {
     private static function dateTime(int $timestamp): string { return gmdate('Y-m-d H:i:s', $timestamp); }
 
+    private static function renderPngDataUri(string $answer): string {
+        if (!function_exists('imagecreatetruecolor') || !function_exists('imagepng')) {
+            throw new StkApiException(503, 'CAPTCHA_UNAVAILABLE', '安全验证码暂不可用');
+        }
+
+        $width = 278;
+        $height = 96;
+        $image = imagecreatetruecolor($width, $height);
+        if ($image === false) {
+            throw new StkApiException(503, 'CAPTCHA_UNAVAILABLE', '安全验证码暂不可用');
+        }
+
+        try {
+            $background = imagecolorallocate($image, 245, 247, 250);
+            $foreground = imagecolorallocate($image, 23, 32, 51);
+            $line = imagecolorallocate($image, 152, 162, 179);
+            $accent = imagecolorallocate($image, 36, 107, 253);
+            if ($background === false || $foreground === false || $line === false || $accent === false) {
+                throw new RuntimeException('captcha color allocation failed');
+            }
+
+            imagefilledrectangle($image, 0, 0, $width - 1, $height - 1, $background);
+            for ($index = 0; $index < 6; $index++) {
+                imageline(
+                    $image,
+                    random_int(0, $width - 1),
+                    random_int(0, $height - 1),
+                    random_int(0, $width - 1),
+                    random_int(0, $height - 1),
+                    $index % 2 === 0 ? $line : $accent
+                );
+            }
+            for ($index = 0; $index < 90; $index++) {
+                imagesetpixel($image, random_int(0, $width - 1), random_int(0, $height - 1), $line);
+            }
+
+            $font = 5;
+            $characterWidth = imagefontwidth($font);
+            $characterHeight = imagefontheight($font);
+            $spacing = 22;
+            $textWidth = strlen($answer) * $characterWidth + (strlen($answer) - 1) * $spacing;
+            $startX = (int)(($width - $textWidth) / 2);
+            $baseY = (int)(($height - $characterHeight) / 2);
+            foreach (str_split($answer) as $index => $character) {
+                imagestring(
+                    $image,
+                    $font,
+                    $startX + $index * ($characterWidth + $spacing),
+                    $baseY + random_int(-8, 8),
+                    $character,
+                    $index % 2 === 0 ? $foreground : $accent
+                );
+            }
+
+            ob_start();
+            if (!imagepng($image, null, 6)) {
+                ob_end_clean();
+                throw new RuntimeException('captcha png encoding failed');
+            }
+            $png = ob_get_clean();
+            if (!is_string($png) || $png === '') {
+                throw new RuntimeException('captcha png output missing');
+            }
+            return 'data:image/png;base64,' . base64_encode($png);
+        } catch (Throwable $error) {
+            if ($error instanceof StkApiException) {
+                throw $error;
+            }
+            throw new StkApiException(503, 'CAPTCHA_UNAVAILABLE', '安全验证码暂不可用');
+        } finally {
+            imagedestroy($image);
+        }
+    }
+
     public static function challenge(string $action, string $deviceId): array {
         $allowed = ['password_login', 'sms_send', 'sms_login', 'register', 'password_reset'];
         if (!in_array($action, $allowed, true) || $deviceId === '') {
@@ -12,6 +86,7 @@ final class StkCaptchaService {
         $answer = strtoupper(substr(bin2hex(random_bytes(3)), 0, 4));
         $challenge = bin2hex(random_bytes(16));
         $expires = time() + 120;
+        $imageDataUri = self::renderPngDataUri($answer);
         if (class_exists('DB')) {
             DB::insert('stk_auth_captcha_challenge', [
                 'challenge_id' => $challenge,
@@ -25,7 +100,7 @@ final class StkCaptchaService {
                 'created_at' => self::dateTime(time()),
             ]);
         }
-        return ['challenge_id' => $challenge, 'image_base64_or_url' => null, 'expires_in' => 120, 'debug_answer' => null];
+        return ['challenge_id' => $challenge, 'image_base64_or_url' => $imageDataUri, 'expires_in' => 120];
     }
 
     public static function verify(string $challengeId, string $answer, string $action, string $deviceId): string {
@@ -37,7 +112,7 @@ final class StkCaptchaService {
             'SELECT * FROM ' . DB::table('stk_auth_captcha_challenge') . ' WHERE challenge_id=%s LIMIT 1',
             [$challengeId]
         );
-        if (!$row || strtotime((string)$row['expires_at']) < time() || $row['used_at'] !== null) {
+        if (!$row || strtotime((string)$row['expires_at']) < time() || $row['verified_at'] !== null || $row['used_at'] !== null) {
             throw new StkApiException(410, 'CAPTCHA_EXPIRED', '安全验证码已过期');
         }
         if ((string)$row['action'] !== $action || !hash_equals((string)$row['device_hash'], hash('sha256', $deviceId))) {

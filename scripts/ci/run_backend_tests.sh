@@ -9,5 +9,5 @@ if [[ -f composer.json ]]; then
   if [[ -x vendor/bin/phpunit ]]; then vendor/bin/phpunit; fi
 fi
 python scripts/verify_database_contract.py
-# Actual implementation must add API integration fixtures under backend/tests/api and run them against an isolated Discuz test database.
+php backend/tests/captcha_service_test.php
 if [[ -x backend/tests/run.sh ]]; then backend/tests/run.sh; fi

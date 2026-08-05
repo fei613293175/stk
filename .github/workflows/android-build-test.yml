@@ -6,6 +6,7 @@ on:
     paths:
       - 'android-app/**'
       - 'source/plugin/**'
+      - 'backend/tests/**'
       - 'contracts/**'
       - 'scripts/**'
       - '.github/workflows/android-build-test.yml'
@@ -55,14 +56,14 @@ jobs:
           python scripts/check_no_ui_hardcoding.py
       - name: Prepare release signing
         run: bash scripts/ci/prepare_release_signing.sh
-      - name: Test Discuz plugins
-        run: bash scripts/ci/run_backend_tests.sh
-      - name: PHP 8.3 online lint for every plugin file
+      - name: Set up PHP 8.3 online test runtime
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-          extensions: curl,openssl,mbstring,mysqli
+          extensions: curl,openssl,mbstring,mysqli,gd
           coverage: none
+      - name: Test Discuz plugins
+        run: bash scripts/ci/run_backend_tests.sh
       - name: Run PHP lint online
         shell: bash
         run: |
