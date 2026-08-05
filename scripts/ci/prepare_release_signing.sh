@@ -3,7 +3,7 @@ set -euo pipefail
 mkdir -p android-app/.ci
 if [[ "${STK_SIGNING_MODE:-official}" == "ci-test" ]]; then
   test_store_password='ci-test-store-password'
-  test_key_password='ci-test-key-password'
+  test_key_password="$test_store_password"
   test_key_alias='stk-ci-test'
   keytool -genkeypair -noprompt -keystore android-app/.ci/stk-release.jks \
     -storepass "$test_store_password" -keypass "$test_key_password" \
