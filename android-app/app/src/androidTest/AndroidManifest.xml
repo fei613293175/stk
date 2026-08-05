@@ -3,6 +3,6 @@
     <application>
         <activity
             android:name="androidx.activity.ComponentActivity"
-            android:exported="false" />
+            android:exported="true" />
     </application>
 </manifest>
