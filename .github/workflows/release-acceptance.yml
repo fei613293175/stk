@@ -114,6 +114,7 @@ jobs:
           arch: x86_64
           profile: pixel_6
           locale: zh-CN
+          disk-size: 8192M
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: bash scripts/ci/run_exact_release_acceptance.sh

@@ -64,6 +64,7 @@ jobs:
           arch: x86_64
           profile: pixel_6
           channel: canary
+          disk-size: 8192M
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: bash scripts/ci/run_emulator_acceptance.sh

@@ -9,6 +9,7 @@ adb shell settings put global animator_duration_scale 0
 adb shell wm size 1170x2532
 adb shell wm density 480
 adb shell settings put system font_scale 1.0
+adb shell df -h /data | tee artifacts/emulator/logs/data-partition-before-install.txt
 
 current_apk="${STK_CURRENT_APK:-}"
 if [[ -z "$current_apk" ]]; then
