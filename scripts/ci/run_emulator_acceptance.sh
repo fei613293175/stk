@@ -54,6 +54,19 @@ install_apk() {
   return 1
 }
 
+wait_for_target_activity() {
+  for attempt in $(seq 1 30); do
+    if adb shell pm path com.zzyihao.stk >/dev/null 2>&1 \
+      && adb shell dumpsys package com.zzyihao.stk 2>/dev/null \
+        | grep -q 'com.zzyihao.stk/.MainActivity'; then
+      return 0
+    fi
+    sleep 2
+  done
+  echo "Target release activity did not become resolvable" >&2
+  return 1
+}
+
 current_apk="${STK_CURRENT_APK:-}"
 if [[ -z "$current_apk" ]]; then
   current_apk=$(find android-app/app/build/outputs/apk/release artifacts/exact -type f -name '*.apk' ! -name '*androidTest*' 2>/dev/null | head -n1 || true)
@@ -67,6 +80,7 @@ if [[ -z "$test_apk" ]]; then
 fi
 [[ -f "$test_apk" ]] || { echo "Release instrumentation APK not found" >&2; exit 1; }
 install_apk "$test_apk" -t
+wait_for_target_activity
 runner=$(adb shell pm list instrumentation | tr -d '\r' | grep 'target=com.zzyihao.stk' | head -n1 | sed -E 's/^instrumentation:([^ ]+).*/\1/')
 [[ -n "$runner" ]] || { echo "Instrumentation runner for com.zzyihao.stk not found" >&2; exit 1; }
 adb logcat -c
