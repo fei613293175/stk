@@ -32,7 +32,7 @@ class V100InteractionSmokeTest {
         var authenticated = false
         var destination = ""
         fun renderLogin() {
-            composeRule.setContent {
+            composeRule.activity.setContent {
                 StkTheme {
                     LoginScreen(
                         api = api,
@@ -98,7 +98,7 @@ class V100InteractionSmokeTest {
         var registered = false
         var returned = false
         var legalRoute = ""
-        composeRule.setContent {
+        composeRule.activity.setContent {
             StkTheme {
                 ApiRegisterScreen(
                     api, "device",
@@ -129,7 +129,7 @@ class V100InteractionSmokeTest {
         act("INT-REG-009", "register_open_privacy") { performClick() }; check(legalRoute == "privacy")
 
         returned = false
-        composeRule.setContent { StkTheme { ApiResetScreen(api, "device") { returned = true } } }
+        composeRule.activity.setContent { StkTheme { ApiResetScreen(api, "device") { returned = true } } }
         act("INT-RESET-001", "reset_phone") { performTextInput("13800138000") }
         act("INT-RESET-003", "reset_sms_code") { performTextInput("123456") }
         act("INT-RESET-004", "reset_new_password") { performTextInput("Password123") }
@@ -146,12 +146,12 @@ class V100InteractionSmokeTest {
         check(api.posts.contains("/v1/auth/password/reset"))
 
         returned = false
-        composeRule.setContent { StkTheme { ApiResetScreen(api, "device") { returned = true } } }
+        composeRule.activity.setContent { StkTheme { ApiResetScreen(api, "device") { returned = true } } }
         act("INT-RESET-007", "reset_back_login") { performClick() }; check(returned)
 
         api.failGets = true
         returned = false
-        composeRule.setContent { StkTheme { ApiLegalScreen(api, "user_agreement") { returned = true } } }
+        composeRule.activity.setContent { StkTheme { ApiLegalScreen(api, "user_agreement") { returned = true } } }
         waitForTag("agreement_retry")
         api.failGets = false
         act("INT-LEGAL-002", "agreement_retry") { performClick() }
@@ -160,7 +160,7 @@ class V100InteractionSmokeTest {
 
         api.failGets = true
         returned = false
-        composeRule.setContent { StkTheme { ApiLegalScreen(api, "privacy_policy") { returned = true } } }
+        composeRule.activity.setContent { StkTheme { ApiLegalScreen(api, "privacy_policy") { returned = true } } }
         waitForTag("privacy_retry")
         api.failGets = false
         act("INT-LEGAL-004", "privacy_retry") { performClick() }
@@ -170,27 +170,27 @@ class V100InteractionSmokeTest {
 
     @Test fun systemNavigationHomeDetailAndProfileControlsProduceResults() {
         var selected = -1
-        composeRule.setContent { StkTheme { StkBottomBar(selected) { selected = it } } }
+        composeRule.activity.setContent { StkTheme { StkBottomBar(selected) { selected = it } } }
         act("INT-NAV-001", "nav_home") { performClick() }; check(selected == 0)
         act("INT-NAV-002", "nav_publish") { performClick() }; check(selected == 1)
         act("INT-NAV-003", "nav_me") { performClick() }; check(selected == 2)
 
         var retryCount = 0
         var offlineCount = 0
-        composeRule.setContent { StkTheme { BootstrapFailureScreen(true, { retryCount++ }, { offlineCount++ }) } }
+        composeRule.activity.setContent { StkTheme { BootstrapFailureScreen(true, { retryCount++ }, { offlineCount++ }) } }
         act("INT-SYS-001", "bootstrap_retry") { performClick() }; check(retryCount == 1)
         act("INT-SYS-002", "bootstrap_continue_offline") { performClick() }; check(offlineCount == 1)
-        composeRule.setContent { StkTheme { SystemFailureScreen { retryCount++ } } }
+        composeRule.activity.setContent { StkTheme { SystemFailureScreen { retryCount++ } } }
         act("INT-SYS-003", "system_retry") { performClick() }; check(retryCount == 2)
         var riskConfirmed = false
-        composeRule.setContent { StkTheme { AuthRiskDialog("账号暂时受限") { riskConfirmed = true } } }
+        composeRule.activity.setContent { StkTheme { AuthRiskDialog("账号暂时受限") { riskConfirmed = true } } }
         act("INT-RISK-001", "auth_risk_confirm") { performClick() }; check(riskConfirmed)
 
         val api = FakeApi()
         val session = StkSession("access", "refresh", "family")
         var openedProject = -1
         var openedMe = false
-        composeRule.setContent { StkTheme { ApiHomeScreen(api, session, Modifier, { openedMe = true }) { openedProject = it } } }
+        composeRule.activity.setContent { StkTheme { ApiHomeScreen(api, session, Modifier, { openedMe = true }) { openedProject = it } } }
         waitForTag("project_card_1")
         val requestsBeforeRefresh = api.projectRequests
         act("INT-HOME-001", "home_pull_refresh") { performTouchInput { swipeDown() } }
@@ -201,7 +201,7 @@ class V100InteractionSmokeTest {
         waitForTag("project_card_21")
 
         api.failNextProjectPage = true
-        composeRule.setContent { StkTheme { ApiHomeScreen(api, session, Modifier, {}, {}) } }
+        composeRule.activity.setContent { StkTheme { ApiHomeScreen(api, session, Modifier, {}, {}) } }
         waitForTag("project_card_1")
         composeRule.onNodeWithTag("home_project_list").performScrollToNode(hasTestTag("home_load_more_sentinel"))
         waitForTag("home_load_more_retry")
@@ -209,34 +209,34 @@ class V100InteractionSmokeTest {
         waitForTag("project_card_21")
 
         api.failGets = true
-        composeRule.setContent { StkTheme { ApiHomeScreen(api, session, Modifier, {}, {}) } }
+        composeRule.activity.setContent { StkTheme { ApiHomeScreen(api, session, Modifier, {}, {}) } }
         waitForTag("home_retry")
         api.failGets = false
         act("INT-HOME-006", "home_retry") { performClick() }
         waitForTag("project_card_1")
 
         var returned = false
-        composeRule.setContent { StkTheme { ApiDetailScreen(api, session, 1, "device", Modifier) { returned = true } } }
+        composeRule.activity.setContent { StkTheme { ApiDetailScreen(api, session, 1, "device", Modifier) { returned = true } } }
         waitForTag("project_detail_back")
         act("INT-DETAIL-001", "project_detail_back") { performClick() }; check(returned)
         api.failGets = true
-        composeRule.setContent { StkTheme { ApiDetailScreen(api, session, 1, "device", Modifier, {}) } }
+        composeRule.activity.setContent { StkTheme { ApiDetailScreen(api, session, 1, "device", Modifier, {}) } }
         waitForTag("project_detail_retry")
         api.failGets = false
         act("INT-DETAIL-005", "project_detail_retry") { performClick() }
 
         var stageClosed = false
-        composeRule.setContent { StkTheme { StageScreen(Modifier) { stageClosed = true } } }
+        composeRule.activity.setContent { StkTheme { StageScreen(Modifier) { stageClosed = true } } }
         act("INT-STAGE-001", "stage_scope_close") { performClick() }; check(stageClosed)
 
         api.failGets = true
-        composeRule.setContent { StkTheme { ApiMeScreen(api, session, "device", Modifier, {}) } }
+        composeRule.activity.setContent { StkTheme { ApiMeScreen(api, session, "device", Modifier, {}) } }
         waitForTag("me_retry")
         api.failGets = false
         act("INT-ME-011", "me_retry") { performClick() }
         composeRule.waitForIdle()
         var loggedOut = false
-        composeRule.setContent { StkTheme { ApiMeScreen(api, session, "device", Modifier) { loggedOut = true } } }
+        composeRule.activity.setContent { StkTheme { ApiMeScreen(api, session, "device", Modifier) { loggedOut = true } } }
         waitForTag("logout_open")
         composeRule.onNodeWithTag("logout_open").performClick()
         act("INT-LOGOUT-002", "logout_cancel") { performClick() }
@@ -250,7 +250,7 @@ class V100InteractionSmokeTest {
 
     @Test fun captchaImageLoadFailureRefreshAndExpiryRecoverWithoutDismissal() {
         val api = FakeApi().apply { failCaptchaChallenge = true }
-        composeRule.setContent { StkTheme { CaptchaDialog(api, "device", "password_login", {}, {}) } }
+        composeRule.activity.setContent { StkTheme { CaptchaDialog(api, "device", "password_login", {}, {}) } }
         waitForTag("captcha_error")
 
         api.failCaptchaChallenge = false
