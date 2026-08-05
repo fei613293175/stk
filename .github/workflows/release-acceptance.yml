@@ -40,6 +40,9 @@ jobs:
           distribution: temurin
           java-version: '17'
           cache: gradle
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.5.0'
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.13'
@@ -53,7 +56,7 @@ jobs:
       - run: bash scripts/ci/run_backend_tests.sh
       - name: Build signed Universal Release APK once
         working-directory: android-app
-        run: ./gradlew --no-daemon --stacktrace clean lintRelease testReleaseUnitTest assembleRelease assembleReleaseAndroidTest
+        run: gradle --no-daemon --stacktrace clean lintRelease testReleaseUnitTest assembleRelease assembleReleaseAndroidTest
       - name: Normalize artifact name and write build information
         run: python scripts/verify_release_artifact.py --apk-glob 'android-app/app/build/outputs/apk/release/*.apk' --normalize artifacts/release
       - uses: actions/upload-artifact@v7.0.1

@@ -35,6 +35,9 @@ jobs:
           distribution: temurin
           java-version: '17'
           cache: gradle
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.5.0'
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.13'
@@ -52,7 +55,7 @@ jobs:
         run: bash scripts/ci/run_backend_tests.sh
       - name: Android lint, unit tests and signed release build
         working-directory: android-app
-        run: ./gradlew --no-daemon --stacktrace lintRelease testReleaseUnitTest assembleRelease
+        run: gradle --no-daemon --stacktrace lintRelease testReleaseUnitTest assembleRelease
       - name: Verify APK identity and real size
         run: python scripts/verify_release_artifact.py --apk-glob 'android-app/app/build/outputs/apk/release/*.apk'
       - name: Upload exact build artifact
