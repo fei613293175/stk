@@ -6,7 +6,7 @@
 合同与残留扫描
 → PHP/后端单元与接口集成
 → Android 编译、Lint、单元、Room Migration
-→ API 37 固定模拟器安装上一版（V1.1 起）
+→ API 36 固定模拟器安装上一版（V1.1 起）
 → adb install -r 当前版
 → Compose UI 测试遍历本版全部新增 Interaction ID
 → 历史已发布核心交互回归
@@ -19,7 +19,7 @@
 
 ## 2. 固定模拟器
 
-- Android API 37、x86_64、Pixel 6 画像、390×844dp 等效窗口；语言 `zh-CN`；时区 `Asia/Shanghai`；字体缩放 1.0；浅色主题；动画比例固定。
+- Android API 36、x86_64、Pixel 6 画像、390×844dp 等效窗口；语言 `zh-CN`；时区 `Asia/Shanghai`；字体缩放 1.0；浅色主题；动画比例固定。任何非 API 36 平台禁止使用。
 - 视觉测试使用确定性 Fixture 数据、固定系统时间、固定图片和 Mock Server；不得连接随机线上数据截图。
 - 响应式结构额外在 360、412、430dp 运行布局/截断测试。
 

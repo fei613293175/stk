@@ -13,11 +13,13 @@
 
 已有 JDK 21 且满足版本合同，必须复用 JDK 21；JDK 17 或更高版本均可作为兼容环境。不得为了“统一版本”重新部署已经满足合同的环境。
 
-## 构建与模拟器门禁分离
+## API 版本固定与构建、模拟器门禁分离
 
-- `APK_BUILD_GATE` 包含 Android 编译、Lint、单元/后端测试、签名和 Artifact 生成；它只要求合同规定的 JDK、Gradle、Android SDK/Build Tools 和业务测试环境，**不要求 API 37 模拟器或 `/dev/kvm`**。
-- `EMULATOR_ACCEPTANCE_GATE` 包含 API 37 模拟器、Instrumentation、全部新增交互和视觉截图；它必须在 GitHub Actions 或可用的线上模拟器 runner 执行，并下载 `APK_BUILD_GATE` 生成的同一 Commit Artifact，禁止重复编译。
-- `/dev/kvm` 只提供模拟器硬件加速，不是 APK 打包前置条件。服务器没有 `/dev/kvm`、模拟器运行库缺失或模拟器无法启动时，`APK_BUILD_GATE` 可以继续；不得伪造设备、替换业务主机运行时、重启业务服务或为此阻塞 APK 构建。应切换 GitHub Actions 或具备 KVM 的线上 runner，并在版本合同记录实际阻塞原因。
+- API 36（Android 16）是本合同唯一允许的 Android SDK platform、compileSdk、targetSdk、system image 和模拟器版本。任何非 API 36 版本均禁止安装、配置、构建、验收或写入版本证据；版本合同必须逐版锁定 API 36。
+
+- `APK_BUILD_GATE` 包含 Android 编译、Lint、单元/后端测试、签名和 Artifact 生成；它只要求合同规定的 JDK、Gradle、Android SDK/Build Tools 和业务测试环境，**不要求 API 36 模拟器或 `/dev/kvm`**。
+- `EMULATOR_ACCEPTANCE_GATE` 包含 API 36 模拟器、Instrumentation、全部新增交互和视觉截图；它必须只在 GitHub Actions 执行，并下载 `APK_BUILD_GATE` 生成的同一 Commit Artifact，禁止重复编译。
+- `/dev/kvm` 只提供模拟器硬件加速，不是 APK 打包前置条件。服务器没有 `/dev/kvm`、模拟器运行库缺失或模拟器无法启动时，`APK_BUILD_GATE` 可以继续；不得伪造设备、替换业务主机运行时、重启业务服务或为此阻塞 APK 构建。必须切换 GitHub Actions 的 API 36 runner，并在版本合同记录实际阻塞原因。
 
 ## 不影响业务
 

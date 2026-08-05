@@ -121,7 +121,7 @@
 | T-ADM-ADM-PROJ-011 | ADMIN_UI_API | ADM-PROJ-011 | 后台页面与权限：用户项目查询 | 页面截图、角色矩阵、查询/保存/审计结果 |
 | T-ADM-ADM-PROJ-012 | ADMIN_UI_API | ADM-PROJ-012 | 后台页面与权限：项目审核与状态日志 | 页面截图、角色矩阵、查询/保存/审计结果 |
 | T-REL-V1.2.0-BUILD | RELEASE | V1.2.0 | 同一 Commit Release APK 构建与来源校验 | APK + Build Info + CI Provenance + SHA-256 |
-| T-REL-V1.2.0-EMULATOR | RELEASE | V1.2.0 | API 37 模拟器全量交互回归 | JUnit XML + 视频/截图 + logcat + 失败重现步骤 |
+| T-REL-V1.2.0-EMULATOR | RELEASE | V1.2.0 | API 36 模拟器全量交互回归 | JUnit XML + 视频/截图 + logcat + 失败重现步骤 |
 | T-REL-V1.2.0-VISUAL | RELEASE | V1.2.0 | 本版新增状态与历史核心状态视觉回归 | 视觉差异 HTML/JSON + actual/baseline/diff |
 | T-REL-V1.2.0-UPGRADE | RELEASE | V1.2.0 | 覆盖安装与数据兼容 | 安装日志、版本号、登录态/缓存/数据库迁移结果 |
 | T-REL-V1.2.0-DESKTOP | RELEASE | V1.2.0 | 桌面交付内容完整性 | 桌面目录清单、全部 SHA-256、来源 Commit |

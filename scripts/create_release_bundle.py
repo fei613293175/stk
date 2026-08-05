@@ -70,7 +70,7 @@ owner_text = owner_source.read_text(encoding="utf-8") + "\n\n> 当前状态：PE
 (out / "OWNER_TEST_CHECKLIST.md").write_text(owner_text, encoding="utf-8")
 
 (out / "AUTOMATED_TEST_REPORT.md").write_text(
-    f"# 自动测试报告\n\n- Release：{release_id}\n- Commit：{build_info['git_commit']}\n- GitHub Run：{build_info['github_run_id']}\n- 合同：PASS\n- Android/后端：PASS\n- API 37 模拟器：PASS\n- 视觉：PASS\n- 覆盖安装：PASS\n\n原始报告位于同一 Accepted Artifact 的 evidence 目录，禁止用本文件代替原始 JUnit、截图和日志。\n",
+    f"# 自动测试报告\n\n- Release：{release_id}\n- Commit：{build_info['git_commit']}\n- GitHub Run：{build_info['github_run_id']}\n- 合同：PASS\n- Android/后端：PASS\n- API 36 模拟器：PASS\n- 视觉：PASS\n- 覆盖安装：PASS\n\n原始报告位于同一 Accepted Artifact 的 evidence 目录，禁止用本文件代替原始 JUnit、截图和日志。\n",
     encoding="utf-8")
 
 with (ROOT / "contracts/mockup-manifest.csv").open(newline="", encoding="utf-8-sig") as f:

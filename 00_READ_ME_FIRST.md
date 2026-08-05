@@ -41,7 +41,7 @@
 3. 运行一次 `python scripts/check_mockup_readiness.py --release V1.0.0`；当前 95 张 V1.0.0 效果图应全部通过。
 4. 将本包完整合入固定仓库，Codex 从 `versions/V1.0.0/CODEX_START_PROMPT.md` 开始。
 5. 每版只按该版本目录实施，优先编码、测试和可运行结果，禁止重新设计已批准页面。
-6. 线上 APK 构建任务对同一 Commit 只生成一次 Artifact；GitHub Actions 的 API 37 模拟器、全部新增交互、截图和覆盖安装任务下载该 Artifact 验收，不重新编译。API 37 模拟器和 `/dev/kvm` 不是 APK 打包前置条件。
+6. 线上 APK 构建任务对同一 Commit 只生成一次 Artifact；GitHub Actions 的 API 36 模拟器、全部新增交互、截图和覆盖安装任务下载该 Artifact 验收，不重新编译。API 36 模拟器和 `/dev/kvm` 不是 APK 打包前置条件；禁止使用任何非 API 36 版本，也禁止在本机或业务线上服务器启动模拟器。
 7. 只允许下载通过验收的精确 Artifact，并复制到本机桌面版本目录。
 
 需要重新生成视觉资产时，使用 `scripts/render_all_mockups.py`；重新生成会改变图片 SHA，必须重新完成视觉审阅并更新 Manifest，不能静默替换已批准基线。

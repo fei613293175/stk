@@ -3,8 +3,8 @@ val releaseKeystorePath = System.getenv("STK_RELEASE_KEYSTORE_PATH")
 val releaseStorePassword = System.getenv("STK_RELEASE_STORE_PASSWORD")
 val releaseKeyAlias = System.getenv("STK_RELEASE_KEY_ALIAS")
 val releaseKeyPassword = System.getenv("STK_RELEASE_KEY_PASSWORD")
-android { namespace = "com.zzyihao.stk"; compileSdk = 37
-    defaultConfig { applicationId = "com.zzyihao.stk"; minSdk = 26; targetSdk = 37; versionCode = 10000; versionName = "1.0.0"; testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"; testBuildType = "release" }
+android { namespace = "com.zzyihao.stk"; compileSdk = 36
+    defaultConfig { applicationId = "com.zzyihao.stk"; minSdk = 26; targetSdk = 36; versionCode = 10000; versionName = "1.0.0"; testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"; testBuildType = "release" }
     buildFeatures { compose = true; buildConfig = true }
     signingConfigs {
         create("release") {

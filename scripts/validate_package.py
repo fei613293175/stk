@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -12,6 +13,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 VERSIONS = ["V1.0.0", "V1.1.0", "V1.2.0", "V1.3.0", "V1.4.0"]
 TEXT_SUFFIXES = {".md", ".yaml", ".yml", ".csv", ".json", ".sql", ".py", ".sh", ".ps1", ".txt"}
+PINNED_ANDROID_API = 36
 
 
 def load_yaml(rel: str):
@@ -60,9 +62,45 @@ if context["repository"]["url"] != "https://github.com/fei613293175/stk.git":
     errors.append("仓库地址不匹配固定仓库")
 if context["android"]["application_id"] != "com.zzyihao.stk":
     errors.append("Android applicationId 漂移")
+if context["android"]["compile_sdk"] != PINNED_ANDROID_API:
+    errors.append(f"PROJECT_CONTEXT compileSdk 必须固定为 API {PINNED_ANDROID_API}")
+if context["android"]["target_sdk"] != PINNED_ANDROID_API:
+    errors.append(f"PROJECT_CONTEXT targetSdk 必须固定为 API {PINNED_ANDROID_API}")
+emulator_gate = context["execution_environment_policy"]["emulator_acceptance_gate"]
+if emulator_gate["api_level"] != PINNED_ANDROID_API:
+    errors.append(f"PROJECT_CONTEXT 模拟器必须固定为 API {PINNED_ANDROID_API}")
+if emulator_gate["execution_preference"] != "github_actions_only":
+    errors.append("PROJECT_CONTEXT 模拟器验收必须仅允许 GitHub Actions")
+
+for gradle_file in (ROOT / "android-app").rglob("*.gradle.kts"):
+    gradle_text = gradle_file.read_text(encoding="utf-8")
+    for field in ("compileSdk", "targetSdk"):
+        for value in re.findall(rf"\b{field}\s*=\s*(\d+)", gradle_text):
+            if int(value) != PINNED_ANDROID_API:
+                errors.append(f"{gradle_file.relative_to(ROOT)} {field} 必须固定为 API {PINNED_ANDROID_API}")
+
+for workflow_rel in [
+    ".github/workflows/android-emulator-visual.yml",
+    ".github/workflows/release-acceptance.yml",
+]:
+    workflow_text = (ROOT / workflow_rel).read_text(encoding="utf-8")
+    api_levels = re.findall(r"api-level:\s*['\"]?([0-9]+(?:\.[0-9]+)?)", workflow_text)
+    if api_levels != [str(PINNED_ANDROID_API)]:
+        errors.append(f"{workflow_rel} 必须且只能配置 api-level: '{PINNED_ANDROID_API}'")
 
 wrong_domain = "orbe" + "xa.cc"
+forbidden_android_markers = (
+    f"API {PINNED_ANDROID_API + 1}",
+    f"android-{PINNED_ANDROID_API + 1}.0",
+    f"platforms;android-{PINNED_ANDROID_API + 1}.0",
+    f"system-images;android-{PINNED_ANDROID_API + 1}.0",
+    f"api-level: '{PINNED_ANDROID_API + 1}.0'",
+    f"compileSdk = {PINNED_ANDROID_API + 1}",
+    f"targetSdk = {PINNED_ANDROID_API + 1}",
+)
 for p in ROOT.rglob("*"):
+    if any(part in {".git", "artifacts"} for part in p.parts):
+        continue
     if p.is_file() and p.suffix.lower() in TEXT_SUFFIXES:
         try:
             text = p.read_text(encoding="utf-8")
@@ -70,6 +108,9 @@ for p in ROOT.rglob("*"):
             continue
         if wrong_domain.lower() in text.lower():
             errors.append(f"发现已废弃错误域名: {p.relative_to(ROOT)}")
+        for marker in forbidden_android_markers:
+            if marker in text:
+                errors.append(f"发现禁止的 Android 平台标记 {marker}: {p.relative_to(ROOT)}")
 
 pages = load_yaml("contracts/ui-page-catalog.yaml")["pages"]
 states = load_csv("contracts/ui-state-catalog.csv")
@@ -210,6 +251,7 @@ for vid in VERSIONS:
         "VERSION_DEVELOPMENT_SPEC.md", "UI_FIXED_RULES.md", "FRONTEND_SCOPE.md",
         "BACKEND_ADMIN_SCOPE.md", "PAGE_STATE_MOCKUP_BINDINGS.csv", "FEATURE_TRACEABILITY.csv",
         "TEST_AND_OWNER_ACCEPTANCE.md", "DELIVERY_CHECKLIST.md", "CODEX_START_PROMPT.md",
+        "ENVIRONMENT_CONTRACT.yaml",
     ]
     for name in required_version_files:
         if not (vdir / name).exists():
@@ -218,6 +260,18 @@ for vid in VERSIONS:
     for fixed in ["STK-DS-1.0", "#246BFD", "56dp", "64dp", "48dp", "16dp", "390×844"]:
         if fixed not in ui_rules:
             errors.append(f"{vid} 未重复固定 UI 参数: {fixed}")
+    environment_contract = load_yaml(f"versions/{vid}/ENVIRONMENT_CONTRACT.yaml")
+    contract_pins = environment_contract["contract_pins"]
+    for field in ("compile_sdk", "target_sdk", "allowed_api_level"):
+        if contract_pins.get(field) != PINNED_ANDROID_API:
+            errors.append(f"{vid} {field} 必须固定为 API {PINNED_ANDROID_API}")
+    if contract_pins.get("forbidden_api_levels") != "all_except_36":
+        errors.append(f"{vid} 必须禁止所有非 API {PINNED_ANDROID_API} 平台")
+    version_emulator_gate = environment_contract["gates"]["emulator_acceptance"]
+    if version_emulator_gate.get("api_level") != PINNED_ANDROID_API:
+        errors.append(f"{vid} 模拟器必须固定为 API {PINNED_ANDROID_API}")
+    if version_emulator_gate.get("execution") != "github_actions_only":
+        errors.append(f"{vid} 模拟器验收必须仅允许 GitHub Actions")
 
 repo = load_yaml("contracts/repository-policy.yaml")
 if repo["remote_url"] != "https://github.com/fei613293175/stk.git":

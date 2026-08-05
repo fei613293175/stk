@@ -1,4 +1,4 @@
-﻿test_id,introduced_in,layer,target_id,name,command_or_runner,required_evidence,release_gate
+test_id,introduced_in,layer,target_id,name,command_or_runner,required_evidence,release_gate
 T-VIS-DS-001-S01,V1.0.0,ANDROID_SCREENSHOT,DS-001-S01,色彩、字体、间距与圆角规范板 - 完整规范 视觉比对,./gradlew :app:connectedReleaseVisualTest --tests <state fixture>,actual/DS-001-S01.png + diff/DS-001-S01.png + baseline SHA + diff ratio,REQUIRED
 T-VIS-DS-002-S01,V1.0.0,ANDROID_SCREENSHOT,DS-002-S01,公共组件规范板 - 完整组件 视觉比对,./gradlew :app:connectedReleaseVisualTest --tests <state fixture>,actual/DS-002-S01.png + diff/DS-002-S01.png + baseline SHA + diff ratio,REQUIRED
 T-VIS-DS-003-S01,V1.0.0,ANDROID_SCREENSHOT,DS-003-S01,全局状态与反馈规范板 - 完整状态 视觉比对,./gradlew :app:connectedReleaseVisualTest --tests <state fixture>,actual/DS-003-S01.png + diff/DS-003-S01.png + baseline SHA + diff ratio,REQUIRED
@@ -489,27 +489,27 @@ T-ADM-ADM-SYS-002,V1.4.0,ADMIN_UI_API,ADM-SYS-002,后台页面与权限：维护
 T-ADM-ADM-SYS-003,V1.4.0,ADMIN_UI_API,ADM-SYS-003,后台页面与权限：App Links 与下载配置,phpunit + Playwright/Admin smoke suite,页面截图、角色矩阵、查询/保存/审计结果,REQUIRED
 T-ADM-ADM-SYS-004,V1.4.0,ADMIN_UI_API,ADM-SYS-004,后台页面与权限：项目系统诊断,phpunit + Playwright/Admin smoke suite,页面截图、角色矩阵、查询/保存/审计结果,REQUIRED
 T-REL-V1.0.0-BUILD,V1.0.0,RELEASE,V1.0.0,同一 Commit Release APK 构建与来源校验,GitHub Actions release-acceptance,APK + Build Info + CI Provenance + SHA-256,REQUIRED
-T-REL-V1.0.0-EMULATOR,V1.0.0,RELEASE,V1.0.0,API 37 模拟器全量交互回归,GitHub Actions Android emulator API 37,JUnit XML + 视频/截图 + logcat + 失败重现步骤,REQUIRED
+T-REL-V1.0.0-EMULATOR,V1.0.0,RELEASE,V1.0.0,API 36 模拟器全量交互回归,GitHub Actions Android emulator API 36,JUnit XML + 视频/截图 + logcat + 失败重现步骤,REQUIRED
 T-REL-V1.0.0-VISUAL,V1.0.0,RELEASE,V1.0.0,本版新增状态与历史核心状态视觉回归,python scripts/compare_visuals.py,视觉差异 HTML/JSON + actual/baseline/diff,REQUIRED
 T-REL-V1.0.0-UPGRADE,V1.0.0,RELEASE,V1.0.0,覆盖安装与数据兼容,adb install previous.apk && adb install -r current.apk,安装日志、版本号、登录态/缓存/数据库迁移结果,REQUIRED
 T-REL-V1.0.0-DESKTOP,V1.0.0,RELEASE,V1.0.0,桌面交付内容完整性,powershell scripts/sync_desktop_delivery.ps1,桌面目录清单、全部 SHA-256、来源 Commit,REQUIRED
 T-REL-V1.1.0-BUILD,V1.1.0,RELEASE,V1.1.0,同一 Commit Release APK 构建与来源校验,GitHub Actions release-acceptance,APK + Build Info + CI Provenance + SHA-256,REQUIRED
-T-REL-V1.1.0-EMULATOR,V1.1.0,RELEASE,V1.1.0,API 37 模拟器全量交互回归,GitHub Actions Android emulator API 37,JUnit XML + 视频/截图 + logcat + 失败重现步骤,REQUIRED
+T-REL-V1.1.0-EMULATOR,V1.1.0,RELEASE,V1.1.0,API 36 模拟器全量交互回归,GitHub Actions Android emulator API 36,JUnit XML + 视频/截图 + logcat + 失败重现步骤,REQUIRED
 T-REL-V1.1.0-VISUAL,V1.1.0,RELEASE,V1.1.0,本版新增状态与历史核心状态视觉回归,python scripts/compare_visuals.py,视觉差异 HTML/JSON + actual/baseline/diff,REQUIRED
 T-REL-V1.1.0-UPGRADE,V1.1.0,RELEASE,V1.1.0,覆盖安装与数据兼容,adb install previous.apk && adb install -r current.apk,安装日志、版本号、登录态/缓存/数据库迁移结果,REQUIRED
 T-REL-V1.1.0-DESKTOP,V1.1.0,RELEASE,V1.1.0,桌面交付内容完整性,powershell scripts/sync_desktop_delivery.ps1,桌面目录清单、全部 SHA-256、来源 Commit,REQUIRED
 T-REL-V1.2.0-BUILD,V1.2.0,RELEASE,V1.2.0,同一 Commit Release APK 构建与来源校验,GitHub Actions release-acceptance,APK + Build Info + CI Provenance + SHA-256,REQUIRED
-T-REL-V1.2.0-EMULATOR,V1.2.0,RELEASE,V1.2.0,API 37 模拟器全量交互回归,GitHub Actions Android emulator API 37,JUnit XML + 视频/截图 + logcat + 失败重现步骤,REQUIRED
+T-REL-V1.2.0-EMULATOR,V1.2.0,RELEASE,V1.2.0,API 36 模拟器全量交互回归,GitHub Actions Android emulator API 36,JUnit XML + 视频/截图 + logcat + 失败重现步骤,REQUIRED
 T-REL-V1.2.0-VISUAL,V1.2.0,RELEASE,V1.2.0,本版新增状态与历史核心状态视觉回归,python scripts/compare_visuals.py,视觉差异 HTML/JSON + actual/baseline/diff,REQUIRED
 T-REL-V1.2.0-UPGRADE,V1.2.0,RELEASE,V1.2.0,覆盖安装与数据兼容,adb install previous.apk && adb install -r current.apk,安装日志、版本号、登录态/缓存/数据库迁移结果,REQUIRED
 T-REL-V1.2.0-DESKTOP,V1.2.0,RELEASE,V1.2.0,桌面交付内容完整性,powershell scripts/sync_desktop_delivery.ps1,桌面目录清单、全部 SHA-256、来源 Commit,REQUIRED
 T-REL-V1.3.0-BUILD,V1.3.0,RELEASE,V1.3.0,同一 Commit Release APK 构建与来源校验,GitHub Actions release-acceptance,APK + Build Info + CI Provenance + SHA-256,REQUIRED
-T-REL-V1.3.0-EMULATOR,V1.3.0,RELEASE,V1.3.0,API 37 模拟器全量交互回归,GitHub Actions Android emulator API 37,JUnit XML + 视频/截图 + logcat + 失败重现步骤,REQUIRED
+T-REL-V1.3.0-EMULATOR,V1.3.0,RELEASE,V1.3.0,API 36 模拟器全量交互回归,GitHub Actions Android emulator API 36,JUnit XML + 视频/截图 + logcat + 失败重现步骤,REQUIRED
 T-REL-V1.3.0-VISUAL,V1.3.0,RELEASE,V1.3.0,本版新增状态与历史核心状态视觉回归,python scripts/compare_visuals.py,视觉差异 HTML/JSON + actual/baseline/diff,REQUIRED
 T-REL-V1.3.0-UPGRADE,V1.3.0,RELEASE,V1.3.0,覆盖安装与数据兼容,adb install previous.apk && adb install -r current.apk,安装日志、版本号、登录态/缓存/数据库迁移结果,REQUIRED
 T-REL-V1.3.0-DESKTOP,V1.3.0,RELEASE,V1.3.0,桌面交付内容完整性,powershell scripts/sync_desktop_delivery.ps1,桌面目录清单、全部 SHA-256、来源 Commit,REQUIRED
 T-REL-V1.4.0-BUILD,V1.4.0,RELEASE,V1.4.0,同一 Commit Release APK 构建与来源校验,GitHub Actions release-acceptance,APK + Build Info + CI Provenance + SHA-256,REQUIRED
-T-REL-V1.4.0-EMULATOR,V1.4.0,RELEASE,V1.4.0,API 37 模拟器全量交互回归,GitHub Actions Android emulator API 37,JUnit XML + 视频/截图 + logcat + 失败重现步骤,REQUIRED
+T-REL-V1.4.0-EMULATOR,V1.4.0,RELEASE,V1.4.0,API 36 模拟器全量交互回归,GitHub Actions Android emulator API 36,JUnit XML + 视频/截图 + logcat + 失败重现步骤,REQUIRED
 T-REL-V1.4.0-VISUAL,V1.4.0,RELEASE,V1.4.0,本版新增状态与历史核心状态视觉回归,python scripts/compare_visuals.py,视觉差异 HTML/JSON + actual/baseline/diff,REQUIRED
 T-REL-V1.4.0-UPGRADE,V1.4.0,RELEASE,V1.4.0,覆盖安装与数据兼容,adb install previous.apk && adb install -r current.apk,安装日志、版本号、登录态/缓存/数据库迁移结果,REQUIRED
 T-REL-V1.4.0-DESKTOP,V1.4.0,RELEASE,V1.4.0,桌面交付内容完整性,powershell scripts/sync_desktop_delivery.ps1,桌面目录清单、全部 SHA-256、来源 Commit,REQUIRED

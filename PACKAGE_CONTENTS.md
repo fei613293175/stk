@@ -14,7 +14,7 @@
 | `ui/MOCKUP_GENERATION_REPORT.md` | 效果图数量、版本分布、唯一 SHA 与校验报告 |
 | `backend/` | Discuz 插件实现规范和五版 SQL 迁移蓝图 |
 | `android/` | 原生工程模块、路由、依赖和 testTag 规范 |
-| `.github/workflows/` | 合同、构建、API 37 模拟器、视觉和发布来源工作流 |
+| `.github/workflows/` | 合同、构建、API 36 模拟器、视觉和发布来源工作流 |
 | `scripts/` | 合同校验、确定性效果图渲染、视觉比对、APK 校验和桌面复制 |
 | `release-inputs/` | 每版真实发布证据状态；代码未开发前保持阻断 |
 | `templates/` | 本机管理员凭据和桌面交付模板 |

@@ -99,17 +99,17 @@ jobs:
       - run: python scripts/resolve_ci_release.py --write-github-env
       - name: Download previous accepted APK for upgrade test
         run: bash scripts/ci/download_previous_release.sh
-      - name: Enable KVM for the API 37 emulator
+      - name: Enable KVM for the API 36 emulator
         run: |
           set -euo pipefail
           [[ -e /dev/kvm ]] || { echo '::error::GitHub runner does not expose /dev/kvm'; exit 1; }
           sudo chmod 666 /dev/kvm
           [[ -r /dev/kvm && -w /dev/kvm ]]
           ls -l /dev/kvm
-      - name: Test the exact downloaded APK on API 37 emulator
+      - name: Test the exact downloaded APK on API 36 emulator
         uses: reactivecircus/android-emulator-runner@v2.38.0
         with:
-          api-level: '37.0'
+          api-level: '36'
           target: google_apis
           arch: x86_64
           profile: pixel_6
@@ -117,7 +117,7 @@ jobs:
           disk-size: 8192M
           ram-size: 4096M
           heap-size: 512M
-          emulator-options: -no-window -gpu swiftshader -feature -ReadColorBufferDma -noaudio -no-boot-anim -camera-back none -no-snapshot -no-metrics
+          emulator-options: -no-window -gpu swiftshader -noaudio -no-boot-anim -camera-back none -no-snapshot -no-metrics
           disable-animations: true
           script: bash scripts/ci/run_exact_release_acceptance.sh
       - run: python scripts/compare_visuals.py --release "$STK_RELEASE_ID" --fail-on-diff

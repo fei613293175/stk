@@ -1,6 +1,6 @@
 # 官方资料索引（检索日期 2026-08-05）
 
-- Android 17 / API 37: https://developer.android.com/about/versions/17
+- Android 16 / API 36: https://developer.android.com/about/versions/16
 - Android Gradle Plugin 9.3.0 compatibility: https://developer.android.com/build/releases/agp-9-3-0-release-notes
 - Jetpack Compose: https://developer.android.com/compose
 - Compose BOM: https://developer.android.com/develop/ui/compose/bom

@@ -23,8 +23,8 @@ android:
   language: Kotlin
   ui: Jetpack Compose + Material 3 foundation + STK custom design system
   min_sdk: 26
-  compile_sdk: 37
-  target_sdk: 37
+  compile_sdk: 36
+  target_sdk: 36
   jdk: 21
   jdk_compatibility: "JDK 17+; JDK 21 preferred when already available on the online server"
   kotlin: 2.4.10
@@ -85,10 +85,10 @@ execution_environment_policy:
   apk_build_artifact_policy: build_once_upload_same_commit
   emulator_acceptance_gate:
     required_for_full_release: true
-    api_level: 37
-    execution_preference: github_actions_or_online_runner
+    api_level: 36
+    execution_preference: github_actions_only
     artifact_policy: download_exact_build_artifact_no_rebuild
-  missing_kvm_policy: "Never block APK_BUILD_GATE; route EMULATOR_ACCEPTANCE_GATE to GitHub Actions or a KVM-capable online runner and record the evidence."
+  missing_kvm_policy: "Never block APK_BUILD_GATE; route EMULATOR_ACCEPTANCE_GATE to the API 36 GitHub Actions runner and record the evidence."
   inventory_required_before_mutation: true
   business_protection: "Do not replace system runtimes, alter existing Nginx/PHP-FPM/MySQL/Discuz configuration, bind business ports, or restart business services."
   per_version_evidence_required: inventory,actual_paths,versions,reuse_or_supplement_decision,validation_logs
