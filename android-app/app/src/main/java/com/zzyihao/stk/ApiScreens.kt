@@ -49,7 +49,7 @@ internal fun ApiRegisterScreen(api: StkApi, deviceId: String, onBack: () -> Unit
     var phone by rememberSaveable { mutableStateOf("") }; var password by rememberSaveable { mutableStateOf("") }; var confirm by rememberSaveable { mutableStateOf("") }; var passwordVisible by rememberSaveable { mutableStateOf(false) }; var agreed by rememberSaveable { mutableStateOf(false) }; var pending by rememberSaveable { mutableStateOf(false) }; var busy by rememberSaveable { mutableStateOf(false) }; var error by rememberSaveable { mutableStateOf("") }
     Column(Modifier.fillMaxSize().padding(StkTokens.Space24), verticalArrangement = Arrangement.spacedBy(StkTokens.Space12)) {
         Text("注册商推客", style = MaterialTheme.typography.headlineSmall); Text("注册不会发送短信", color = StkTokens.TextSecondary)
-        OutlinedTextField(phone, { phone = it }, Modifier.fillMaxWidth().testTag("register_phone"), label = { Text("手机号") })
+        OutlinedTextField(phone, { phone = it.filter(Char::isDigit).take(11) }, Modifier.fillMaxWidth().testTag("register_phone"), label = { Text("手机号") })
         OutlinedTextField(password, { password = it }, Modifier.fillMaxWidth().testTag("register_password"), label = { Text("密码") }, visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation())
         OutlinedTextField(confirm, { confirm = it }, Modifier.fillMaxWidth().testTag("register_password_confirm"), label = { Text("确认密码") }, visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation())
         TextButton({ passwordVisible = !passwordVisible }, Modifier.testTag("register_password_visibility")) { Text(if (passwordVisible) "隐藏密码" else "显示密码") }
@@ -69,7 +69,7 @@ internal fun ApiRegisterScreen(api: StkApi, deviceId: String, onBack: () -> Unit
 internal fun ApiResetScreen(api: StkApi, deviceId: String, onBack: () -> Unit) {
     var phone by rememberSaveable { mutableStateOf("") }; var sms by rememberSaveable { mutableStateOf("") }; var password by rememberSaveable { mutableStateOf("") }; var confirm by rememberSaveable { mutableStateOf("") }; var action by rememberSaveable { mutableStateOf("") }; var error by rememberSaveable { mutableStateOf("") }; var message by rememberSaveable { mutableStateOf("") }
     Column(Modifier.fillMaxSize().padding(StkTokens.Space24), verticalArrangement = Arrangement.spacedBy(StkTokens.Space12)) {
-        Text("找回密码", style = MaterialTheme.typography.headlineSmall); OutlinedTextField(phone, { phone = it }, Modifier.fillMaxWidth().testTag("reset_phone"), label = { Text("手机号") })
+        Text("找回密码", style = MaterialTheme.typography.headlineSmall); OutlinedTextField(phone, { phone = it.filter(Char::isDigit).take(11) }, Modifier.fillMaxWidth().testTag("reset_phone"), label = { Text("手机号") })
         Button({ if (phone.length == 11) action = "sms_send" else error = "请输入正确手机号" }, Modifier.fillMaxWidth().testTag("reset_send_sms")) { Text("发送短信验证码") }
         OutlinedTextField(sms, { sms = it }, Modifier.fillMaxWidth().testTag("reset_sms_code"), label = { Text("短信验证码") }); OutlinedTextField(password, { password = it }, Modifier.fillMaxWidth().testTag("reset_new_password"), label = { Text("新密码") }); OutlinedTextField(confirm, { confirm = it }, Modifier.fillMaxWidth().testTag("reset_new_password_confirm"), label = { Text("确认新密码") })
         if (error.isNotBlank()) Text(error, color = StkTokens.BrandAccent); if (message.isNotBlank()) Text(message)
@@ -138,7 +138,16 @@ internal fun ApiHomeScreen(api: StkApi, session: StkSession, modifier: Modifier,
     }
 
     fun reloadProjects() { reload++ }
-    LaunchedEffect(session.accessToken, reload) { requestPage(null, replace = true) }
+    LaunchedEffect(session.accessToken, reload) {
+        projects = emptyList()
+        nextCursor = null
+        hasMore = false
+        loadingMore = false
+        loadMoreError = false
+        inFlightCursor = null
+        listState.scrollToItem(0)
+        requestPage(null, replace = true)
+    }
     LaunchedEffect(listState) {
         snapshotFlow {
             val info = listState.layoutInfo

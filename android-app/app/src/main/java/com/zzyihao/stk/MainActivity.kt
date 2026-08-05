@@ -156,7 +156,7 @@ internal fun LoginScreen(api: StkApi, deviceId: String, onAuthenticated: (StkSes
         Text("登录商推客", style = MaterialTheme.typography.headlineSmall)
         Text("使用手机号安全登录", color = StkTokens.TextSecondary)
         Row { TextButton(onClick = { passwordMode = true }, Modifier.testTag("login_mode_password")) { Text("密码登录") }; TextButton(onClick = { passwordMode = false }, Modifier.testTag("login_mode_sms")) { Text("短信登录") } }
-        OutlinedTextField(phone, { phone = it }, Modifier.fillMaxWidth().testTag("login_phone"), label = { Text("手机号") })
+        OutlinedTextField(phone, { phone = it.filter(Char::isDigit).take(11) }, Modifier.fillMaxWidth().testTag("login_phone"), label = { Text("手机号") })
         if (passwordMode) {
             OutlinedTextField(password, { password = it }, Modifier.fillMaxWidth().testTag("login_password"), label = { Text("登录密码") }, visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation())
             TextButton(onClick = { passwordVisible = !passwordVisible }, Modifier.testTag("login_password_visibility")) { Text(if (passwordVisible) "隐藏密码" else "显示密码") }
