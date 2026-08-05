@@ -1,8 +1,13 @@
 <?php
 if (!defined('IN_DISCUZ')) { exit('Access Denied'); }
+require_once __DIR__ . '/Settings.php';
 
 final class StkCaptchaService {
     private static function dateTime(int $timestamp): string { return gmdate('Y-m-d H:i:s', $timestamp); }
+    private static function utcTimestamp(string $value): int {
+        $parsed = strtotime($value . ' UTC');
+        return $parsed === false ? 0 : $parsed;
+    }
 
     private static function renderPngDataUri(string $answer): string {
         if (!function_exists('imagecreatetruecolor') || !function_exists('imagepng')) {
@@ -80,12 +85,14 @@ final class StkCaptchaService {
 
     public static function challenge(string $action, string $deviceId): array {
         $allowed = ['password_login', 'sms_send', 'sms_login', 'register', 'password_reset'];
-        if (!in_array($action, $allowed, true) || $deviceId === '') {
+        if (!in_array($action, $allowed, true) || !in_array($action, StkSettings::csv('captcha_required_actions', $allowed), true) || $deviceId === '') {
             throw new StkApiException(422, 'SYS_REQUEST_INVALID', '请求参数错误');
         }
-        $answer = strtoupper(substr(bin2hex(random_bytes(3)), 0, 4));
+        if (!StkSettings::bool('captcha_enabled', true)) throw new StkApiException(503, 'CAPTCHA_UNAVAILABLE', '安全验证码暂不可用');
+        $length = StkSettings::int('captcha_length', 4, 4, 6);
+        $answer = strtoupper(substr(bin2hex(random_bytes((int)ceil($length / 2))), 0, $length));
         $challenge = bin2hex(random_bytes(16));
-        $expires = time() + 120;
+        $expires = time() + StkSettings::int('captcha_challenge_ttl_seconds', 120, 60, 300);
         $imageDataUri = self::renderPngDataUri($answer);
         if (class_exists('DB')) {
             DB::insert('stk_auth_captcha_challenge', [
@@ -95,12 +102,12 @@ final class StkCaptchaService {
                 'session_hash' => hash('sha256', session_id()),
                 'device_hash' => hash('sha256', $deviceId),
                 'attempts' => 0,
-                'max_attempts' => 5,
+                'max_attempts' => StkSettings::int('captcha_max_attempts', 5, 2, 10),
                 'expires_at' => self::dateTime($expires),
                 'created_at' => self::dateTime(time()),
             ]);
         }
-        return ['challenge_id' => $challenge, 'image_base64_or_url' => $imageDataUri, 'expires_in' => 120];
+        return ['challenge_id' => $challenge, 'image_base64_or_url' => $imageDataUri, 'expires_in' => StkSettings::int('captcha_challenge_ttl_seconds', 120, 60, 300)];
     }
 
     public static function verify(string $challengeId, string $answer, string $action, string $deviceId): string {
@@ -112,7 +119,7 @@ final class StkCaptchaService {
             'SELECT * FROM ' . DB::table('stk_auth_captcha_challenge') . ' WHERE challenge_id=%s LIMIT 1',
             [$challengeId]
         );
-        if (!$row || strtotime((string)$row['expires_at']) < time() || $row['verified_at'] !== null || $row['used_at'] !== null) {
+        if (!$row || self::utcTimestamp((string)$row['expires_at']) < time() || $row['verified_at'] !== null || $row['used_at'] !== null) {
             throw new StkApiException(410, 'CAPTCHA_EXPIRED', '安全验证码已过期');
         }
         if ((string)$row['action'] !== $action || !hash_equals((string)$row['device_hash'], hash('sha256', $deviceId))) {
@@ -131,7 +138,7 @@ final class StkCaptchaService {
         $ticket = bin2hex(random_bytes(24));
         DB::update('stk_auth_captcha_challenge', [
             'ticket_hash' => hash('sha256', $ticket),
-            'ticket_expires_at' => self::dateTime(time() + 90),
+            'ticket_expires_at' => self::dateTime(time() + StkSettings::int('captcha_ticket_ttl_seconds', 90, 30, 180)),
             'verified_at' => self::dateTime(time()),
         ], ['challenge_id' => $challengeId]);
         return $ticket;
@@ -145,7 +152,7 @@ final class StkCaptchaService {
             'SELECT * FROM ' . DB::table('stk_auth_captcha_challenge') . ' WHERE ticket_hash=%s LIMIT 1',
             [hash('sha256', $ticket)]
         );
-        if (!$row || $row['used_at'] !== null || strtotime((string)$row['ticket_expires_at']) < time()
+        if (!$row || $row['used_at'] !== null || self::utcTimestamp((string)$row['ticket_expires_at']) < time()
             || (string)$row['action'] !== $action
             || !hash_equals((string)$row['device_hash'], hash('sha256', $deviceId))) {
             throw new StkApiException(422, 'CAPTCHA_TICKET_INVALID', '安全验证已失效，请重试');

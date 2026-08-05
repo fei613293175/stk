@@ -4,7 +4,7 @@
 
 ```text
 source/plugin/stk_auth/
-├── discuz_plugin_stk_auth.xml
+├── discuz_plugin_stk_auth.json
 ├── install.php / upgrade.php / uninstall.php
 ├── api/                 # /v1/auth、bootstrap、legal、health
 ├── service/             # 认证、Token、验证码、短信、风控、审计
@@ -14,7 +14,7 @@ source/plugin/stk_auth/
 └── language/
 
 source/plugin/stk_project/
-├── discuz_plugin_stk_project.xml
+├── discuz_plugin_stk_project.json
 ├── install.php / upgrade.php / uninstall.php
 ├── api/                 # /v1/projects、me、release、app-links
 ├── service/             # 项目、上传、审核、会员展示、账户只读、发布

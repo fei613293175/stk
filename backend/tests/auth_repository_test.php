@@ -16,7 +16,7 @@ if (count(DB::$queries) !== 15) {
     throw new RuntimeException('Expected 15 V1.0.0 CREATE TABLE statements, received ' . count(DB::$queries));
 }
 foreach (DB::$queries as $query) {
-    if (str_contains($query, 'pre_') || !str_contains($query, 'CREATE TABLE IF NOT EXISTS tenant42_')) {
+    if (strpos($query, 'pre_') !== false || strpos($query, 'CREATE TABLE IF NOT EXISTS tenant42_') === false) {
         throw new RuntimeException('Migration did not apply the active Discuz table prefix');
     }
 }

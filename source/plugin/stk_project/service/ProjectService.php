@@ -2,6 +2,18 @@
 if (!defined('IN_DISCUZ')) { exit('Access Denied'); }
 
 final class StkProjectService {
+    private static function settingInt(string $key, int $default, int $min, int $max): int {
+        global $_G;
+        $settings = $_G['cache']['plugin']['stk_project'] ?? [];
+        $value = is_array($settings) ? (string)($settings[$key] ?? $default) : (string)$default;
+        return preg_match('/^[0-9]+$/', $value) ? max($min, min($max, (int)$value)) : $default;
+    }
+    private static function settingString(string $key, string $default): string {
+        global $_G;
+        $settings = $_G['cache']['plugin']['stk_project'] ?? [];
+        return is_array($settings) && isset($settings[$key]) ? trim((string)$settings[$key]) : $default;
+    }
+
     public static function categories(bool $includeAll): array {
         if (!class_exists('DB')) { throw new StkApiException(503, 'PROJECT_CATEGORY_UNAVAILABLE', '项目分类暂不可用'); }
         $where = $includeAll ? 'deleted_at IS NULL' : 'enabled=1 AND deleted_at IS NULL';
@@ -13,11 +25,11 @@ final class StkProjectService {
 
     public static function list(array $query): array {
         if (!class_exists('DB')) { throw new StkApiException(503, 'PROJECT_SERVICE_UNAVAILABLE', '项目服务暂不可用'); }
-        $limit = max(1, min(30, (int)($query['limit'] ?? 20)));
+        $limit = max(1, min(30, (int)($query['limit'] ?? self::settingInt('home_page_size', 10, 5, 30))));
         $cursor = max(0, (int)($query['cursor'] ?? 0));
         $categoryId = max(0, (int)($query['category_id'] ?? 0));
         $keyword = trim((string)($query['keyword'] ?? ''));
-        $sort = (string)($query['sort'] ?? 'recommended');
+        $sort = (string)($query['sort'] ?? self::settingString('home_default_sort', 'latest'));
         if (!in_array($sort, ['latest', 'recommended'], true)) { throw new StkApiException(422, 'PROJECT_QUERY_INVALID', '项目查询参数错误'); }
 
         $where = ['p.status=%s', 'p.deleted_at IS NULL'];
@@ -53,7 +65,8 @@ final class StkProjectService {
     public static function recordView(int $projectId, int $viewerUid, string $sessionId): array {
         self::detail($projectId, $viewerUid);
         if ($sessionId === '') { throw new StkApiException(422, 'SYS_REQUEST_INVALID', '请求参数错误'); }
-        $bucket = gmdate('YmdH') . '-' . substr(hash('sha256', $sessionId), 0, 12);
+        $window = self::settingInt('detail_view_dedupe_seconds', 1800, 60, 86400);
+        $bucket = (string)floor(time() / $window) . '-' . substr(hash('sha256', $sessionId), 0, 12);
         $now = gmdate('Y-m-d H:i:s');
         $counted = false;
         try {

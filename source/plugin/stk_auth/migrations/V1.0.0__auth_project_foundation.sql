@@ -160,6 +160,7 @@ CREATE TABLE IF NOT EXISTS pre_stk_idempotency_key (
   operation_id VARCHAR(64) NOT NULL,
   request_digest CHAR(64) NOT NULL,
   response_digest CHAR(64) NULL,
+  response_payload MEDIUMTEXT NULL,
   response_status SMALLINT UNSIGNED NULL,
   status VARCHAR(24) NOT NULL,
   expires_at DATETIME NOT NULL,

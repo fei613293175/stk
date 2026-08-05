@@ -3,8 +3,9 @@ if (!defined('IN_DISCUZ')) { exit('Access Denied'); }
 
 /** @return array{success:bool,code?:string,message?:string,biz_id?:string} */
 function stk_aliyun_sms_send(string $mobile, string $scene, string $code, array $settings): array {
-    $accessKey = trim((string)($settings['sms_access_key_id'] ?? ''));
-    $accessSecret = trim((string)($settings['sms_access_key_secret'] ?? ''));
+    require_once dirname(__DIR__) . '/service/SecretConfig.php';
+    $accessKey = trim(StkSecretConfig::get('sms.aliyun_access_key_id'));
+    $accessSecret = trim(StkSecretConfig::get('sms.aliyun_access_key_secret'));
     $signName = trim((string)($settings['sms_sign_name'] ?? ''));
     $template = trim((string)($settings['sms_template_' . $scene] ?? ''));
     if ($accessKey === '' || $accessSecret === '' || $signName === '' || $template === '' || !function_exists('curl_init')) {
@@ -23,7 +24,7 @@ function stk_aliyun_sms_send(string $mobile, string $scene, string $code, array 
         'SignatureVersion' => '1.0',
         'SignatureType' => 'HMAC-SHA1',
         'TemplateCode' => $template,
-        'TemplateParam' => json_encode(['code' => $code], JSON_UNESCAPED_UNICODE),
+        'TemplateParam' => json_encode([(string)($settings['sms_template_code_variable'] ?? 'code') => $code], JSON_UNESCAPED_UNICODE),
         'Timestamp' => gmdate('Y-m-d\TH:i:s\Z'),
         'Version' => '2017-05-25',
     ];
@@ -34,7 +35,8 @@ function stk_aliyun_sms_send(string $mobile, string $scene, string $code, array 
     $stringToSign = 'POST&%2F&' . _stk_aliyun_encode($canonicalized);
     $parameters['Signature'] = base64_encode(hash_hmac('sha1', $stringToSign, $accessSecret . '&', true));
     $ch = curl_init('https://dysmsapi.aliyuncs.com/');
-    curl_setopt_array($ch, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => http_build_query($parameters, '', '&'), CURLOPT_RETURNTRANSFER => true, CURLOPT_CONNECTTIMEOUT => 8, CURLOPT_TIMEOUT => 15, CURLOPT_HTTPHEADER => ['Accept: application/json']]);
+    $timeout = max(2, min(15, (int)($settings['sms_provider_timeout_seconds'] ?? 5)));
+    curl_setopt_array($ch, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => http_build_query($parameters, '', '&'), CURLOPT_RETURNTRANSFER => true, CURLOPT_CONNECTTIMEOUT => $timeout, CURLOPT_TIMEOUT => $timeout, CURLOPT_HTTPHEADER => ['Accept: application/json']]);
     $raw = curl_exec($ch);
     $curlError = curl_error($ch);
     $status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);

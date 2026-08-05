@@ -30,6 +30,13 @@ required_evidence:
   - same_commit_provenance
 actual_environment:
   host: obx-test
+  backend:
+    php_path: /usr/bin/php
+    php_version: 7.4.33
+    discuz_version: X5.0
+    mysql_version: 5.7.44
+    discuz_root: /www/wwwroot/stk_zz_yihao_com
+    validation: online_php_lint_and_isolated_backend_tests
   image: hhy-android-toolchain:r08-api36-cache
   jdk_path: /opt/java/openjdk
   jdk_version: 21.0.9

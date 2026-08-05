@@ -1,0 +1,41 @@
+{
+  "Title": "Discuz! Plugin",
+  "Data": {
+    "plugin": {
+      "available": "1",
+      "adminid": "3",
+      "name": "商推客项目",
+      "identifier": "stk_project",
+      "description": "商推客 V1.0 项目只读 API 与运营后台",
+      "datatables": "stk_project_category,stk_project,stk_project_view,stk_project_view_daily",
+      "directory": "stk_project/",
+      "copyright": "STK",
+      "version": "1.0.0",
+      "__modules": [
+        {"name":"admincp","menu":"项目运营概览","url":"","param":"page=overview","type":"3","adminid":"3","displayorder":"1"},
+        {"name":"admincp","menu":"项目管理","url":"","param":"page=projects","type":"3","adminid":"3","displayorder":"2"},
+        {"name":"admincp","menu":"项目分类","url":"","param":"page=categories","type":"3","adminid":"3","displayorder":"3"},
+        {"name":"admincp","menu":"首页展示设置","url":"","param":"page=home","type":"3","adminid":"3","displayorder":"4"},
+        {"name":"admincp","menu":"项目详情设置","url":"","param":"page=detail","type":"3","adminid":"3","displayorder":"5"}
+      ]
+    },
+    "version": "X5.0",
+    "var": [
+      {"displayorder":"-1","title":"home.page_size","description":"","variable":"home_page_size","type":"text","value":"10","extra":""},
+      {"displayorder":"-1","title":"home.default_sort","description":"","variable":"home_default_sort","type":"text","value":"latest","extra":""},
+      {"displayorder":"-1","title":"home.recommended_first","description":"","variable":"home_recommended_first","type":"text","value":"1","extra":""},
+      {"displayorder":"-1","title":"home.show_category","description":"","variable":"home_show_category","type":"text","value":"1","extra":""},
+      {"displayorder":"-1","title":"home.show_publisher","description":"","variable":"home_show_publisher","type":"text","value":"1","extra":""},
+      {"displayorder":"-1","title":"home.show_member_badge","description":"","variable":"home_show_member_badge","type":"text","value":"1","extra":""},
+      {"displayorder":"-1","title":"home.show_view_count","description":"","variable":"home_show_view_count","type":"text","value":"1","extra":""},
+      {"displayorder":"-1","title":"home.empty_copy","description":"","variable":"home_empty_copy","type":"text","value":"暂时还没有可展示的项目","extra":""},
+      {"displayorder":"-1","title":"detail.contact_login_required","description":"","variable":"detail_contact_login_required","type":"text","value":"1","extra":""},
+      {"displayorder":"-1","title":"detail.view_dedupe_seconds","description":"","variable":"detail_view_dedupe_seconds","type":"text","value":"1800","extra":""},
+      {"displayorder":"-1","title":"detail.recommendations_enabled","description":"","variable":"detail_recommendations_enabled","type":"text","value":"1","extra":""}
+    ],
+    "intro": "商推客 V1.0 项目浏览与运营闭环",
+    "installfile": "install.php",
+    "upgradefile": "upgrade.php",
+    "uninstallfile": "uninstall.php"
+  }
+}

@@ -28,10 +28,10 @@ final class DB {
 
     public static function fetch_first(string $sql, array $arguments = []): ?array {
         $value = (string)($arguments[0] ?? '');
-        if (str_contains($sql, 'challenge_id=')) {
+        if (strpos($sql, 'challenge_id=') !== false) {
             return self::$challenges[$value] ?? null;
         }
-        if (str_contains($sql, 'ticket_hash=')) {
+        if (strpos($sql, 'ticket_hash=') !== false) {
             foreach (self::$challenges as $row) {
                 if (($row['ticket_hash'] ?? null) === $value) return $row;
             }
@@ -50,7 +50,7 @@ final class DB {
 
     public static function query(string $sql, array $arguments = []): void {
         $challengeId = (string)($arguments[0] ?? '');
-        if (!isset(self::$challenges[$challengeId]) || !str_contains($sql, 'attempts=attempts+1')) {
+        if (!isset(self::$challenges[$challengeId]) || strpos($sql, 'attempts=attempts+1') === false) {
             throw new RuntimeException('Unexpected captcha query');
         }
         self::$challenges[$challengeId]['attempts']++;
@@ -84,9 +84,9 @@ function answerForHash(string $hash): string {
 $challenge = StkCaptchaService::challenge('password_login', 'test-device');
 assertTrue(isset($challenge['challenge_id'], $challenge['image_base64_or_url'], $challenge['expires_in']), 'Challenge response fields are incomplete');
 assertTrue(!array_key_exists('debug_answer', $challenge), 'Challenge response must not expose a debug answer');
-assertTrue(str_starts_with($challenge['image_base64_or_url'], 'data:image/png;base64,'), 'Challenge image must be an inline PNG');
+assertTrue(substr($challenge['image_base64_or_url'], 0, strlen('data:image/png;base64,')) === 'data:image/png;base64,', 'Challenge image must be an inline PNG');
 $png = base64_decode(substr($challenge['image_base64_or_url'], strlen('data:image/png;base64,')), true);
-assertTrue(is_string($png) && str_starts_with($png, "\x89PNG\r\n\x1a\n"), 'Challenge image is not a valid PNG payload');
+assertTrue(is_string($png) && substr($png, 0, 8) === "\x89PNG\r\n\x1a\n", 'Challenge image is not a valid PNG payload');
 
 $challengeId = $challenge['challenge_id'];
 $stored = DB::$challenges[$challengeId];

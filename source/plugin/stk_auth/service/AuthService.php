@@ -1,39 +1,64 @@
 <?php
 if (!defined('IN_DISCUZ')) { exit('Access Denied'); }
+require_once __DIR__ . '/Settings.php';
+require_once __DIR__ . '/SecurityService.php';
 
 final class StkAuthService {
     private static function dateTime(int $timestamp): string { return gmdate('Y-m-d H:i:s', $timestamp); }
 
     public static function loginPassword(string $mobile, string $password, string $ticket, string $deviceId, string $deviceName): array {
-        StkCaptchaService::consumeTicket($ticket, 'password_login', $deviceId);
-        $binding = self::mobileBinding($mobile);
-        if (!$binding || !function_exists('uc_user_login')) { throw new StkApiException(401, 'AUTH_INVALID_CREDENTIALS', '手机号或密码错误'); }
-        $member = DB::fetch_first('SELECT uid,username,status FROM ' . DB::table('common_member') . ' WHERE uid=%d LIMIT 1', [(int)$binding['uid']]);
-        if (!$member || (int)$member['status'] !== 0) { throw new StkApiException(403, 'AUTH_ACCOUNT_BLOCKED', '账号当前不可用'); }
-        $result = uc_user_login((string)$member['username'], $password, 0);
-        if (!is_array($result) || (int)$result[0] !== (int)$member['uid']) { throw new StkApiException(401, 'AUTH_INVALID_CREDENTIALS', '手机号或密码错误'); }
-        return self::loginResult((int)$member['uid'], $deviceId, $deviceName, true);
+        $uid = null;
+        try {
+            StkSecurityService::assertLoginAllowed($mobile, $deviceId);
+            StkCaptchaService::consumeTicket($ticket, 'password_login', $deviceId);
+            $binding = self::mobileBinding($mobile);
+            if (!$binding || !function_exists('uc_user_login')) { throw new StkApiException(401, 'AUTH_INVALID_CREDENTIALS', '手机号或密码错误'); }
+            $uid = (int)$binding['uid'];
+            $member = DB::fetch_first('SELECT uid,username,status FROM ' . DB::table('common_member') . ' WHERE uid=%d LIMIT 1', [$uid]);
+            if (!$member || (int)$member['status'] !== 0) { throw new StkApiException(403, 'AUTH_ACCOUNT_BLOCKED', '账号当前不可用'); }
+            $result = uc_user_login((string)$member['username'], $password, 0);
+            if (!is_array($result) || (int)$result[0] !== $uid) { throw new StkApiException(401, 'AUTH_INVALID_CREDENTIALS', '手机号或密码错误'); }
+            $data = self::loginResult($uid, $deviceId, $deviceName, true);
+            StkSecurityService::recordLogin($mobile, $uid, 'password', 'success', null, $deviceId);
+            return $data;
+        } catch (StkApiException $error) {
+            StkSecurityService::recordLogin($mobile, $uid, 'password', 'failed', $error->getMessage(), $deviceId);
+            StkSecurityService::recordLoginFailure($mobile, $deviceId, 'password', $error->getMessage());
+            throw $error;
+        }
     }
 
     public static function loginSms(string $mobile, string $code, string $ticket, string $deviceId, string $deviceName): array {
-        StkCaptchaService::consumeTicket($ticket, 'sms_login', $deviceId);
-        StkSmsService::consume($mobile, 'login', $code, $deviceId);
-        $binding = self::mobileBinding($mobile);
-        if (!$binding) { throw new StkApiException(401, 'AUTH_INVALID_CREDENTIALS', '手机号或验证码错误'); }
-        DB::update('stk_auth_mobile', ['verified_at' => self::dateTime(time()), 'updated_at' => self::dateTime(time())], ['uid' => (int)$binding['uid']]);
-        return self::loginResult((int)$binding['uid'], $deviceId, $deviceName, true);
+        $uid = null;
+        try {
+            StkSecurityService::assertLoginAllowed($mobile, $deviceId);
+            StkCaptchaService::consumeTicket($ticket, 'sms_login', $deviceId);
+            StkSmsService::consume($mobile, 'login', $code, $deviceId);
+            $binding = self::mobileBinding($mobile);
+            if (!$binding) { throw new StkApiException(401, 'AUTH_INVALID_CREDENTIALS', '手机号或验证码错误'); }
+            $uid = (int)$binding['uid'];
+            DB::update('stk_auth_mobile', ['verified_at' => self::dateTime(time()), 'updated_at' => self::dateTime(time())], ['uid' => $uid]);
+            $data = self::loginResult($uid, $deviceId, $deviceName, true);
+            StkSecurityService::recordLogin($mobile, $uid, 'sms', 'success', null, $deviceId);
+            return $data;
+        } catch (StkApiException $error) {
+            StkSecurityService::recordLogin($mobile, $uid, 'sms', 'failed', $error->getMessage(), $deviceId);
+            StkSecurityService::recordLoginFailure($mobile, $deviceId, 'sms', $error->getMessage());
+            throw $error;
+        }
     }
 
     public static function register(string $mobile, string $password, string $confirmation, string $agreement, string $privacy, string $ticket, string $deviceId): array {
+        if (!StkSettings::bool('auth_registration_enabled', true)) { throw new StkApiException(403, 'AUTH_REGISTRATION_DISABLED', '当前暂不开放注册'); }
         if ($password !== $confirmation || !StkPasswordPolicy::validate($password)) {
             throw new StkApiException(422, 'AUTH_PASSWORD_WEAK', '密码不符合安全要求');
         }
-        if ($agreement !== '1.0' || $privacy !== '1.0') { throw new StkApiException(409, 'LEGAL_VERSION_STALE', '协议版本已更新'); }
+        if ($agreement !== StkSettings::string('agreement_version', '1.0') || $privacy !== StkSettings::string('privacy_version', '1.0')) { throw new StkApiException(409, 'LEGAL_VERSION_STALE', '协议版本已更新'); }
         StkCaptchaService::consumeTicket($ticket, 'register', $deviceId);
         if (self::mobileBinding($mobile)) { throw new StkApiException(409, 'AUTH_MOBILE_EXISTS', '手机号已注册'); }
         if (!function_exists('uc_user_register') || !class_exists('DB')) { throw new StkApiException(503, 'SYS_UNAVAILABLE', '注册服务暂不可用'); }
 
-        $username = 'stk_' . substr(bin2hex(random_bytes(10)), 0, 16);
+        $username = StkSettings::string('auth_internal_username_prefix', 'stk_') . substr(bin2hex(random_bytes(10)), 0, 16);
         $email = $username . '@users.invalid';
         $uid = (int)uc_user_register($username, $password, $email);
         if ($uid <= 0) { throw new StkApiException(503, 'AUTH_REGISTER_FAILED', '注册失败'); }
@@ -53,7 +78,7 @@ final class StkAuthService {
             throw new StkApiException(503, 'AUTH_REGISTER_FAILED', '注册失败');
         }
         $tokens = StkTokenService::issue($uid, $deviceId, 'Android');
-        return ['uid' => $uid, 'username' => $username, 'display_name' => '商推客用户', 'masked_mobile' => StkMobileCrypto::mask($mobile), 'mobile_verified' => false, 'tokens' => $tokens, 'next_route' => 'home'];
+        return ['uid' => $uid, 'username' => $username, 'display_name' => StkSettings::string('auth_display_name_prefix', '商推客用户'), 'masked_mobile' => StkMobileCrypto::mask($mobile), 'mobile_verified' => false, 'tokens' => $tokens, 'next_route' => 'home'];
     }
 
     public static function resetPassword(string $mobile, string $code, string $password, string $confirmation, string $ticket, string $deviceId): array {
@@ -65,7 +90,9 @@ final class StkAuthService {
         $member = DB::fetch_first('SELECT username FROM ' . DB::table('common_member') . ' WHERE uid=%d LIMIT 1', [(int)$binding['uid']]);
         $result = uc_user_edit((string)$member['username'], '', $password, '', 1);
         if ($result < 0) { throw new StkApiException(503, 'AUTH_RESET_FAILED', '密码重置失败'); }
-        DB::update('stk_auth_token', ['status' => 'revoked', 'revoked_at' => self::dateTime(time())], ['uid' => (int)$binding['uid'], 'status' => 'active']);
+        if (StkSettings::bool('auth_revoke_on_password_reset', true)) {
+            DB::update('stk_auth_token', ['status' => 'revoked', 'revoked_at' => self::dateTime(time())], ['uid' => (int)$binding['uid'], 'status' => 'active']);
+        }
         return ['reset' => true, 'next_route' => 'login'];
     }
 
@@ -85,7 +112,7 @@ final class StkAuthService {
         $prefix = $type === 'user_agreement' ? 'agreement' : 'privacy';
         $text = trim((string)($settings[$prefix . '_content'] ?? ''));
         if ($text === '') { throw new StkApiException(404, 'LEGAL_NOT_FOUND', '协议不存在'); }
-        $version = (string)($settings[$prefix . '_version'] ?? '1.0');
+        $version = StkSettings::string($prefix . '_version', '1.0');
         $title = $type === 'user_agreement' ? '用户协议' : '隐私政策';
         $sanitized = strip_tags($text, '<p><br><strong><b><em><i><ul><ol><li><h1><h2><h3><a>');
         return ['document_type' => $type, 'version' => $version, 'effective_at' => (string)($settings[$prefix . '_effective_at'] ?? ''), 'title' => $title, 'content_html_sanitized' => $sanitized, 'content_text' => trim(strip_tags($sanitized)), 'sha256' => hash('sha256', $sanitized)];

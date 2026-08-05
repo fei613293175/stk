@@ -2,6 +2,9 @@
 if (!defined('IN_DISCUZ')) { exit('Access Denied'); }
 require_once dirname(__DIR__) . '/service/ApiResponse.php';
 require_once dirname(__DIR__) . '/service/Input.php';
+require_once dirname(__DIR__) . '/service/Settings.php';
+require_once dirname(__DIR__) . '/service/SecurityService.php';
+require_once dirname(__DIR__) . '/service/IdempotencyService.php';
 require_once dirname(__DIR__) . '/service/PasswordPolicy.php';
 require_once dirname(__DIR__) . '/service/CaptchaService.php';
 require_once dirname(__DIR__) . '/service/TokenService.php';
@@ -56,36 +59,52 @@ final class StkAuthRouter {
         $mobile = StkInput::mobile($input);
         $device = StkInput::string($input, 'device_id', 128);
         if ($mobile === '' || $device === '') { throw new StkApiException(422, 'SYS_REQUEST_INVALID', '请求参数错误'); }
-        StkCaptchaService::consumeTicket(StkInput::string($input, 'captcha_ticket', 128), 'sms_send', $device);
-        StkApiResponse::send(200, 'OK', 'ok', StkSmsService::send($mobile, StkInput::string($input, 'scene', 32), $device));
+        $scene = StkInput::string($input, 'scene', 32);
+        $data = StkIdempotencyService::run('sendSmsCode', 'mobile:' . hash('sha256', $mobile), $input, static function () use ($input, $mobile, $device, $scene): array {
+            StkCaptchaService::consumeTicket(StkInput::string($input, 'captcha_ticket', 128), 'sms_send', $device);
+            return StkSmsService::send($mobile, $scene, $device);
+        });
+        StkApiResponse::send(200, 'OK', 'ok', $data);
     }
 
     private static function loginPassword(array $input): void {
         $mobile = StkInput::mobile($input);
         $device = StkInput::string($input, 'device_id', 128);
         if ($mobile === '' || $device === '') { throw new StkApiException(422, 'SYS_REQUEST_INVALID', '请求参数错误'); }
-        StkApiResponse::send(200, 'OK', 'ok', StkAuthService::loginPassword($mobile, StkInput::string($input, 'password', 64), StkInput::string($input, 'captcha_ticket', 128), $device, StkInput::string($input, 'device_name', 128)));
+        $data = StkIdempotencyService::run('loginWithPassword', 'mobile:' . hash('sha256', $mobile), $input, static function () use ($input, $mobile, $device): array {
+            return StkAuthService::loginPassword($mobile, StkInput::string($input, 'password', 64), StkInput::string($input, 'captcha_ticket', 128), $device, StkInput::string($input, 'device_name', 128));
+        });
+        StkApiResponse::send(200, 'OK', 'ok', $data);
     }
 
     private static function loginSms(array $input): void {
         $mobile = StkInput::mobile($input);
         $device = StkInput::string($input, 'device_id', 128);
         if ($mobile === '' || $device === '') { throw new StkApiException(422, 'SYS_REQUEST_INVALID', '请求参数错误'); }
-        StkApiResponse::send(200, 'OK', 'ok', StkAuthService::loginSms($mobile, StkInput::string($input, 'sms_code', 16), StkInput::string($input, 'captcha_ticket', 128), $device, StkInput::string($input, 'device_name', 128)));
+        $data = StkIdempotencyService::run('loginWithSms', 'mobile:' . hash('sha256', $mobile), $input, static function () use ($input, $mobile, $device): array {
+            return StkAuthService::loginSms($mobile, StkInput::string($input, 'sms_code', 16), StkInput::string($input, 'captcha_ticket', 128), $device, StkInput::string($input, 'device_name', 128));
+        });
+        StkApiResponse::send(200, 'OK', 'ok', $data);
     }
 
     private static function register(array $input): void {
         $mobile = StkInput::mobile($input);
         $device = StkInput::string($input, 'device_id', 128);
         if ($mobile === '' || $device === '') { throw new StkApiException(422, 'SYS_REQUEST_INVALID', '请求参数错误'); }
-        StkApiResponse::send(200, 'OK', 'ok', StkAuthService::register($mobile, StkInput::string($input, 'password', 64), StkInput::string($input, 'password_confirmation', 64), StkInput::string($input, 'agreement_version', 32), StkInput::string($input, 'privacy_version', 32), StkInput::string($input, 'captcha_ticket', 128), $device));
+        $data = StkIdempotencyService::run('registerUser', 'mobile:' . hash('sha256', $mobile), $input, static function () use ($input, $mobile, $device): array {
+            return StkAuthService::register($mobile, StkInput::string($input, 'password', 64), StkInput::string($input, 'password_confirmation', 64), StkInput::string($input, 'agreement_version', 32), StkInput::string($input, 'privacy_version', 32), StkInput::string($input, 'captcha_ticket', 128), $device);
+        });
+        StkApiResponse::send(200, 'OK', 'ok', $data);
     }
 
     private static function resetPassword(array $input): void {
         $mobile = StkInput::mobile($input);
         $device = StkInput::string($input, 'device_id', 128);
         if ($mobile === '' || $device === '') { throw new StkApiException(422, 'SYS_REQUEST_INVALID', '请求参数错误'); }
-        StkApiResponse::send(200, 'OK', 'ok', StkAuthService::resetPassword($mobile, StkInput::string($input, 'sms_code', 16), StkInput::string($input, 'new_password', 64), StkInput::string($input, 'password_confirmation', 64), StkInput::string($input, 'captcha_ticket', 128), $device));
+        $data = StkIdempotencyService::run('resetPassword', 'mobile:' . hash('sha256', $mobile), $input, static function () use ($input, $mobile, $device): array {
+            return StkAuthService::resetPassword($mobile, StkInput::string($input, 'sms_code', 16), StkInput::string($input, 'new_password', 64), StkInput::string($input, 'password_confirmation', 64), StkInput::string($input, 'captcha_ticket', 128), $device);
+        });
+        StkApiResponse::send(200, 'OK', 'ok', $data);
     }
 
     private static function refreshToken(array $input): void {
@@ -97,8 +116,11 @@ final class StkAuthRouter {
         $device = StkInput::string($input, 'device_id', 128);
         $family = StkInput::string($input, 'refresh_token_family', 64);
         if ($device === '' || $family === '') { throw new StkApiException(422, 'SYS_REQUEST_INVALID', '请求参数错误'); }
-        StkTokenService::revokeFamily($uid, $family, $device);
-        StkApiResponse::send(200, 'OK', 'ok', ['revoked' => true]);
+        $data = StkIdempotencyService::run('logout', 'uid:' . $uid . ':family:' . $family, $input, static function () use ($uid, $family, $device): array {
+            StkTokenService::revokeFamily($uid, $family, $device);
+            return ['revoked' => true];
+        });
+        StkApiResponse::send(200, 'OK', 'ok', $data);
     }
 
     private static function mySummary(): void {

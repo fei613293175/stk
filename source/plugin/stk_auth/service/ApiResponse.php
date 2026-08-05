@@ -16,6 +16,8 @@ final class StkApiException extends RuntimeException {
 }
 
 final class StkApiResponse {
+    private static ?string $requestIdValue = null;
+
     public static function send(int $httpStatus, string $code, string $message, array $data = []): void {
         http_response_code($httpStatus);
         header('Content-Type: application/json; charset=utf-8');
@@ -31,8 +33,10 @@ final class StkApiResponse {
     }
 
     public static function requestId(): string {
+        if (self::$requestIdValue !== null) return self::$requestIdValue;
         $value = $_SERVER['HTTP_X_REQUEST_ID'] ?? '';
-        return preg_match('/^[A-Za-z0-9_-]{8,80}$/', $value) ? $value : bin2hex(random_bytes(16));
+        self::$requestIdValue = preg_match('/^[A-Za-z0-9_-]{8,80}$/', $value) ? $value : bin2hex(random_bytes(16));
+        return self::$requestIdValue;
     }
 
     public static function fail(StkApiException $error): void {

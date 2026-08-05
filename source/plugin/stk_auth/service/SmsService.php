@@ -1,8 +1,14 @@
 <?php
 if (!defined('IN_DISCUZ')) { exit('Access Denied'); }
+require_once __DIR__ . '/Settings.php';
+require_once __DIR__ . '/SecurityService.php';
 
 final class StkSmsService {
     private static function dateTime(int $timestamp): string { return gmdate('Y-m-d H:i:s', $timestamp); }
+    private static function utcTimestamp(string $value): int {
+        $parsed = strtotime($value . ' UTC');
+        return $parsed === false ? 0 : $parsed;
+    }
 
     public static function send(string $mobile, string $scene, string $deviceId): array {
         global $_G;
@@ -15,7 +21,9 @@ final class StkSmsService {
         }
         if (!class_exists('DB')) { throw new StkApiException(503, 'SMS_PROVIDER_FAILED', '短信发送失败'); }
 
-        $code = (string)random_int(100000, 999999);
+        StkSecurityService::assertSmsAllowed($mobile, $deviceId, $scene);
+        $digits = StkSettings::int('sms_code_digits', 6, 4, 8);
+        $code = str_pad((string)random_int(0, (10 ** $digits) - 1), $digits, '0', STR_PAD_LEFT);
         $requestId = StkApiResponse::requestId();
         $now = time();
         DB::insert('stk_auth_sms_code', [
@@ -27,10 +35,10 @@ final class StkSmsService {
             'send_status' => 'pending',
             'use_status' => 'unused',
             'request_id' => $requestId,
-            'request_ip_hash' => hash('sha256', (string)($_SERVER['REMOTE_ADDR'] ?? '')),
+            'request_ip_hash' => StkSecurityService::requestIpHash(),
             'device_hash' => hash('sha256', $deviceId),
             'failed_attempts' => 0,
-            'expires_at' => self::dateTime($now + 300),
+            'expires_at' => self::dateTime($now + StkSettings::int('sms_code_ttl_seconds', 300, 60, 900)),
             'created_at' => self::dateTime($now),
         ]);
         $id = (int)DB::insert_id();
@@ -61,7 +69,7 @@ final class StkSmsService {
             'biz_id' => substr((string)($result['biz_id'] ?? ''), 0, 128),
             'sent_at' => self::dateTime(time()),
         ], ['id' => $id]);
-        return ['request_id' => $requestId, 'resend_after' => 60, 'expires_in' => 300, 'masked_mobile' => StkMobileCrypto::mask($mobile)];
+        return ['request_id' => $requestId, 'resend_after' => StkSettings::int('sms_resend_interval_seconds', 60, 30, 300), 'expires_in' => StkSettings::int('sms_code_ttl_seconds', 300, 60, 900), 'masked_mobile' => StkMobileCrypto::mask($mobile)];
     }
 
     public static function consume(string $mobile, string $scene, string $code, string $deviceId): void {
@@ -70,7 +78,7 @@ final class StkSmsService {
             'SELECT * FROM ' . DB::table('stk_auth_sms_code') . ' WHERE mobile_hash=%s AND scene=%s AND device_hash=%s AND send_status=%s AND use_status=%s ORDER BY id DESC LIMIT 1',
             [StkMobileCrypto::hash($mobile), $scene, hash('sha256', $deviceId), 'sent', 'unused']
         );
-        if (!$row || strtotime((string)$row['expires_at']) < time()) {
+        if (!$row || self::utcTimestamp((string)$row['expires_at']) < time()) {
             throw new StkApiException(422, 'SMS_CODE_EXPIRED', '短信验证码已过期');
         }
         if (!hash_equals((string)$row['code_hash'], hash('sha256', $code))) {
