@@ -8,11 +8,16 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.util.concurrent.Executors
 
-class StkApiClient(private val baseUrl: String = "https://stk-api.zz-yihao.com") {
+internal interface StkApi {
+    fun post(path: String, body: String, accessToken: String? = null, callback: (Result<String>) -> Unit)
+    fun get(path: String, accessToken: String? = null, callback: (Result<String>) -> Unit)
+}
+
+internal class StkApiClient(private val baseUrl: String = "https://stk-api.zz-yihao.com") : StkApi {
     private val executor = Executors.newFixedThreadPool(2)
     private val mainHandler = Handler(Looper.getMainLooper())
 
-    fun post(path: String, body: String, accessToken: String? = null, callback: (Result<String>) -> Unit) {
+    override fun post(path: String, body: String, accessToken: String?, callback: (Result<String>) -> Unit) {
         executor.execute {
             val result = runCatching {
                 val connection = (URL(baseUrl + path).openConnection() as HttpURLConnection).apply {
@@ -34,7 +39,7 @@ class StkApiClient(private val baseUrl: String = "https://stk-api.zz-yihao.com")
         }
     }
 
-    fun get(path: String, accessToken: String? = null, callback: (Result<String>) -> Unit) {
+    override fun get(path: String, accessToken: String?, callback: (Result<String>) -> Unit) {
         executor.execute {
             val result = runCatching {
                 val connection = (URL(baseUrl + path).openConnection() as HttpURLConnection).apply {

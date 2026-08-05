@@ -36,6 +36,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import com.zzyihao.stk.designsystem.StkTokens
 import com.zzyihao.stk.designsystem.StkTheme
 import org.json.JSONObject
@@ -72,11 +74,7 @@ private fun StkApp() {
         return
     }
     Scaffold(bottomBar = {
-        NavigationBar {
-            listOf("首页", "发布", "我的").forEachIndexed { index, label ->
-                NavigationBarItem(selected = tab == index, onClick = { tab = index; route = when (index) { 0 -> Route.HOME; 1 -> Route.PUBLISH_STAGE; else -> Route.ME } }, icon = { Text(when (index) { 0 -> "⌂"; 1 -> "+"; else -> "我" }) }, label = { Text(label) }, modifier = Modifier.testTag(listOf("nav_home", "nav_publish", "nav_me")[index]))
-            }
-        }
+        StkBottomBar(tab) { index -> tab = index; route = when (index) { 0 -> Route.HOME; 1 -> Route.PUBLISH_STAGE; else -> Route.ME } }
     }) { padding ->
         when (route) {
             Route.HOME -> ApiHomeScreen(api, session!!, Modifier.padding(padding), { tab = 2; route = Route.ME }) { projectId -> selectedProjectId = projectId; route = Route.DETAIL }
@@ -89,11 +87,27 @@ private fun StkApp() {
 }
 
 @Composable
-private fun LoginScreen(api: StkApiClient, deviceId: String, onAuthenticated: (StkSession) -> Unit, onRegister: () -> Unit, onReset: () -> Unit, onAgreement: () -> Unit, onPrivacy: () -> Unit) {
+internal fun StkBottomBar(selected: Int, onSelected: (Int) -> Unit) {
+    NavigationBar {
+        listOf("首页", "发布", "我的").forEachIndexed { index, label ->
+            NavigationBarItem(
+                selected = selected == index,
+                onClick = { onSelected(index) },
+                icon = { Text(when (index) { 0 -> "⌂"; 1 -> "+"; else -> "我" }) },
+                label = { Text(label) },
+                modifier = Modifier.testTag(listOf("nav_home", "nav_publish", "nav_me")[index]),
+            )
+        }
+    }
+}
+
+@Composable
+internal fun LoginScreen(api: StkApi, deviceId: String, onAuthenticated: (StkSession) -> Unit, onRegister: () -> Unit, onReset: () -> Unit, onAgreement: () -> Unit, onPrivacy: () -> Unit) {
     var phone by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var smsCode by rememberSaveable { mutableStateOf("") }
     var passwordMode by rememberSaveable { mutableStateOf(true) }
+    var passwordVisible by rememberSaveable { mutableStateOf(false) }
     var error by rememberSaveable { mutableStateOf("") }
     var pendingAction by rememberSaveable { mutableStateOf("") }
     var submitting by rememberSaveable { mutableStateOf(false) }
@@ -116,8 +130,8 @@ private fun LoginScreen(api: StkApiClient, deviceId: String, onAuthenticated: (S
         Row { TextButton(onClick = { passwordMode = true }, Modifier.testTag("login_mode_password")) { Text("密码登录") }; TextButton(onClick = { passwordMode = false }, Modifier.testTag("login_mode_sms")) { Text("短信登录") } }
         OutlinedTextField(phone, { phone = it }, Modifier.fillMaxWidth().testTag("login_phone"), label = { Text("手机号") })
         if (passwordMode) {
-            OutlinedTextField(password, { password = it }, Modifier.fillMaxWidth().testTag("login_password"), label = { Text("登录密码") })
-            TextButton(onClick = {}, Modifier.testTag("login_password_visibility")) { Text("显示密码") }
+            OutlinedTextField(password, { password = it }, Modifier.fillMaxWidth().testTag("login_password"), label = { Text("登录密码") }, visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation())
+            TextButton(onClick = { passwordVisible = !passwordVisible }, Modifier.testTag("login_password_visibility")) { Text(if (passwordVisible) "隐藏密码" else "显示密码") }
         } else {
             OutlinedTextField(smsCode, { smsCode = it }, Modifier.fillMaxWidth().testTag("login_sms_code"), label = { Text("短信验证码") })
             TextButton(onClick = { if (phone.length == 11) pendingAction = "sms_send" else error = "请输入正确手机号" }, Modifier.testTag("login_send_sms")) { Text("发送短信验证码") }
@@ -137,7 +151,7 @@ private fun LoginScreen(api: StkApiClient, deviceId: String, onAuthenticated: (S
 }
 
 @Composable
-internal fun CaptchaDialog(api: StkApiClient, deviceId: String, action: String, onVerified: (String) -> Unit, onDismiss: () -> Unit) {
+internal fun CaptchaDialog(api: StkApi, deviceId: String, action: String, onVerified: (String) -> Unit, onDismiss: () -> Unit) {
     var challengeId by rememberSaveable { mutableStateOf("") }
     var answer by rememberSaveable { mutableStateOf("") }
     var error by rememberSaveable { mutableStateOf("") }
@@ -165,5 +179,5 @@ private fun ResetScreen(onBack: () -> Unit) { var phone by rememberSaveable { mu
 @Composable private fun LegalScreen(title: String, onBack: () -> Unit) { Column(Modifier.fillMaxSize().padding(StkTokens.Space24), verticalArrangement = Arrangement.spacedBy(StkTokens.Space16)) { Text(title, style = MaterialTheme.typography.headlineSmall); Text("本协议内容由商推客后台发布并以版本号管理。当前页面用于展示正式协议内容，提交敏感操作前必须确认最新版本。", color = StkTokens.TextSecondary); Button(onClick = onBack, Modifier.testTag(if (title == "用户协议") "agreement_back" else "privacy_back")) { Text("返回") } } }
 @Composable private fun HomeScreen(modifier: Modifier, onDetail: () -> Unit) { Column(modifier.fillMaxSize().padding(StkTokens.Space16), verticalArrangement = Arrangement.spacedBy(StkTokens.Space16)) { Text("商推客", style = MaterialTheme.typography.headlineSmall); Text("项目推荐", style = MaterialTheme.typography.titleMedium); LazyColumn(Modifier.testTag("home_project_list"), verticalArrangement = Arrangement.spacedBy(StkTokens.Space12)) { items(listOf("新媒体推广项目", "本地生活合作项目")) { title -> Card(Modifier.fillMaxWidth().testTag("project_card_1")) { Column(Modifier.padding(StkTokens.Space16)) { Text(title, style = MaterialTheme.typography.titleMedium); Text("查看项目详情与联系方式", color = StkTokens.TextSecondary); TextButton(onClick = onDetail) { Text("查看详情") } } } } } } }
 @Composable private fun DetailScreen(modifier: Modifier, onBack: () -> Unit) { Column(modifier.fillMaxSize().padding(StkTokens.Space24), verticalArrangement = Arrangement.spacedBy(StkTokens.Space16)) { Text("项目详情", style = MaterialTheme.typography.headlineSmall); Text("项目详情将由服务端返回真实内容。", color = StkTokens.TextSecondary); Button(onClick = onBack, Modifier.testTag("project_detail_back")) { Text("返回首页") } } }
-@Composable private fun StageScreen(modifier: Modifier) { Column(modifier.fillMaxSize().padding(StkTokens.Space24), verticalArrangement = Arrangement.spacedBy(StkTokens.Space16)) { Text("项目发布", style = MaterialTheme.typography.headlineSmall); Text("项目发布功能将在 V1.2 开放", color = StkTokens.TextSecondary); Button(onClick = {}, Modifier.fillMaxWidth().testTag("stage_scope_close")) { Text("知道了") } } }
+@Composable internal fun StageScreen(modifier: Modifier) { Column(modifier.fillMaxSize().padding(StkTokens.Space24), verticalArrangement = Arrangement.spacedBy(StkTokens.Space16)) { Text("项目发布", style = MaterialTheme.typography.headlineSmall); Text("项目发布功能将在 V1.2 开放", color = StkTokens.TextSecondary); Button(onClick = {}, Modifier.fillMaxWidth().testTag("stage_scope_close")) { Text("知道了") } } }
 @Composable private fun MeScreen(modifier: Modifier, onLogout: () -> Unit) { Column(modifier.fillMaxSize().padding(StkTokens.Space16), verticalArrangement = Arrangement.spacedBy(StkTokens.Space16)) { Text("我的", style = MaterialTheme.typography.headlineSmall); Card(Modifier.fillMaxWidth()) { Column(Modifier.padding(StkTokens.Space16)) { Text("商推客用户"); Text("UID：待加载", color = StkTokens.TextSecondary); Text("手机号：脱敏显示", color = StkTokens.TextSecondary) } }; OutlinedButton(onClick = onLogout, Modifier.fillMaxWidth().testTag("logout_confirm")) { Text("退出登录") } } }
