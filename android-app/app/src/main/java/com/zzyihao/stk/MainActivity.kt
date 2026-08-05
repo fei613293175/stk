@@ -137,7 +137,7 @@ private fun LoginScreen(api: StkApiClient, deviceId: String, onAuthenticated: (S
 }
 
 @Composable
-private fun CaptchaDialog(api: StkApiClient, deviceId: String, action: String, onVerified: (String) -> Unit, onDismiss: () -> Unit) {
+internal fun CaptchaDialog(api: StkApiClient, deviceId: String, action: String, onVerified: (String) -> Unit, onDismiss: () -> Unit) {
     var challengeId by rememberSaveable { mutableStateOf("") }
     var answer by rememberSaveable { mutableStateOf("") }
     var error by rememberSaveable { mutableStateOf("") }
