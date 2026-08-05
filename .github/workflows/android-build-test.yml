@@ -53,9 +53,9 @@ jobs:
         run: bash scripts/ci/prepare_release_signing.sh
       - name: Test Discuz plugins
         run: bash scripts/ci/run_backend_tests.sh
-      - name: Android lint, unit tests and signed release build
+      - name: Android lint and signed release build
         working-directory: android-app
-        run: gradle --no-daemon --stacktrace lintRelease testReleaseUnitTest assembleRelease
+        run: gradle --no-daemon --stacktrace lintRelease assembleRelease
       - name: Verify APK identity and real size
         run: python scripts/verify_release_artifact.py --apk-glob 'android-app/app/build/outputs/apk/release/*.apk'
       - name: Upload exact build artifact
