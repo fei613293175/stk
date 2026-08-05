@@ -1,2 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root><item id="stk_auth"><name>商推客认证</name><version>1.0.0</version><identifier>stk_auth</identifier><description>商推客 V1.0 认证、协议和健康接口</description></item></root>
+<root>
+  <item id="stk_auth">
+    <name>商推客认证</name>
+    <version>1.0.0</version>
+    <identifier>stk_auth</identifier>
+    <description>商推客 V1.0 认证、协议、项目只读 API 和健康接口</description>
+    <modules>
+      <module id="gateway">
+        <name>商推客 API 网关</name>
+        <type>2</type>
+        <displayorder>0</displayorder>
+        <file>gateway</file>
+      </module>
+    </modules>
+    <vars>
+      <var name="sms_enabled" type="radio" title="短信服务开关" description="未配置真实短信适配器时必须保持关闭" extra="0=关闭\n1=开启" />
+      <var name="sms_access_key_id" type="text" title="阿里云 AccessKey ID" />
+      <var name="sms_access_key_secret" type="text" title="阿里云 AccessKey Secret" />
+      <var name="sms_sign_name" type="text" title="短信签名" />
+      <var name="sms_template_login" type="text" title="登录短信模板" />
+      <var name="sms_template_password_reset" type="text" title="重置密码短信模板" />
+      <var name="sms_region_id" type="text" title="短信 RegionId" value="cn-hangzhou" />
+      <var name="agreement_version" type="text" title="用户协议版本" value="1.0" />
+      <var name="agreement_content" type="textarea" title="用户协议正文" />
+      <var name="agreement_effective_at" type="text" title="用户协议生效时间" />
+      <var name="privacy_version" type="text" title="隐私政策版本" value="1.0" />
+      <var name="privacy_content" type="textarea" title="隐私政策正文" />
+      <var name="privacy_effective_at" type="text" title="隐私政策生效时间" />
+    </vars>
+  </item>
+</root>
