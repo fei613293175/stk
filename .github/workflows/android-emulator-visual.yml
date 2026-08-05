@@ -56,9 +56,7 @@ jobs:
         run: python scripts/check_mockup_readiness.py --release "$STK_RELEASE_ID"
       - name: Build APK and instrumentation APK before emulator boot
         working-directory: android-app
-        run: |
-          gradle --no-daemon :app:tasks --all | tee ../artifacts-app-tasks.txt
-          gradle --no-daemon :app:assembleRelease :app:assembleReleaseAndroidTest
+        run: gradle --no-daemon :app:assembleRelease :app:assembleReleaseAndroidTest
       - name: API 37 Pixel 6 emulator, all interactions and screenshot capture
         uses: reactivecircus/android-emulator-runner@v2.38.0
         with:
