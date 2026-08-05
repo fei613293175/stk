@@ -3,7 +3,7 @@ package com.zzyihao.stk
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasTestTag
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
@@ -25,7 +25,7 @@ import java.util.Collections
 
 @RunWith(AndroidJUnit4::class)
 class V100InteractionSmokeTest {
-    @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
+    @get:Rule val composeRule = createComposeRule()
 
     @Test fun loginInputsModesCaptchaAndRoutesAreInteractive() {
         val api = FakeApi()
