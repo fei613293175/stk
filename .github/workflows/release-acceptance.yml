@@ -99,6 +99,13 @@ jobs:
       - run: python scripts/resolve_ci_release.py --write-github-env
       - name: Download previous accepted APK for upgrade test
         run: bash scripts/ci/download_previous_release.sh
+      - name: Enable KVM for the API 37 emulator
+        run: |
+          set -euo pipefail
+          [[ -e /dev/kvm ]] || { echo '::error::GitHub runner does not expose /dev/kvm'; exit 1; }
+          sudo chmod 666 /dev/kvm
+          [[ -r /dev/kvm && -w /dev/kvm ]]
+          ls -l /dev/kvm
       - name: Test the exact downloaded APK on API 37 emulator
         uses: reactivecircus/android-emulator-runner@v2.38.0
         with:

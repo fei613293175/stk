@@ -6,6 +6,10 @@ on:
     paths:
       - 'android-app/**'
       - 'source/plugin/**'
+      - 'contracts/**'
+      - 'scripts/**'
+      - '.github/workflows/android-build-test.yml'
+      - '.github/workflows/android-emulator-visual.yml'
   pull_request:
     paths:
       - 'android-app/**'
@@ -64,9 +68,9 @@ jobs:
         run: |
           set -euo pipefail
           while IFS= read -r -d '' file; do php -l "$file"; done < <(find source/plugin/stk_auth source/plugin/stk_project -type f -name '*.php' -print0)
-      - name: Android lint and signed release build
+      - name: Android lint, signed release APK and instrumentation APK
         working-directory: android-app
-        run: gradle --no-daemon --stacktrace lintRelease assembleRelease
+        run: gradle --no-daemon --stacktrace lintRelease assembleRelease assembleReleaseAndroidTest
       - name: Verify APK identity and real size
         run: python scripts/verify_release_artifact.py --apk-glob 'android-app/app/build/outputs/apk/release/*.apk' --allow-small-test-artifact
       - name: Upload exact build artifact
@@ -75,6 +79,7 @@ jobs:
           name: stk-release-${{ github.sha }}
           path: |
             android-app/app/build/outputs/apk/release/*.apk
+            android-app/app/build/outputs/apk/androidTest/release/*.apk
             android-app/**/build/reports/**
           if-no-files-found: error
           retention-days: 30

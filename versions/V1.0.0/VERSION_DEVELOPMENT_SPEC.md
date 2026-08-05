@@ -16,6 +16,8 @@
 - 本机禁止安装、下载、配置或运行 JDK、Android SDK、Gradle、AGP、PHP、Discuz、模拟器和签名工具来替代线上环境。
 - 本机仅可编辑源码、运行不依赖构建运行时的合同/静态检查和整理线上证据；本机任何 APK 不得作为交付物。
 - 线上环境复用优先：先只读盘点服务器已有 JDK/Gradle/Android SDK/模拟器/PHP/Discuz/缓存；满足合同即复用，JDK 17+ 均可，已有 JDK 21 优先。仅在缺失且不影响现有业务时使用独立目录、容器或 volume 补齐；禁止替换系统运行时、改 Nginx/PHP-FPM/MySQL/Discuz 配置、占用业务端口或重启业务服务，并记录路径、版本和验证证据。
+- 门禁分层：`APK_BUILD_GATE` 包含编译、Lint、单元/后端测试、签名和 Artifact 生成，不依赖 API 37 模拟器或 `/dev/kvm`；`EMULATOR_ACCEPTANCE_GATE` 包含 API 37 模拟器、Instrumentation、交互和视觉截图，优先在 GitHub Actions 或可用线上 runner 执行。
+- APK 只构建一次并上传同一 Commit Artifact，模拟器任务下载该 Artifact，禁止重复编译。缺少 `/dev/kvm` 或模拟器运行库不得阻塞 APK 构建，也不得改动业务主机或伪造 KVM；切换到 GitHub Actions/KVM runner 并记录证据。模拟器门禁未通过时只能交付构建中间结果，不能宣称完整版本交付。
 - 本版本必须先读取并填写 `ENVIRONMENT_CONTRACT.yaml`；统一规则见 `docs/19_ONLINE_ENVIRONMENT_REUSE_CONTRACT.md`。
 
 ## 2. 线上环境基线
@@ -64,7 +66,7 @@
 
 ## 6. GitHub Actions 和交付
 
-当前 Commit 的 APK 必须先通过合同、后端、Android、API 37 模拟器、本版全部新增交互、适用截图和升级安装验收，再从同一 Artifact 下载到本机。复制到 `%USERPROFILE%\Desktop\商推客交付\1.0.0\`，同时交付计划/完成/Owner测试/自动报告/视觉差异/部署/DNS/Build Info/Provenance/SHA/已知问题。
+当前 Commit 的 APK 先通过 `APK_BUILD_GATE` 生成唯一 Artifact；随后 `EMULATOR_ACCEPTANCE_GATE` 下载该 Artifact，通过合同、后端、Android、API 37 模拟器、本版全部新增交互、适用截图和升级安装验收后，才能从同一 Artifact 下载到本机。复制到 `%USERPROFILE%\Desktop\商推客交付\1.0.0\`，同时交付计划/完成/Owner测试/自动报告/视觉差异/部署/DNS/Build Info/Provenance/SHA/已知问题。
 
 ## 7. 版本关闭
 

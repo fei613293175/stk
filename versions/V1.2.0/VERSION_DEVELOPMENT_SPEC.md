@@ -2,6 +2,8 @@
 
 ## V1.2.0 环境执行硬门禁
 
+- 门禁分层：`APK_BUILD_GATE` 包含编译、Lint、单元/后端测试、签名和 Artifact 生成，不依赖 API 37 模拟器或 `/dev/kvm`；`EMULATOR_ACCEPTANCE_GATE` 包含 API 37 模拟器、Instrumentation、交互和视觉截图，优先在 GitHub Actions 或可用线上 runner 执行。
+- APK 只构建一次并上传同一 Commit Artifact，模拟器任务下载该 Artifact，禁止重复编译。缺少 `/dev/kvm` 或模拟器运行库不得阻塞 APK 构建，也不得改动业务主机或伪造 KVM；切换到 GitHub Actions/KVM runner 并记录证据。模拟器门禁未通过时只能交付构建中间结果，不能宣称完整版本交付。
 - Android 构建、签名、图片上传/审核测试、PHP/Discuz、API 37 模拟器、部署和交付只允许在线上服务器或 GitHub Actions 执行。
 - 本机禁止安装/下载/运行 JDK、Android SDK、Gradle、AGP、PHP、Discuz、模拟器和签名工具；本机仅可编辑源码和运行静态合同检查。
 - 线上环境复用优先：先只读盘点已有运行时、镜像、SDK/Gradle 缓存和模拟器；满足合同即复用，JDK 17+ 均可，已有 JDK 21 优先。仅在缺失且不影响业务时用独立目录、容器或 volume 补齐，禁止替换系统运行时、改业务配置、占端口或重启服务，并记录实际路径、版本和验证证据。
@@ -52,7 +54,7 @@
 
 ## 6. GitHub Actions 和交付
 
-当前 Commit 的 APK 必须先通过合同、后端、Android、API 37 模拟器、本版全部新增交互、适用截图和升级安装验收，再从同一 Artifact 下载到本机。复制到 `%USERPROFILE%\Desktop\商推客交付\1.2.0\`，同时交付计划/完成/Owner测试/自动报告/视觉差异/部署/DNS/Build Info/Provenance/SHA/已知问题。
+当前 Commit 的 APK 先通过 `APK_BUILD_GATE` 生成唯一 Artifact；随后 `EMULATOR_ACCEPTANCE_GATE` 下载该 Artifact，通过合同、后端、Android、API 37 模拟器、本版全部新增交互、适用截图和升级安装验收后，才能从同一 Artifact 下载到本机。复制到 `%USERPROFILE%\Desktop\商推客交付\1.2.0\`，同时交付计划/完成/Owner测试/自动报告/视觉差异/部署/DNS/Build Info/Provenance/SHA/已知问题。
 
 ## 7. 版本关闭
 

@@ -12,7 +12,7 @@ adb shell settings put system font_scale 1.0
 
 current_apk="${STK_CURRENT_APK:-}"
 if [[ -z "$current_apk" ]]; then
-  current_apk=$(find android-app/app/build/outputs/apk/release -maxdepth 1 -type f -name '*.apk' | head -n1)
+  current_apk=$(find android-app/app/build/outputs/apk/release artifacts/exact -type f -name '*.apk' ! -name '*androidTest*' 2>/dev/null | head -n1 || true)
 fi
 [[ -f "$current_apk" ]] || { echo "Current release APK not found" >&2; exit 1; }
 adb install -r "$current_apk"

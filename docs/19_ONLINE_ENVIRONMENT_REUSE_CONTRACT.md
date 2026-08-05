@@ -13,6 +13,12 @@
 
 已有 JDK 21 且满足版本合同，必须复用 JDK 21；JDK 17 或更高版本均可作为兼容环境。不得为了“统一版本”重新部署已经满足合同的环境。
 
+## 构建与模拟器门禁分离
+
+- `APK_BUILD_GATE` 包含 Android 编译、Lint、单元/后端测试、签名和 Artifact 生成；它只要求合同规定的 JDK、Gradle、Android SDK/Build Tools 和业务测试环境，**不要求 API 37 模拟器或 `/dev/kvm`**。
+- `EMULATOR_ACCEPTANCE_GATE` 包含 API 37 模拟器、Instrumentation、全部新增交互和视觉截图；它必须在 GitHub Actions 或可用的线上模拟器 runner 执行，并下载 `APK_BUILD_GATE` 生成的同一 Commit Artifact，禁止重复编译。
+- `/dev/kvm` 只提供模拟器硬件加速，不是 APK 打包前置条件。服务器没有 `/dev/kvm`、模拟器运行库缺失或模拟器无法启动时，`APK_BUILD_GATE` 可以继续；不得伪造设备、替换业务主机运行时、重启业务服务或为此阻塞 APK 构建。应切换 GitHub Actions 或具备 KVM 的线上 runner，并在版本合同记录实际阻塞原因。
+
 ## 不影响业务
 
 - 只允许使用独立构建目录、容器、volume 和临时 HOME。
@@ -26,4 +32,4 @@
 
 ## 完成判定
 
-环境复用只证明工具来源合规，不等于版本交付完成。构建、签名、API/Discuz、模拟器交互、视觉、部署、回滚和同一 Commit 证据仍须分别通过该版本合同。
+环境复用只证明工具来源合规，不等于版本交付完成。`APK_BUILD_GATE` 通过只代表 APK Artifact 可生成；完整版本交付仍须让同一 Commit Artifact 分别通过 API/Discuz、`EMULATOR_ACCEPTANCE_GATE`、视觉、部署、回滚和来源证据。

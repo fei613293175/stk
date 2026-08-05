@@ -48,3 +48,18 @@ actual_environment:
   validation: online_release_and_android_test_build_success
   validation_log: /opt/stk-build/stk-v100-build.log
   emulator_note: software_acceleration_only_no_dev_kvm_system_services_not_ready_for_instrumentation
+gates:
+  apk_build:
+    name: APK_BUILD_GATE
+    requires_kvm: false
+    execution: online_server_or_github_actions
+    artifact_policy: build_once_upload_same_commit
+  emulator_acceptance:
+    name: EMULATOR_ACCEPTANCE_GATE
+    required_for_full_release: true
+    api_level: 37
+    execution: github_actions_or_online_runner
+    artifact_policy: download_exact_build_artifact_no_rebuild
+  missing_kvm_policy:
+    blocks_apk_build: false
+    action: route_emulator_gate_to_github_actions_or_kvm_runner_and_record_evidence
