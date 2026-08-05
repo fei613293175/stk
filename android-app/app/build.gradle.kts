@@ -1,4 +1,4 @@
-plugins { id("com.android.application"); id("org.jetbrains.kotlin.android"); id("org.jetbrains.kotlin.plugin.compose") }
+plugins { id("com.android.application"); id("org.jetbrains.kotlin.plugin.compose") }
 val releaseKeystorePath = System.getenv("STK_RELEASE_KEYSTORE_PATH")
 val releaseStorePassword = System.getenv("STK_RELEASE_STORE_PASSWORD")
 val releaseKeyAlias = System.getenv("STK_RELEASE_KEY_ALIAS")

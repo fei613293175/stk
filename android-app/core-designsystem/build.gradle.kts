@@ -1,4 +1,4 @@
-plugins { id("com.android.library"); id("org.jetbrains.kotlin.android"); id("org.jetbrains.kotlin.plugin.compose") }
+plugins { id("com.android.library"); id("org.jetbrains.kotlin.plugin.compose") }
 android { namespace = "com.zzyihao.stk.designsystem"; compileSdk = 37
     defaultConfig { minSdk = 26 }
     buildFeatures { compose = true }
