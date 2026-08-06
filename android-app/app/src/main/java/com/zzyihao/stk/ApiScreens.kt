@@ -190,10 +190,12 @@ internal fun ApiHomeScreen(api: StkApi, session: StkSession, modifier: Modifier,
                         }
                     }
                 }
-                item {
-                    when {
-                        loadMoreError -> Button({ requestPage(nextCursor, replace = false) }, Modifier.testTag("home_load_more_retry")) { Text("重试加载更多") }
-                        hasMore || loadingMore -> CircularProgressIndicator(Modifier.testTag("home_load_more_sentinel"))
+                if (hasMore || loadingMore || loadMoreError) item {
+                    Column(Modifier.fillMaxWidth().padding(StkTokens.Space12).testTag("home_load_more_sentinel")) {
+                        when {
+                            loadMoreError -> Button({ requestPage(nextCursor, replace = false) }, Modifier.testTag("home_load_more_retry")) { Text("重试加载更多") }
+                            hasMore || loadingMore -> CircularProgressIndicator()
+                        }
                     }
                 }
             }
