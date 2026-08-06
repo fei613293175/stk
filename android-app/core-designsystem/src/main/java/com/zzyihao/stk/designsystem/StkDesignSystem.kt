@@ -2,6 +2,7 @@ package com.zzyihao.stk.designsystem
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -289,7 +290,18 @@ fun StkBrandMark(modifier: Modifier = Modifier) {
             .background(StkTokens.BrandPrimary, RoundedCornerShape(StkTokens.Radius20)),
         contentAlignment = Alignment.Center,
     ) {
-        Text("↗", style = StkTokens.Display, color = Color.White)
+        Canvas(Modifier.fillMaxSize().padding(StkTokens.Space12)) {
+            val path = androidx.compose.ui.graphics.Path().apply {
+                moveTo(size.width * .08f, size.height * .78f)
+                lineTo(size.width * .42f, size.height * .48f)
+                lineTo(size.width * .62f, size.height * .62f)
+                lineTo(size.width * .9f, size.height * .16f)
+            }
+            drawPath(path, Color.White, style = androidx.compose.ui.graphics.drawscope.Stroke(width = 3.dp.toPx(), cap = androidx.compose.ui.graphics.StrokeCap.Round))
+            drawLine(Color.White, androidx.compose.ui.geometry.Offset(size.width * .72f, size.height * .16f), androidx.compose.ui.geometry.Offset(size.width * .9f, size.height * .16f), strokeWidth = 3.dp.toPx(), cap = androidx.compose.ui.graphics.StrokeCap.Round)
+            drawLine(Color.White, androidx.compose.ui.geometry.Offset(size.width * .9f, size.height * .16f), androidx.compose.ui.geometry.Offset(size.width * .9f, size.height * .34f), strokeWidth = 3.dp.toPx(), cap = androidx.compose.ui.graphics.StrokeCap.Round)
+            drawCircle(StkTokens.BrandAccent, radius = size.minDimension * .15f, center = androidx.compose.ui.geometry.Offset(size.width * .88f, size.height * .1f))
+        }
     }
 }
 

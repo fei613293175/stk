@@ -281,6 +281,112 @@ class V100InteractionSmokeTest {
         waitForTag("captcha_image")
     }
 
+    @Test fun visualContractStatesRenderAndCapture() {
+        val stateIds = """
+            DS-001-S01
+            DS-002-S01
+            DS-003-S01
+            SYS-001-S01
+            SYS-001-S02
+            SYS-001-S03
+            SYS-001-S08
+            SYS-002-S01
+            SYS-002-S02
+            SYS-002-S03
+            SYS-002-S04
+            COM-OV-002-S01
+            AUTH-001-S01
+            AUTH-001-S02
+            AUTH-001-S03
+            AUTH-001-S04
+            AUTH-001-S05
+            AUTH-001-S06
+            AUTH-001-S07
+            AUTH-001-S08
+            AUTH-001-S09
+            AUTH-001-S10
+            AUTH-001-S11
+            AUTH-001-S12
+            AUTH-001-S13
+            AUTH-001-S14
+            AUTH-001-S15
+            AUTH-001-S16
+            AUTH-002-S01
+            AUTH-002-S02
+            AUTH-002-S03
+            AUTH-002-S04
+            AUTH-002-S05
+            AUTH-002-S06
+            AUTH-002-S07
+            AUTH-002-S08
+            AUTH-002-S09
+            AUTH-002-S10
+            AUTH-002-S11
+            AUTH-002-S12
+            AUTH-003-S01
+            AUTH-003-S02
+            AUTH-003-S03
+            AUTH-003-S04
+            AUTH-003-S05
+            AUTH-003-S06
+            AUTH-003-S07
+            AUTH-003-S08
+            AUTH-003-S09
+            AUTH-003-S10
+            AUTH-003-S11
+            AUTH-004-S01
+            AUTH-004-S02
+            AUTH-004-S03
+            AUTH-004-S04
+            AUTH-005-S01
+            AUTH-005-S02
+            AUTH-005-S03
+            AUTH-005-S04
+            AUTH-OV-001-S01
+            AUTH-OV-001-S02
+            AUTH-OV-001-S03
+            AUTH-OV-001-S04
+            AUTH-OV-001-S05
+            AUTH-OV-001-S06
+            AUTH-OV-001-S07
+            AUTH-OV-001-S08
+            AUTH-OV-002-S01
+            AUTH-OV-002-S02
+            AUTH-OV-002-S03
+            AUTH-OV-002-S04
+            HOME-001-S01
+            HOME-001-S02
+            HOME-001-S03
+            HOME-001-S05
+            HOME-001-S06
+            HOME-001-S07
+            HOME-001-S10
+            HOME-001-S11
+            HOME-001-S12
+            HOME-001-S13
+            HOME-004-S01
+            HOME-004-S02
+            HOME-004-S07
+            HOME-004-S08
+            HOME-004-S09
+            HOME-004-S10
+            HOME-004-S11
+            ME-001-S01
+            ME-001-S02
+            ME-001-S07
+            ME-001-S08
+            ME-OV-001-S01
+            ME-OV-001-S02
+            ME-OV-001-S03
+        """.trimIndent().lines()
+        check(stateIds.size == 95)
+        stateIds.forEach { stateId ->
+            composeRule.activity.setContent { StkTheme { V100VisualStateScreen(stateId) } }
+            composeRule.waitForIdle()
+            captureState(stateId)
+        }
+    }
+
     private fun waitForTag(tag: String) {
         composeRule.waitUntil(5_000) { composeRule.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
     }
