@@ -47,6 +47,13 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import com.zzyihao.stk.designsystem.StkTokens
 import com.zzyihao.stk.designsystem.StkTheme
+import com.zzyihao.stk.designsystem.StkAuthScaffold
+import com.zzyihao.stk.designsystem.StkPrimaryButton
+import com.zzyihao.stk.designsystem.StkStatusMessage
+import com.zzyihao.stk.designsystem.StkStatusTone
+import com.zzyihao.stk.designsystem.StkTextField
+import com.zzyihao.stk.designsystem.StkPasswordField
+import androidx.compose.ui.Alignment
 import org.json.JSONObject
 import java.util.Locale
 import kotlinx.coroutines.delay
@@ -116,17 +123,7 @@ private fun StkApp() {
 
 @Composable
 internal fun StkBottomBar(selected: Int, onSelected: (Int) -> Unit) {
-    NavigationBar {
-        listOf("首页", "发布", "我的").forEachIndexed { index, label ->
-            NavigationBarItem(
-                selected = selected == index,
-                onClick = { onSelected(index) },
-                icon = { Text(when (index) { 0 -> "⌂"; 1 -> "+"; else -> "我" }) },
-                label = { Text(label) },
-                modifier = Modifier.testTag(listOf("nav_home", "nav_publish", "nav_me")[index]),
-            )
-        }
-    }
+    com.zzyihao.stk.designsystem.StkBottomNavigation(selected, onSelected)
 }
 
 @Composable
@@ -152,22 +149,23 @@ internal fun LoginScreen(api: StkApi, deviceId: String, onAuthenticated: (StkSes
             }.onFailure { error = "登录失败，请检查网络或输入" }
         }
     }
-    Column(Modifier.fillMaxSize().padding(StkTokens.Space24), verticalArrangement = Arrangement.spacedBy(StkTokens.Space12)) {
-        Text("登录商推客", style = MaterialTheme.typography.headlineSmall)
-        Text("使用手机号安全登录", color = StkTokens.TextSecondary)
-        Row { TextButton(onClick = { passwordMode = true }, Modifier.testTag("login_mode_password")) { Text("密码登录") }; TextButton(onClick = { passwordMode = false }, Modifier.testTag("login_mode_sms")) { Text("短信登录") } }
-        OutlinedTextField(phone, { phone = it.filter(Char::isDigit).take(11) }, Modifier.fillMaxWidth().testTag("login_phone"), label = { Text("手机号") })
-        if (passwordMode) {
-            OutlinedTextField(password, { password = it }, Modifier.fillMaxWidth().testTag("login_password"), label = { Text("登录密码") }, visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation())
-            TextButton(onClick = { passwordVisible = !passwordVisible }, Modifier.testTag("login_password_visibility")) { Text(if (passwordVisible) "隐藏密码" else "显示密码") }
-        } else {
-            OutlinedTextField(smsCode, { smsCode = it }, Modifier.fillMaxWidth().testTag("login_sms_code"), label = { Text("短信验证码") })
-            TextButton(onClick = { if (phone.length == 11) pendingAction = "sms_send" else error = "请输入正确手机号" }, Modifier.testTag("login_send_sms")) { Text("发送短信验证码") }
+    StkAuthScaffold(title = "欢迎使用商推客", subtitle = "登录后发现和发布推广项目") {
+        Row(Modifier.fillMaxWidth().padding(vertical = StkTokens.Space8), horizontalArrangement = Arrangement.SpaceEvenly) {
+            TextButton(onClick = { passwordMode = true }, Modifier.weight(1f).testTag("login_mode_password")) { Text("密码登录", color = if (passwordMode) StkTokens.BrandPrimary else StkTokens.TextSecondary, style = StkTokens.TitleLarge) }
+            TextButton(onClick = { passwordMode = false }, Modifier.weight(1f).testTag("login_mode_sms")) { Text("短信登录", color = if (!passwordMode) StkTokens.BrandPrimary else StkTokens.TextSecondary, style = StkTokens.TitleLarge) }
         }
-        if (error.isNotBlank()) Text(error, color = StkTokens.BrandAccent)
-        Button(onClick = { if (phone.length != 11 || (passwordMode && password.isBlank()) || (!passwordMode && smsCode.isBlank())) error = "请完整填写登录信息" else pendingAction = if (passwordMode) "password_login" else "sms_login" }, Modifier.fillMaxWidth().testTag(if (passwordMode) "login_password_submit" else "login_sms_submit")) { if (submitting) CircularProgressIndicator() else Text(if (passwordMode) "密码登录" else "短信登录") }
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) { TextButton(onClick = onRegister, Modifier.testTag("login_open_register")) { Text("注册") }; TextButton(onClick = onReset, Modifier.testTag("login_open_reset")) { Text("找回密码") } }
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { TextButton(onClick = onAgreement, Modifier.testTag("login_open_agreement")) { Text("用户协议") }; TextButton(onClick = onPrivacy, Modifier.testTag("login_open_privacy")) { Text("隐私政策") } }
+        StkTextField(phone, { phone = it.filter(Char::isDigit).take(11) }, "手机号", modifier = Modifier.fillMaxWidth(), tag = "login_phone")
+        if (passwordMode) {
+            StkPasswordField(password, { password = it }, "登录密码", passwordVisible, { passwordVisible = !passwordVisible }, modifier = Modifier.fillMaxWidth(), tag = "login_password", visibilityTag = "login_password_visibility")
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) { TextButton(onClick = onReset, Modifier.testTag("login_open_reset")) { Text("忘记密码", color = StkTokens.BrandPrimary) } }
+        } else {
+            StkTextField(smsCode, { smsCode = it.filter(Char::isDigit).take(6) }, "短信验证码", modifier = Modifier.fillMaxWidth(), tag = "login_sms_code")
+            TextButton(onClick = { if (phone.length == 11) pendingAction = "sms_send" else error = "请输入正确手机号" }, Modifier.align(Alignment.End).testTag("login_send_sms")) { Text("发送验证码", color = StkTokens.BrandPrimary) }
+        }
+        if (error.isNotBlank()) StkStatusMessage("登录失败", error, StkStatusTone.Error, modifier = Modifier.testTag("login_error"))
+        StkPrimaryButton(if (passwordMode) "登录" else "登录", onClick = { if (phone.length != 11 || (passwordMode && password.isBlank()) || (!passwordMode && smsCode.isBlank())) error = "请完整填写登录信息" else pendingAction = if (passwordMode) "password_login" else "sms_login" }, modifier = Modifier.fillMaxWidth(), tag = if (passwordMode) "login_password_submit" else "login_sms_submit", loading = submitting)
+        TextButton(onClick = onRegister, Modifier.testTag("login_open_register")) { Text("还没有账号？立即注册", style = StkTokens.Body, color = StkTokens.TextSecondary) }
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { TextButton(onClick = onAgreement, Modifier.testTag("login_open_agreement")) { Text("登录即表示同意《用户协议》", style = StkTokens.Caption, color = StkTokens.TextTertiary) }; TextButton(onClick = onPrivacy, Modifier.testTag("login_open_privacy")) { Text("和《隐私政策》", style = StkTokens.Caption, color = StkTokens.TextTertiary) } }
     }
     if (pendingAction.isNotBlank()) CaptchaDialog(api, deviceId, pendingAction, { ticket ->
         val action = pendingAction
