@@ -1,5 +1,6 @@
 package com.zzyihao.stk
 
+import android.graphics.Bitmap
 import androidx.activity.compose.setContent
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsDisplayed
@@ -23,6 +24,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.Collections
+import java.io.File
+import java.io.FileOutputStream
 
 @RunWith(AndroidJUnit4::class)
 class V100InteractionSmokeTest {
@@ -49,6 +52,7 @@ class V100InteractionSmokeTest {
         }
 
         renderLogin()
+        captureState("AUTH-001-S01")
         act("INT-AUTH-003", "login_phone") { performTextInput("13800138000") }
         act("INT-AUTH-004", "login_password") { performTextInput("Password123") }
         act("INT-AUTH-005", "login_password_visibility") { performClick() }
@@ -65,10 +69,12 @@ class V100InteractionSmokeTest {
         authenticated = false
         renderLogin()
         act("INT-AUTH-002", "login_mode_sms") { performClick() }
+        captureState("AUTH-001-S02")
         waitForTag("login_sms_code")
         act("INT-AUTH-006", "login_sms_code") { performTextInput("123456") }
         composeRule.onNodeWithTag("login_phone").performTextInput("13800138000")
         act("INT-AUTH-007", "login_send_sms") { performClick() }
+        captureState("AUTH-001-S07")
         waitForTag("captcha_cancel")
         act("INT-CAPTCHA-004", "captcha_cancel") { performClick() }
         act("INT-AUTH-009", "login_sms_submit") { performClick() }
@@ -110,6 +116,7 @@ class V100InteractionSmokeTest {
                 )
             }
         }
+        captureState("AUTH-002-S01")
         act("INT-REG-001", "register_phone") { performTextInput("13800138000") }
         act("INT-REG-002", "register_password") { performTextInput("Password123") }
         act("INT-REG-003", "register_password_confirm") { performTextInput("Password123") }
@@ -131,6 +138,7 @@ class V100InteractionSmokeTest {
 
         returned = false
         composeRule.activity.setContent { StkTheme { ApiResetScreen(api, "device") { returned = true } } }
+        captureState("AUTH-003-S01")
         act("INT-RESET-001", "reset_phone") { performTextInput("13800138000") }
         act("INT-RESET-003", "reset_sms_code") { performTextInput("123456") }
         act("INT-RESET-004", "reset_new_password") { performTextInput("Password123") }
@@ -193,6 +201,7 @@ class V100InteractionSmokeTest {
         var openedMe = false
         composeRule.activity.setContent { StkTheme { ApiHomeScreen(api, session, Modifier, { openedMe = true }) { openedProject = it } } }
         waitForTag("project_card_1")
+        captureState("HOME-001-S02")
         val requestsBeforeRefresh = api.projectRequests
         act("INT-HOME-001", "home_pull_refresh") { performTouchInput { swipeDown() } }
         composeRule.waitUntil(5_000) { api.projectRequests > requestsBeforeRefresh }
@@ -233,6 +242,7 @@ class V100InteractionSmokeTest {
         api.failGets = true
         composeRule.activity.setContent { StkTheme { ApiMeScreen(api, session, "device", Modifier, {}) } }
         waitForTag("me_retry")
+        captureState("ME-001-S07")
         api.failGets = false
         act("INT-ME-011", "me_retry") { performClick() }
         composeRule.waitForIdle()
@@ -274,6 +284,21 @@ class V100InteractionSmokeTest {
 
     private fun waitForTag(tag: String) {
         composeRule.waitUntil(5_000) { composeRule.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+    }
+
+    /** Captures the real emulator display after the fixture has settled. */
+    private fun captureState(stateId: String) {
+        composeRule.waitForIdle()
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val directory = context.getExternalFilesDir(null)?.resolve("stk-screenshots") ?: return
+        directory.mkdirs()
+        val target = File(directory, "$stateId.png")
+        val bitmap = InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot()
+        try {
+            FileOutputStream(target).use { output -> bitmap.compress(Bitmap.CompressFormat.PNG, 100, output) }
+        } finally {
+            bitmap.recycle()
+        }
     }
 
     private fun act(id: String, tag: String, action: androidx.compose.ui.test.SemanticsNodeInteraction.() -> Unit) {

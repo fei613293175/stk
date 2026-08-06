@@ -66,6 +66,12 @@ if context["android"]["compile_sdk"] != PINNED_ANDROID_API:
     errors.append(f"PROJECT_CONTEXT compileSdk 必须固定为 API {PINNED_ANDROID_API}")
 if context["android"]["target_sdk"] != PINNED_ANDROID_API:
     errors.append(f"PROJECT_CONTEXT targetSdk 必须固定为 API {PINNED_ANDROID_API}")
+if context["android"].get("api_level") != PINNED_ANDROID_API:
+    errors.append(f"PROJECT_CONTEXT api_level 必须固定为 API {PINNED_ANDROID_API}")
+if context["android"].get("api_channel") != "stable":
+    errors.append("PROJECT_CONTEXT api_channel 必须固定为 stable")
+if context["android"].get("forbidden_api_levels") != "all_except_36":
+    errors.append("PROJECT_CONTEXT 必须禁止所有非 API 36 平台")
 emulator_gate = context["execution_environment_policy"]["emulator_acceptance_gate"]
 if emulator_gate["api_level"] != PINNED_ANDROID_API:
     errors.append(f"PROJECT_CONTEXT 模拟器必须固定为 API {PINNED_ANDROID_API}")
@@ -87,6 +93,9 @@ for workflow_rel in [
     api_levels = re.findall(r"api-level:\s*['\"]?([0-9]+(?:\.[0-9]+)?)", workflow_text)
     if api_levels != [str(PINNED_ANDROID_API)]:
         errors.append(f"{workflow_rel} 必须且只能配置 api-level: '{PINNED_ANDROID_API}'")
+    channels = re.findall(r"^\s*channel:\s*([A-Za-z]+)\s*$", workflow_text, flags=re.MULTILINE)
+    if channels != ["stable"]:
+        errors.append(f"{workflow_rel} 必须且只能使用 stable Android channel")
 
 wrong_domain = "orbe" + "xa.cc"
 forbidden_android_markers = (
@@ -265,6 +274,10 @@ for vid in VERSIONS:
     for field in ("compile_sdk", "target_sdk", "allowed_api_level"):
         if contract_pins.get(field) != PINNED_ANDROID_API:
             errors.append(f"{vid} {field} 必须固定为 API {PINNED_ANDROID_API}")
+    if contract_pins.get("api_channel") != "stable":
+        errors.append(f"{vid} api_channel 必须固定为 stable")
+    if contract_pins.get("stable_api_level") != PINNED_ANDROID_API:
+        errors.append(f"{vid} stable_api_level 必须固定为 API {PINNED_ANDROID_API}")
     if contract_pins.get("forbidden_api_levels") != "all_except_36":
         errors.append(f"{vid} 必须禁止所有非 API {PINNED_ANDROID_API} 平台")
     version_emulator_gate = environment_contract["gates"]["emulator_acceptance"]

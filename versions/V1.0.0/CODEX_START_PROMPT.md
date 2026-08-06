@@ -1,7 +1,7 @@
 # 发送给 Codex：开始商推客 1.0.0
 
 **环境硬门禁：** V1.0.0 的 Android/PHP/Discuz 构建、签名、部署和 Release 验收只允许在线上服务器或 GitHub Actions；模拟器验收只能在 GitHub Actions 执行。本机不得安装或运行这些环境，本机只做源码和静态合同检查。
-**API 版本硬门禁：** 只允许 API 36（Android 16）作为 compileSdk、targetSdk、SDK platform、system image 和模拟器版本；任何非 API 36 版本禁止使用。
+**API 版本硬门禁：** 只允许正式稳定通道的 API 36（Android 16）作为 compileSdk、targetSdk、SDK platform、system image 和模拟器版本；非 API 36（含预览/canary 和任何其他 API 版本）禁止使用，遇到问题不得切换版本。
 **环境复用顺序：** 开发前先只读盘点线上已有 JDK/Gradle/Android SDK/模拟器/PHP/Discuz、Docker 镜像和缓存；满足合同即复用，JDK 17+ 均可，已有 JDK 21 优先。只在缺失且不影响现有业务时用独立目录/容器/volume 补齐，禁止替换系统运行时、改业务配置、占业务端口或重启服务，并记录实际路径、版本和证据。
 **门禁分层：** `APK_BUILD_GATE` 负责编译、Lint、单元/后端测试、签名和同一 Commit Artifact 生成，不依赖 API 36 模拟器或 `/dev/kvm`；`EMULATOR_ACCEPTANCE_GATE` 下载该 Artifact 执行 API 36 模拟器、Instrumentation、交互和视觉验收，禁止重复编译。缺少 `/dev/kvm` 或模拟器运行库时切换 GitHub Actions 的 API 36 runner，不得阻塞 APK 构建、改动业务主机或伪造 KVM；模拟器门禁未通过不得宣称完整交付。
 **版本合同文件：** 先读取并填写 `versions/V1.0.0/ENVIRONMENT_CONTRACT.yaml`，统一规则见 `docs/19_ONLINE_ENVIRONMENT_REUSE_CONTRACT.md`。

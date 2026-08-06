@@ -15,7 +15,7 @@
 
 ## API 版本固定与构建、模拟器门禁分离
 
-- API 36（Android 16）是本合同唯一允许的 Android SDK platform、compileSdk、targetSdk、system image 和模拟器版本。任何非 API 36 版本均禁止安装、配置、构建、验收或写入版本证据；版本合同必须逐版锁定 API 36。
+- API 36（Android 16）正式稳定通道是本合同唯一允许的 Android SDK platform、compileSdk、targetSdk、system image 和模拟器版本。非 API 36（含预览/canary 通道及任何其他 API 版本）均禁止安装、配置、构建、验收或写入版本证据；版本合同必须逐版锁定 `api_level: 36`、`api_channel: stable` 和 `forbidden_api_levels: all_except_36`。遇到 CI、镜像或模拟器问题不得切换 API 版本，只能修复同一 API 36 通道或转移到 GitHub Actions。
 
 - `APK_BUILD_GATE` 包含 Android 编译、Lint、单元/后端测试、签名和 Artifact 生成；它只要求合同规定的 JDK、Gradle、Android SDK/Build Tools 和业务测试环境，**不要求 API 36 模拟器或 `/dev/kvm`**。
 - `EMULATOR_ACCEPTANCE_GATE` 包含 API 36 模拟器、Instrumentation、全部新增交互和视觉截图；它必须只在 GitHub Actions 执行，并下载 `APK_BUILD_GATE` 生成的同一 Commit Artifact，禁止重复编译。

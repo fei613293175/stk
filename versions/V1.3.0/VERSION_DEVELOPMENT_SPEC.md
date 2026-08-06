@@ -2,7 +2,7 @@
 
 ## V1.3.0 环境执行硬门禁
 
-- API 36（Android 16）是本版本唯一允许的 compileSdk、targetSdk、SDK platform、system image 和模拟器版本；任何非 API 36 版本一律禁止。
+- 正式稳定通道的 API 36（Android 16）是本版本唯一允许的 compileSdk、targetSdk、SDK platform、system image 和模拟器版本；非 API 36（含预览/canary 和任何其他 API 版本）一律禁止，遇到环境问题不得切换版本。
 - 门禁分层：`APK_BUILD_GATE` 包含编译、Lint、单元/后端测试、签名和 Artifact 生成，不依赖 API 36 模拟器或 `/dev/kvm`；`EMULATOR_ACCEPTANCE_GATE` 包含 API 36 模拟器、Instrumentation、交互和视觉截图，只能在 GitHub Actions 执行。
 - APK 只构建一次并上传同一 Commit Artifact，模拟器任务下载该 Artifact，禁止重复编译。缺少 `/dev/kvm` 或模拟器运行库不得阻塞 APK 构建，也不得改动业务主机或伪造 KVM；切换到 GitHub Actions 的 API 36 runner 并记录证据。模拟器门禁未通过时只能交付构建中间结果，不能宣称完整版本交付。
 - Android 构建、签名、PHP/Discuz、部署和交付只允许在线上服务器或 GitHub Actions 执行；API 36 模拟器只允许在 GitHub Actions 执行。

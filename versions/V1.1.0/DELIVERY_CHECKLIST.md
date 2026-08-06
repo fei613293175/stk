@@ -1,6 +1,6 @@
 # 1.1.0 交付关闭清单
 
-- [ ] 环境唯一性硬门禁：V1.1.0 的 Android SDK/JDK/Gradle/AGP、PHP/Discuz、签名、部署和验收只能在线上服务器或 GitHub Actions 执行；API 36 模拟器只能在 GitHub Actions 执行；本机不得安装、下载、配置、升级或运行这些环境。本机仅允许源码编辑、合同/静态检查和证据整理。
+- [ ] 环境唯一性硬门禁：V1.1.0 的 Android SDK/JDK/Gradle/AGP、PHP/Discuz、签名、部署和验收只能在线上服务器或 GitHub Actions 执行；正式稳定通道 API 36 模拟器只能在 GitHub Actions 执行，非 API 36（含预览/canary 和其他 API 版本）禁止使用；本机不得安装、下载、配置、升级或运行这些环境。本机仅允许源码编辑、合同/静态检查和证据整理。
 - [ ] 环境复用记录：先只读盘点并复用线上已有 JDK 17+（JDK 21 优先）、Gradle、Android SDK/模拟器、PHP/Discuz、镜像和缓存；仅缺失项可在独立目录/容器/volume 补齐，且不得替换系统运行时、改业务配置、占端口或重启服务。
 - [ ] 已填写 `ENVIRONMENT_CONTRACT.yaml` 的实际路径、版本、复用/补齐决策、验证日志和同一 Commit 来源证据。
 - [ ] `APK_BUILD_GATE` 已独立通过：编译、Lint、单元/后端测试、签名和 Artifact 只执行一次，且不依赖 API 36 模拟器或 `/dev/kvm`。

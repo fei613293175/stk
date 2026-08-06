@@ -13,7 +13,7 @@
 ## 1A. V1.0.0 环境执行硬门禁
 
 - 本版本 Android 构建、签名、PHP/Discuz 测试、部署和 Release Artifact 必须在线上服务器或 GitHub Actions 执行；模拟器验收只能在 GitHub Actions 执行。
-- API 36（Android 16）是本版本唯一允许的 compileSdk、targetSdk、SDK platform、system image 和模拟器版本；任何非 API 36 版本一律禁止。
+- 正式稳定通道的 API 36（Android 16）是本版本唯一允许的 compileSdk、targetSdk、SDK platform、system image 和模拟器版本；非 API 36（含预览/canary 和任何其他 API 版本）一律禁止，遇到环境问题不得切换版本。
 - 本机禁止安装、下载、配置或运行 JDK、Android SDK、Gradle、AGP、PHP、Discuz、模拟器和签名工具来替代线上环境。
 - 本机仅可编辑源码、运行不依赖构建运行时的合同/静态检查和整理线上证据；本机任何 APK 不得作为交付物。
 - 线上环境复用优先：先只读盘点服务器已有 JDK/Gradle/Android SDK/模拟器/PHP/Discuz/缓存；满足合同即复用，JDK 17+ 均可，已有 JDK 21 优先。仅在缺失且不影响现有业务时使用独立目录、容器或 volume 补齐；禁止替换系统运行时、改 Nginx/PHP-FPM/MySQL/Discuz 配置、占用业务端口或重启业务服务，并记录路径、版本和验证证据。
