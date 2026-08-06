@@ -1,6 +1,7 @@
 package com.zzyihao.stk
 
 import android.graphics.Bitmap
+import android.os.SystemClock
 import androidx.activity.compose.setContent
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsDisplayed
@@ -26,6 +27,8 @@ import org.junit.runner.RunWith
 import java.util.Collections
 import java.io.File
 import java.io.FileOutputStream
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 @RunWith(AndroidJUnit4::class)
 class V100InteractionSmokeTest {
@@ -396,6 +399,7 @@ class V100InteractionSmokeTest {
     /** Captures the real emulator display after the fixture has settled. */
     private fun captureState(stateId: String) {
         composeRule.waitForIdle()
+        waitForWindowFrameCommit()
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val directory = context.getExternalFilesDir(null)?.resolve("stk-screenshots") ?: return
         directory.mkdirs()
@@ -406,6 +410,22 @@ class V100InteractionSmokeTest {
         } finally {
             bitmap.recycle()
         }
+    }
+
+    /** Compose can be idle while the platform surface still contains the previous frame. */
+    private fun waitForWindowFrameCommit() {
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        instrumentation.waitForIdleSync()
+        val committed = CountDownLatch(1)
+        composeRule.activity.runOnUiThread {
+            val decor = composeRule.activity.window.decorView
+            decor.postOnAnimation {
+                decor.postOnAnimation { committed.countDown() }
+            }
+        }
+        check(committed.await(2, TimeUnit.SECONDS)) { "Window frame did not commit before screenshot" }
+        instrumentation.waitForIdleSync()
+        SystemClock.sleep(80)
     }
 
     private fun act(id: String, tag: String, action: androidx.compose.ui.test.SemanticsNodeInteraction.() -> Unit) {
