@@ -85,6 +85,8 @@ class V100InteractionSmokeTest {
         check(authenticated)
         check(api.posts.contains("/v1/auth/login/sms"))
 
+        renderLogin()
+        act("INT-AUTH-001", "login_mode_password") { performClick() }
         listOf(
             "INT-AUTH-010" to ("login_open_register" to "register"),
             "INT-AUTH-011" to ("login_open_reset" to "reset"),
@@ -92,12 +94,9 @@ class V100InteractionSmokeTest {
             "INT-AUTH-013" to ("login_open_privacy" to "privacy"),
         ).forEach { (id, binding) ->
             destination = ""
-            renderLogin()
             act(id, binding.first) { performClick() }
             check(destination == binding.second)
         }
-        renderLogin()
-        act("INT-AUTH-001", "login_mode_password") { performClick() }
     }
 
     @Test fun registrationResetAndLegalControlsPerformContractActions() {
