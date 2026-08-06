@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 VERSIONS = ["V1.0.0", "V1.1.0", "V1.2.0", "V1.3.0", "V1.4.0"]
 TEXT_SUFFIXES = {".md", ".yaml", ".yml", ".csv", ".json", ".sql", ".py", ".sh", ".ps1", ".txt"}
 PINNED_ANDROID_API = 36
+EXPLICITLY_FORBIDDEN_ANDROID_APIS = [37]
 
 
 def load_yaml(rel: str):
@@ -72,6 +73,8 @@ if context["android"].get("api_channel") != "stable":
     errors.append("PROJECT_CONTEXT api_channel 必须固定为 stable")
 if context["android"].get("forbidden_api_levels") != "all_except_36":
     errors.append("PROJECT_CONTEXT 必须禁止所有非 API 36 平台")
+if context["android"].get("explicitly_forbidden_api_levels") != EXPLICITLY_FORBIDDEN_ANDROID_APIS:
+    errors.append("PROJECT_CONTEXT 必须显式禁止 API 37")
 emulator_gate = context["execution_environment_policy"]["emulator_acceptance_gate"]
 if emulator_gate["api_level"] != PINNED_ANDROID_API:
     errors.append(f"PROJECT_CONTEXT 模拟器必须固定为 API {PINNED_ANDROID_API}")
@@ -99,13 +102,17 @@ for workflow_rel in [
 
 wrong_domain = "orbe" + "xa.cc"
 forbidden_android_markers = (
-    f"API {PINNED_ANDROID_API + 1}",
-    f"android-{PINNED_ANDROID_API + 1}.0",
-    f"platforms;android-{PINNED_ANDROID_API + 1}.0",
-    f"system-images;android-{PINNED_ANDROID_API + 1}.0",
-    f"api-level: '{PINNED_ANDROID_API + 1}.0'",
+    f"Android SDK {PINNED_ANDROID_API + 1}",
+    f"platforms;android-{PINNED_ANDROID_API + 1}",
+    f"system-images;android-{PINNED_ANDROID_API + 1}",
+    f"api-level: '{PINNED_ANDROID_API + 1}'",
+    f'api-level: "{PINNED_ANDROID_API + 1}"',
     f"compileSdk = {PINNED_ANDROID_API + 1}",
     f"targetSdk = {PINNED_ANDROID_API + 1}",
+    f"compile_sdk: {PINNED_ANDROID_API + 1}",
+    f"target_sdk: {PINNED_ANDROID_API + 1}",
+    f"allowed_api_level: {PINNED_ANDROID_API + 1}",
+    f"stable_api_level: {PINNED_ANDROID_API + 1}",
 )
 for p in ROOT.rglob("*"):
     if any(part in {".git", "artifacts"} for part in p.parts):
@@ -280,6 +287,8 @@ for vid in VERSIONS:
         errors.append(f"{vid} stable_api_level 必须固定为 API {PINNED_ANDROID_API}")
     if contract_pins.get("forbidden_api_levels") != "all_except_36":
         errors.append(f"{vid} 必须禁止所有非 API {PINNED_ANDROID_API} 平台")
+    if contract_pins.get("explicitly_forbidden_api_levels") != EXPLICITLY_FORBIDDEN_ANDROID_APIS:
+        errors.append(f"{vid} 必须显式禁止 API 37")
     version_emulator_gate = environment_contract["gates"]["emulator_acceptance"]
     if version_emulator_gate.get("api_level") != PINNED_ANDROID_API:
         errors.append(f"{vid} 模拟器必须固定为 API {PINNED_ANDROID_API}")

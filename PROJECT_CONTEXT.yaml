@@ -28,6 +28,7 @@ android:
   api_level: 36
   api_channel: stable
   forbidden_api_levels: all_except_36
+  explicitly_forbidden_api_levels: [37]
   jdk: 21
   jdk_compatibility: "JDK 17+; JDK 21 preferred when already available on the online server"
   kotlin: 2.4.10

@@ -9,11 +9,10 @@
 
 ## 当前阻塞
 
-- 当前开发机没有可用 JDK、Gradle 或 PHP，无法在本地执行 Android 编译、签名、PHP lint 和模拟器验收。
-- 构建环境硬门禁已确认：后续不得在本机补装或执行这些环境，必须转到线上服务器/GitHub Actions。
-- 远程仓库为空，尚未推送初始提交；GitHub Actions、部署健康检查、真实 API/后台和 Owner 真机验收尚未发生。
+- 构建环境硬门禁已确认：不得在本机补装或执行 JDK、Gradle、Android SDK、PHP/Discuz 或模拟器环境；构建和部署必须使用线上服务器/GitHub Actions，模拟器只允许在 GitHub Actions 运行。
+- `release/1.0.0` 已推送远程仓库，合同及 Android/后端构建 CI 已通过；API 36 Stable 模拟器交互已运行，但视觉门禁、线上部署健康检查、真实 API/后台和 Owner 真机验收尚未完成。
 - V1.0 认证业务、网络层、自动化测试和完整后台页面仍需继续实现，不能标记为 READY_FOR_DELIVERY。
 
 ## 下一步
 
-在具备 JDK 17+（线上已有 JDK 21 时优先复用）、Gradle 9.5、Android SDK 37、PHP/Discuz 测试环境后，继续完成认证纵向闭环、API/后台测试和同一 Commit 的 CI Release Artifact；完成交付关闭清单后暂停推进。
+优先复用线上已有 JDK 21、Gradle 9.5、API 36（Android 16）Stable SDK/Build Tools 和 PHP/Discuz 环境，继续完成认证纵向闭环、API/后台测试及同一 Commit 的 CI Release Artifact。API 37、其他 API、Preview 和 Canary 均不得使用；完成交付关闭清单后暂停推进。

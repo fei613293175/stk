@@ -17,6 +17,7 @@ contract_pins:
   api_channel: stable
   stable_api_level: 36
   forbidden_api_levels: all_except_36
+  explicitly_forbidden_api_levels: [37]
   build_tools: 36.0.0
   gradle: 9.5.0
   agp: 9.3.0
@@ -50,7 +51,7 @@ actual_environment:
   sdk_packages:
     - platforms;android-36
     - build-tools;36.0.0
-    # platform-tools/emulator numbers are tool releases, not Android API levels.
+    # platform-tools/emulator numbers are tool releases, not Android API levels; API 37 is forbidden.
     - platform-tools;37.0.1
     - emulator;37.1.11
     - system-images;android-36;google_apis;x86_64
