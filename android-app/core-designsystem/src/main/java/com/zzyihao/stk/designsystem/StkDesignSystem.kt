@@ -153,6 +153,7 @@ fun StkRootScaffold(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StkPageScaffold(
     title: String,
