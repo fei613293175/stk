@@ -49,23 +49,27 @@ private fun stateNumber(stateId: String): Int = stateId.substringAfterLast("-S",
 
 @Composable
 internal fun V100VisualStateScreen(stateId: String) {
-    when {
-        stateId.startsWith("DS-") -> VisualDesignBoard(stateId)
-        stateId.startsWith("SYS-001") -> VisualSplash(stateNumber(stateId))
-        stateId.startsWith("SYS-002") -> VisualSystemResult(stateNumber(stateId))
-        stateId.startsWith("COM-OV-002") -> VisualStage()
-        stateId.startsWith("AUTH-001") -> VisualLogin(stateNumber(stateId))
-        stateId.startsWith("AUTH-002") -> VisualRegister(stateNumber(stateId))
-        stateId.startsWith("AUTH-003") -> VisualReset(stateNumber(stateId))
-        stateId.startsWith("AUTH-004") -> VisualLegal("用户协议", stateNumber(stateId))
-        stateId.startsWith("AUTH-005") -> VisualLegal("隐私政策", stateNumber(stateId))
-        stateId.startsWith("AUTH-OV-001") -> VisualCaptcha(stateNumber(stateId))
-        stateId.startsWith("AUTH-OV-002") -> VisualRisk(stateNumber(stateId))
-        stateId.startsWith("HOME-001") -> VisualHome(stateNumber(stateId))
-        stateId.startsWith("HOME-004") -> VisualDetail(stateNumber(stateId))
-        stateId.startsWith("ME-001") -> VisualMe(stateNumber(stateId))
-        stateId.startsWith("ME-OV-001") -> VisualLogout(stateNumber(stateId))
-        else -> VisualSystemResult(2)
+    // A state-specific semantic anchor prevents the screenshot harness from
+    // capturing the previous composition after setContent invalidates it.
+    Box(Modifier.fillMaxSize().testTag("visual_state_$stateId")) {
+        when {
+            stateId.startsWith("DS-") -> VisualDesignBoard(stateId)
+            stateId.startsWith("SYS-001") -> VisualSplash(stateNumber(stateId))
+            stateId.startsWith("SYS-002") -> VisualSystemResult(stateNumber(stateId))
+            stateId.startsWith("COM-OV-002") -> VisualStage()
+            stateId.startsWith("AUTH-001") -> VisualLogin(stateNumber(stateId))
+            stateId.startsWith("AUTH-002") -> VisualRegister(stateNumber(stateId))
+            stateId.startsWith("AUTH-003") -> VisualReset(stateNumber(stateId))
+            stateId.startsWith("AUTH-004") -> VisualLegal("用户协议", stateNumber(stateId))
+            stateId.startsWith("AUTH-005") -> VisualLegal("隐私政策", stateNumber(stateId))
+            stateId.startsWith("AUTH-OV-001") -> VisualCaptcha(stateNumber(stateId))
+            stateId.startsWith("AUTH-OV-002") -> VisualRisk(stateNumber(stateId))
+            stateId.startsWith("HOME-001") -> VisualHome(stateNumber(stateId))
+            stateId.startsWith("HOME-004") -> VisualDetail(stateNumber(stateId))
+            stateId.startsWith("ME-001") -> VisualMe(stateNumber(stateId))
+            stateId.startsWith("ME-OV-001") -> VisualLogout(stateNumber(stateId))
+            else -> VisualSystemResult(2)
+        }
     }
 }
 

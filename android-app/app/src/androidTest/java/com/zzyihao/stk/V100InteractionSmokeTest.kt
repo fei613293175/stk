@@ -382,6 +382,8 @@ class V100InteractionSmokeTest {
         check(stateIds.size == 95)
         stateIds.forEach { stateId ->
             composeRule.activity.setContent { StkTheme { V100VisualStateScreen(stateId) } }
+            // Wait for this exact state, not merely a globally idle frame.
+            waitForTag("visual_state_$stateId")
             composeRule.waitForIdle()
             captureState(stateId)
         }
