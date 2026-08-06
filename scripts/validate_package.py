@@ -49,6 +49,7 @@ required = [
     "contracts/database-entity-catalog.yaml", "contracts/admin-menu-map.yaml", "contracts/config-inventory.csv",
     "contracts/feature-map.yaml", "contracts/test-catalog.csv", "contracts/frontend-backend-traceability.csv",
     "contracts/repository-policy.yaml", "contracts/domain-delivery-map.yaml", "contracts/owner-delivery-contract.yaml",
+    "docs/ANDROID_API_VERSION_POLICY.md",
     "backend/DISCUZ_PLUGIN_IMPLEMENTATION.md", "scripts/check_mockup_readiness.py",
     ".github/workflows/contract-validation.yml",
 ]
@@ -75,6 +76,19 @@ if context["android"].get("forbidden_api_levels") != "all_except_36":
     errors.append("PROJECT_CONTEXT 必须禁止所有非 API 36 平台")
 if context["android"].get("explicitly_forbidden_api_levels") != EXPLICITLY_FORBIDDEN_ANDROID_APIS:
     errors.append("PROJECT_CONTEXT 必须显式禁止 API 37")
+api_policy = context["android"].get("api_policy", {})
+if api_policy.get("allowed_api_level") != PINNED_ANDROID_API:
+    errors.append("PROJECT_CONTEXT api_policy.allowed_api_level 必须固定为 API 36")
+if api_policy.get("api_channel") != "stable":
+    errors.append("PROJECT_CONTEXT api_policy.api_channel 必须固定为 stable")
+if api_policy.get("forbidden_api_levels") != "all_except_36":
+    errors.append("PROJECT_CONTEXT api_policy 必须禁止所有非 API 36 平台")
+if api_policy.get("explicitly_forbidden_api_levels") != EXPLICITLY_FORBIDDEN_ANDROID_APIS:
+    errors.append("PROJECT_CONTEXT api_policy 必须显式禁止 API 37")
+if api_policy.get("emulator_execution") != "github_actions_only":
+    errors.append("PROJECT_CONTEXT api_policy.emulator_execution 必须仅允许 GitHub Actions")
+if api_policy.get("on_mismatch") != "reject_before_build":
+    errors.append("PROJECT_CONTEXT API 不匹配时必须在构建前拒绝")
 emulator_gate = context["execution_environment_policy"]["emulator_acceptance_gate"]
 if emulator_gate["api_level"] != PINNED_ANDROID_API:
     errors.append(f"PROJECT_CONTEXT 模拟器必须固定为 API {PINNED_ANDROID_API}")
@@ -113,9 +127,28 @@ forbidden_android_markers = (
     f"target_sdk: {PINNED_ANDROID_API + 1}",
     f"allowed_api_level: {PINNED_ANDROID_API + 1}",
     f"stable_api_level: {PINNED_ANDROID_API + 1}",
+    f"platforms;android-{PINNED_ANDROID_API + 1}",
+    f"system-images;android-{PINNED_ANDROID_API + 1}",
+    f"emulator;{PINNED_ANDROID_API + 1}",
 )
+android_api_reference_patterns = (
+    (r"\bcompileSdk\s*=\s*(\d+)", "compileSdk"),
+    (r"\btargetSdk\s*=\s*(\d+)", "targetSdk"),
+    (r"\bcompile_sdk:\s*(\d+)", "compile_sdk"),
+    (r"\btarget_sdk:\s*(\d+)", "target_sdk"),
+    (r"\bapi_level:\s*(\d+)", "api_level"),
+    (r"\ballowed_api_level:\s*(\d+)", "allowed_api_level"),
+    (r"\bstable_api_level:\s*(\d+)", "stable_api_level"),
+    (r"\bapi-level:\s*['\"]?(\d+)(?:\.\d+)?", "api-level"),
+    (r"platforms;android-(\d+)", "platforms;android"),
+    (r"system-images;android-(\d+)", "system-images;android"),
+)
+operational_roots = {"android", "android-app", ".github", "contracts", "versions", "scripts", "PROJECT_CONTEXT.yaml", "AGENTS.md"}
 for p in ROOT.rglob("*"):
     if any(part in {".git", "artifacts"} for part in p.parts):
+        continue
+    rel_parts = p.relative_to(ROOT).parts if p != ROOT else ()
+    if rel_parts and rel_parts[0] not in operational_roots:
         continue
     if p.is_file() and p.suffix.lower() in TEXT_SUFFIXES:
         try:
@@ -127,6 +160,12 @@ for p in ROOT.rglob("*"):
         for marker in forbidden_android_markers:
             if marker in text:
                 errors.append(f"发现禁止的 Android 平台标记 {marker}: {p.relative_to(ROOT)}")
+        for pattern, label in android_api_reference_patterns:
+            for raw_value in re.findall(pattern, text):
+                if int(raw_value) != PINNED_ANDROID_API:
+                    errors.append(
+                        f"发现非 API {PINNED_ANDROID_API} 的 {label}={raw_value}: {p.relative_to(ROOT)}"
+                    )
 
 pages = load_yaml("contracts/ui-page-catalog.yaml")["pages"]
 states = load_csv("contracts/ui-state-catalog.csv")
@@ -277,6 +316,19 @@ for vid in VERSIONS:
         if fixed not in ui_rules:
             errors.append(f"{vid} 未重复固定 UI 参数: {fixed}")
     environment_contract = load_yaml(f"versions/{vid}/ENVIRONMENT_CONTRACT.yaml")
+    version_api_policy = environment_contract.get("api_policy", {})
+    if version_api_policy.get("allowed_api_level") != PINNED_ANDROID_API:
+        errors.append(f"{vid} api_policy.allowed_api_level 必须固定为 API {PINNED_ANDROID_API}")
+    if version_api_policy.get("api_channel") != "stable":
+        errors.append(f"{vid} api_policy.api_channel 必须固定为 stable")
+    if version_api_policy.get("forbidden_api_levels") != "all_except_36":
+        errors.append(f"{vid} api_policy 必须禁止所有非 API {PINNED_ANDROID_API} 平台")
+    if version_api_policy.get("explicitly_forbidden_api_levels") != EXPLICITLY_FORBIDDEN_ANDROID_APIS:
+        errors.append(f"{vid} api_policy 必须显式禁止 API 37")
+    if version_api_policy.get("emulator_execution") != "github_actions_only":
+        errors.append(f"{vid} api_policy.emulator_execution 必须仅允许 GitHub Actions")
+    if version_api_policy.get("on_mismatch") != "reject_before_build":
+        errors.append(f"{vid} API 不匹配时必须在构建前拒绝")
     contract_pins = environment_contract["contract_pins"]
     for field in ("compile_sdk", "target_sdk", "allowed_api_level"):
         if contract_pins.get(field) != PINNED_ANDROID_API:

@@ -2,6 +2,13 @@ schema_version: 1
 release: V1.0.0
 authority: online_server_or_github_actions
 local_machine: source_edit_static_check_evidence_only
+api_policy:
+  allowed_api_level: 36
+  api_channel: stable
+  forbidden_api_levels: all_except_36
+  explicitly_forbidden_api_levels: [37]
+  emulator_execution: github_actions_only
+  on_mismatch: reject_before_build
 reuse_order:
   - existing_server_runtime
   - existing_docker_images_and_caches
@@ -51,16 +58,15 @@ actual_environment:
   sdk_packages:
     - platforms;android-36
     - build-tools;36.0.0
-    # platform-tools/emulator numbers are tool releases, not Android API levels; API 37 is forbidden.
-    - platform-tools;37.0.1
-    - emulator;37.1.11
     - system-images;android-36;google_apis;x86_64
+    # platform-tools/emulator are stable SDK tools; their tool release number is recorded by CI and is not an API level.
+  sdk_tool_policy: stable_non_preview_api_independent
   isolated_source_path: /opt/stk-build/src
   isolated_signing_path: /opt/stk-build/signing
-  decision: reused_server_image_jdk_gradle_cache_and_sdk_then_supplemented_isolated_avd
+  decision: reused_server_image_jdk_gradle_cache_and_sdk_for_apk_build; emulator_gate_routed_to_github_actions
   validation: online_release_and_android_test_build_success
   validation_log: /opt/stk-build/stk-v100-build.log
-  emulator_note: software_acceleration_only_no_dev_kvm_system_services_not_ready_for_instrumentation
+  emulator_note: not_started_on_server; api36_instrumentation_and_visual_acceptance_github_actions_only
 gates:
   apk_build:
     name: APK_BUILD_GATE

@@ -1,5 +1,9 @@
 # 商推客 1.3.0 开发规格
 
+## API 版本硬门禁
+
+本版 `api_policy` 固定为 `allowed_api_level: 36`、`api_channel: stable`、`forbidden_api_levels: all_except_36`、`explicitly_forbidden_api_levels: [37]`、`emulator_execution: github_actions_only`；任何不匹配必须在构建前拒绝。
+
 ## V1.3.0 环境执行硬门禁
 
 - 正式稳定通道的 API 36（Android 16）是本版本唯一允许的 compileSdk、targetSdk、SDK platform、system image 和模拟器版本；API 37、其他非 API 36、Preview 和 Canary 一律禁止，遇到环境问题不得切换版本。

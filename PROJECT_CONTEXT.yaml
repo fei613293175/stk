@@ -43,6 +43,13 @@ android:
   lifecycle: 2.11.0
   navigation: 2.9.8
   room: 2.8.4
+  api_policy:
+    allowed_api_level: 36
+    api_channel: stable
+    forbidden_api_levels: all_except_36
+    explicitly_forbidden_api_levels: [37]
+    emulator_execution: github_actions_only
+    on_mismatch: reject_before_build
 backend:
   framework: Discuz! X5.0
   plugins:

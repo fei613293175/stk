@@ -15,8 +15,8 @@
 
 ## API 版本固定与构建、模拟器门禁分离
 
-- API 36（Android 16）正式稳定通道是本合同唯一允许的 Android SDK platform、compileSdk、targetSdk、system image 和模拟器版本。API 37、其他非 API 36、Preview 和 Canary 均禁止安装、配置、构建、验收或写入版本证据；版本合同必须逐版锁定 `api_level: 36`、`api_channel: stable`、`forbidden_api_levels: all_except_36` 和 `explicitly_forbidden_api_levels: [37]`。遇到 CI、镜像或模拟器问题不得切换 API 版本，只能修复同一 API 36 Stable 通道或转移到 GitHub Actions。
-- 本禁令针对 Android API level；`platform-tools`、`emulator` 等 SDK 工具包的独立发行号（例如 `37.x`）不等于 API 37，不能改变已锁定的 API 36 platform/system image。
+- API 36（Android 16）正式稳定通道是本合同唯一允许的 Android SDK platform、compileSdk、targetSdk、system image 和模拟器版本。API 37、其他非 API 36、Preview、Canary、Beta 和 RC 均禁止安装、配置、构建、验收或写入版本证据；每个版本合同必须逐版锁定 `api_policy.allowed_api_level: 36`、`api_policy.api_channel: stable`、`api_policy.forbidden_api_levels: all_except_36`、`api_policy.explicitly_forbidden_api_levels: [37]`、`api_policy.emulator_execution: github_actions_only` 和 `api_policy.on_mismatch: reject_before_build`。遇到 CI、镜像或模拟器问题不得切换 API 版本，只能修复同一 API 36 Stable 通道或转移到 GitHub Actions。
+- 本禁令针对 Android API level；`platform-tools`、`emulator` 等 SDK 工具包的独立发行号不是 API level。只能使用稳定、非 Preview 工具，且不得因此改变已锁定的 API 36 platform/system image。
 
 - `APK_BUILD_GATE` 包含 Android 编译、Lint、单元/后端测试、签名和 Artifact 生成；它只要求合同规定的 JDK、Gradle、Android SDK/Build Tools 和业务测试环境，**不要求 API 36 模拟器或 `/dev/kvm`**。
 - `EMULATOR_ACCEPTANCE_GATE` 包含 API 36 模拟器、Instrumentation、全部新增交互和视觉截图；它必须只在 GitHub Actions 执行，并下载 `APK_BUILD_GATE` 生成的同一 Commit Artifact，禁止重复编译。

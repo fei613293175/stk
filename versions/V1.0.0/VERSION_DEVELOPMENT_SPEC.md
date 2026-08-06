@@ -12,6 +12,8 @@
 
 ## 1A. V1.0.0 环境执行硬门禁
 
+- `api_policy` 固定为 `allowed_api_level: 36`、`api_channel: stable`、`forbidden_api_levels: all_except_36`、`explicitly_forbidden_api_levels: [37]`、`emulator_execution: github_actions_only`；任何不匹配必须在构建前拒绝。
+
 - 本版本 Android 构建、签名、PHP/Discuz 测试、部署和 Release Artifact 必须在线上服务器或 GitHub Actions 执行；模拟器验收只能在 GitHub Actions 执行。
 - 正式稳定通道的 API 36（Android 16）是本版本唯一允许的 compileSdk、targetSdk、SDK platform、system image 和模拟器版本；API 37、其他非 API 36、Preview 和 Canary 一律禁止，遇到环境问题不得切换版本。
 - 本机禁止安装、下载、配置或运行 JDK、Android SDK、Gradle、AGP、PHP、Discuz、模拟器和签名工具来替代线上环境。
