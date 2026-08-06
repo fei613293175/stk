@@ -139,13 +139,13 @@ internal fun ApiHomeScreen(api: StkApi, session: StkSession, modifier: Modifier,
 
     fun reloadProjects() { reload++ }
     LaunchedEffect(session.accessToken, reload) {
+        if (projects.isNotEmpty()) listState.scrollToItem(0)
         projects = emptyList()
         nextCursor = null
         hasMore = false
         loadingMore = false
         loadMoreError = false
         inFlightCursor = null
-        listState.scrollToItem(0)
         requestPage(null, replace = true)
     }
     LaunchedEffect(listState) {

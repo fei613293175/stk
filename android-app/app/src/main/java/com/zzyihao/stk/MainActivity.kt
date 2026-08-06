@@ -188,8 +188,8 @@ internal fun CaptchaDialog(api: StkApi, deviceId: String, action: String, onVeri
     var verifying by remember(action) { mutableStateOf(false) }
     var expiresAt by remember(action) { mutableStateOf(0L) }
     val captchaImage = remember(imageDataUri) { decodeCaptchaDataUri(imageDataUri) }
-    fun load() {
-        if (loading || verifying) return
+    fun load(force: Boolean = false) {
+        if (!force && (loading || verifying)) return
         loading = true
         error = ""
         answer = ""
@@ -215,12 +215,13 @@ internal fun CaptchaDialog(api: StkApi, deviceId: String, action: String, onVeri
     }
     LaunchedEffect(action) { load() }
     LaunchedEffect(expiresAt) {
-        if (expiresAt > 0L) {
-            delay((expiresAt - System.currentTimeMillis()).coerceAtLeast(1L))
-            if (expiresAt <= System.currentTimeMillis() && !verifying) {
+        val expiration = expiresAt
+        if (expiration > 0L) {
+            delay((expiration - System.currentTimeMillis()).coerceAtLeast(1L))
+            if (expiresAt == expiration && !verifying) {
                 error = "验证码已过期，正在刷新"
                 challengeId = ""
-                load()
+                load(force = true)
             }
         }
     }
