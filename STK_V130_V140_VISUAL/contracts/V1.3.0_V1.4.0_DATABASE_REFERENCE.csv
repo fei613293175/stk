@@ -1,0 +1,5 @@
+﻿entity,version,owner,purpose,migration_rule
+pre_stk_member_status,V1.3.0,stk_project,未开通/有效/过期/禁用状态与有效期,版本化 SQL；前向迁移；升级测试；业务删除默认软删除
+pre_stk_wallet_account,V1.3.0,stk_project,佣金和任务账户只读余额；本五版本不产生流水,版本化 SQL；前向迁移；升级测试；业务删除默认软删除
+pre_stk_prop_catalog,V1.3.0,stk_project,道具名称、图标、说明、排序和显示开关,版本化 SQL；前向迁移；升级测试；业务删除默认软删除
+pre_stk_release,V1.4.0,stk_project,Android 版本、最低版本、下载地址、SHA、强制标记,版本化 SQL；前向迁移；升级测试；业务删除默认软删除

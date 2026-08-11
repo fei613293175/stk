@@ -1,0 +1,25 @@
+﻿config_id,version,key,type,default,description,sensitive,audit_required
+CFG-130-01,V1.3.0,me.show_wallets,BOOL,true,显示双账户,NO,NO
+CFG-130-02,V1.3.0,me.commission_label,STRING,佣金账户,佣金账户显示名,NO,NO
+CFG-130-03,V1.3.0,me.task_label,STRING,任务账户,任务账户显示名,NO,NO
+CFG-130-04,V1.3.0,member.show_card,BOOL,true,显示会员卡,NO,NO
+CFG-130-05,V1.3.0,member.title,STRING,商推客会员,会员卡标题,NO,NO
+CFG-130-06,V1.3.0,member.benefit_discount,STRING,消费5折,权益展示文案，不执行结算,NO,NO
+CFG-130-07,V1.3.0,member.benefit_rebate,STRING,消费返佣40%,权益展示文案，不执行返佣,NO,NO
+CFG-130-08,V1.3.0,member.open_button_text,STRING,立即开通,未开通按钮文案,NO,NO
+CFG-130-09,V1.3.0,props.show_center,BOOL,true,显示道具中心,NO,NO
+CFG-130-10,V1.3.0,props.items,JSON,"refresh,super_headline,headline,color",道具展示目录,NO,NO
+CFG-130-11,V1.3.0,support.type,ENUM,wechat,客服类型,NO,NO
+CFG-130-12,V1.3.0,support.value,STRING,,客服值,NO,NO
+CFG-130-13,V1.3.0,support.copy_enabled,BOOL,true,允许复制客服信息,NO,NO
+CFG-130-14,V1.3.0,placeholder.message,STRING,功能筹备中,占位页统一文案,NO,NO
+CFG-140-01,V1.4.0,release.current_version,STRING,1.4.0,当前发布版本,NO,YES
+CFG-140-02,V1.4.0,release.minimum_version,STRING,1.0.0,最低可用版本,NO,YES
+CFG-140-03,V1.4.0,release.force_update,BOOL,false,是否强制更新,NO,YES
+CFG-140-04,V1.4.0,release.download_url,URL,https://stk-download.zz-yihao.com/app/stk.apk,APK 下载地址,NO,YES
+CFG-140-05,V1.4.0,release.apk_sha256,STRING,,APK SHA-256,NO,YES
+CFG-140-06,V1.4.0,release.notes,TEXT,,更新说明,NO,YES
+CFG-140-07,V1.4.0,maintenance.enabled,BOOL,false,维护开关,NO,YES
+CFG-140-08,V1.4.0,maintenance.message,STRING,系统维护中,维护文案,NO,YES
+CFG-140-09,V1.4.0,maintenance.expected_end,DATETIME,,预计恢复时间,NO,YES
+CFG-140-10,V1.4.0,app_links.host,STRING,stk.zz-yihao.com,App Links 主机,NO,NO

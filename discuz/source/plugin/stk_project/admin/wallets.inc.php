@@ -1,4 +1,26 @@
 <?php
-if (!defined('IN_ADMINCP')) exit('Access Denied'); require_once dirname(__DIR__).'/lib/config.php';
-if(submitcheck('walletsubmit')){$uid=max(1,(int)($_POST['uid']??0));if(!C::t('common_member')->fetch($uid))cpmsg('用户不存在','','error');$amount=number_format(max(0,(float)($_POST['commission_amount']??0)),2,'.','');$points=max(0,(int)($_POST['task_points']??0));DB::query('INSERT INTO %t (uid,commission_amount,task_points,updated_at) VALUES (%d,%s,%d,%d) ON DUPLICATE KEY UPDATE commission_amount=VALUES(commission_amount),task_points=VALUES(task_points),updated_at=VALUES(updated_at)',['stk_wallet_account',$uid,$amount,$points,TIMESTAMP]);stk_project_admin_audit('wallet','update',['uid'=>$uid]);cpmsg('账户展示值已保存','action=plugins&operation=config&do='.$pluginid.'&identifier=stk_project&pmod=wallets','succeed');}
-showformheader('plugins&operation=config&do='.$pluginid.'&identifier=stk_project&pmod=wallets');showtableheader('账户展示管理');showsetting('用户 UID','uid','1','text');showsetting('佣金账户展示值','commission_amount','0.00','text');showsetting('任务账户积分','task_points','0','text');showsubmit('walletsubmit','保存');showtablefooter();showformfooter();$rows=DB::fetch_all('SELECT uid,commission_amount,task_points,updated_at FROM %t ORDER BY updated_at DESC LIMIT 200',['stk_wallet_account']);showtableheader('账户列表');showtablerow('',[],['UID','佣金','任务积分','更新']);foreach($rows as $r)showtablerow('',[],[(int)$r['uid'],(string)$r['commission_amount'],(int)$r['task_points'],dgmdate((int)$r['updated_at'])]);showtablefooter();
+if (!defined('IN_ADMINCP')) exit('Access Denied');
+require_once dirname(__DIR__) . '/lib/config.php';
+
+$uid = max(0, (int) ($_GET['uid'] ?? 0));
+showformheader('plugins&operation=config&do=' . $pluginid . '&identifier=stk_project&pmod=wallets', 'get');
+showtableheader('账户展示查询（只读）');
+showsetting('用户 UID', 'uid', $uid > 0 ? (string) $uid : '', 'text', '', 0, '本模块不提供资金增减、转账、提现或流水操作。');
+showsubmit('', '查询');
+showtablefooter();
+showformfooter();
+
+if ($uid > 0) {
+    DB::query('INSERT IGNORE INTO %t (uid,commission_amount,task_amount,task_points,updated_at) SELECT uid,0,0,0,%d FROM %t WHERE uid=%d', ['stk_wallet_account',TIMESTAMP,'common_member',$uid]);
+}
+$where = $uid > 0 ? 'WHERE w.uid=' . $uid : '';
+$rows = DB::fetch_all(
+    'SELECT w.uid,m.username,w.commission_amount,w.task_amount,w.updated_at FROM %t w LEFT JOIN %t m ON m.uid=w.uid ' . $where . ' ORDER BY w.updated_at DESC,w.uid DESC LIMIT 200',
+    ['stk_wallet_account','common_member']
+);
+showtableheader('账户列表');
+showtablerow('', [], ['UID','用户名',stk_project_config('commission_label', '佣金账户'),stk_project_config('task_label', '任务账户'),'更新']);
+foreach ($rows as $row) {
+    showtablerow('', [], [(int) $row['uid'],dhtmlspecialchars($row['username'] ?: '-'),number_format((float) $row['commission_amount'], 2),number_format((float) $row['task_amount'], 2),dgmdate((int) $row['updated_at'])]);
+}
+showtablefooter();

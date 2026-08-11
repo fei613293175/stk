@@ -10,7 +10,7 @@
       "datatables": "stk_auth_config,stk_auth_mobile,stk_auth_sms_code,stk_auth_captcha,stk_auth_captcha_ticket,stk_auth_token,stk_auth_refresh_token,stk_auth_request_guard,stk_security_event,stk_member_status,stk_wallet_account,stk_account_membership,stk_account_balance",
       "directory": "stk_auth/",
       "copyright": "商推客",
-      "version": "1.5.0",
+      "version": "1.3.0",
       "__modules": [
         {"name": "api", "menu": "", "url": "", "type": "1", "adminid": "0", "displayorder": "0"},
         {"name": "captcha", "menu": "", "url": "", "type": "1", "adminid": "0", "displayorder": "0"},

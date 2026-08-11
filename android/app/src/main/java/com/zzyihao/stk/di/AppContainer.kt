@@ -21,6 +21,8 @@ import com.zzyihao.stk.data.release.ReleaseRepository
 import com.zzyihao.stk.data.legal.FakeLegalRepository
 import com.zzyihao.stk.data.legal.HttpLegalRepository
 import com.zzyihao.stk.data.legal.LegalRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class AppContainer(context: Context) {
     private val appContext = context.applicationContext
@@ -43,7 +45,11 @@ class AppContainer(context: Context) {
     }
 
     val projectSubmissionRepository: ProjectSubmissionRepository = if (BuildConfig.STK_USE_FAKE_BACKEND) FakeProjectSubmissionRepository() else HttpProjectSubmissionRepository(BuildConfig.STK_PROJECT_API_ENDPOINT, tokenStore, context.applicationContext)
-    val accountRepository: AccountRepository = if (BuildConfig.STK_USE_FAKE_BACKEND) FakeAccountRepository(tokenStore) else HttpAccountRepository(BuildConfig.STK_API_ENDPOINT, tokenStore)
+    val accountRepository: AccountRepository = if (BuildConfig.STK_USE_FAKE_BACKEND) {
+        FakeAccountRepository(tokenStore)
+    } else {
+        HttpAccountRepository(BuildConfig.STK_PROJECT_API_ENDPOINT, tokenStore, appContext)
+    }
     val releaseRepository: ReleaseRepository = HttpReleaseRepository(BuildConfig.STK_UPDATE_MANIFEST_URL)
     val legalRepository: LegalRepository = if (BuildConfig.STK_USE_FAKE_BACKEND) {
         FakeLegalRepository()
@@ -51,10 +57,16 @@ class AppContainer(context: Context) {
         HttpLegalRepository(BuildConfig.STK_API_ENDPOINT, appContext)
     }
 
-    fun clearCachedData() {
+    suspend fun clearCachedData() = withContext(Dispatchers.IO) {
         projectCache.clear()
+        accountRepository.clearCache()
         legalRepository.clearCache()
-        java.io.File(appContext.cacheDir, "project-images").deleteRecursively()
-        java.io.File(appContext.cacheDir, "stk-updates").deleteRecursively()
+        check(deleteDirectory("project-images")) { "图片缓存清理失败" }
+        check(deleteDirectory("stk-updates")) { "更新缓存清理失败" }
+    }
+
+    private fun deleteDirectory(name: String): Boolean {
+        val directory = java.io.File(appContext.cacheDir, name)
+        return !directory.exists() || directory.deleteRecursively()
     }
 }

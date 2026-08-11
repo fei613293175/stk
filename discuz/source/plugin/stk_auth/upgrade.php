@@ -36,8 +36,8 @@ CREATE TABLE IF NOT EXISTS `pre_stk_security_event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 CREATE TABLE IF NOT EXISTS `pre_stk_app_config` (`config_key` varchar(64) NOT NULL,`config_value` text NOT NULL,`updated_at` int unsigned NOT NULL DEFAULT 0,PRIMARY KEY (`config_key`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 CREATE TABLE IF NOT EXISTS `pre_stk_auth_refresh_token` (`token_hash` char(64) NOT NULL,`uid` int unsigned NOT NULL,`device_id` varchar(128) NOT NULL DEFAULT '',`expires_at` int unsigned NOT NULL DEFAULT 0,`revoked_at` int unsigned NOT NULL DEFAULT 0,`created_at` int unsigned NOT NULL DEFAULT 0,PRIMARY KEY (`token_hash`),KEY `idx_uid_expiry` (`uid`,`expires_at`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-CREATE TABLE IF NOT EXISTS `pre_stk_member_status` (`uid` int unsigned NOT NULL,`status` varchar(16) NOT NULL DEFAULT 'inactive',`member_label` varchar(32) NOT NULL DEFAULT '普通用户',`level` varchar(16) NOT NULL DEFAULT 'L1',`expires_at` int unsigned NOT NULL DEFAULT 0,`updated_at` int unsigned NOT NULL DEFAULT 0,PRIMARY KEY (`uid`),KEY `idx_status_expiry` (`status`,`expires_at`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-CREATE TABLE IF NOT EXISTS `pre_stk_wallet_account` (`uid` int unsigned NOT NULL,`commission_amount` decimal(12,2) NOT NULL DEFAULT 0,`task_points` int unsigned NOT NULL DEFAULT 0,`updated_at` int unsigned NOT NULL DEFAULT 0,PRIMARY KEY (`uid`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `pre_stk_member_status` (`uid` int unsigned NOT NULL,`status` varchar(16) NOT NULL DEFAULT 'inactive',`member_label` varchar(32) NOT NULL DEFAULT '普通用户',`level` varchar(16) NOT NULL DEFAULT 'L1',`starts_at` int unsigned NOT NULL DEFAULT 0,`expires_at` int unsigned NOT NULL DEFAULT 0,`updated_at` int unsigned NOT NULL DEFAULT 0,PRIMARY KEY (`uid`),KEY `idx_status_expiry` (`status`,`expires_at`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `pre_stk_wallet_account` (`uid` int unsigned NOT NULL,`commission_amount` decimal(12,2) NOT NULL DEFAULT 0,`task_amount` decimal(12,2) NOT NULL DEFAULT 0,`task_points` int unsigned NOT NULL DEFAULT 0,`updated_at` int unsigned NOT NULL DEFAULT 0,PRIMARY KEY (`uid`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 CREATE TABLE IF NOT EXISTS `pre_stk_auth_request_guard` (`request_hash` char(64) NOT NULL,`client_key` char(64) NOT NULL,`action` varchar(64) NOT NULL,`created_at` int unsigned NOT NULL DEFAULT 0,PRIMARY KEY (`request_hash`),KEY `idx_client_action_created` (`client_key`,`action`,`created_at`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 SQL;
 runquery($sql);
@@ -56,6 +56,8 @@ stk_auth_upgrade_column('stk_auth_sms_code', 'client_ip', "varchar(64) NOT NULL 
 stk_auth_upgrade_column('stk_auth_sms_code', 'provider_request_id', "varchar(64) NOT NULL DEFAULT ''");
 stk_auth_upgrade_column('stk_auth_sms_code', 'provider_code', "varchar(32) NOT NULL DEFAULT ''");
 stk_auth_upgrade_column('stk_auth_sms_code', 'last_error', "varchar(255) NOT NULL DEFAULT ''");
+stk_auth_upgrade_column('stk_member_status', 'starts_at', "int unsigned NOT NULL DEFAULT 0 AFTER `level`");
+stk_auth_upgrade_column('stk_wallet_account', 'task_amount', "decimal(12,2) NOT NULL DEFAULT 0 AFTER `commission_amount`");
 
 foreach ([
     'api_enabled' => '1',

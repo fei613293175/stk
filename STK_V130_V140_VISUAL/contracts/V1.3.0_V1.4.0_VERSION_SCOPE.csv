@@ -1,0 +1,3 @@
+﻿version,version_name,version_code,summary,runtime_pages_or_overlays,active_interactions,apis,admin_pages,configs,emulator_smoke_flows,blocking_visual_states,first_test_apk_target,production_deployment_gate
+V1.3.0,1.3.0,10300,我的与运营展示：会员、双账户、道具、客服、设置、关于和明确占位功能。,12,29,5,5,14,7,10,early in version after compile,NO
+V1.4.0,1.4.0,10400,生产发布：更新分发、App Links、生产域名/TLS/部署、覆盖安装和最终 RC。,6,8,1,4,10,6,8,early in version after compile,YES

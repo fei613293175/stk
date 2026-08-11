@@ -6,25 +6,59 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 
 class FakeAccountRepository(private val tokenStore: TokenStore) : AccountRepository {
-    override suspend fun getOverview(): AccountOverview {
+    private suspend fun user() = (tokenStore.session.first() as? SessionState.LoggedIn)?.session?.user
+
+    override suspend fun getProfile(): ProfileCard {
         delay(120)
-        val user = (tokenStore.session.first() as? SessionState.LoggedIn)?.session?.user
-        return AccountOverview(
-            profile = ProfileCard(user?.username ?: "商推客用户", user?.mobileMasked ?: "", user?.memberLabel ?: "普通用户", "欢迎使用商推客，完善资料有助于项目展示。"),
-            membership = MembershipCard(user?.memberLabel ?: "普通会员", "L1", null, 0, MembershipStatus.INACTIVE),
-            commission = BalanceCard("佣金账户", "¥0.00", "当前版本只展示账户余额，不执行结算或提现。"),
-            tasks = BalanceCard("任务账户", "¥0.00", "当前版本只展示账户余额，不执行结算或提现。"),
-            benefits = listOf(
-                BenefitItem("项目展示", "可发布并参与审核", true),
-                BenefitItem("会员专属标识", "展示会员等级标签", user?.memberLabel != "普通用户"),
-                BenefitItem("优先审核", "后续版本开放", false),
-            ),
-            props = listOf(
-                PropItem("置顶卡", "用于项目置顶展示，购买功能未开放。", 0),
-                PropItem("曝光券", "用于增加项目曝光，购买功能未开放。", 0),
-            ),
-            support = SupportCard("wechat", "微信客服", "stk-service", "工作日 09:00-18:00", true),
-            display = AccountDisplayConfig("商推客会员", "佣金账户", "任务账户", "功能筹备中"),
+        val user = user()
+        return ProfileCard(
+            uid = user?.uid ?: 10001,
+            username = user?.username ?: "测试用户",
+            mobileMasked = user?.mobileMasked ?: "138****8000",
+            memberLabel = user?.memberLabel ?: "普通用户",
+            bio = "资料由服务端只读提供。",
         )
     }
+
+    override suspend fun getMembership() = MembershipCard(
+        label = "普通用户",
+        level = "L1",
+        startsAt = null,
+        expiresAt = null,
+        status = MembershipStatus.INACTIVE,
+        benefits = listOf(
+            BenefitItem("消费权益", "消费 5 折（仅展示）", false),
+            BenefitItem("推广权益", "消费返佣 40%（仅展示）", false),
+        ),
+    )
+
+    override suspend fun getWallets() = WalletOverview(
+        commission = BalanceCard("佣金账户", "0.00", "余额由服务端只读提供"),
+        tasks = BalanceCard("任务账户", "0.00", "余额由服务端只读提供"),
+    )
+
+    override suspend fun getProps() = PropsOverview(
+        items = listOf(
+            PropItem("refresh", "刷新卡", "刷新项目展示时间", "", 1),
+            PropItem("super_headline", "超级头条", "超级头条展示道具", "", 2),
+            PropItem("headline", "头条", "头条展示道具", "", 3),
+            PropItem("color", "变色卡", "项目标题变色展示", "", 4),
+        ),
+    )
+
+    override suspend fun getSupport() = SupportCard(
+        type = "wechat",
+        label = "微信客服",
+        value = "stk-service",
+        serviceHours = "工作日 09:00-18:00",
+        copyEnabled = true,
+    )
+
+    override suspend fun getOverview() = AccountOverview(
+        profile = getProfile(),
+        membership = getMembership(),
+        wallets = getWallets(),
+        props = getProps(),
+        support = getSupport(),
+    )
 }

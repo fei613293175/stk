@@ -10,7 +10,7 @@
       "datatables": "stk_app_config,stk_project_config,stk_project_category,stk_project,stk_project_image,stk_project_upload,stk_project_view_daily,stk_project_request_guard,stk_project_audit_log,stk_project_audit,stk_prop_catalog,stk_release,stk_admin_audit",
       "directory": "stk_project/",
       "copyright": "商推客",
-      "version": "1.5.0",
+      "version": "1.3.0",
       "__modules": [
         {"name": "api", "menu": "", "url": "", "type": "1", "adminid": "0", "displayorder": "0"},
         {"name": "overview", "menu": "概览", "url": "", "type": "3", "adminid": "1", "displayorder": "0"},

@@ -1,0 +1,18 @@
+﻿page_id,page_name,visual_type,route,implementation_version,active_state_versions,state_count,runtime_or_reference,notes
+SYS-001,启动与路由判定,PAGE,stk://bootstrap,V1.0.0,V1.0.0|V1.1.0|V1.4.0,8,RUNTIME,只做路由判定，不展示广告
+SYS-002,维护、离线与服务不可用,PAGE,stk://system/unavailable,V1.0.0,V1.0.0|V1.1.0|V1.4.0,5,RUNTIME,不能用空白页或系统异常堆栈
+SYS-003,版本更新与下载状态,PAGE,stk://system/update,V1.4.0,V1.4.0,8,RUNTIME,只接受服务器签名配置和白名单下载域名
+SYS-OV-001,可选更新弹窗,SYSTEM_OVERLAY,overlay://optional-update,V1.4.0,V1.4.0,3,RUNTIME,允许关闭
+SYS-OV-002,强制更新弹窗,SYSTEM_OVERLAY,overlay://forced-update,V1.4.0,V1.4.0,3,RUNTIME,不提供关闭进入业务的路径
+COM-OV-002,阶段功能说明弹窗,OVERLAY,overlay://stage-scope,V1.0.0,V1.0.0|V1.3.0,4,RUNTIME,用于早期版本的发布/会员等明确占位，禁止无响应
+ME-001,我的,PAGE,stk://me,V1.3.0,V1.0.0|V1.3.0,8,RUNTIME,V1.0 提供基础资料；V1.3 完成全部展示区
+ME-003,个人资料只读页,PAGE,stk://me/profile,V1.3.0,V1.3.0,3,RUNTIME,编辑资料本期不做，必须明确只读
+ME-004,会员中心展示,PAGE,stk://me/member,V1.3.0,V1.3.0,5,RUNTIME,不实现在线支付、折扣或返佣结算
+ME-005,账户余额展示,PAGE,stk://me/wallets,V1.3.0,V1.3.0,3,RUNTIME,余额默认 0.00；不实现流水、提现或转账
+ME-006,道具中心展示,PAGE,stk://me/props,V1.3.0,V1.3.0,5,RUNTIME,不实现购买、库存或使用
+ME-007,浏览记录占位,PAGE,stk://me/history,V1.3.0,V1.3.0,1,RUNTIME,本期明确不建立历史记录业务
+ME-008,收藏占位,PAGE,stk://me/favorites,V1.3.0,V1.3.0,1,RUNTIME,本期明确不建立收藏业务
+ME-009,实名认证占位,PAGE,stk://me/real-name,V1.3.0,V1.3.0,1,RUNTIME,本期不采集身份信息
+ME-010,联系客服,PAGE,stk://me/support,V1.3.0,V1.3.0,5,RUNTIME,配置来自后台且受白名单控制
+ME-011,设置,PAGE,stk://me/settings,V1.3.0,V1.3.0,5,RUNTIME,不得放置未实现的通用设置开关
+ME-012,关于商推客,PAGE,stk://me/about,V1.3.0,V1.3.0|V1.4.0,5,RUNTIME,更新动作在 V1.4 接入真实版本服务

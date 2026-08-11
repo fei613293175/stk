@@ -1,0 +1,10 @@
+﻿admin_id,version,name,plugin,capabilities,audit_required
+ADM-ME-01,V1.3.0,我的页面配置,stk_project,模块显示、账户名称、入口排序和占位文案,YES
+ADM-ME-02,V1.3.0,会员状态管理,stk_project,人工开通、续期、过期和关闭；无在线支付,YES
+ADM-ME-03,V1.3.0,账户展示管理,stk_project,双账户只读余额与显示名称；无资金操作,YES
+ADM-ME-04,V1.3.0,道具展示配置,stk_project,刷新卡、超级头条、头条、变色卡的展示信息,YES
+ADM-ME-05,V1.3.0,客服与协议入口,stk_project,客服信息、外部应用、协议与隐私链接,YES
+ADM-REL-01,V1.4.0,Android 版本发布,stk_project,版本号、最低版本、强制更新、下载 URL、SHA 和日志,YES
+ADM-REL-02,V1.4.0,维护与运行配置,stk_project,维护开关、维护文案、恢复时间和只读状态,YES
+ADM-REL-03,V1.4.0,域名与部署检测,stk_project,API、后台、静态、下载、App Links、TLS 和健康检查,YES
+ADM-REL-04,V1.4.0,生产安全审计,stk_project,Secret、签名、权限、日志、备份和回滚检查,YES

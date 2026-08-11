@@ -1,0 +1,61 @@
+state_id,page_id,implementation_version,state_name,batch_id,status,notes
+COM-OV-002-S02,COM-OV-002,V1.3.0,会员在线开通未开放,B30,IMPLEMENTED_VERIFIED,阶段说明弹层已实现；最终 APK 在 Redmi 真机点击验证，明确不创建订单或扣款。
+COM-OV-002-S03,COM-OV-002,V1.3.0,账户操作未开放,B30,IMPLEMENTED_VERIFIED,账户说明弹层已实现；最终 APK 在 Redmi 真机点击验证，明确不提供资金操作。
+COM-OV-002-S04,COM-OV-002,V1.3.0,道具购买未开放,B30,IMPLEMENTED_VERIFIED,道具说明弹层已实现；最终 APK 在 Redmi 真机点击验证，明确不提供购买或使用。
+ME-001-S03,ME-001,V1.3.0,未开通会员,B30,IMPLEMENTED_VERIFIED,最终 APK 已在 Redmi 真机直验；后台权益文案与品牌蓝装饰圆均与参考状态一致。
+ME-001-S04,ME-001,V1.3.0,已开通会员,B30,IMPLEMENTED_VERIFIED,状态分支和服务端字段已实现；合同测试覆盖，生产会员配置可控。
+ME-001-S05,ME-001,V1.3.0,会员已过期,B30,IMPLEMENTED_VERIFIED,过期状态分支和到期时间已实现；合同与代码状态审计通过。
+ME-001-S06,ME-001,V1.3.0,离线缓存,B30,IMPLEMENTED_VERIFIED,账户资料缓存和离线提示已实现；服务器单元测试及静态门禁通过。
+ME-003-S01,ME-003,V1.3.0,资料加载,B31,IMPLEMENTED_VERIFIED,加载状态已实现；真实生产 API 联调通过。
+ME-003-S02,ME-003,V1.3.0,只读资料,B31,IMPLEMENTED_VERIFIED,最终 APK 在 Redmi 真机验证真实 UID、脱敏手机号和只读说明。
+ME-003-S03,ME-003,V1.3.0,加载失败,B31,IMPLEMENTED_VERIFIED,统一错误与重试状态已实现；代码和合同审计通过。
+ME-004-S01,ME-004,V1.3.0,会员加载,B31,IMPLEMENTED_VERIFIED,加载状态已实现；真实生产 API 联调通过。
+ME-004-S02,ME-004,V1.3.0,未开通,B31,IMPLEMENTED_VERIFIED,最终 APK 在 Redmi 真机验证会员卡、权益和阶段入口。
+ME-004-S03,ME-004,V1.3.0,有效会员,B31,IMPLEMENTED_VERIFIED,有效状态、开通日期和到期日期渲染已实现；状态审计通过。
+ME-004-S04,ME-004,V1.3.0,已过期,B31,IMPLEMENTED_VERIFIED,已过期状态与到期日期渲染已实现；状态审计通过。
+ME-004-S05,ME-004,V1.3.0,会员加载失败,B31,IMPLEMENTED_VERIFIED,统一失败与重试状态已实现；代码和合同审计通过。
+ME-005-S01,ME-005,V1.3.0,账户加载,B31,IMPLEMENTED_VERIFIED,加载状态已实现；真实生产 API 联调通过。
+ME-005-S02,ME-005,V1.3.0,只读余额,B31,IMPLEMENTED_VERIFIED,最终 APK 在 Redmi 真机验证佣金与任务账户真实余额及只读边界。
+ME-005-S03,ME-005,V1.3.0,账户加载失败,B31,IMPLEMENTED_VERIFIED,统一失败与重试状态已实现；代码和合同审计通过。
+ME-006-S01,ME-006,V1.3.0,道具加载,B32,IMPLEMENTED_VERIFIED,加载状态已实现；真实生产 API 联调通过。
+ME-006-S02,ME-006,V1.3.0,道具展示,B32,IMPLEMENTED_VERIFIED,最终 APK 在 Redmi 真机验证四类后台道具目录与说明。
+ME-006-S03,ME-006,V1.3.0,无展示道具,B32,IMPLEMENTED_VERIFIED,后台关闭和空目录状态已实现；代码与合同审计通过。
+ME-006-S04,ME-006,V1.3.0,离线缓存,B32,IMPLEMENTED_VERIFIED,道具目录缓存和离线提示已实现；服务器单元测试通过。
+ME-006-S05,ME-006,V1.3.0,道具加载失败,B32,IMPLEMENTED_VERIFIED,统一失败与重试状态已实现；代码和合同审计通过。
+ME-007-S01,ME-007,V1.3.0,浏览记录未开放,B32,IMPLEMENTED_VERIFIED,最终 APK 在 Redmi 真机完成点击、滚动和返回，无空白页或死链接。
+ME-008-S01,ME-008,V1.3.0,收藏未开放,B32,IMPLEMENTED_VERIFIED,最终 APK 在 Redmi 真机完成点击、滚动和返回，无虚假完成状态。
+ME-009-S01,ME-009,V1.3.0,实名认证未开放,B32,IMPLEMENTED_VERIFIED,最终 APK 在 Redmi 真机完成点击、滚动和返回，无虚假完成状态。
+ME-010-S01,ME-010,V1.3.0,客服配置加载,B33,IMPLEMENTED_VERIFIED,加载与错误状态已实现；真实生产客服 API 联调通过。
+ME-010-S02,ME-010,V1.3.0,客服信息,B33,IMPLEMENTED_VERIFIED,最终 APK 真机显示后台 URL、服务时间和复制/打开入口。
+ME-010-S03,ME-010,V1.3.0,复制成功,B33,IMPLEMENTED_VERIFIED,最终 APK 在 Redmi 真机点击复制并显示成功反馈。
+ME-010-S04,ME-010,V1.3.0,外部应用不可用,B33,IMPLEMENTED_VERIFIED,安全 Intent、HTTPS 与域名白名单及不可用回退均已实现；可用路径真机打开系统浏览器。
+ME-010-S05,ME-010,V1.3.0,配置失败,B33,IMPLEMENTED_VERIFIED,统一配置失败和重试状态已实现；代码与合同审计通过。
+ME-011-S01,ME-011,V1.3.0,设置列表,B33,IMPLEMENTED_VERIFIED,最终 APK 在 Redmi 真机逐项打开设置、协议、隐私、关于与退出确认。
+ME-011-S02,ME-011,V1.3.0,清理缓存中,B33,IMPLEMENTED_VERIFIED,异步清理中状态已实现；代码状态审计通过。
+ME-011-S03,ME-011,V1.3.0,清理成功,B33,IMPLEMENTED_VERIFIED,最终 APK 在 Redmi 真机真实清理并显示“缓存已清理”。
+ME-011-S04,ME-011,V1.3.0,清理失败,B33,IMPLEMENTED_VERIFIED,失败反馈与重试入口已实现；代码状态审计通过。
+ME-011-S05,ME-011,V1.3.0,离线设置,B33,IMPLEMENTED_VERIFIED,本地设置项和网络边界说明已实现；代码状态审计通过。
+ME-012-S01,ME-012,V1.3.0,关于信息,B33,IMPLEMENTED_VERIFIED,最终 APK 真机显示 1.3.0-beta.1、versionCode 10301 和 applicationId。
+ME-012-S02,ME-012,V1.4.0,检查更新,B42,NOT_IMPLEMENTED,关于页请求时不显示检查进度。
+ME-012-S03,ME-012,V1.4.0,已是最新版,B42,NOT_IMPLEMENTED,关于页未比较已安装与服务端版本，无“已是最新版本”结果。
+ME-012-S04,ME-012,V1.4.0,发现更新,B42,NOT_IMPLEMENTED,关于页发现新版本后无进入更新详情页的路由。
+ME-012-S05,ME-012,V1.4.0,检查失败,B42,NEEDS_ADJUSTMENT,已有同页面/UI State 雏形，但尚需按效果图调整并完成合同、服务器和真机验收。
+SYS-001-S05,SYS-001,V1.4.0,发现可选更新,B40,NEEDS_ADJUSTMENT,已有启动版本/维护判定雏形，但尚未完成合同视觉与真机证据。
+SYS-001-S06,SYS-001,V1.4.0,发现强制更新,B40,NEEDS_ADJUSTMENT,已有启动版本/维护判定雏形，但尚未完成合同视觉与真机证据。
+SYS-001-S07,SYS-001,V1.4.0,维护模式,B40,NEEDS_ADJUSTMENT,已有启动版本/维护判定雏形，但尚未完成合同视觉与真机证据。
+SYS-002-S01,SYS-002,V1.4.0,系统维护,B42,NEEDS_ADJUSTMENT,已有启动版本/维护判定雏形，但尚未完成合同视觉与真机证据。
+SYS-002-S05,SYS-002,V1.4.0,服务已恢复,B42,NOT_IMPLEMENTED,SystemFeedbackState 无服务已恢复状态及返回安全页逻辑。
+SYS-003-S01,SYS-003,V1.4.0,检查版本,B41,NEEDS_ADJUSTMENT,已有更新下载/SHA-256/FileProvider 主流程，但页面状态、安全边界和视觉仍需收口。
+SYS-003-S02,SYS-003,V1.4.0,已是最新版,B41,NEEDS_ADJUSTMENT,已有更新下载/SHA-256/FileProvider 主流程，但页面状态、安全边界和视觉仍需收口。
+SYS-003-S03,SYS-003,V1.4.0,可选更新可用,B41,NEEDS_ADJUSTMENT,已有更新下载/SHA-256/FileProvider 主流程，但页面状态、安全边界和视觉仍需收口。
+SYS-003-S04,SYS-003,V1.4.0,强制更新可用,B41,NEEDS_ADJUSTMENT,已有更新下载/SHA-256/FileProvider 主流程，但页面状态、安全边界和视觉仍需收口。
+SYS-003-S05,SYS-003,V1.4.0,正在下载,B41,NEEDS_ADJUSTMENT,已有更新下载/SHA-256/FileProvider 主流程，但页面状态、安全边界和视觉仍需收口。
+SYS-003-S06,SYS-003,V1.4.0,下载失败,B41,NEEDS_ADJUSTMENT,已有更新下载/SHA-256/FileProvider 主流程，但页面状态、安全边界和视觉仍需收口。
+SYS-003-S07,SYS-003,V1.4.0,等待安装,B41,NEEDS_ADJUSTMENT,已有更新下载/SHA-256/FileProvider 主流程，但页面状态、安全边界和视觉仍需收口。
+SYS-003-S08,SYS-003,V1.4.0,安装受阻,B41,NEEDS_ADJUSTMENT,已有更新下载/SHA-256/FileProvider 主流程，但页面状态、安全边界和视觉仍需收口。
+SYS-OV-001-S01,SYS-OV-001,V1.4.0,可选更新,B40,NOT_IMPLEMENTED,可选更新当前为整页 SystemFeedbackScreen，无合同弹层。
+SYS-OV-001-S02,SYS-OV-001,V1.4.0,下载中,B40,NOT_IMPLEMENTED,可选更新无下载中弹层状态。
+SYS-OV-001-S03,SYS-OV-001,V1.4.0,下载失败,B40,NOT_IMPLEMENTED,可选更新无下载失败弹层状态。
+SYS-OV-002-S01,SYS-OV-002,V1.4.0,强制更新,B40,NOT_IMPLEMENTED,强制更新当前为整页 SystemFeedbackScreen，无不可关闭合同弹层。
+SYS-OV-002-S02,SYS-OV-002,V1.4.0,强制更新下载中,B40,NOT_IMPLEMENTED,强制更新无下载中弹层状态。
+SYS-OV-002-S03,SYS-OV-002,V1.4.0,强制更新失败,B40,NOT_IMPLEMENTED,强制更新无下载失败与客服入口弹层。

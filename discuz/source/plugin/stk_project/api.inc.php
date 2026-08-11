@@ -165,7 +165,7 @@ $transactionStarted = false;
 try {
     if ($resource === 'health/live') {
         stk_project_require_method($method, 'GET');
-        stk_project_json(0, 'ok', ['plugin' => 'stk_project', 'status' => 'live', 'version' => '1.5.0']);
+        stk_project_json(0, 'ok', ['plugin' => 'stk_project', 'status' => 'live', 'version' => '1.3.0']);
     }
     if ($resource === 'health/ready') {
         stk_project_require_method($method, 'GET');
@@ -355,31 +355,79 @@ try {
 
     if (in_array($resource, ['me/profile', 'me/member', 'me/wallets', 'props/display', 'support'], true)) {
         stk_project_require_method($method, 'GET');
-        $profile = DB::fetch_first('SELECT uid,username FROM %t WHERE uid=%d', ['common_member', $uid]) ?: ['uid' => $uid, 'username' => '用户' . $uid];
+        $profile = DB::fetch_first('SELECT uid,username,status FROM %t WHERE uid=%d', ['common_member', $uid]);
+        if (!$profile) stk_project_json(4011, '用户不存在或已注销', null, 401);
+        if ((int) ($profile['status'] ?? 0) < 0) stk_project_json(4030, '账户已被禁用', null, 403);
+
+        // V1.3 migration compatibility: old users are completed lazily and idempotently.
+        DB::query("INSERT IGNORE INTO %t (uid,status,member_label,level,starts_at,expires_at,updated_at) VALUES (%d,'inactive','普通用户','L1',0,0,%d)", ['stk_member_status', $uid, TIMESTAMP]);
+        DB::query('INSERT IGNORE INTO %t (uid,commission_amount,task_amount,task_points,updated_at) VALUES (%d,0,0,0,%d)', ['stk_wallet_account', $uid, TIMESTAMP]);
         $mobile = DB::fetch_first('SELECT mobile FROM %t WHERE uid=%d', ['stk_auth_mobile', $uid]) ?: [];
-        $membership = DB::fetch_first('SELECT status,member_label,level,expires_at FROM %t WHERE uid=%d', ['stk_member_status', $uid]) ?: [];
-        $balance = DB::fetch_first('SELECT commission_amount,task_points FROM %t WHERE uid=%d', ['stk_wallet_account', $uid]) ?: [];
+        $membership = DB::fetch_first('SELECT status,member_label,level,starts_at,expires_at FROM %t WHERE uid=%d', ['stk_member_status', $uid]);
+        $balance = DB::fetch_first('SELECT commission_amount,task_amount FROM %t WHERE uid=%d', ['stk_wallet_account', $uid]);
         $items = DB::fetch_all('SELECT prop_id,name AS title,description,icon_url,sort_order FROM %t WHERE enabled=1 ORDER BY sort_order,prop_id', ['stk_prop_catalog']);
-        $config = static function (string $key, string $default = ''): string {
-            $row = DB::fetch_first('SELECT config_value FROM %t WHERE config_key=%s', ['stk_auth_config', $key]);
-            return isset($row['config_value']) ? (string) $row['config_value'] : $default;
-        };
         $memberExpiresAt = (int) ($membership['expires_at'] ?? 0);
         $memberStatus = (string) ($membership['status'] ?? 'inactive');
-        if ($memberStatus === 'active' && $memberExpiresAt > 0 && $memberExpiresAt < TIMESTAMP) $memberStatus = 'expired';
-        $data = [
-            'profile' => ['uid' => (int) $uid, 'username' => (string) $profile['username'], 'mobile_masked' => preg_replace('/^(\d{3})\d{4}(\d{4})$/', '$1****$2', (string) ($mobile['mobile'] ?? ''))],
-            'membership' => ['label' => (string) ($membership['member_label'] ?? '普通用户'), 'level' => (string) ($membership['level'] ?? 'L1'), 'expires_at' => $memberExpiresAt > 0 ? date('Y-m-d', $memberExpiresAt) : null, 'status' => $memberStatus],
-            'wallets' => ['commission_amount' => number_format((float) ($balance['commission_amount'] ?? 0), 2), 'task_points' => (int) ($balance['task_points'] ?? 0)],
-            'props' => $items,
-            'support' => ['type' => $config('support_type', 'wechat'), 'label' => $config('support_label', '在线客服'), 'value' => $config('support_value', ''), 'service_hours' => $config('support_hours', '工作日 09:00-18:00'), 'copy_enabled' => $config('support_copy_enabled', '1') === '1'],
-        ];
-        $key = str_replace('/', '_', $resource);
-        if ($resource === 'me/profile') $data = $data['profile'];
-        elseif ($resource === 'me/member') $data = $data['membership'];
-        elseif ($resource === 'me/wallets') $data = $data['wallets'];
-        elseif ($resource === 'props/display') $data = ['items' => $data['props']];
-        elseif ($resource === 'support') $data = $data['support'];
+        if ($memberStatus === 'active' && $memberExpiresAt > 0 && $memberExpiresAt < TIMESTAMP) {
+            $memberStatus = 'expired';
+            DB::query('UPDATE %t SET status=%s,updated_at=%d WHERE uid=%d AND status=%s', ['stk_member_status', 'expired', TIMESTAMP, $uid, 'active']);
+        }
+        $benefitsEnabled = $memberStatus === 'active';
+        $allowedSupportHosts = array_values(array_unique(array_filter(array_map('strtolower', array_map('trim', preg_split('/[\s,]+/', stk_project_config('support_url_allowlist', stk_project_config('external_url_allowlist', 'stk.zz-yihao.com'))))))));
+        if ($resource === 'me/profile') {
+            $data = [
+                'uid' => (int) $uid,
+                'username' => (string) $profile['username'],
+                'mobile_masked' => preg_replace('/^(\d{3})\d{4}(\d{4})$/', '$1****$2', (string) ($mobile['mobile'] ?? '')),
+                'member_label' => (string) ($membership['member_label'] ?? '普通用户'),
+                'bio' => stk_project_config('profile_bio', ''),
+                'avatar_url' => stk_project_publisher_avatar_url($uid),
+                'placeholder_message' => stk_project_config('placeholder_message', '功能筹备中'),
+            ];
+        } elseif ($resource === 'me/member') {
+            $startsAt = (int) ($membership['starts_at'] ?? 0);
+            $data = [
+                'label' => (string) ($membership['member_label'] ?? '普通用户'),
+                'level' => (string) ($membership['level'] ?? 'L1'),
+                'starts_at' => $startsAt > 0 ? date('Y-m-d', $startsAt) : null,
+                'expires_at' => $memberExpiresAt > 0 ? date('Y-m-d', $memberExpiresAt) : null,
+                'status' => $memberStatus,
+                'title' => stk_project_config('member_title', '商推客会员'),
+                'open_button_text' => stk_project_config('member_open_button_text', '立即开通'),
+                'show_card' => stk_project_config('show_member_card', '1') === '1',
+                'benefits' => [
+                    ['title' => '消费权益', 'description' => stk_project_config('member_benefit_discount', '消费 5 折'), 'enabled' => $benefitsEnabled],
+                    ['title' => '推广权益', 'description' => stk_project_config('member_benefit_rebate', '消费返佣 40%'), 'enabled' => $benefitsEnabled],
+                ],
+            ];
+        } elseif ($resource === 'me/wallets') {
+            $data = [
+                'show_wallets' => stk_project_config('show_wallets', '1') === '1',
+                'commission' => [
+                    'title' => stk_project_config('commission_label', '佣金账户'),
+                    'amount' => number_format((float) ($balance['commission_amount'] ?? 0), 2, '.', ''),
+                    'description' => '仅展示账户余额',
+                ],
+                'tasks' => [
+                    'title' => stk_project_config('task_label', '任务账户'),
+                    'amount' => number_format((float) ($balance['task_amount'] ?? 0), 2, '.', ''),
+                    'description' => '仅展示账户余额',
+                ],
+            ];
+        } elseif ($resource === 'props/display') {
+            foreach ($items as &$item) $item['id'] = (string) $item['prop_id'];
+            unset($item);
+            $data = ['show_center' => stk_project_config('show_props_center', '1') === '1', 'items' => $items];
+        } else {
+            $data = [
+                'type' => stk_project_config('support_type', 'wechat'),
+                'label' => stk_project_config('support_label', '在线客服'),
+                'value' => stk_project_config('support_value', ''),
+                'service_hours' => stk_project_config('support_hours', '工作日 09:00-18:00'),
+                'copy_enabled' => stk_project_config('support_copy_enabled', '1') === '1',
+                'allowed_url_hosts' => $allowedSupportHosts,
+            ];
+        }
         stk_project_json(0, 'ok', $data);
     }
 

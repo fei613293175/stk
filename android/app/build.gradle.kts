@@ -26,8 +26,8 @@ android {
         applicationId = "com.zzyihao.stk"
         minSdk = 26
         targetSdk = 36
-        versionCode = 10208
-        versionName = "1.2.0-beta.2"
+        versionCode = 10301
+        versionName = "1.3.0-beta.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true

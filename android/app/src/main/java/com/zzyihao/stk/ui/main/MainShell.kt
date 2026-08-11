@@ -54,7 +54,7 @@ fun MainShell(
     accountRepository: AccountRepository,
     legalRepository: LegalRepository,
     releaseRepository: ReleaseRepository,
-    onClearCache: () -> Unit,
+    onClearCache: suspend () -> Unit,
     onMeSectionChanged: (Boolean) -> Unit = {},
     initialDetailId: String? = null,
     initialRoute: String = "stk://home",

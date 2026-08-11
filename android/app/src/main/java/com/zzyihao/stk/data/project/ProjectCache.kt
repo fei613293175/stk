@@ -1,6 +1,8 @@
 package com.zzyihao.stk.data.project
 
 import android.content.Context
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -47,9 +49,7 @@ class ProjectCache(context: Context) {
         dao.readDetail(id)?.let { projectDetailFromJson(JSONObject(it)).copy(fromCache = true) }
     }.getOrNull()
 
-    fun clear() {
-        database.queryExecutor.execute { database.clearAllTables() }
-    }
+    suspend fun clear() = withContext(Dispatchers.IO) { database.clearAllTables() }
 
     companion object {
         fun pageKey(query: String, categoryId: String?): String =

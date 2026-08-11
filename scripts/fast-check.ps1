@@ -20,7 +20,9 @@ if ($Php) {
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
     & $Php.Source (Join-Path $Root "discuz\tests\project_contract_test.php")
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    & $Php.Source (Join-Path $Root "discuz\tests\v130_contract_test.php")
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 } else {
     Write-Host "SKIP: php 未安装；GitHub Fast CI 会执行 PHP 检查。"
 }
-Write-Host "PASS: STK V1.1 fast static checks"
+Write-Host "PASS: STK V1.3.0 fast static checks"

@@ -10,7 +10,7 @@ $boundMobiles = (int) DB::result_first('SELECT COUNT(*) FROM %t WHERE verified=1
 $activeTokens = (int) DB::result_first('SELECT COUNT(*) FROM %t WHERE token_type=%s AND revoked_at=0 AND expires_at>%d', ['stk_auth_token', 'access', TIMESTAMP]);
 $todayLogins = (int) DB::result_first('SELECT COUNT(*) FROM %t WHERE result=%s AND created_at>=%d', ['stk_auth_login_log', 'success', strtotime('today')]);
 showtableheader('商推客账户与认证 - 概览');
-showtablerow('', ['width="220"', ''], ['插件版本', '1.5.0']);
+showtablerow('', ['width="220"', ''], ['插件版本', '1.3.0']);
 showtablerow('', [], ['API 状态', stk_auth_get_config('api_enabled', '1') === '1' ? '已开启' : '已关闭']);
 showtablerow('', [], ['开发 Fake', stk_auth_get_config('dev_fake_enabled', '0') === '1' ? '已开启（仅测试）' : '已关闭']);
 showtablerow('', [], ['密码认证', '已接入 Discuz 用户体系']);

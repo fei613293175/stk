@@ -1,0 +1,8 @@
+﻿feature_id,version,name,frontend_pages,apis,database,admin_pages,status
+ME-01,V1.3.0,我的与个人资料,ME-001|ME-003,getMySummary|getMyProfile,Discuz native user tables|pre_stk_auth_mobile,ADM-ME-01,PLANNED
+ME-02,V1.3.0,会员状态展示,ME-004|ME-001,getMyMember,pre_stk_member_status,ADM-ME-02,PLANNED
+ME-03,V1.3.0,双账户只读展示,ME-005|ME-001,getMyWallets,pre_stk_wallet_account,ADM-ME-03,PLANNED
+ME-04,V1.3.0,道具目录展示,ME-006|COM-OV-002,getPropDisplay,pre_stk_prop_catalog,ADM-ME-04,PLANNED
+ME-05,V1.3.0,占位功能、客服、设置与关于,ME-007|ME-008|ME-009|ME-010|ME-011|ME-012,getSupportConfig,pre_stk_app_config,ADM-ME-01|ADM-ME-05,PLANNED
+REL-01,V1.4.0,版本更新与 APK 分发,SYS-003|SYS-OV-001|SYS-OV-002|ME-012,getCurrentRelease,pre_stk_release,ADM-REL-01,PLANNED
+REL-02,V1.4.0,App Links、维护、域名与生产部署,SYS-001|SYS-002,getBootstrap|healthLive|healthReady,pre_stk_app_config|pre_stk_release,ADM-REL-02|ADM-REL-03|ADM-REL-04,PLANNED

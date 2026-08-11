@@ -1,0 +1,7 @@
+﻿operation_id,version,method,path,plugin,auth,purpose,transport,response_envelope,write_protection,notes
+getMyProfile,V1.3.0,GET,/api/v1/me/profile,stk_project,BEARER,只读个人资料,HTTPS_JSON,"{code,message,data,request_id}",N/A,服务端校验 UID/资源归属；不得信任客户端字段
+getMyMember,V1.3.0,GET,/api/v1/me/member,stk_project,BEARER,会员状态与有效期展示,HTTPS_JSON,"{code,message,data,request_id}",N/A,服务端校验 UID/资源归属；不得信任客户端字段
+getMyWallets,V1.3.0,GET,/api/v1/me/wallets,stk_project,BEARER,佣金账户和任务账户只读余额,HTTPS_JSON,"{code,message,data,request_id}",N/A,服务端校验 UID/资源归属；不得信任客户端字段
+getPropDisplay,V1.3.0,GET,/api/v1/props/display,stk_project,BEARER,道具目录展示，不含购买和库存,HTTPS_JSON,"{code,message,data,request_id}",N/A,服务端校验 UID/资源归属；不得信任客户端字段
+getSupportConfig,V1.3.0,GET,/api/v1/support,stk_project,BEARER,客服信息和允许的外部动作,HTTPS_JSON,"{code,message,data,request_id}",N/A,服务端校验 UID/资源归属；不得信任客户端字段
+getCurrentRelease,V1.4.0,GET,/api/v1/releases/current,stk_project,OPTIONAL,可选/强制更新、下载 URL、SHA 和版本说明,HTTPS_JSON,"{code,message,data,request_id}",N/A,服务端校验 UID/资源归属；不得信任客户端字段

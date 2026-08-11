@@ -7,4 +7,5 @@ php "$ROOT/discuz/tests/project_contract_test.php"
 for script in "$ROOT"/scripts/*.sh "$ROOT/gradlew"; do
     bash -n "$script"
 done
-echo "PASS: STK V1.5.0 fast static checks"
+php "$ROOT/discuz/tests/v130_contract_test.php"
+echo "PASS: STK V1.3.0 fast static checks"

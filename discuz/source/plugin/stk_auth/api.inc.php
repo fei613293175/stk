@@ -41,7 +41,7 @@ try {
         stk_auth_json(4050, '请求方法不允许', null, 405);
     }
     if ($action === 'health_live') {
-        stk_auth_json(0, 'ok', ['plugin' => 'stk_auth', 'status' => 'live', 'version' => '1.5.0']);
+        stk_auth_json(0, 'ok', ['plugin' => 'stk_auth', 'status' => 'live', 'version' => '1.3.0']);
     }
 
     if ($action === 'health_ready') {
@@ -94,7 +94,7 @@ try {
         $databaseCheck = DB::fetch_first('SELECT 1 AS ok');
         stk_auth_json(0, 'ok', [
             'plugin' => 'stk_auth',
-            'version' => '1.5.0',
+            'version' => '1.3.0',
             'database' => ((int) ($databaseCheck['ok'] ?? 0) === 1) ? 'reachable' : 'unknown',
             'fake_enabled' => $fakeEnabled,
             'password_auth' => stk_auth_get_config('allow_password_login', '1') === '1',
@@ -166,13 +166,11 @@ try {
         if ($uid <= 0) {
             stk_auth_json(4011, '访问令牌无效或已过期', null, 401);
         }
+        DB::query("INSERT IGNORE INTO %t (uid,status,member_label,level,starts_at,expires_at,updated_at) VALUES (%d,'inactive','普通用户','L1',0,0,%d)", ['stk_member_status', $uid, TIMESTAMP]);
+        DB::query('INSERT IGNORE INTO %t (uid,commission_amount,task_amount,task_points,updated_at) VALUES (%d,0,0,0,%d)', ['stk_wallet_account', $uid, TIMESTAMP]);
         $member = DB::fetch_first('SELECT status,member_label,level,expires_at FROM %t WHERE uid=%d', ['stk_member_status', $uid]) ?: [];
-        $balance = DB::fetch_first('SELECT commission_amount,task_points FROM %t WHERE uid=%d', ['stk_wallet_account', $uid]) ?: [];
-        try {
-            $props = DB::fetch_all('SELECT c.name AS title,c.description,COALESCE(p.quantity,0) AS quantity FROM %t c LEFT JOIN %t p ON p.prop_name=c.name AND p.uid=%d WHERE c.enabled=1 ORDER BY c.sort_order,c.prop_id', ['stk_prop_catalog', 'stk_account_prop', $uid]);
-        } catch (Throwable $error) {
-            $props = DB::fetch_all('SELECT prop_name AS title,description,quantity FROM %t WHERE uid=%d ORDER BY prop_id', ['stk_account_prop', $uid]);
-        }
+        $balance = DB::fetch_first('SELECT commission_amount,task_amount FROM %t WHERE uid=%d', ['stk_wallet_account', $uid]) ?: [];
+        $props = DB::fetch_all('SELECT prop_id AS id,name AS title,description,icon_url,sort_order FROM %t WHERE enabled=1 ORDER BY sort_order,prop_id', ['stk_prop_catalog']);
         $user = stk_auth_member_data($uid);
         $memberExpiresAt = (int) ($member['expires_at'] ?? 0);
         $memberStatus = (string) ($member['status'] ?? 'inactive');
@@ -199,8 +197,8 @@ try {
             ],
             'tasks' => [
                 'title' => stk_auth_get_config('task_label', '任务账户'),
-                'amount' => (string) ((int) ($balance['task_points'] ?? 0)) . ' 个',
-                'description' => '当前版本只展示任务积分，不执行奖励结算。',
+                'amount' => number_format((float) ($balance['task_amount'] ?? 0), 2),
+                'description' => '当前版本只展示账户余额，不执行资金操作。',
             ],
             'benefits' => [
                 ['title' => '消费折扣', 'description' => stk_auth_get_config('member_benefit_discount', '消费 5 折（仅展示）'), 'enabled' => $memberActive],
