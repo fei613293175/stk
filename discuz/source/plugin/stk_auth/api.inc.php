@@ -41,7 +41,7 @@ try {
         stk_auth_json(4050, '请求方法不允许', null, 405);
     }
     if ($action === 'health_live') {
-        stk_auth_json(0, 'ok', ['plugin' => 'stk_auth', 'status' => 'live', 'version' => '1.3.0']);
+        stk_auth_json(0, 'ok', ['plugin' => 'stk_auth', 'status' => 'live', 'version' => '1.4.0']);
     }
 
     if ($action === 'health_ready') {
@@ -53,14 +53,26 @@ try {
         $release = [];
         $maintenance = ['enabled' => false, 'message' => '', 'resume_at' => null];
         try {
-            $release = DB::fetch_first('SELECT version_name,version_code,minimum_version_code,mandatory FROM %t WHERE enabled=1 ORDER BY version_code DESC LIMIT 1', ['stk_release']) ?: [];
-            $maintenanceRows = DB::fetch_all('SELECT config_key,config_value FROM %t WHERE config_key=%s OR config_key=%s OR config_key=%s', ['stk_project_config', 'maintenance_enabled', 'maintenance_message', 'maintenance_resume_at']);
-            $maintenanceConfig = [];
-            foreach ($maintenanceRows as $row) $maintenanceConfig[(string) $row['config_key']] = (string) $row['config_value'];
+            $release = DB::fetch_first(
+                'SELECT version_name,version_code,minimum_version_name,minimum_version_code,mandatory FROM %t WHERE enabled=1 AND status=%s ORDER BY version_code DESC LIMIT 1',
+                ['stk_release', 'published']
+            ) ?: [];
+            $maintenanceEnabled = stk_auth_get_config(
+                'maintenance.enabled',
+                stk_auth_get_config('maintenance_enabled', '0')
+            );
+            $maintenanceMessage = stk_auth_get_config(
+                'maintenance.message',
+                stk_auth_get_config('maintenance_message', '')
+            );
+            $maintenanceResumeAt = stk_auth_get_config(
+                'maintenance.expected_end',
+                stk_auth_get_config('maintenance_resume_at', '')
+            );
             $maintenance = [
-                'enabled' => ($maintenanceConfig['maintenance_enabled'] ?? '0') === '1',
-                'message' => (string) ($maintenanceConfig['maintenance_message'] ?? ''),
-                'resume_at' => ($maintenanceConfig['maintenance_resume_at'] ?? '') ?: null,
+                'enabled' => $maintenanceEnabled === '1',
+                'message' => $maintenanceMessage,
+                'resume_at' => $maintenanceResumeAt !== '' ? $maintenanceResumeAt : null,
             ];
         } catch (Throwable $ignored) {
             $release = [];
@@ -71,6 +83,7 @@ try {
             'release' => [
                 'version_name' => (string) ($release['version_name'] ?? ''),
                 'version_code' => (int) ($release['version_code'] ?? 0),
+                'minimum_version_name' => (string) ($release['minimum_version_name'] ?? ''),
                 'minimum_version_code' => (int) ($release['minimum_version_code'] ?? 0),
                 'mandatory' => !empty($release['mandatory']),
             ],
@@ -94,7 +107,7 @@ try {
         $databaseCheck = DB::fetch_first('SELECT 1 AS ok');
         stk_auth_json(0, 'ok', [
             'plugin' => 'stk_auth',
-            'version' => '1.3.0',
+            'version' => '1.4.0',
             'database' => ((int) ($databaseCheck['ok'] ?? 0) === 1) ? 'reachable' : 'unknown',
             'fake_enabled' => $fakeEnabled,
             'password_auth' => stk_auth_get_config('allow_password_login', '1') === '1',

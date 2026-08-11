@@ -1,0 +1,7 @@
+STK-1.4.0-beta.1.apk
+size_bytes=14611703
+sha256=6087c2a09743fd121b5d74e16eef7bb16dd28f69e3eb298e574d77fdfb881ff2
+package=com.zzyihao.stk
+version_code=10401
+version_name=1.4.0-beta.1
+certificate_sha256=8d82da03e9133c1d60087e735b2abc9d9d2ecbb0f1815164297079d8eba537ee

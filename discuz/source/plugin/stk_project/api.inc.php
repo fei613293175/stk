@@ -146,18 +146,28 @@ function stk_project_save_images(int $projectId, int $uid, array $images): void
 
 function stk_project_current_release(): array
 {
-    $release = DB::fetch_first('SELECT version_name,version_code,minimum_version_code,apk_url,apk_sha256 AS sha256,mandatory,notes FROM %t WHERE enabled=1 ORDER BY version_code DESC LIMIT 1', ['stk_release']);
+    $release = DB::fetch_first('SELECT version_name,version_code,minimum_version_name,minimum_version_code,apk_url,apk_sha256 AS sha256,apk_size_bytes,mandatory,notes,status,published_at,updated_at FROM %t WHERE enabled=1 AND status=%s ORDER BY version_code DESC LIMIT 1', ['stk_release','published']);
     if (!$release) stk_project_json(4040, '暂无可用版本', null, 404);
     $release['version_code'] = (int) $release['version_code'];
     $release['minimum_version_code'] = (int) $release['minimum_version_code'];
+    $release['apk_size_bytes'] = (int) $release['apk_size_bytes'];
     $release['mandatory'] = (bool) $release['mandatory'];
+    $release['force_update'] = $release['mandatory'];
+    $release['current_version'] = $release['version_name'];
+    $release['minimum_version'] = $release['minimum_version_name'];
+    $release['published_at'] = (int) $release['published_at'] > 0 ? date('c',(int)$release['published_at']) : null;
+    $release['updated_at'] = (int) $release['updated_at'] > 0 ? date('c',(int)$release['updated_at']) : null;
     $notes = json_decode((string) $release['notes'], true);
     $release['notes'] = is_array($notes) ? $notes : [];
     $release['maintenance'] = [
-        'enabled' => stk_project_config('maintenance_enabled', '0') === '1',
-        'message' => stk_project_config('maintenance_message', '系统维护中，请稍后再试。'),
-        'resume_at' => stk_project_config('maintenance_resume_at', '') ?: null,
+        'enabled' => stk_project_contract_config('maintenance.enabled', '0') === '1',
+        'message' => stk_project_contract_config('maintenance.message', '系统维护中，请稍后再试。'),
+        'resume_at' => stk_project_contract_config('maintenance.expected_end', '') ?: null,
     ];
+    $release['app_links_host'] = stk_project_contract_config('app_links.host','stk.zz-yihao.com');
+    $clientVersion=(int)($_GET['version_code']??0);
+    $release['update_available']=$clientVersion>0&&$clientVersion<$release['version_code'];
+    $release['force_for_client']=$clientVersion>0&&($clientVersion<$release['minimum_version_code']||($release['mandatory']&&$clientVersion<$release['version_code']));
     return $release;
 }
 
@@ -165,7 +175,7 @@ $transactionStarted = false;
 try {
     if ($resource === 'health/live') {
         stk_project_require_method($method, 'GET');
-        stk_project_json(0, 'ok', ['plugin' => 'stk_project', 'status' => 'live', 'version' => '1.3.0']);
+        stk_project_json(0, 'ok', ['plugin' => 'stk_project', 'status' => 'live', 'version' => '1.4.0']);
     }
     if ($resource === 'health/ready') {
         stk_project_require_method($method, 'GET');

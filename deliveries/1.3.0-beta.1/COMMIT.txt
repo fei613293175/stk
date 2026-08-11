@@ -1,0 +1,6 @@
+Commit: 8269015fc576a9b7a132af62836e0130100b043b
+Branch: release/1.3.0
+Tag: v1.3.0-beta.1
+Remote: https://github.com/fei613293175/stk.git
+APK source snapshot: this commit
+APK SHA-256: a3cd2fffc6e3f626b1787ba2b4f1b2afca75ea43f9bfdb0c89700a15757a0d08

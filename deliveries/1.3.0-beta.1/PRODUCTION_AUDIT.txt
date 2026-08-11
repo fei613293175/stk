@@ -1,0 +1,733 @@
+MODE
+"read_only"
+DISCuz_CONTEXT
+{
+    "root": "/www/wwwroot/stk_zz_yihao_com/",
+    "table_prefix": "pre_",
+    "owner_uid": 9,
+    "owner_exists": true
+}
+TABLES
+{
+    "stk_member_status": {
+        "exists": true,
+        "columns": [
+            {
+                "Field": "uid",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "status",
+                "Type": "varchar(16)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": "inactive",
+                "Extra": ""
+            },
+            {
+                "Field": "member_label",
+                "Type": "varchar(32)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "普通用户",
+                "Extra": ""
+            },
+            {
+                "Field": "level",
+                "Type": "varchar(16)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "L1",
+                "Extra": ""
+            },
+            {
+                "Field": "starts_at",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "expires_at",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "updated_at",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "pre_stk_member_status",
+                "Non_unique": "0",
+                "Key_name": "PRIMARY",
+                "Seq_in_index": "1",
+                "Column_name": "uid",
+                "Collation": "A",
+                "Cardinality": "4",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            },
+            {
+                "Table": "pre_stk_member_status",
+                "Non_unique": "1",
+                "Key_name": "idx_status_expiry",
+                "Seq_in_index": "1",
+                "Column_name": "status",
+                "Collation": "A",
+                "Cardinality": "1",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            },
+            {
+                "Table": "pre_stk_member_status",
+                "Non_unique": "1",
+                "Key_name": "idx_status_expiry",
+                "Seq_in_index": "2",
+                "Column_name": "expires_at",
+                "Collation": "A",
+                "Cardinality": "1",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            }
+        ],
+        "row_count": 7
+    },
+    "stk_wallet_account": {
+        "exists": true,
+        "columns": [
+            {
+                "Field": "uid",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "commission_amount",
+                "Type": "decimal(12,2)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0.00",
+                "Extra": ""
+            },
+            {
+                "Field": "task_amount",
+                "Type": "decimal(12,2)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0.00",
+                "Extra": ""
+            },
+            {
+                "Field": "task_points",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "updated_at",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "pre_stk_wallet_account",
+                "Non_unique": "0",
+                "Key_name": "PRIMARY",
+                "Seq_in_index": "1",
+                "Column_name": "uid",
+                "Collation": "A",
+                "Cardinality": "4",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            }
+        ],
+        "row_count": 7
+    },
+    "stk_prop_catalog": {
+        "exists": true,
+        "columns": [
+            {
+                "Field": "prop_id",
+                "Type": "varchar(32)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(64)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "description",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "",
+                "Extra": ""
+            },
+            {
+                "Field": "icon_url",
+                "Type": "varchar(500)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "",
+                "Extra": ""
+            },
+            {
+                "Field": "sort_order",
+                "Type": "int",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "enabled",
+                "Type": "tinyint unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "1",
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "pre_stk_prop_catalog",
+                "Non_unique": "0",
+                "Key_name": "PRIMARY",
+                "Seq_in_index": "1",
+                "Column_name": "prop_id",
+                "Collation": "A",
+                "Cardinality": "4",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            }
+        ],
+        "row_count": 4
+    },
+    "stk_project_config": {
+        "exists": true,
+        "columns": [
+            {
+                "Field": "config_key",
+                "Type": "varchar(64)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "config_value",
+                "Type": "text",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "updated_at",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "pre_stk_project_config",
+                "Non_unique": "0",
+                "Key_name": "PRIMARY",
+                "Seq_in_index": "1",
+                "Column_name": "config_key",
+                "Collation": "A",
+                "Cardinality": "33",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            }
+        ],
+        "row_count": 51
+    },
+    "stk_app_config": {
+        "exists": true,
+        "columns": [
+            {
+                "Field": "config_key",
+                "Type": "varchar(64)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "config_value",
+                "Type": "text",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "updated_at",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "pre_stk_app_config",
+                "Non_unique": "0",
+                "Key_name": "PRIMARY",
+                "Seq_in_index": "1",
+                "Column_name": "config_key",
+                "Collation": "A",
+                "Cardinality": "46",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            }
+        ],
+        "row_count": 64
+    },
+    "stk_admin_audit": {
+        "exists": true,
+        "columns": [
+            {
+                "Field": "audit_id",
+                "Type": "bigint unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "operator_uid",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "section",
+                "Type": "varchar(32)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "action",
+                "Type": "varchar(32)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "payload_json",
+                "Type": "text",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "ip",
+                "Type": "varchar(64)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "",
+                "Extra": ""
+            },
+            {
+                "Field": "created_at",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "pre_stk_admin_audit",
+                "Non_unique": "0",
+                "Key_name": "PRIMARY",
+                "Seq_in_index": "1",
+                "Column_name": "audit_id",
+                "Collation": "A",
+                "Cardinality": "8",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            },
+            {
+                "Table": "pre_stk_admin_audit",
+                "Non_unique": "1",
+                "Key_name": "idx_section_created",
+                "Seq_in_index": "1",
+                "Column_name": "section",
+                "Collation": "A",
+                "Cardinality": "2",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            },
+            {
+                "Table": "pre_stk_admin_audit",
+                "Non_unique": "1",
+                "Key_name": "idx_section_created",
+                "Seq_in_index": "2",
+                "Column_name": "created_at",
+                "Collation": "A",
+                "Cardinality": "8",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            }
+        ],
+        "row_count": 12
+    }
+}
+PROJECT_CONFIG
+[
+    {
+        "config_key": "commission_label",
+        "config_value": "佣金账户",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "member_benefit_discount",
+        "config_value": "消费 5 折",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "member_benefit_rebate",
+        "config_value": "消费返佣 40%",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "member_open_button_text",
+        "config_value": "立即开通",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "member_title",
+        "config_value": "商推客会员",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "placeholder_message",
+        "config_value": "功能筹备中",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "profile_bio",
+        "config_value": "",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "schema_version",
+        "config_value": "13001",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "show_member_card",
+        "config_value": "1",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "show_props_center",
+        "config_value": "1",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "show_wallets",
+        "config_value": "1",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "support_copy_enabled",
+        "config_value": "1",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "support_hours",
+        "config_value": "工作日 09:00-18:00",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "support_label",
+        "config_value": "在线客服",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "support_type",
+        "config_value": "url",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "support_url_allowlist",
+        "config_value": "stk.zz-yihao.com",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "support_value",
+        "config_value": "https://stk.zz-yihao.com/",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "task_label",
+        "config_value": "任务账户",
+        "updated_at": "1786459433"
+    }
+]
+APP_CONFIG
+[
+    {
+        "config_key": "commission_label",
+        "config_value": "佣金账户",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "member_benefit_discount",
+        "config_value": "消费 5 折",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "member_benefit_rebate",
+        "config_value": "消费返佣 40%",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "member_open_button_text",
+        "config_value": "立即开通",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "member_title",
+        "config_value": "商推客会员",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "placeholder_message",
+        "config_value": "功能筹备中",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "profile_bio",
+        "config_value": "",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "schema_version",
+        "config_value": "13001",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "show_member_card",
+        "config_value": "1",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "show_props_center",
+        "config_value": "1",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "show_wallets",
+        "config_value": "1",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "support_copy_enabled",
+        "config_value": "1",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "support_hours",
+        "config_value": "工作日 09:00-18:00",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "support_label",
+        "config_value": "在线客服",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "support_type",
+        "config_value": "url",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "support_url_allowlist",
+        "config_value": "stk.zz-yihao.com",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "support_value",
+        "config_value": "https://stk.zz-yihao.com/",
+        "updated_at": "1786459433"
+    },
+    {
+        "config_key": "task_label",
+        "config_value": "任务账户",
+        "updated_at": "1786459433"
+    }
+]
+OWNER_MEMBER_STATUS
+[
+    {
+        "uid": "9",
+        "status": "inactive",
+        "member_label": "普通用户",
+        "level": "L1",
+        "starts_at": "0",
+        "expires_at": "0",
+        "updated_at": "1786285918"
+    }
+]
+OWNER_WALLET_ACCOUNT
+[
+    {
+        "uid": "9",
+        "commission_amount": "0.00",
+        "task_amount": "0.00",
+        "task_points": "0",
+        "updated_at": "1786285918"
+    }
+]
+PROP_CATALOG
+[
+    {
+        "prop_id": "refresh",
+        "name": "刷新卡",
+        "description": "刷新项目展示时间",
+        "icon_url": "",
+        "sort_order": "1",
+        "enabled": "1"
+    },
+    {
+        "prop_id": "super_headline",
+        "name": "超级头条",
+        "description": "超级头条展示道具",
+        "icon_url": "",
+        "sort_order": "2",
+        "enabled": "1"
+    },
+    {
+        "prop_id": "headline",
+        "name": "头条",
+        "description": "头条展示道具",
+        "icon_url": "",
+        "sort_order": "3",
+        "enabled": "1"
+    },
+    {
+        "prop_id": "color",
+        "name": "变色卡",
+        "description": "项目标题变色展示",
+        "icon_url": "",
+        "sort_order": "4",
+        "enabled": "1"
+    }
+]
+RECENT_V130_ADMIN_AUDIT
+[
+    {
+        "audit_id": "12",
+        "operator_uid": "0",
+        "section": "support",
+        "action": "deployment_config_update",
+        "payload_json": "{\"type\":\"url\",\"url_hosts\":[\"stk.zz-yihao.com\"],\"release\":\"1.3.0-beta.1\"}",
+        "ip": "127.0.0.1",
+        "created_at": "1786459433"
+    }
+]

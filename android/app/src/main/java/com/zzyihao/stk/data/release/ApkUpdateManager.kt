@@ -7,6 +7,8 @@ import android.os.Build
 import android.provider.Settings
 import androidx.core.content.FileProvider
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.net.HttpURLConnection
@@ -16,55 +18,78 @@ import java.security.MessageDigest
 sealed interface InstallResult {
     data object Started : InstallResult
     data object PermissionRequired : InstallResult
+    data class Blocked(val message: String) : InstallResult
 }
 
 class ApkUpdateManager(context: Context) {
     private val appContext = context.applicationContext
-    private val allowedHosts = setOf("stk.zz-yihao.com", "stk-download.zz-yihao.com")
-
-    suspend fun download(release: ReleaseManifest, onProgress: (Int?) -> Unit): File = withContext(Dispatchers.IO) {
+    suspend fun download(release: ReleaseManifest, onProgress: (DownloadProgress) -> Unit): File = withContext(Dispatchers.IO) {
         val source = URL(release.apkUrl)
-        require(source.protocol == "https" && source.host.lowercase() in allowedHosts) { "安装包地址不在官方白名单" }
-        val connection = source.openConnection() as HttpURLConnection
+        requireOfficialHttpsUrl(source, ReleaseSecurity.downloadHosts, "安装包地址")
         val directory = File(appContext.cacheDir, "stk-updates").apply { mkdirs() }
         val partFile = File(directory, "STK-${release.versionCode}.apk.part")
         val apkFile = File(directory, "STK-${release.versionCode}.apk")
+        directory.listFiles()?.forEach { candidate ->
+            if (candidate != partFile && candidate != apkFile) candidate.delete()
+        }
+        partFile.delete()
+        apkFile.delete()
+        var connection: HttpURLConnection? = null
         try {
-            connection.requestMethod = "GET"
-            connection.connectTimeout = 10_000
-            connection.readTimeout = 30_000
-            connection.instanceFollowRedirects = true
-            connection.setRequestProperty("Accept", "application/vnd.android.package-archive,application/octet-stream")
-            connection.connect()
-            val finalUrl = connection.url
-            if (finalUrl.protocol != "https" || finalUrl.host.lowercase() !in allowedHosts) throw ReleaseException("下载重定向不在官方白名单")
-            if (connection.responseCode !in 200..299) throw ReleaseException("安装包下载失败（HTTP ${connection.responseCode}）")
-            val contentLength = connection.contentLength.toLong()
-            if (contentLength > MAX_APK_BYTES) throw ReleaseException("安装包超过允许大小")
+            var currentUrl = source
+            var redirectCount = 0
+            while (true) {
+                requireOfficialHttpsUrl(currentUrl, ReleaseSecurity.downloadHosts, "安装包地址")
+                connection = (currentUrl.openConnection() as HttpURLConnection).apply {
+                    requestMethod = "GET"
+                    connectTimeout = 10_000
+                    readTimeout = 30_000
+                    instanceFollowRedirects = false
+                    setRequestProperty("Accept", "application/vnd.android.package-archive,application/octet-stream")
+                    connect()
+                }
+                val status = connection!!.responseCode
+                if (status in 300..399) {
+                    if (redirectCount >= MAX_REDIRECTS) throw ReleaseException("安装包下载重定向次数过多")
+                    val location = connection!!.getHeaderField("Location")?.trim().orEmpty()
+                    if (location.isBlank()) throw ReleaseException("安装包下载重定向无效")
+                    currentUrl = URL(currentUrl, location)
+                    connection!!.disconnect()
+                    connection = null
+                    redirectCount++
+                } else {
+                    break
+                }
+            }
+            val activeConnection = connection ?: throw ReleaseException("安装包下载连接失败")
+            if (activeConnection.responseCode !in 200..299) throw ReleaseException("安装包下载失败（HTTP ${activeConnection.responseCode}）")
+            val contentLength = activeConnection.contentLengthLong.takeIf { it > 0 }
+            if (contentLength != null && contentLength > ReleaseSecurity.maxApkBytes) throw ReleaseException("安装包超过允许大小")
             val digest = MessageDigest.getInstance("SHA-256")
             var total = 0L
             partFile.outputStream().buffered().use { output ->
-                connection.inputStream.buffered().use { input ->
+                activeConnection.inputStream.buffered().use { input ->
                     val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
                     while (true) {
+                        currentCoroutineContext().ensureActive()
                         val count = input.read(buffer)
                         if (count < 0) break
                         total += count
-                        if (total > MAX_APK_BYTES) throw ReleaseException("安装包超过允许大小")
+                        if (total > ReleaseSecurity.maxApkBytes) throw ReleaseException("安装包超过允许大小")
                         output.write(buffer, 0, count)
                         digest.update(buffer, 0, count)
-                        onProgress(if (contentLength > 0) ((total * 100 / contentLength).coerceIn(0, 100)).toInt() else null)
+                        onProgress(DownloadProgress(total, contentLength))
                     }
                 }
             }
-            if (contentLength > 0 && total != contentLength) throw ReleaseException("安装包下载不完整")
+            if (contentLength != null && total != contentLength) throw ReleaseException("安装包下载不完整")
             val actualHash = digest.digest().joinToString("") { "%02x".format(it) }
             if (!actualHash.equals(release.sha256, ignoreCase = true)) throw ReleaseException("安装包 SHA-256 校验失败")
             if (apkFile.exists() && !apkFile.delete()) throw ReleaseException("无法替换旧安装包")
             if (!partFile.renameTo(apkFile)) throw ReleaseException("无法保存已校验安装包")
             apkFile
         } finally {
-            connection.disconnect()
+            connection?.disconnect()
             if (partFile.exists()) partFile.delete()
         }
     }
@@ -73,18 +98,24 @@ class ApkUpdateManager(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && !appContext.packageManager.canRequestPackageInstalls()) {
             val settingsIntent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:${appContext.packageName}"))
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            appContext.startActivity(settingsIntent)
-            return InstallResult.PermissionRequired
+            return if (settingsIntent.resolveActivity(appContext.packageManager) != null) {
+                runCatching { appContext.startActivity(settingsIntent) }
+                    .fold({ InstallResult.PermissionRequired }, { InstallResult.Blocked("无法打开未知应用安装授权页面") })
+            } else {
+                InstallResult.Blocked("系统未提供未知应用安装授权页面")
+            }
         }
+        if (!apkFile.isFile || apkFile.length() <= 0L) return InstallResult.Blocked("已校验安装包不存在，请重新下载")
         val apkUri = FileProvider.getUriForFile(appContext, "${appContext.packageName}.fileprovider", apkFile)
         val installIntent = Intent(Intent.ACTION_VIEW)
             .setDataAndType(apkUri, "application/vnd.android.package-archive")
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        appContext.startActivity(installIntent)
-        return InstallResult.Started
+        if (installIntent.resolveActivity(appContext.packageManager) == null) return InstallResult.Blocked("系统安装器不可用")
+        return runCatching { appContext.startActivity(installIntent) }
+            .fold({ InstallResult.Started }, { InstallResult.Blocked("无法启动系统安装器") })
     }
 
     companion object {
-        private const val MAX_APK_BYTES = 200L * 1024L * 1024L
+        private const val MAX_REDIRECTS = 3
     }
 }

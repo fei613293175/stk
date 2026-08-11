@@ -8,22 +8,21 @@ import org.junit.Test
 
 class StartupGateTest {
     @Test
-    fun betaChannelIgnoresProductionReleaseThresholds() {
+    fun betaChannelHonorsReleaseThresholds() {
         val gate = resolveStartupGate(
-            release = release(minimumVersionCode = 10504, mandatory = true),
+            release = release(minimumVersionCode = 10402, mandatory = true),
             installedVersionCode = 10002,
-            enforceProductionReleaseUpdates = false,
         )
 
-        assertEquals(StartupGate.Continue, gate)
+        assertTrue(gate is StartupGate.Feedback)
+        assertEquals(SystemFeedbackState.ForcedUpdate, (gate as StartupGate.Feedback).state)
     }
 
     @Test
-    fun betaChannelStillHonorsMaintenance() {
+    fun maintenanceTakesPriorityOverReleaseThresholds() {
         val gate = resolveStartupGate(
             release = release(maintenance = MaintenanceNotice(enabled = true, message = "维护中")),
             installedVersionCode = 10002,
-            enforceProductionReleaseUpdates = false,
         )
 
         assertTrue(gate is StartupGate.Feedback)
@@ -31,15 +30,37 @@ class StartupGateTest {
     }
 
     @Test
-    fun productionChannelStillEnforcesMinimumVersion() {
+    fun minimumVersionIsAlwaysEnforced() {
         val gate = resolveStartupGate(
-            release = release(minimumVersionCode = 10504),
+            release = release(minimumVersionCode = 10402),
             installedVersionCode = 10002,
-            enforceProductionReleaseUpdates = true,
         )
 
         assertTrue(gate is StartupGate.Feedback)
         assertEquals(SystemFeedbackState.ForcedUpdate, (gate as StartupGate.Feedback).state)
+    }
+
+    @Test
+    fun newerReleaseProducesOptionalUpdate() {
+        val gate = resolveStartupGate(
+            release = release(minimumVersionCode = 10301, mandatory = false),
+            installedVersionCode = 10401,
+        )
+
+        assertTrue(gate is StartupGate.Feedback)
+        assertEquals(SystemFeedbackState.OptionalUpdate, (gate as StartupGate.Feedback).state)
+    }
+
+    @Test
+    fun currentReleaseCanRenderUpToDateForExplicitCheck() {
+        val gate = resolveStartupGate(
+            release = release(minimumVersionCode = 10301, mandatory = false),
+            installedVersionCode = 10402,
+            showUpToDate = true,
+        )
+
+        assertTrue(gate is StartupGate.Feedback)
+        assertEquals(SystemFeedbackState.UpToDate, (gate as StartupGate.Feedback).state)
     }
 
     private fun release(
@@ -47,8 +68,8 @@ class StartupGateTest {
         mandatory: Boolean = false,
         maintenance: MaintenanceNotice = MaintenanceNotice(),
     ) = ReleaseManifest(
-        versionName = "1.5.4",
-        versionCode = 10504,
+        versionName = "1.4.1",
+        versionCode = 10402,
         minimumVersionCode = minimumVersionCode,
         apkUrl = "https://example.com/stk.apk",
         sha256 = "a".repeat(64),

@@ -1,13 +1,11 @@
-# V1.5.0 完成清单
+# V1.4.0-beta.1 Completion
 
-- [x] 登录、注册、图片验证码、短信配置、Token 与协议接口
-- [x] 首页项目流、搜索、分类、分页、缓存、详情和外链策略
-- [x] 多图发布、编辑、驳回重提、下架、软删除和状态约束
-- [x] Discuz 项目审核、分类、发布规则、图片规则和审计后台
-- [x] 我的资料、会员、双账户、道具和客服协议配置
-- [x] Android 更新检查、下载进度、SHA-256 校验和安装流程
-- [x] Discuz 版本发布、维护、部署诊断和安全审计后台
-- [x] Android 1.5.0 Release JVM 单测、Lint 与服务器构建
-- [x] PHP 全量语法和 6 组合同/服务测试
-- [x] 更新清单、下载页、App Links 和 Beta 签名证据
-- [ ] 项目拥有者真机安装与业务流程验收
+- [x] B40 startup, maintenance, optional update and forced update gates
+- [x] B41 release page, secure APK download, progress, retry and SHA-256 verification
+- [x] Unknown-source authorization, FileProvider and Android package installer handoff
+- [x] B42 maintenance/offline/recovered/error and About update states
+- [x] Release API, schema 14001, ten contract config keys and Discuz admin/audit modules
+- [x] Main-domain APK distribution, download page, App Links and assetlinks.json
+- [x] Server fast-check, PHP/contracts, JVM unit tests and assembleRelease
+- [x] Production backup, migration and rollback evidence
+- [x] Complete owner device acceptance per the attached final report

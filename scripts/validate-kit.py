@@ -23,7 +23,6 @@ required = [
     'discuz/source/plugin/stk_project/api.inc.php',
     'discuz/source/plugin/stk_project/install.php',
     '.github/workflows/fast-ci.yml',
-    'offline-spec/STK_FULL_SPEC_OFFLINE.zip',
 ]
 for item in required:
     if not (ROOT / item).is_file():
@@ -130,7 +129,6 @@ if offline_zip.is_file():
                 errors.append('offline visual manifest missing')
     except Exception as exc:
         errors.append(f'offline spec ZIP invalid: {exc}')
-
 package_paths = [
     p for p in ROOT.rglob('*')
     if not any(root == p or root in p.parents for root in generated_roots)

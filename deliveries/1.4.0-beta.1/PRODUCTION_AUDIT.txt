@@ -1,0 +1,492 @@
+MODE
+"read_only"
+DISCUZ_CONTEXT
+{
+    "root": "/www/wwwroot/stk_zz_yihao_com/",
+    "table_prefix": "pre_"
+}
+TABLES
+{
+    "stk_release": {
+        "exists": true,
+        "columns": [
+            {
+                "Field": "release_id",
+                "Type": "bigint unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "version_name",
+                "Type": "varchar(32)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "version_code",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "minimum_version_name",
+                "Type": "varchar(32)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "1.3.0-beta.1",
+                "Extra": ""
+            },
+            {
+                "Field": "minimum_version_code",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "apk_url",
+                "Type": "varchar(500)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "apk_sha256",
+                "Type": "char(64)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "apk_size_bytes",
+                "Type": "bigint unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "mandatory",
+                "Type": "tinyint unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "notes",
+                "Type": "text",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "status",
+                "Type": "varchar(16)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": "draft",
+                "Extra": ""
+            },
+            {
+                "Field": "enabled",
+                "Type": "tinyint unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "1",
+                "Extra": ""
+            },
+            {
+                "Field": "published_at",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "created_at",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "updated_at",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "pre_stk_release",
+                "Non_unique": "0",
+                "Key_name": "PRIMARY",
+                "Seq_in_index": "1",
+                "Column_name": "release_id",
+                "Collation": "A",
+                "Cardinality": "5",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            },
+            {
+                "Table": "pre_stk_release",
+                "Non_unique": "0",
+                "Key_name": "uk_version_code",
+                "Seq_in_index": "1",
+                "Column_name": "version_code",
+                "Collation": "A",
+                "Cardinality": "5",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            },
+            {
+                "Table": "pre_stk_release",
+                "Non_unique": "1",
+                "Key_name": "idx_status_version",
+                "Seq_in_index": "1",
+                "Column_name": "status",
+                "Collation": "A",
+                "Cardinality": "2",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            },
+            {
+                "Table": "pre_stk_release",
+                "Non_unique": "1",
+                "Key_name": "idx_status_version",
+                "Seq_in_index": "2",
+                "Column_name": "version_code",
+                "Collation": "A",
+                "Cardinality": "5",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            }
+        ],
+        "row_count": 5
+    },
+    "stk_app_config": {
+        "exists": true,
+        "columns": [
+            {
+                "Field": "config_key",
+                "Type": "varchar(64)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "config_value",
+                "Type": "text",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "updated_at",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "pre_stk_app_config",
+                "Non_unique": "0",
+                "Key_name": "PRIMARY",
+                "Seq_in_index": "1",
+                "Column_name": "config_key",
+                "Collation": "A",
+                "Cardinality": "46",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            }
+        ],
+        "row_count": 81
+    },
+    "stk_admin_audit": {
+        "exists": true,
+        "columns": [
+            {
+                "Field": "audit_id",
+                "Type": "bigint unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "operator_uid",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "section",
+                "Type": "varchar(32)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "action",
+                "Type": "varchar(32)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "payload_json",
+                "Type": "text",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "ip",
+                "Type": "varchar(64)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "",
+                "Extra": ""
+            },
+            {
+                "Field": "created_at",
+                "Type": "int unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "pre_stk_admin_audit",
+                "Non_unique": "0",
+                "Key_name": "PRIMARY",
+                "Seq_in_index": "1",
+                "Column_name": "audit_id",
+                "Collation": "A",
+                "Cardinality": "8",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            },
+            {
+                "Table": "pre_stk_admin_audit",
+                "Non_unique": "1",
+                "Key_name": "idx_section_created",
+                "Seq_in_index": "1",
+                "Column_name": "section",
+                "Collation": "A",
+                "Cardinality": "2",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            },
+            {
+                "Table": "pre_stk_admin_audit",
+                "Non_unique": "1",
+                "Key_name": "idx_section_created",
+                "Seq_in_index": "2",
+                "Column_name": "created_at",
+                "Collation": "A",
+                "Cardinality": "8",
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": "",
+                "Visible": "YES",
+                "Expression": null
+            }
+        ],
+        "row_count": 25
+    }
+}
+CONTRACT_CONFIG
+{
+    "expected_count": 10,
+    "actual_count": 10,
+    "rows": [
+        {
+            "config_key": "app_links.host",
+            "config_value": "stk.zz-yihao.com",
+            "updated_at": "1786480956"
+        },
+        {
+            "config_key": "maintenance.enabled",
+            "config_value": "0",
+            "updated_at": "1786480956"
+        },
+        {
+            "config_key": "maintenance.expected_end",
+            "config_value": "",
+            "updated_at": "1786480956"
+        },
+        {
+            "config_key": "maintenance.message",
+            "config_value": "系统维护中，请稍后再试。",
+            "updated_at": "1786480956"
+        },
+        {
+            "config_key": "release.apk_sha256",
+            "config_value": "6087c2a09743fd121b5d74e16eef7bb16dd28f69e3eb298e574d77fdfb881ff2",
+            "updated_at": "1786480956"
+        },
+        {
+            "config_key": "release.current_version",
+            "config_value": "1.4.0-beta.1",
+            "updated_at": "1786480956"
+        },
+        {
+            "config_key": "release.download_url",
+            "config_value": "https://stk.zz-yihao.com/stk-release/app/STK-1.4.0-beta.1.apk",
+            "updated_at": "1786480956"
+        },
+        {
+            "config_key": "release.force_update",
+            "config_value": "0",
+            "updated_at": "1786480956"
+        },
+        {
+            "config_key": "release.minimum_version",
+            "config_value": "1.3.0-beta.1",
+            "updated_at": "1786480956"
+        },
+        {
+            "config_key": "release.notes",
+            "config_value": "完成可选与强制更新弹层\n完成 APK 安全下载、SHA-256 校验与系统安装器回退\n完成维护模式、App Links 与生产诊断",
+            "updated_at": "1786480956"
+        }
+    ]
+}
+RELEASE_10401
+[
+    {
+        "version_name": "1.4.0-beta.1",
+        "version_code": "10401",
+        "minimum_version_name": "1.3.0-beta.1",
+        "minimum_version_code": "10301",
+        "apk_url": "https://stk.zz-yihao.com/stk-release/app/STK-1.4.0-beta.1.apk",
+        "apk_sha256": "6087c2a09743fd121b5d74e16eef7bb16dd28f69e3eb298e574d77fdfb881ff2",
+        "apk_size_bytes": "14611703",
+        "mandatory": "0",
+        "status": "published",
+        "enabled": "1",
+        "published_at": "1786480956",
+        "updated_at": "1786480956"
+    }
+]
+RECENT_V140_ADMIN_AUDIT
+[
+    {
+        "audit_id": "22",
+        "operator_uid": "0",
+        "section": "release",
+        "action": "deployment_publish",
+        "payload_json": "{\"version_name\":\"1.4.0-beta.1\",\"version_code\":10401,\"minimum_version_code\":10301,\"download_host\":\"stk.zz-yihao.com\",\"apk_size_bytes\":14611703}",
+        "ip": "127.0.0.1",
+        "created_at": "1786480956"
+    },
+    {
+        "audit_id": "14",
+        "operator_uid": "0",
+        "section": "release",
+        "action": "deployment_publish",
+        "payload_json": "{\"version_name\":\"1.4.0-beta.1\",\"version_code\":10401,\"minimum_version_code\":10301,\"download_host\":\"stk.zz-yihao.com\",\"apk_size_bytes\":14611703}",
+        "ip": "127.0.0.1",
+        "created_at": "1786473101"
+    },
+    {
+        "audit_id": "13",
+        "operator_uid": "0",
+        "section": "deployment",
+        "action": "backup_created",
+        "payload_json": "{\"release\":\"1.4.0-beta.1\",\"directory\":\"/opt/stk-build/backups/stk-v140-predeploy-20260812022643\",\"database_sha256\":\"e6c346410a6cbcd262b29aeda812139dbee446dd29e7c535f47f86c581d97b43\"}",
+        "ip": "127.0.0.1",
+        "created_at": "1786472815"
+    },
+    {
+        "audit_id": "9",
+        "operator_uid": "1",
+        "section": "release",
+        "action": "deploy",
+        "payload_json": "{\"version_code\":10504,\"source\":\"server_cli\"}",
+        "ip": "127.0.0.1",
+        "created_at": "1786244593"
+    },
+    {
+        "audit_id": "1",
+        "operator_uid": "1",
+        "section": "release",
+        "action": "publish",
+        "payload_json": "{\"version_code\":10502}",
+        "ip": "125.80.141.103",
+        "created_at": "1786182727"
+    }
+]

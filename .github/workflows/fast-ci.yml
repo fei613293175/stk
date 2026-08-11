@@ -40,7 +40,7 @@ jobs:
         shell: bash
         run: |
           yes | sdkmanager --licenses >/dev/null || true
-          sdkmanager "platform-tools" "platforms;android-36" "build-tools;35.0.0"
+          sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
 
       - uses: gradle/actions/setup-gradle@v4
 
@@ -48,17 +48,17 @@ jobs:
         shell: bash
         run: bash scripts/fast-check.sh
 
-      - name: Unit test and build Beta APK
+      - name: Unit test and build Release Beta APK
         shell: bash
         run: |
           chmod +x gradlew
-          ./gradlew --no-daemon testDebugUnitTest assembleDebug
+          ./gradlew --no-daemon testDebugUnitTest assembleRelease
           bash scripts/package-beta.sh
 
       - name: Upload Beta delivery
         uses: actions/upload-artifact@v4
         with:
-          name: STK-1.0.0-beta.1-${{ github.sha }}
-          path: deliveries/1.0.0-beta.1/
+          name: STK-1.4.0-beta.1-${{ github.sha }}
+          path: deliveries/1.4.0-beta.1/
           if-no-files-found: error
           retention-days: 14

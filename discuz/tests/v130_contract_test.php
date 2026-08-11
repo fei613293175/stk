@@ -38,7 +38,7 @@ v130_require($api, [
 
 v130_require($install . $upgrade, [
     'pre_stk_member_status', 'pre_stk_wallet_account', 'pre_stk_prop_catalog',
-    "'schema_version','13001'", 'SELECT uid,0,0,0', 'starts_at', 'task_amount',
+    "'schema_version','14001'", 'SELECT uid,0,0,0', 'starts_at', 'task_amount',
 ], 'V1.3 migration');
 
 foreach ([$meAdmin, $memberAdmin, $propsAdmin, $supportAdmin] as $adminSource) {

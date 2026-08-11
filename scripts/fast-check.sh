@@ -8,4 +8,5 @@ for script in "$ROOT"/scripts/*.sh "$ROOT/gradlew"; do
     bash -n "$script"
 done
 php "$ROOT/discuz/tests/v130_contract_test.php"
-echo "PASS: STK V1.3.0 fast static checks"
+php "$ROOT/discuz/tests/v140_contract_test.php"
+echo "PASS: STK V1.4.0 fast static checks"

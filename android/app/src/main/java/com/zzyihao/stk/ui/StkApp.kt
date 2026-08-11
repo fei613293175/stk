@@ -1,5 +1,7 @@
 package com.zzyihao.stk.ui
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -10,6 +12,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.ui.Modifier
 import com.zzyihao.stk.BuildConfig
 import com.zzyihao.stk.data.session.SessionState
 import com.zzyihao.stk.data.session.refreshDelayMillis
@@ -28,6 +31,8 @@ import com.zzyihao.stk.ui.components.StkStatusKind
 import com.zzyihao.stk.ui.system.SplashScreen
 import com.zzyihao.stk.ui.system.SystemFeedbackScreen
 import com.zzyihao.stk.ui.system.SystemFeedbackState
+import com.zzyihao.stk.ui.system.ReleaseUpdateOverlay
+import com.zzyihao.stk.ui.system.ReleaseUpdateScreen
 import com.zzyihao.stk.ui.system.StartupGate
 import com.zzyihao.stk.ui.system.StartupVisualState
 import com.zzyihao.stk.ui.system.StartupViewModel
@@ -66,13 +71,12 @@ fun StkApp(
     var sessionExpired by remember { mutableStateOf(false) }
     var logoutFailureMessage by remember { mutableStateOf<String?>(null) }
     var activeMainSectionIsMe by remember { mutableStateOf(false) }
+    var startupUpdatePageVisible by rememberSaveable { mutableStateOf(false) }
     val startupViewModel: StartupViewModel = viewModel(
         key = "startup-${if (deepLinkUpdateRequested) "update" else "normal"}",
         factory = StartupViewModel.Factory(
             releaseRepository = container.releaseRepository,
             installedVersionCode = BuildConfig.VERSION_CODE,
-            // Beta versions use their own monotonic code sequence and must not be gated by production releases.
-            enforceProductionReleaseUpdates = !BuildConfig.VERSION_NAME.contains("-beta.", ignoreCase = true),
             showUpToDate = deepLinkUpdateRequested,
         ),
     )
@@ -199,13 +203,52 @@ fun StkApp(
                 onRetry = startupViewModel::check,
             )
         }
-        is StartupGate.Feedback -> SystemFeedbackScreen(
-            initialState = gate.state,
-            release = gate.release,
-            message = gate.message,
-            onBack = if (gate.state in setOf(SystemFeedbackState.OptionalUpdate, SystemFeedbackState.UpToDate)) startupViewModel::continueToApp else null,
-            onRetry = startupViewModel::check,
-        )
+        is StartupGate.Feedback -> when (gate.state) {
+            SystemFeedbackState.OptionalUpdate, SystemFeedbackState.ForcedUpdate -> {
+                val forced = gate.state == SystemFeedbackState.ForcedUpdate
+                if (startupUpdatePageVisible) {
+                    ReleaseUpdateScreen(
+                        releaseRepository = container.releaseRepository,
+                        initialRelease = gate.release,
+                        initialForced = forced,
+                        onBack = if (forced) null else {
+                            {
+                                startupUpdatePageVisible = false
+                                startupViewModel.continueToApp()
+                            }
+                        },
+                    )
+                } else {
+                    Box(Modifier.fillMaxSize()) {
+                        SplashScreen(state = StartupVisualState.Ready)
+                        ReleaseUpdateOverlay(
+                            release = gate.release,
+                            forced = forced,
+                            onLater = if (forced) null else startupViewModel::continueToApp,
+                            onOpenUpdate = { startupUpdatePageVisible = true },
+                        )
+                    }
+                }
+            }
+            SystemFeedbackState.UpToDate -> ReleaseUpdateScreen(
+                releaseRepository = container.releaseRepository,
+                initialRelease = null,
+                initialForced = false,
+                onBack = startupViewModel::continueToApp,
+            )
+            SystemFeedbackState.ServiceRecovered -> SystemFeedbackScreen(
+                initialState = gate.state,
+                release = gate.release,
+                message = gate.message,
+                onRetry = startupViewModel::continueToApp,
+            )
+            else -> SystemFeedbackScreen(
+                initialState = gate.state,
+                release = gate.release,
+                message = gate.message,
+                onRetry = { startupViewModel.check(showRecoveredOnSuccess = true) },
+            )
+        }
         StartupGate.Continue -> when (val state = sessionState) {
             SessionState.Loading -> SplashScreen()
             is SessionState.NeedsRefresh -> {

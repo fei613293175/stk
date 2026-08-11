@@ -1,2 +1,67 @@
 <!doctype html>
-<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>商推客下载</title><main><h1>商推客</h1><p>下载最新 Android 安装包。</p><a href="/stk-release/app/STK-1.5.4.apk">下载 STK 1.5.4</a><p>SHA-256：831c708b332517d8035a7408f778eb4eede54a195e384d378f8ec1a892239363</p></main></html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#c62828">
+  <title>商推客 Android 下载</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+      color: #1c2025;
+      background: #f5f6f7;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 280px; }
+    header { background: #ffffff; border-bottom: 1px solid #dfe3e7; }
+    .bar, main { width: min(100% - 32px, 760px); margin: 0 auto; }
+    .bar { min-height: 64px; display: flex; align-items: center; gap: 12px; }
+    .mark { width: 40px; height: 40px; display: grid; place-items: center; color: #ffffff; background: #c62828; border-radius: 8px; font-weight: 700; }
+    .brand { font-size: 18px; font-weight: 700; }
+    main { padding: 48px 0 64px; }
+    h1 { margin: 0; font-size: 30px; line-height: 1.25; }
+    .lead { margin: 12px 0 28px; color: #5c6670; font-size: 16px; }
+    .release { padding: 24px; background: #ffffff; border: 1px solid #dfe3e7; border-radius: 8px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 0 0 24px; color: #5c6670; }
+    .download { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 8px; padding: 0 22px; color: #ffffff; background: #c62828; border-radius: 6px; font-weight: 700; text-decoration: none; }
+    .download:focus-visible { outline: 3px solid #f6ad55; outline-offset: 3px; }
+    h2 { margin: 28px 0 10px; font-size: 18px; }
+    ul { margin: 0; padding-left: 22px; color: #3f4851; line-height: 1.8; }
+    .checksum { margin-top: 28px; padding-top: 20px; border-top: 1px solid #e5e8eb; }
+    code { display: block; margin-top: 8px; padding: 12px; overflow-wrap: anywhere; color: #155f42; background: #eef8f3; border-radius: 6px; font-size: 12px; line-height: 1.6; }
+    footer { margin-top: 24px; color: #717b85; font-size: 13px; }
+    @media (max-width: 520px) {
+      main { padding-top: 32px; }
+      h1 { font-size: 26px; }
+      .release { padding: 20px; }
+      .download { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar"><span class="mark" aria-hidden="true">商</span><span class="brand">商推客</span></div>
+  </header>
+  <main>
+    <h1>商推客 Android</h1>
+    <p class="lead">当前 Beta 发布版本</p>
+    <section class="release" aria-labelledby="release-title">
+      <h2 id="release-title">1.4.0-beta.1</h2>
+      <p class="meta"><span>版本代码 10401</span><span>安装包 13.9 MB</span><span>Android 8.0 及以上</span></p>
+      <a class="download" href="/stk-release/app/STK-1.4.0-beta.1.apk" download>↓ 下载 APK</a>
+      <h2>本次更新</h2>
+      <ul>
+        <li>可选更新与强制更新流程</li>
+        <li>APK 下载、完整性校验与安装授权引导</li>
+        <li>维护状态与 App Links 支持</li>
+      </ul>
+      <div class="checksum">
+        <strong>SHA-256</strong>
+        <code>6087c2a09743fd121b5d74e16eef7bb16dd28f69e3eb298e574d77fdfb881ff2</code>
+      </div>
+    </section>
+    <footer>安装前请核对应用名称“商推客”与上方校验值。</footer>
+  </main>
+</body>
+</html>

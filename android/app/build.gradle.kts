@@ -26,8 +26,8 @@ android {
         applicationId = "com.zzyihao.stk"
         minSdk = 26
         targetSdk = 36
-        versionCode = 10301
-        versionName = "1.3.0-beta.1"
+        versionCode = 10401
+        versionName = "1.4.0-beta.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -35,7 +35,7 @@ android {
         buildConfigField("String", "STK_API_ENDPOINT", "\"${apiEndpoint.get()}\"")
         buildConfigField("String", "STK_PROJECT_API_ENDPOINT", "\"${projectApiEndpoint.get()}\"")
         buildConfigField("boolean", "STK_USE_FAKE_BACKEND", useFakeBackend.get())
-        buildConfigField("String", "STK_UPDATE_MANIFEST_URL", "\"https://stk.zz-yihao.com/plugin.php?id=stk_project:api&resource=release/current\"")
+        buildConfigField("String", "STK_UPDATE_MANIFEST_URL", "\"https://stk.zz-yihao.com/plugin.php?id=stk_project:api&resource=api/v1/releases/current\"")
     }
 
     signingConfigs {

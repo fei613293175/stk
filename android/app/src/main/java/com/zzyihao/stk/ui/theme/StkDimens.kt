@@ -78,4 +78,6 @@ object StkDimens {
     val MeMembershipCardMinHeight = 180.dp
     val MeSecondaryCardHeight = 120.dp
     val AboutBrandMark = 80.dp
+    val UpdateStatusCardHeight = 240.dp
+    val UpdatePrimaryButtonWidth = 240.dp
 }

@@ -1,0 +1,6 @@
+STK-1.3.0-beta.1.apk
+SHA-256: a3cd2fffc6e3f626b1787ba2b4f1b2afca75ea43f9bfdb0c89700a15757a0d08
+Size: 21752621 bytes
+Package: com.zzyihao.stk
+Version: 1.3.0-beta.1 (10301)
+Certificate SHA-256: 8d82da03e9133c1d60087e735b2abc9d9d2ecbb0f1815164297079d8eba537ee

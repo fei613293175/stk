@@ -28,7 +28,6 @@ sealed interface StartupGate {
 class StartupViewModel(
     private val releaseRepository: ReleaseRepository,
     private val installedVersionCode: Int,
-    private val enforceProductionReleaseUpdates: Boolean = true,
     private val showUpToDate: Boolean = false,
 ) : ViewModel() {
     private val _gate = MutableStateFlow<StartupGate>(StartupGate.Checking)
@@ -36,24 +35,28 @@ class StartupViewModel(
 
     init { check() }
 
-    fun check() {
+    fun check(showRecoveredOnSuccess: Boolean = false) {
         viewModelScope.launch {
             _gate.value = StartupGate.Checking
             val release = try {
                 releaseRepository.getCurrentRelease()
             } catch (error: ReleaseException) {
-                _gate.value = StartupGate.Failure(error.message, error.requestId)
+                _gate.value = StartupGate.Failure("启动配置暂时不可用，请稍后重试。", error.requestId)
                 return@launch
-            } catch (error: Exception) {
-                _gate.value = StartupGate.Failure(error.message ?: "启动配置加载失败")
+            } catch (_: Exception) {
+                _gate.value = StartupGate.Failure("启动配置加载失败，请检查网络连接后重试。")
                 return@launch
             }
-            _gate.value = resolveStartupGate(
+            val resolved = resolveStartupGate(
                 release = release,
                 installedVersionCode = installedVersionCode,
-                enforceProductionReleaseUpdates = enforceProductionReleaseUpdates,
                 showUpToDate = showUpToDate,
             )
+            _gate.value = if (showRecoveredOnSuccess && resolved == StartupGate.Continue) {
+                StartupGate.Feedback(SystemFeedbackState.ServiceRecovered, release)
+            } else {
+                resolved
+            }
         }
     }
 
@@ -62,7 +65,6 @@ class StartupViewModel(
     class Factory(
         private val releaseRepository: ReleaseRepository,
         private val installedVersionCode: Int,
-        private val enforceProductionReleaseUpdates: Boolean = true,
         private val showUpToDate: Boolean = false,
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
@@ -71,7 +73,6 @@ class StartupViewModel(
             return StartupViewModel(
                 releaseRepository,
                 installedVersionCode,
-                enforceProductionReleaseUpdates,
                 showUpToDate,
             ) as T
         }
@@ -81,7 +82,6 @@ class StartupViewModel(
 internal fun resolveStartupGate(
     release: ReleaseManifest,
     installedVersionCode: Int,
-    enforceProductionReleaseUpdates: Boolean,
     showUpToDate: Boolean = false,
 ): StartupGate = when {
     release.maintenance.enabled -> StartupGate.Feedback(
@@ -89,12 +89,12 @@ internal fun resolveStartupGate(
         release,
         release.maintenance.message + release.maintenance.resumeAt?.let { " 预计恢复：$it" }.orEmpty(),
     )
-    enforceProductionReleaseUpdates && installedVersionCode < release.minimumVersionCode ->
+    installedVersionCode < release.minimumVersionCode ->
         StartupGate.Feedback(SystemFeedbackState.ForcedUpdate, release)
-    enforceProductionReleaseUpdates && release.mandatory && installedVersionCode < release.versionCode ->
+    release.mandatory && installedVersionCode < release.versionCode ->
         StartupGate.Feedback(SystemFeedbackState.ForcedUpdate, release)
-    enforceProductionReleaseUpdates && installedVersionCode < release.versionCode ->
+    installedVersionCode < release.versionCode ->
         StartupGate.Feedback(SystemFeedbackState.OptionalUpdate, release)
-    enforceProductionReleaseUpdates && showUpToDate -> StartupGate.Feedback(SystemFeedbackState.UpToDate, release)
+    showUpToDate -> StartupGate.Feedback(SystemFeedbackState.UpToDate, release)
     else -> StartupGate.Continue
 }

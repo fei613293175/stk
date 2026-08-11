@@ -1,12 +1,10 @@
-# V1.5.0 项目拥有者真机测试指南
+# V1.4.0-beta.1 Owner Test Guide
 
-1. 保留旧 Beta，覆盖安装 `STK-1.5.0.apk`，确认数据与登录状态处理符合预期；
-2. 分别测试密码登录、短信登录、注册、图片安全验证码、错误提示和重发冷却；
-3. 检查首页项目流、搜索、分类、分页、详情图片缩放和外链打开；
-4. 选择 1-6 张 JPEG/PNG/WebP 图片发布项目，检查封面、预览、移除、进度和成功页；
-5. 在“我的发布”测试筛选、分页、编辑、驳回重提、已发布下架和软删除；
-6. 在 Discuz 后台执行项目通过/驳回并检查状态、原因和审计日志；
-7. 在“我的”核对资料、会员权益、佣金账户、任务账户、道具、客服和协议入口；
-8. 在“设置/关于”检查版本更新、下载进度、哈希校验和系统安装确认页；
-9. 核对 `https://stk.zz-yihao.com/stk-release/update.json`、APK 下载 SHA-256 和 `https://stk.zz-yihao.com/.well-known/assetlinks.json`；
-10. 记录机型、Android 版本、复现步骤和截图后反馈，不要把公开 Beta 签名包用于正式上架。
+1. Verify package `com.zzyihao.stk`, version `10401 / 1.4.0-beta.1`, SHA-256 and signing certificate.
+2. Cover-install over V1.3.0 without clearing app data.
+3. Test up-to-date, optional update, forced update and maintenance startup gates.
+4. Test download byte progress, cancellation, network failure, retry, SHA failure and ready-to-install states.
+5. Verify unknown-source authorization and Android system installer handoff; no silent installation is allowed.
+6. Check About-page update states and `/project/{id}` plus `/update` App Links.
+7. Inspect crash, ANR and abnormal logs and compare representative device screenshots with V1.4 references.
+8. Return the phone to HOME, restore changed settings/input method and release the FIFO ticket/lock.

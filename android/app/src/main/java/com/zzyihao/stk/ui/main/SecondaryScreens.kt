@@ -33,6 +33,7 @@ import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.automirrored.outlined.OpenInNew
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.DeleteOutline
+import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Shield
 import androidx.compose.material.icons.filled.StarBorder
@@ -72,6 +73,8 @@ import com.zzyihao.stk.data.account.WalletOverview
 import com.zzyihao.stk.data.auth.AuthSession
 import com.zzyihao.stk.data.legal.LegalRepository
 import com.zzyihao.stk.data.release.ReleaseRepository
+import com.zzyihao.stk.data.release.ReleaseException
+import com.zzyihao.stk.data.release.ReleaseManifest
 import com.zzyihao.stk.ui.auth.LegalDocument
 import com.zzyihao.stk.ui.auth.LegalScreen
 import com.zzyihao.stk.ui.components.LogoutDialogState
@@ -87,12 +90,15 @@ import com.zzyihao.stk.ui.components.StkStatusKind
 import com.zzyihao.stk.ui.components.StkTopBar
 import com.zzyihao.stk.ui.theme.StkColors
 import com.zzyihao.stk.ui.theme.StkDimens
+import com.zzyihao.stk.ui.system.CheckingUpdateDialog
+import com.zzyihao.stk.ui.system.ReleaseUpdateOverlay
+import com.zzyihao.stk.ui.system.ReleaseUpdateScreen
 import kotlinx.coroutines.launch
 
 enum class MeDestination(val title: String) {
     Profile("个人资料"), Member("会员中心"), Wallet("账户余额"), Props("道具中心"),
     History("浏览记录"), Favorites("我的收藏"), RealName("实名认证"), Support("联系客服"),
-    Settings("设置"), About("关于商推客"), UserAgreement("用户协议"), PrivacyPolicy("隐私政策"),
+    Settings("设置"), About("关于商推客"), Update("版本更新"), UserAgreement("用户协议"), PrivacyPolicy("隐私政策"),
 }
 
 private sealed interface RemoteState<out T> {
@@ -114,6 +120,10 @@ fun SecondaryScreen(
     onNavigate: (MeDestination) -> Unit,
     onBack: () -> Unit,
 ) {
+    if (destination == MeDestination.Update) {
+        ReleaseUpdateScreen(releaseRepository = releaseRepository, onBack = onBack)
+        return
+    }
     if (destination == MeDestination.UserAgreement || destination == MeDestination.PrivacyPolicy) {
         LegalScreen(
             document = if (destination == MeDestination.UserAgreement) LegalDocument.UserAgreement else LegalDocument.PrivacyPolicy,
@@ -140,8 +150,8 @@ fun SecondaryScreen(
             MeDestination.Favorites -> PlaceholderContent(destination, retry, accountRepository, { retry++ }, "本期不建立收藏业务。")
             MeDestination.RealName -> PlaceholderContent(destination, retry, accountRepository, { retry++ }, "本期不采集身份信息。")
             MeDestination.Settings -> SettingsPage(onClearCache, onNavigate, onLogout)
-            MeDestination.About -> AboutPage(releaseRepository)
-            MeDestination.UserAgreement, MeDestination.PrivacyPolicy -> Unit
+            MeDestination.About -> AboutPage(releaseRepository) { onNavigate(MeDestination.Update) }
+            MeDestination.Update, MeDestination.UserAgreement, MeDestination.PrivacyPolicy -> Unit
         }
     }
 }
@@ -607,8 +617,39 @@ private fun SettingRow(item: SettingsItem) {
     }
 }
 
+private sealed interface AboutUpdateState {
+    data object Idle : AboutUpdateState
+    data object Checking : AboutUpdateState
+    data class UpToDate(val versionName: String) : AboutUpdateState
+    data class Available(val release: ReleaseManifest, val forced: Boolean) : AboutUpdateState
+    data class Failed(val message: String) : AboutUpdateState
+}
+
 @Composable
-private fun AboutPage(@Suppress("UNUSED_PARAMETER") releaseRepository: ReleaseRepository) {
+private fun AboutPage(releaseRepository: ReleaseRepository, onOpenUpdate: () -> Unit) {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    var updateState by remember { mutableStateOf<AboutUpdateState>(AboutUpdateState.Idle) }
+    var showCopyright by rememberSaveable { mutableStateOf(false) }
+    val checkUpdate = {
+        if (updateState != AboutUpdateState.Checking) {
+            updateState = AboutUpdateState.Checking
+            scope.launch {
+                updateState = try {
+                    val release = releaseRepository.getCurrentRelease()
+                    val forced = BuildConfig.VERSION_CODE < release.minimumVersionCode ||
+                        (release.mandatory && BuildConfig.VERSION_CODE < release.versionCode)
+                    if (BuildConfig.VERSION_CODE < release.versionCode) AboutUpdateState.Available(release, forced)
+                    else AboutUpdateState.UpToDate(release.versionName)
+                } catch (error: ReleaseException) {
+                    AboutUpdateState.Failed(error.message)
+                } catch (error: Exception) {
+                    AboutUpdateState.Failed(error.message ?: "检查更新失败")
+                }
+            }
+        }
+        Unit
+    }
     Column(
         Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(StkDimens.SpaceBase),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -623,8 +664,42 @@ private fun AboutPage(@Suppress("UNUSED_PARAMETER") releaseRepository: ReleaseRe
             Text("商推客", style = MaterialTheme.typography.headlineLarge)
             Text("Android V${BuildConfig.VERSION_NAME} · versionCode ${BuildConfig.VERSION_CODE}", color = StkColors.TextSecondary)
         }
-        ReadOnlyRow("应用标识", BuildConfig.APPLICATION_ID)
-        Text("项目发现、发布与审核客户端", color = StkColors.TextTertiary, style = MaterialTheme.typography.bodySmall)
+        SettingRow(SettingsItem("检查更新", "从官方发布服务获取版本", Icons.Default.Download, onClick = checkUpdate))
+        SettingRow(SettingsItem("官方网站", "stk.zz-yihao.com", Icons.AutoMirrored.Outlined.OpenInNew) {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://stk.zz-yihao.com"))
+            if (intent.resolveActivity(context.packageManager) != null) runCatching { context.startActivity(intent) }
+        })
+        SettingRow(SettingsItem("备案与版权信息", "以正式部署内容为准", Icons.AutoMirrored.Filled.Article) { showCopyright = true })
+        when (val state = updateState) {
+            is AboutUpdateState.UpToDate -> StkFeedbackBanner("当前已是最新版本 ${state.versionName}", StkFeedbackTone.Success)
+            is AboutUpdateState.Failed -> StkFeedbackBanner(state.message, StkFeedbackTone.Error, actionLabel = "重试", onAction = checkUpdate)
+            else -> Unit
+        }
+        Spacer(Modifier.height(StkDimens.Space2Xl))
+        Text("© 2026 商推客", color = StkColors.TextTertiary, style = MaterialTheme.typography.bodySmall)
+    }
+    if (updateState == AboutUpdateState.Checking) {
+        CheckingUpdateDialog()
+    }
+    (updateState as? AboutUpdateState.Available)?.let { available ->
+        ReleaseUpdateOverlay(
+            release = available.release,
+            forced = available.forced,
+            onLater = if (available.forced) null else { { updateState = AboutUpdateState.Idle } },
+            onOpenUpdate = {
+                updateState = AboutUpdateState.Idle
+                onOpenUpdate()
+            },
+        )
+    }
+    if (showCopyright) {
+        StkStatusDialog(
+            title = "备案与版权信息",
+            message = "备案号、运营主体与版权声明以官方网站正式部署内容为准。",
+            kind = StkStatusKind.Info,
+            buttonLabel = "我知道了",
+            onDismiss = { showCopyright = false },
+        )
     }
 }
 
