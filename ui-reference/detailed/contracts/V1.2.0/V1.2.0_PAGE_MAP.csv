@@ -1,0 +1,11 @@
+﻿page_id,page_name,visual_type,route,implementation_version,active_state_versions,version_state_count,catalog_total_state_count,runtime_or_reference,layout_profile,identity_signature,notes
+HOME-004,项目详情,PAGE,stk://project/{project_id},V1.0.0,V1.0.0|V1.1.0|V1.2.0,3,11,RUNTIME,DETAIL,项目图片+标题简介+发布者+联系方式+底部操作,公开详情不显示完整手机号作为用户名
+PUB-001,发布项目,PAGE,stk://publish,V1.2.0,V1.2.0,13,13,RUNTIME,FORM,标题+简介+分类+多图+联系方式+协议+提交,底部发布导航在 V1.0/V1.1 显示阶段弹窗，V1.2 起进入本页
+PUB-002,图片排序与封面,PAGE,stk://publish/images,V1.2.0,V1.2.0,4,4,RUNTIME,FORM,可拖动图片网格+封面标识+完成,图片数量和大小同时由客户端及服务端校验
+PUB-003,发布提交结果,PAGE,stk://publish/result,V1.2.0,V1.2.0,3,3,RUNTIME,RESULT,结果插图+审核状态+查看/继续发布,结果必须来自服务端真实状态
+PUB-004,编辑项目,PAGE,stk://project/{project_id}/edit,V1.2.0,V1.2.0,8,8,RUNTIME,FORM,已有内容表单+审核提示+保存,编辑 published 项目默认重新进入审核
+PUB-OV-001,删除图片确认,OVERLAY,overlay://delete-image,V1.2.0,V1.2.0,3,3,RUNTIME,OVERLAY,缩略图+删除说明+取消/删除,删除未绑定项目的上传资产也需服务端鉴权
+PUB-OV-002,未保存退出确认,OVERLAY,overlay://discard-draft,V1.2.0,V1.2.0,1,1,RUNTIME,OVERLAY,未保存说明+继续编辑/放弃,只在表单有变化时出现
+PUB-OV-003,联系方式类型选择,OVERLAY,overlay://contact-type,V1.2.0,V1.2.0,3,3,RUNTIME,OVERLAY,手机/微信/QQ/网址等后台允许类型,禁止客户端自行出现未配置类型
+ME-002,我的发布,PAGE,stk://me/projects,V1.2.0,V1.2.0,11,11,RUNTIME,LIST,状态标签页+本人项目列表+项目操作,只能操作本人项目
+ME-OV-002,本人项目操作面板,OVERLAY,overlay://my-project-actions,V1.2.0,V1.2.0,4,4,RUNTIME,OVERLAY,查看/编辑/下架/重提/删除按状态显示,操作项由项目状态机白名单决定

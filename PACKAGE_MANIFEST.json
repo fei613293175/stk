@@ -1,2497 +1,1199 @@
 {
-  "schema_version": 1,
-  "package_name": "ShangTuike_STK_Codex_Development_Package_V1.0.0_20260805_With_236_Approved_Mockups",
-  "package_version": "1.0.0",
-  "generated_at": "2026-08-05T06:44:12.960353+00:00",
-  "main_domain": "zz-yihao.com",
-  "repository": "https://github.com/fei613293175/stk.git",
-  "mockup_assets_included": true,
-  "mockup_assets_status": "APPROVED_236_OF_236",
-  "counts": {
-    "files": 495,
-    "pages": 44,
-    "states": 236,
-    "mockups": 236,
-    "interactions": 165,
-    "apis": 32,
-    "database_entities": 21,
-    "admin_pages": 35,
-    "configs": 122,
-    "features": 30,
-    "tests": 514,
-    "approved_mockup_png": 236,
-    "review_sheets": 44
-  },
+  "schema": "1.0.0",
+  "package": "STK_FAST_EXECUTION_V1_5_0",
+  "generated_at_utc": "2026-08-07T19:07:31+00:00",
+  "active_task": "STK-V150",
+  "file_count_excluding_metadata": 238,
   "files": [
     {
-      "path": ".github/workflows/android-build-test.yml",
-      "size": 2163,
-      "sha256": "8a99f35c41e55973fac613bb081c2b116e5e344f2e700e529e91beadf2b835a9"
+      "path": ".github/workflows/fast-ci.yml",
+      "size": 1550,
+      "sha256": "38dbfef63059ba4866232df9c5846e7c4a91364c923244ebff17e4c9e364e99d"
     },
     {
-      "path": ".github/workflows/android-emulator-visual.yml",
-      "size": 2923,
-      "sha256": "ae674e1e97ffbf0c33f211c437bb0681f599c220f642e1903ae31035be121586"
-    },
-    {
-      "path": ".github/workflows/contract-validation.yml",
-      "size": 1030,
-      "sha256": "e62d40c1f40b6063f0e96f29535b6641375b026b64193fac072c40a60f3933a0"
-    },
-    {
-      "path": ".github/workflows/release-acceptance.yml",
-      "size": 5301,
-      "sha256": "0b4f947c2a1123329536b34e3ee53b0430cd4a644c24bcf22a8aa01360427edc"
-    },
-    {
-      "path": ".gitignore",
-      "size": 334,
-      "sha256": "390bd50392c204fb0d8e70b25b4f52fdab9af5422546f0549c05e0af73ef1970"
-    },
-    {
-      "path": "00_READ_ME_FIRST.md",
-      "size": 5634,
-      "sha256": "81d06e9194e44eb2add3aa28679a0e5ee0f8eff06fbff50f03803935d7b73926"
+      "path": "00_START_HERE.md",
+      "size": 1624,
+      "sha256": "71fc6e7886fa669a539291995c6473ee0fbf0b3e31dd4b1c8b0542b51e921f3e"
     },
     {
       "path": "AGENTS.md",
-      "size": 2577,
-      "sha256": "f810a3e5b24f8b3755897ff8907692c23a3b86f8fff5872d09c25bead31a02e1"
+      "size": 1451,
+      "sha256": "685ab0cc8bb19c191f4ae565cc2acbb00528ed556f84bbbedf235dca2bd7883b"
     },
     {
-      "path": "android/ARCHITECTURE_BLUEPRINT.md",
-      "size": 808,
-      "sha256": "9e26af17a2ab46060cfc60fbcbb39e617e0739783ed803ab54620037984d8b41"
+      "path": "CODEX_START_PROMPT.md",
+      "size": 1344,
+      "sha256": "5bd57649d35a1c6d3dfa0f5ac1d31429b53d445f070887d77c33ab4c5f6c7da6"
     },
     {
-      "path": "android/DEPENDENCY_AND_BUILD_PINS.md",
-      "size": 580,
-      "sha256": "5da1f9754bfd46b68e895c7949264264c826083cc9a8d77b8d41bf5c49b5114d"
+      "path": "CURRENT_ACCEPTANCE.md",
+      "size": 941,
+      "sha256": "edeb7d26211926b8e0625968e01228c7e568458d07a3f9775092ede0378921c1"
     },
     {
-      "path": "android/ROUTE_MAP.md",
-      "size": 2222,
-      "sha256": "9854588d506820dd63e1db76101335c4b63a0a7847763514df62f9120da59de4"
+      "path": "CURRENT_API.md",
+      "size": 3419,
+      "sha256": "08b22278a61686b5ed7871b7254afc3cd78f52be4d33d7dec494eb2b0a4e249e"
     },
     {
-      "path": "android/TEST_TAG_STANDARD.md",
-      "size": 436,
-      "sha256": "716be76ab8fdde0c10b629b018b54f83f97926b459accd2232fbbd7007f22b74"
+      "path": "CURRENT_API_V1_1.md",
+      "size": 854,
+      "sha256": "16f41f97dee99013d9d86ea7ad8225f7f1b6f484233683e7305a52de5a10e76e"
     },
     {
-      "path": "audit/DATABASE_CONTRACT_VALIDATION.txt",
-      "size": 32,
-      "sha256": "6e727394c7ba5434aec68864bbd03ea8eef9d468a17eeb57ba09abef677875da"
+      "path": "CURRENT_TASK.md",
+      "size": 1173,
+      "sha256": "baa2da6827f7a9bc3e7f8728834f8c94c18dcdaa02945d4814288cd7d549bc47"
     },
     {
-      "path": "audit/FINAL_MOCKUP_PACKAGE_AUDIT.json",
-      "size": 353,
-      "sha256": "7ea2f54d94528f578abc4163651b3f8eb9143ef190a3eb1d4a89a3481d495b5d"
+      "path": "PACKAGE_VALIDATION.md",
+      "size": 1172,
+      "sha256": "16fc734ab5c78e7387d14c4d684814655aac1ad254cb9474bce3973a9bcc177b"
     },
     {
-      "path": "audit/MACHINE_FILE_PARSE_VALIDATION.csv",
-      "size": 4362,
-      "sha256": "dfc3cfb9db9af367bc434a767601ff5ebe2c39cee6d0591dba2494a2dcf5ceef"
+      "path": "PROJECT_FACTS.json",
+      "size": 768,
+      "sha256": "e6e41d6a073f2b99683d1b9b2382a93ddd18cce01e3015622e9071cbb8f53ccf"
     },
     {
-      "path": "audit/MOCKUP_JOB_VALIDATION.json",
-      "size": 51,
-      "sha256": "3c8dfa4132e3462c549ff544d719d57bd9972263c2ba2f0bec3d10b3cf22fb4a"
+      "path": "RECOVER_EXISTING_REPO.md",
+      "size": 1338,
+      "sha256": "b5f8de62133f1666f75eadc009992a3f637f8ca41cf386015626ffd10edd8909"
     },
     {
-      "path": "audit/MOCKUP_MATRIX_VALIDATION.json",
-      "size": 101,
-      "sha256": "0571a40573c5faa841e56b52647f4ae4a1c9baca6656345eb868f92daa49d6b5"
+      "path": "ROADMAP.md",
+      "size": 830,
+      "sha256": "e3444bfb21e01d29716c5755b9a91a50f5555d5c217b9e5be94af2032d3ab296"
     },
     {
-      "path": "audit/MOCKUP_RENDER_AUDIT.json",
-      "size": 622,
-      "sha256": "bcbaf26494bb2c4f4433a1ce12e73ad3c948f9279c01f533a7105bc6a529785b"
+      "path": "VALIDATION_REPORT.json",
+      "size": 1862,
+      "sha256": "5e9cc6637ac09c5deb4422232c8e7684d325179d35ff0f16b17180b83eab670d"
     },
     {
-      "path": "audit/PACKAGE_VALIDATION.json",
-      "size": 346,
-      "sha256": "763cf1b19cf8f8d894d1eca27b3d0b62affaf0bd016b4d6c92b91b732bbb5c87"
+      "path": "android/app/build.gradle.kts",
+      "size": 4288,
+      "sha256": "8a18cbab6ad8d5f05977db82382daea6d5064a83d3aa93b7bfe60745e045adab"
     },
     {
-      "path": "audit/SCRIPT_SYNTAX_VALIDATION.csv",
-      "size": 849,
-      "sha256": "856b5d88b6722678329c91d7a9d50800a8c5cc7dea8f5c82675bd7b573d1b5cd"
+      "path": "android/app/proguard-rules.pro",
+      "size": 111,
+      "sha256": "5d360bbc31a76fda2c37010eafcba0379af20afbec5050406573073b3ad4bb11"
     },
     {
-      "path": "backend/ADMIN_ROLE_CAPABILITY_MATRIX.md",
-      "size": 1068,
-      "sha256": "a80585a68acfe4063feea0c259889a92674a33e9f09f2b2923924ad34e616df7"
+      "path": "android/app/src/androidTest/java/com/zzyihao/stk/AuthBootstrapInstrumentedTest.kt",
+      "size": 1549,
+      "sha256": "c0ad417266e02acf4e5b1ab31ffccb20e1d6dd6dbc0ef3d219c829f3c44f82df"
     },
     {
-      "path": "backend/DISCUZ_PLUGIN_IMPLEMENTATION.md",
-      "size": 2908,
-      "sha256": "8bf4c6c644fbaf3d03c49a904a6c3f8bc357f44d74b117fd4c520727ce84fb29"
+      "path": "android/app/src/androidTest/java/com/zzyihao/stk/AuthSmokeTest.kt",
+      "size": 725,
+      "sha256": "6f8df4897e8513244ccc4e4b8c25cea6ef1f703b4ab7734483b0cd33a76131e1"
     },
     {
-      "path": "backend/PLUGIN_INSTALL_UPGRADE_UNINSTALL.md",
-      "size": 1544,
-      "sha256": "e06657e567762a06c311d0cbf8dd9c73ae05d5df3e44e162c37a8b1e8f47b5e7"
+      "path": "android/app/src/androidTest/java/com/zzyihao/stk/LoginModeInteractionTest.kt",
+      "size": 1657,
+      "sha256": "15f2e0a6de2ed2901a0f1d2d43361597d6805811a58921ba2639ac71690b8db1"
     },
     {
-      "path": "backend/sql/README.md",
-      "size": 1020,
-      "sha256": "395fdfa29c3b7fd209225e2016d98d39098b940e150c8b100a6412e02fbc1559"
+      "path": "android/app/src/androidTest/java/com/zzyihao/stk/ProjectCacheDaoTest.kt",
+      "size": 1502,
+      "sha256": "474d81fa9503ed10ea83253d9b7f914bfd55636e56244ca56f3a3b3f8004ab39"
     },
     {
-      "path": "backend/sql/V1.0.0__auth_project_foundation.sql",
-      "size": 9967,
-      "sha256": "ee04656edc599fba33d0ebbf3d1029c39d2502d5e8bb5ca06ce0ab0151efee3a"
+      "path": "android/app/src/androidTest/java/com/zzyihao/stk/PublishResultInteractionTest.kt",
+      "size": 1635,
+      "sha256": "2504fbdd8dc40c3362ba1627a610545b60f8ef485c4b02565056c8274fa847fc"
     },
     {
-      "path": "backend/sql/V1.1.0__discovery_external_links.sql",
-      "size": 1008,
-      "sha256": "2330118471795eb938458f6eb59892421420f22edd5a6606f73364ebae965736"
+      "path": "android/app/src/androidTest/java/com/zzyihao/stk/RegisterInteractionTest.kt",
+      "size": 1891,
+      "sha256": "198358fa25bd6644f36c631abf141ed3b44fce205e748e884f36798eaffbb637"
     },
     {
-      "path": "backend/sql/V1.2.0__publishing_media_audit.sql",
-      "size": 2232,
-      "sha256": "e7e573d708999b5595808b52b819ac9f07822234f3b4a23df9fec83cf08e5c0e"
+      "path": "android/app/src/main/AndroidManifest.xml",
+      "size": 2256,
+      "sha256": "5ccd032e4dd420a56486a4c332892834fa36bc0a8272367721a3de06d0028abe"
     },
     {
-      "path": "backend/sql/V1.3.0__profile_props_release.sql",
-      "size": 2143,
-      "sha256": "1eae37c72f0efbf84a5e64527e2fbaf84a6533403944dc07830596b3a1d06dd8"
+      "path": "android/app/src/main/java/com/zzyihao/stk/MainActivity.kt",
+      "size": 2197,
+      "sha256": "6301626285781d66b45cf22c5ddad76bcac58d182998a8c41e548fdfc76917e0"
     },
     {
-      "path": "backend/sql/V1.4.0__production_hardening.sql",
-      "size": 556,
-      "sha256": "ecf218afeeeed6607d0e4714a45825df14bdb2ffbc92e0c4ac860e9393f0170b"
+      "path": "android/app/src/main/java/com/zzyihao/stk/StkApplication.kt",
+      "size": 299,
+      "sha256": "ac52c494d2f86d83365a4fbb298e6dfec6a9d2dfc0d93cd7765cdd99dd68df26"
     },
     {
-      "path": "contracts/admin-menu-map.yaml",
-      "size": 10673,
-      "sha256": "899e20457b7d7012acf957dedf61a2103046fa9d5f1ddbf3c24d0792e7b513a8"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/account/AccountModels.kt",
+      "size": 1646,
+      "sha256": "d587ff0f2dea20ea8de318da8e4aad24698bb2d6ccb29546bfd0d4e1366c4795"
     },
     {
-      "path": "contracts/api-field-contracts.yaml",
-      "size": 16725,
-      "sha256": "067e0a2833e2b9eee0774e6a7334ccf3626b3401bbe13ffa8f610e57897359da"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/account/FakeAccountRepository.kt",
+      "size": 1855,
+      "sha256": "688a73b7f2f834f54c9c9a0ee69da817386e576f932eaa6fd5326eb2e3ea0ee1"
     },
     {
-      "path": "contracts/api-inventory.csv",
-      "size": 10298,
-      "sha256": "c80b35c268fc483c578cae20d05fe83e1fd429bb172a1300570a1b269b06148e"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/account/HttpAccountRepository.kt",
+      "size": 4604,
+      "sha256": "fd071b02ce96beb9abff884d1adab64396e12015fcb1dd018e124c711a8b0000"
     },
     {
-      "path": "contracts/config-inventory.csv",
-      "size": 17247,
-      "sha256": "4ad38a23c8140c920a2013aa792a1e104dd836d1a18d1300771ea156e9238e12"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/auth/AuthModels.kt",
+      "size": 919,
+      "sha256": "ca180ec05a626bbbdc84ec00e065faa6e94bd9ebe41eed82053731ba7687db87"
     },
     {
-      "path": "contracts/database-entity-catalog.yaml",
-      "size": 7806,
-      "sha256": "52940069d4448aa04d900eec8b98965a62e861433a143e3c84b690f81e9ffdbc"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/auth/AuthRepository.kt",
+      "size": 921,
+      "sha256": "36dbbb6a17c0e007b4a42737dd23efb790eb724869be095142b704fb28f026a6"
     },
     {
-      "path": "contracts/domain-delivery-map.yaml",
-      "size": 1931,
-      "sha256": "46af11ae54bdb8d200d01f27faeecaab5e3f18dbf64f0314a067c51552262ec1"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/auth/AuthValidators.kt",
+      "size": 1229,
+      "sha256": "497efad56300d226145cc39215c4781593082b13ee7e17b93917b6373b9a24c4"
     },
     {
-      "path": "contracts/error-code-catalog.yaml",
-      "size": 11136,
-      "sha256": "abbaecbdf8fcdb621402763662436c7120a13942568fa29b681becdc52dd175a"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/auth/FakeAuthRepository.kt",
+      "size": 4227,
+      "sha256": "d4b9786cae4e27f62ee5c56ff61318f7349b4b86b6b382baacb566c43344cbd5"
     },
     {
-      "path": "contracts/feature-map.yaml",
-      "size": 58978,
-      "sha256": "f5d8203b9f1c18968cb0ca6c49adb5eb2a9607a437d98ed80c98cb55f6cead26"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/auth/HttpAuthRepository.kt",
+      "size": 8676,
+      "sha256": "d914ef11d013f463ef5efc8b943d1fe5cea82cbb124fa0659f9ae30a43d43870"
     },
     {
-      "path": "contracts/frontend-backend-traceability.csv",
-      "size": 38064,
-      "sha256": "87e5d8c737df5e018afb6ba34d59e40d9de81a021a4da3695617db3d21483f74"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/legal/LegalRepository.kt",
+      "size": 4097,
+      "sha256": "fbc08adef2470d6a79a6dc40d8bc67b96920d6d18a297aafa1a78a5ba71b6954"
     },
     {
-      "path": "contracts/interaction-test-bindings.csv",
-      "size": 24334,
-      "sha256": "f286116a8e4c5d553ee90955cfa95930889902475c891a74d9f35783aa056938"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/project/FakeProjectRepository.kt",
+      "size": 4423,
+      "sha256": "aa7ce51c77055965b9cc89d226d479ffce6c6253bac770bbf467f220a89e9cb5"
     },
     {
-      "path": "contracts/mockup-batch-plan.csv",
-      "size": 6894,
-      "sha256": "10bf3e7eb803612919ac69388798bf1fd2e351281832742f65e451d101d86838"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/project/FakeProjectSubmissionRepository.kt",
+      "size": 5386,
+      "sha256": "50deea27aaf640678278348e33769fa1bd7d89bf63dd11160258c9dbcd7e6c22"
     },
     {
-      "path": "contracts/mockup-manifest.csv",
-      "size": 105877,
-      "sha256": "9a641218fe16b74a5ef66c064cb2218c66400f36b1f40d5c0fa060220eee4bfb"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/project/HttpProjectRepository.kt",
+      "size": 6979,
+      "sha256": "3e68e6043f85ab8052b248e5091455bfc25ed0aeaafc5bd97dd0931e1d38085c"
     },
     {
-      "path": "contracts/openapi.yaml",
-      "size": 36517,
-      "sha256": "f00466cb1f3ab0454d2127804ce9367cb6fabbdd26ffd9400e68b376e034bd97"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/project/HttpProjectSubmissionRepository.kt",
+      "size": 14177,
+      "sha256": "d968a2c67a49214cba148a80b74a2f95f8b59f09239b6abb08c2782ee92ea006"
     },
     {
-      "path": "contracts/owner-delivery-contract.yaml",
-      "size": 978,
-      "sha256": "4b084a822e1f4dc8640e4e6c661f3426ff923e90db0b5b229a432c8ed9e1cde0"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/project/ImageUploadProcessor.kt",
+      "size": 3445,
+      "sha256": "b6631f098c3760237ef85e15af4912d33a61e6eaafa8d8d9f35b905320e6fd63"
     },
     {
-      "path": "contracts/release-version-matrix.yaml",
-      "size": 1953,
-      "sha256": "797eacb209324cd506a67cede8c8d8d0711c309780875cb5ac9cf00dea1c2b98"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/project/ProjectCache.kt",
+      "size": 5318,
+      "sha256": "d99c2b69a5516439a5cb6377c2a3e641984f44c4d84d5746563d828dffccd67a"
     },
     {
-      "path": "contracts/repository-policy.yaml",
-      "size": 1054,
-      "sha256": "7e9ed787133ee8ea89083c40f6cb05437fe50ae6fee639e57479f202fa0d6b11"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/project/ProjectCacheDatabase.kt",
+      "size": 2477,
+      "sha256": "2e8c2ff275d260ce04ca9c9c15f9c7b2c041007e37a42a02ac4628be8bad907b"
     },
     {
-      "path": "contracts/scope-exclusions.yaml",
-      "size": 649,
-      "sha256": "caa44dce6151e5a523c80a7fa46da2d64f7569e2e06da2e397b57a24da4fc8fc"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/project/ProjectDraftImages.kt",
+      "size": 1454,
+      "sha256": "2b3e99c08b017ac92240b9108580f5299c926a84494b47479c78248b739e5563"
     },
     {
-      "path": "contracts/test-catalog.csv",
-      "size": 120598,
-      "sha256": "3c36ff18aea8c9b1e469586f1a29c8ace3336e3e778c504e11f1bc149c84ab08"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/project/ProjectModels.kt",
+      "size": 1234,
+      "sha256": "a9c18299d8429e0fefe2eba37707deb466c5199460a25c1e0e9218a126073dda"
     },
     {
-      "path": "contracts/ui-component-specs.yaml",
-      "size": 6114,
-      "sha256": "4b77546ceced60cbc44685400e3fe5a8a916bfe49e72110efd2f7f6de331aebe"
-    },
-    {
-      "path": "contracts/ui-design-tokens.yaml",
-      "size": 3578,
-      "sha256": "2d56557e3bf5d29c1ea0994a1d3c5fbacbafb2ab490c4ad37f36b9f5409b4f2c"
-    },
-    {
-      "path": "contracts/ui-hardcoding-exceptions.yaml",
-      "size": 130,
-      "sha256": "3ce57c973b7516889122178c102a23a75166418a904d16ff844240a8f8c7e4dd"
-    },
-    {
-      "path": "contracts/ui-interaction-map.csv",
-      "size": 37322,
-      "sha256": "9cd2003ae467d87a62d57dbab6dbcaf297ffbd76347fe5c140a349383471ab65"
-    },
-    {
-      "path": "contracts/ui-layout-profiles.yaml",
-      "size": 2142,
-      "sha256": "e112bc47d7c2fb2c00c0ef005293a59d7a2b31e707ec19e6702cad9ca61de8d2"
-    },
-    {
-      "path": "contracts/ui-page-catalog.yaml",
-      "size": 21884,
-      "sha256": "031a21adeebbb51d10b1bed9902861d6d8b7b72ffc7e39188d83d5488472a488"
-    },
-    {
-      "path": "contracts/ui-page-layout-matrix.csv",
-      "size": 12945,
-      "sha256": "325b836138b24b144dfa9ebd757ce096445c74ad422cc0a10ea445ea36168661"
-    },
-    {
-      "path": "contracts/ui-state-catalog.csv",
-      "size": 23817,
-      "sha256": "279f23a0d638763e7f435c0bb48f9a2b568230830f9f2a9c6c323df39a6cb241"
-    },
-    {
-      "path": "CURRENT_RELEASE.yaml",
-      "size": 448,
-      "sha256": "9373ed7cd27011d1d0f37a3ed114b88c2d71e68a9ed9449dd4a9e8df6da71b7d"
-    },
-    {
-      "path": "docs/01_ARCHITECTURE_AND_TECHNOLOGY.md",
-      "size": 2201,
-      "sha256": "524b95e6eb3160c1c5e421d3ae4460674d7fbd00d727509090f145cb6a7e2e11"
-    },
-    {
-      "path": "docs/02_UI_DESIGN_SYSTEM_FIXED_VALUES.md",
-      "size": 4275,
-      "sha256": "86e46e89267066f404688055ddc300cab89c6cf11d18c9bbd35dc1bb613be70c"
-    },
-    {
-      "path": "docs/03_FRONTEND_PAGE_STATE_MOCKUP_PLAN.md",
-      "size": 7374,
-      "sha256": "251b0b8d6f19eec22b39286fc2b59e83f1a2748aa420db76f8d8d2f36fe9148b"
-    },
-    {
-      "path": "docs/04_COMMON_COMPONENT_FRAMEWORK.md",
-      "size": 4492,
-      "sha256": "b63d6fe2a2e19b923748f08bf0d28f09087380999d80fa56ba1edbb54b78eb38"
-    },
-    {
-      "path": "docs/05_AUTH_FRONTEND_BACKEND_COMPLETE_SPEC.md",
-      "size": 7079,
-      "sha256": "315f774a15eadb65c9a43a4a5388c54db78618db0dc4230012485f06e793f663"
-    },
-    {
-      "path": "docs/06_PROJECT_FRONTEND_BACKEND_COMPLETE_SPEC.md",
-      "size": 8901,
-      "sha256": "9e3bc1b474424164a3fa42fee4ca8c51e2dead088067554bb26be435c88938b3"
-    },
-    {
-      "path": "docs/07_ADMIN_CONFIGURATION_AND_OPERATIONS.md",
-      "size": 7194,
-      "sha256": "7463726670b4256e05c9dba1ff96070a237436d9be754ae33ac42b5312013e03"
-    },
-    {
-      "path": "docs/08_API_AUTH_SECURITY_CONTRACT.md",
-      "size": 6600,
-      "sha256": "a57611118fa7477f4b12aff5eb3ab34814884730cddae271855ce6b1fbff1cb8"
-    },
-    {
-      "path": "docs/09_DATABASE_MIGRATION_AND_DATA_LIFECYCLE.md",
-      "size": 6641,
-      "sha256": "fa3618a6feedc1440374bdfb7651f351efc6ca269bc12c7853a0d213233fab88"
-    },
-    {
-      "path": "docs/10_DOMAIN_DEPLOYMENT_ADMIN_HANDOFF.md",
-      "size": 2892,
-      "sha256": "9040e99cea8c7434241fd531a53cca159e6657b1918bb9d7822ccccae3c9dc82"
-    },
-    {
-      "path": "docs/11_GITHUB_ACTIONS_EMULATOR_VISUAL_ACCEPTANCE.md",
-      "size": 2362,
-      "sha256": "d5a19a1a75887ad35596003cedfb4cdb5d07aa29614e98e19e4ad93b3ff08ee8"
-    },
-    {
-      "path": "docs/12_RELEASE_APK_DESKTOP_DELIVERY.md",
-      "size": 1946,
-      "sha256": "94a872f45ef2b8ee53ff79616ee15e607eb5c5602b89009af0f3e3fff4dd8740"
-    },
-    {
-      "path": "docs/13_REPOSITORY_BRANCH_PUSH_RULES.md",
-      "size": 1176,
-      "sha256": "939f288e312e29e686ecbad7c385c800ea0b3d937660642c98cc1c4216dd4019"
-    },
-    {
-      "path": "docs/14_PERFORMANCE_SECURITY_OBSERVABILITY.md",
-      "size": 1685,
-      "sha256": "cf126b8d6c1ae562b1fd280ebe173854b248c5273671527bc4a6da4f65eca5c5"
-    },
-    {
-      "path": "docs/15_FAST_CODE_FIRST_WORK_MODE.md",
-      "size": 1306,
-      "sha256": "7c674ea1ba7b2398bf103b11aee3b4e9ca10c3cc40cd5136ba243ea14e83a3a6"
-    },
-    {
-      "path": "docs/16_CHANGE_MANAGEMENT_AND_NO_DRIFT.md",
-      "size": 985,
-      "sha256": "1b0c151fbd54736a1095fdffe73988c419314414de15e0d4987c2c9ff0b83da0"
-    },
-    {
-      "path": "docs/17_MOCKUP_GENERATION_AND_APPROVAL.md",
-      "size": 2653,
-      "sha256": "7f92a46333128a6ea12f6385181cf24f517f43ad208e57c9e867886471dd44b6"
-    },
-    {
-      "path": "docs/18_PACKAGE_COMPLETENESS_AUDIT.md",
-      "size": 2082,
-      "sha256": "8185bcc6b6db9f5bbf994cbdd04ad594a0f359514960ab309de689e811f27581"
-    },
-    {
-      "path": "MASTER_DEVELOPMENT_PLAN.md",
-      "size": 3936,
-      "sha256": "06e2cc4009271d6461b5bfc80513903e61033c85d4e6e83f34e58a0f1d296abe"
-    },
-    {
-      "path": "PACKAGE_CONTENTS.md",
-      "size": 1877,
-      "sha256": "0b672ad9ff2256aab6fecdccc8474baac97e24ea26455a14022dc721dea6b2dc"
-    },
-    {
-      "path": "PROJECT_CONTEXT.yaml",
-      "size": 2514,
-      "sha256": "b1f1dabbbf65fcecfaae19c399a70b4138fc5771c70bc4c990ad4daefbbb7c8c"
-    },
-    {
-      "path": "references/OFFICIAL_SOURCES.md",
-      "size": 1989,
-      "sha256": "175859b4ee3488d8358a71bd8200aadc706814a6a66946e79c06a7054272ad34"
-    },
-    {
-      "path": "references/TEMPLATE_ADAPTATION_REPORT.md",
-      "size": 765,
-      "sha256": "5a602b259399068f9f7a63f19fa3dd6fb204862a1ad0fc37e47473106b45d58a"
-    },
-    {
-      "path": "references/VERSION_PINS.md",
-      "size": 580,
-      "sha256": "5da1f9754bfd46b68e895c7949264264c826083cc9a8d77b8d41bf5c49b5114d"
-    },
-    {
-      "path": "release-inputs/V1.0.0/README.md",
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/project/ProjectPaging.kt",
       "size": 553,
-      "sha256": "7de6ada3c936802c4c0512f450c4919821eadbee66101b4b10088edf9ceff2ff"
+      "sha256": "690b089295e6f7250b786c7494ecd6a632966ede05364facf65dd83176eb7cd6"
     },
     {
-      "path": "release-inputs/V1.0.0/RELEASE_EVIDENCE.yaml",
-      "size": 861,
-      "sha256": "54011505fe2abc18b20701ec43c8e16a04bf4f4064169cf4258650038edb59da"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/project/ProjectRepository.kt",
+      "size": 425,
+      "sha256": "8f4bef0a947c51d0231cf7c10b5bcff6390149ded4817cf156d1b95df2545606"
     },
     {
-      "path": "release-inputs/V1.1.0/README.md",
-      "size": 553,
-      "sha256": "ae452cc59e7fb634dfd55db29f6c4d220db7ade4c5e458d3d052cceb8b0d5435"
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/project/ProjectSubmissionModels.kt",
+      "size": 2391,
+      "sha256": "21e4abee5ec18193ca5212877a493f91bd6048a842da71360731d65d0c268719"
     },
     {
-      "path": "release-inputs/V1.1.0/RELEASE_EVIDENCE.yaml",
-      "size": 551,
-      "sha256": "9a4a9caf68700bd86a6d8f9922ce1e8eb086b19586616e9ca25888246a2fcdb9"
-    },
-    {
-      "path": "release-inputs/V1.2.0/README.md",
-      "size": 553,
-      "sha256": "aa851d9fe67e185b073cbd62a123a8e6de82f70da62cd0a900ba98e110bf81cd"
-    },
-    {
-      "path": "release-inputs/V1.2.0/RELEASE_EVIDENCE.yaml",
-      "size": 614,
-      "sha256": "38c11e86891abf252e0290d0c6a1572fd9f39fb1c324d3541a059171165f70c0"
-    },
-    {
-      "path": "release-inputs/V1.3.0/README.md",
-      "size": 553,
-      "sha256": "c6ecd2bad7553c85fd67b92df9b9506dd0ca7a70a6cec47f94492f33ddbf4959"
-    },
-    {
-      "path": "release-inputs/V1.3.0/RELEASE_EVIDENCE.yaml",
-      "size": 587,
-      "sha256": "4f5df86d3ff20fc7436e47f8aa2fc656b90dbabe46c54bd32867895845ee654c"
-    },
-    {
-      "path": "release-inputs/V1.4.0/README.md",
-      "size": 553,
-      "sha256": "a812dcbb76b794470f75cb64236356d0cee67daad4bc36adaffcc11812f9a724"
-    },
-    {
-      "path": "release-inputs/V1.4.0/RELEASE_EVIDENCE.yaml",
-      "size": 525,
-      "sha256": "c7ff6a24c1b164ae85913b1ba44c2b4d8ddf512a5b53f5448f4e89d9fc2953f5"
-    },
-    {
-      "path": "requirements-tools.txt",
-      "size": 48,
-      "sha256": "9034afe4bcf11961f8af17fac185d019708dc48f341b17d00932c15216b67ce9"
-    },
-    {
-      "path": "scripts/check_mockup_readiness.py",
-      "size": 1915,
-      "sha256": "4301b1eacb00eda76268f6abe21c3d47bc2d2b0d5f0e413dc7aa0362766e8589"
-    },
-    {
-      "path": "scripts/check_no_ui_hardcoding.py",
-      "size": 1547,
-      "sha256": "11f38e4b6780c21015eb8c7067db23818b40e0e12130aa2d17004842713745b2"
-    },
-    {
-      "path": "scripts/ci/download_previous_release.sh",
-      "size": 672,
-      "sha256": "f57c2512736a3731a81f1e49550dcb0dcf053034cd7b40b92e9e4c202dedabf4"
-    },
-    {
-      "path": "scripts/ci/prepare_release_signing.sh",
-      "size": 877,
-      "sha256": "bcb36e0fd4e81ae61f5439f4c5e07c2c84192578e8a05fe2b3041f098a1e55ca"
-    },
-    {
-      "path": "scripts/ci/run_backend_tests.sh",
-      "size": 696,
-      "sha256": "0056beae7bbb320411788732bfab982f1df213cb6d22c7f2b3887def9cda3cc5"
-    },
-    {
-      "path": "scripts/ci/run_emulator_acceptance.sh",
-      "size": 2341,
-      "sha256": "d3cc65259c61c5084b040bbd1ce6996a907d3783258274037a19a5119532be43"
-    },
-    {
-      "path": "scripts/ci/run_exact_release_acceptance.sh",
-      "size": 1300,
-      "sha256": "e8fdd2520286e95f58d8858188f687adcf00a6984fc8e29aef68233003f022e7"
-    },
-    {
-      "path": "scripts/compare_visuals.py",
-      "size": 3726,
-      "sha256": "4991d4edaaa71803f19789e6f07599c11470fff922d1bfee40084b41532144a6"
-    },
-    {
-      "path": "scripts/create_release_bundle.py",
-      "size": 7195,
-      "sha256": "b1da79f4216046624d11c2010ad32314ef0902e85e96f550a9fa0e1ccb70f1a5"
-    },
-    {
-      "path": "scripts/generate_mockup_jobs.py",
-      "size": 2199,
-      "sha256": "5b1f689d69dae53055338a4deb944072245c0f8934b01c0bfa949388c2f768f7"
-    },
-    {
-      "path": "scripts/render_all_mockups.py",
-      "size": 129286,
-      "sha256": "ce1ff66e61c9741cbbda75f5f18fd883a982efac26ba85094caaea7a5af79339"
-    },
-    {
-      "path": "scripts/resolve_ci_release.py",
-      "size": 1562,
-      "sha256": "f598312714a70d522e9daf06a54a5585a093b43f0b43f8f5abf0e52fde6f008b"
-    },
-    {
-      "path": "scripts/run_api_contract_tests.py",
-      "size": 2054,
-      "sha256": "8cbe7791571df1f9d3719930b12101aeb965a9ae71159a248b8f38011bfdb05e"
-    },
-    {
-      "path": "scripts/sync_desktop_delivery.ps1",
-      "size": 3111,
-      "sha256": "6d282771e9dd094ed112d24cff4e10e760f5261282e7df2c3c20dc0aac418df0"
-    },
-    {
-      "path": "scripts/update_mockup_manifest.py",
-      "size": 1940,
-      "sha256": "cf676e4c6e7430592550694a410d0d02b9b88aaf56db272be6eea87bf73969e1"
-    },
-    {
-      "path": "scripts/validate_package.py",
-      "size": 11744,
-      "sha256": "605162ae289bbe3e2fdb472fc3088835a0f92575ce426a951f79af63a1847079"
-    },
-    {
-      "path": "scripts/verify_database_contract.py",
-      "size": 1203,
-      "sha256": "00569f50e3c62a30c076b01f4f235fbff8887c2b4160102a48ff97d92b5b9098"
-    },
-    {
-      "path": "scripts/verify_interaction_evidence.py",
-      "size": 1259,
-      "sha256": "c3e47316054a3bd25f7609de2874ab6c13d326a2437642d34437d5d09bcb1733"
-    },
-    {
-      "path": "scripts/verify_release_artifact.py",
-      "size": 4636,
-      "sha256": "98c113c2be0de3047e8fa3d41ab3bcab07b495dd2b577cca7a07f50371c939c9"
-    },
-    {
-      "path": "templates/ADMIN_ACCESS_HANDOFF.local.template.md",
-      "size": 630,
-      "sha256": "ffc409b883d8016025fc1a22e49175d77a1e86c758e46ee0233b662a11f3607b"
-    },
-    {
-      "path": "templates/delivery/README.md",
-      "size": 337,
-      "sha256": "1ab918a083e9a8caee53a8f2b443bc027013d4a6afb613e1ab4f911e3cc451c9"
-    },
-    {
-      "path": "ui/FIXTURE_DATA.yaml",
-      "size": 1643,
-      "sha256": "621b7be98ccc9304926d34bbd9f089feb559e04e8dcadc441ba94005aab5276f"
-    },
-    {
-      "path": "ui/MOCKUP_GENERATION_REPORT.md",
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/project/ProjectSubmissionRepository.kt",
       "size": 882,
-      "sha256": "ece5fdc994879cb68b047f865bc39a268cc127b4b090937f7346abb94ebdb952"
+      "sha256": "808210befad759f4d7419df2a277c9e530318915c2bf1c48bc979b017a136ece"
     },
     {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S01__PASSWORD_DEFAULT__1170x2532.png",
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/release/ApkUpdateManager.kt",
+      "size": 4698,
+      "sha256": "7d00eaf597f806a688b708811402a7b751c4a032ed2b4e823853554f72c2db00"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/release/ReleaseManifest.kt",
+      "size": 518,
+      "sha256": "2d2317f9ad28982c9d08909cd04d5740e4c1f09a055a01459d6cbe8b539928aa"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/release/ReleaseRepository.kt",
+      "size": 4029,
+      "sha256": "27cc849f6f11b7efa3f36776607687c6c17605a82852880c6b22254063965ea3"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/data/session/TokenStore.kt",
+      "size": 3572,
+      "sha256": "454317677c711bb11e455b7bf162251d728bf2c0a884c50976d4ccb09b9c7a30"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/di/AppContainer.kt",
+      "size": 2823,
+      "sha256": "75243447370708c7a5da67822cb437991c6c952eaa1ea88e28d7e266e8c443e1"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/StkApp.kt",
+      "size": 6522,
+      "sha256": "17bb672fa212e780ec8b010e6747f998fb4a40f7e86b84f497b7073025ff7a36"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/auth/AuthEntryScreen.kt",
+      "size": 9160,
+      "sha256": "e656b96e10e855bf1b27301824743b5ef2160c44e1f184f752771b015ca1ae7e"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/auth/AuthViewModel.kt",
+      "size": 4709,
+      "sha256": "bf682a93808265a14e4f4b44b53b782d182b41a502b663b7c53483aa1565f638"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/auth/CaptchaDialog.kt",
+      "size": 6088,
+      "sha256": "3185d4c4bd085149ab7ec01b65e1cf1d5765d4e943fe9a5a98662a8495e069a5"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/auth/LegalScreen.kt",
+      "size": 4324,
+      "sha256": "2a1792319282b53bd445472c6766ea28bd72562256181e0506736cb2404ce9f6"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/auth/LoginScreen.kt",
+      "size": 9866,
+      "sha256": "5c62b51d1642293ffaa4451d4627b30c3e26664040e371d452867daa40007f77"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/auth/RegisterScreen.kt",
+      "size": 6991,
+      "sha256": "347c7191f9c8b87053192aba2e56fa1a4e5b511d945620aa5f28fada66f3c239"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/components/StkComponents.kt",
+      "size": 15129,
+      "sha256": "02d652546a1ce6dc849e2b593d3a1f8d7b574eda2c0a09c04dfbf0bd6976d8e5"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/main/HomeScreen.kt",
+      "size": 16109,
+      "sha256": "9c78e24a035a71e5d6b9e2c5344ab3c5f397495fa744828b2cfb1aac3113c956"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/main/MainShell.kt",
+      "size": 11626,
+      "sha256": "f79b133d3698305318674c2cdc028b364b7a6c9f55dd020e98ba9b42e4c5fb5c"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/main/MeScreen.kt",
+      "size": 13167,
+      "sha256": "add01ca2eca62e0a1c939af695812cad1945967ac91ff51f6112f51be50ab9ef"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/main/MyProjectsScreen.kt",
+      "size": 7252,
+      "sha256": "4c7e3b62fb7f4db0da1482e5d21d6fd470c207c9895b9b7f272379f0b98c9b02"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/main/ProjectDetailScreen.kt",
+      "size": 15926,
+      "sha256": "5ca6d0caec26145078c390e8ef97d9ba802d0d640e5614cdec28ad3c91867cd0"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/main/ProjectSubmissionViewModel.kt",
+      "size": 7726,
+      "sha256": "025d35e4de82eaef357be198f6a3b7119c6a7378937bd8cf81d4fb326834785a"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/main/ProjectViewModel.kt",
+      "size": 4491,
+      "sha256": "ecdfeab4e49af287222026668d6b1b8a8e839eb71e713204416ab681e1830aad"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/main/PublishPlaceholderScreen.kt",
+      "size": 1748,
+      "sha256": "cf3cbb4bffaf3ec4a3f763f370f590070c978847e949781229627baa5aa1d5af"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/main/PublishResultScreen.kt",
+      "size": 3294,
+      "sha256": "ca9b7da41a91776e04893adee3536973d0246d73598fc86508a84c8bdd7f46e4"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/main/PublishScreen.kt",
+      "size": 23149,
+      "sha256": "ad2e8554a7f6efc791670faa80fe71e82ffedd0e056da1fe54b070f89db87172"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/main/SecondaryScreens.kt",
+      "size": 16885,
+      "sha256": "88318a3b62ef7eb5066155d5c84de9827f4fa136c0e29576bbf078d6fb12174d"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/system/SplashScreen.kt",
+      "size": 1251,
+      "sha256": "6bef60b1f4f8ea51a600aaa05652cfe45f4ee6d85f848e3ded1abb803254a8ef"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/system/StartupViewModel.kt",
+      "size": 2872,
+      "sha256": "a3cb14a05e5e6ed92fbd9df1267c20b48f0b178919afc0290de211d28fdd4382"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/system/SystemFeedbackScreen.kt",
+      "size": 11583,
+      "sha256": "6f3445ff799ba3ac16595910a0af8057e4c7895d82f456092bda0dd03214892d"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/theme/StkColors.kt",
+      "size": 692,
+      "sha256": "ae06c7f37b66da054b3fd9e1ed590d10d5033300049181641c41cb0583324330"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/theme/StkDimens.kt",
+      "size": 1630,
+      "sha256": "7a7b5664c877fbf24b4f9d62605ef40fec602c8813938d3f00db404217101643"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/theme/StkTheme.kt",
+      "size": 979,
+      "sha256": "616ccbc22dfbf7711dbfc69200366992a948d5e81efa7828fb7c841241ec8d0c"
+    },
+    {
+      "path": "android/app/src/main/java/com/zzyihao/stk/ui/theme/StkTypography.kt",
+      "size": 1128,
+      "sha256": "4d370b8cf232676559ddd7eba2cbc27ec94f76d7df6255c378debc028c46e807"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_launcher.xml",
+      "size": 465,
+      "sha256": "9c382350f78582a93ead0d4d5661fc170702758e5259dce66d7c75a1e2947a24"
+    },
+    {
+      "path": "android/app/src/main/res/values/colors.xml",
+      "size": 159,
+      "sha256": "f62c133795f2966128ce2ac88c62b577b1cc3cf3bbd53f5baf331e404b6887d7"
+    },
+    {
+      "path": "android/app/src/main/res/values/strings.xml",
+      "size": 111,
+      "sha256": "ebdaa01634c13f92b285077a7513daf8d0132ca6e7222478c5d86a5b7d87e91c"
+    },
+    {
+      "path": "android/app/src/main/res/values/themes.xml",
+      "size": 496,
+      "sha256": "ade7cb9bf17ce7ffce426c6e993afe13776f790c29256ed31dfd51a2dbbac4f1"
+    },
+    {
+      "path": "android/app/src/main/res/xml/file_paths.xml",
+      "size": 178,
+      "sha256": "e3be7604cf43ca9b908c388e224a47b3fe7454f201518fdf3360f2d6948eb67b"
+    },
+    {
+      "path": "android/app/src/main/res/xml/network_security_config.xml",
+      "size": 146,
+      "sha256": "dea35ebed76536c24c13f74036f02dc874f944147cb3a49c2ad0550f71e3e0c7"
+    },
+    {
+      "path": "android/app/src/test/java/com/zzyihao/stk/data/auth/AuthBootstrapRouteTest.kt",
+      "size": 675,
+      "sha256": "1dc5edf3866d0bc1b827b1d1ba6c858f89c85cdf0a1057d2c00db2d94079e814"
+    },
+    {
+      "path": "android/app/src/test/java/com/zzyihao/stk/data/auth/AuthValidatorsTest.kt",
+      "size": 1497,
+      "sha256": "c7ac1144fc4365ea8683e8fdb7cd0c0e36cfe4e1168ce77c0fe9d2b7065fef8a"
+    },
+    {
+      "path": "android/app/src/test/java/com/zzyihao/stk/data/project/ProjectDraftImagesTest.kt",
+      "size": 1393,
+      "sha256": "ab26deadaf9dba6779df377f247292d8f8ad52154e1e73e741e59354111250c0"
+    },
+    {
+      "path": "android/app/src/test/java/com/zzyihao/stk/data/project/ProjectPagingTest.kt",
+      "size": 1297,
+      "sha256": "f27d2f963501f50ea7ccfeb29a44eeb77bd4564a91a7a7b4ffe8f68ca212f123"
+    },
+    {
+      "path": "android/app/src/test/java/com/zzyihao/stk/data/release/ReleaseRepositoryTest.kt",
+      "size": 2230,
+      "sha256": "62c8a54a258833f1c962cf3f71f3fffcf9cf8b089a1c104f1e10ded69285c735"
+    },
+    {
+      "path": "android/app/src/test/java/com/zzyihao/stk/data/session/TokenStoreStateTest.kt",
+      "size": 1209,
+      "sha256": "ac5286caf9cae0e2abf91d5a492fef22e950e3123be98d084fb38b9e432a5abc"
+    },
+    {
+      "path": "android/app/src/test/java/com/zzyihao/stk/ui/SessionRotationTest.kt",
+      "size": 2039,
+      "sha256": "e30447a35334f9053cfb1acb197546232f9492f1335506eb6ba245b79cc75340"
+    },
+    {
+      "path": "android/app/src/test/java/com/zzyihao/stk/ui/main/ProjectSubmissionViewModelTest.kt",
+      "size": 5994,
+      "sha256": "3e6b0906893a0666c9629973788f6466a920e9ffaa9ecd0a5ad7b440dcffc47e"
+    },
+    {
+      "path": "android/keystore/BETA_SIGNING_README.md",
+      "size": 369,
+      "sha256": "2d7fb21a03f36f8bee2fccde4b5cf309d8410b67d9197cce3dcaeb9c84b4d2f3"
+    },
+    {
+      "path": "android/keystore/stk-beta.jks",
+      "size": 2764,
+      "sha256": "f201d46cd7858edf52b81bb07af4a5fe38d6dbc7f0424b121eae3d662e3fcce8"
+    },
+    {
+      "path": "build.gradle.kts",
+      "size": 218,
+      "sha256": "4dc8a97167608727116a76a211064a0e4c95e23fed2ed3a52e856ff7e188dd32"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/README_INSTALL.md",
+      "size": 1257,
+      "sha256": "b056c9ab9ba0560b277ab28f3b88649de1b4e1e38a6a03c3539360268233a358"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/accounts.inc.php",
+      "size": 51,
+      "sha256": "2fdd97d448ff7491c36ac480387c05740597eb2cddabe9aefbdaf0d63506d26b"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/admin/accounts.inc.php",
+      "size": 3917,
+      "sha256": "cb0fe4f842a42519b22dbc5854d1b05eb41ee075d9fb78f904e9c2ab85c340f8"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/admin/captcha_records.inc.php",
+      "size": 3559,
+      "sha256": "603db7d372288f31c1ead88134b661111bedeab62cccea72197482ab97b2c87a"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/admin/diagnostics.inc.php",
+      "size": 1327,
+      "sha256": "19ed3c4ab2c9c0321bceb7da58b42651192069a332fa025f137d86885d0b4542"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/admin/display_settings.inc.php",
+      "size": 2001,
+      "sha256": "84c15c25fc974942181f3cd49ecad87d9bbcd676c244f6d2032a5f4efc1f4400"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/admin/overview.inc.php",
+      "size": 1711,
+      "sha256": "96d3a79009e4f3ca89dd06be66b53e1de7cd866e8d841d67c1ddf6e6791f315c"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/admin/security_logs.inc.php",
+      "size": 1211,
+      "sha256": "a5d7eb8cf7d33d71ba71691c87a8031fec4da0f1a727ccac49304368904da6e6"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/admin/settings.inc.php",
+      "size": 8283,
+      "sha256": "bef4095694b7f36a80f5b8429a2488c67a968b2fc7168280b0a75e2042182e8e"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/admin/sms_settings.inc.php",
+      "size": 3441,
+      "sha256": "b92b21fe40dffee35fccaf86af486ac929b3f61c74cb81fdd12c4299771635e0"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/admin/users.inc.php",
+      "size": 1111,
+      "sha256": "87baa095753fcb7ada2b02f8f91bcd130a45393a5a38c322bbb3910a8bf78c06"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/api.inc.php",
+      "size": 17362,
+      "sha256": "b6ca5b38306c95f0d93fd58c3318807f8ef2ea6d6b88043aa008bfe0d803b452"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/captcha.inc.php",
+      "size": 1175,
+      "sha256": "6c5507d56273c9c6074069e3e4167685ef1e32079483104554253056f2b5ec43"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/captcha_records.inc.php",
+      "size": 106,
+      "sha256": "e76ad6f05dfeaff7baa1b4c416fff7b955235ed4c271ffad37778f526695f5f4"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/diagnostics.inc.php",
+      "size": 54,
+      "sha256": "c678326479d797d8dc2c7d1ffd0ce2a4b2bd14261b2dc5d4f2d76ce5882e2f17"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/discuz_plugin_stk_auth.json",
+      "size": 2154,
+      "sha256": "bd54465139e94e2cf065446c9cf24aaf675758aaf6b7c71c06c870cd6ecfdd25"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/display_settings.inc.php",
+      "size": 59,
+      "sha256": "0516063b1710b74342c874a2df59a50bdad31a178cd6c5e7f8c58df389955fcc"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/install.php",
+      "size": 10013,
+      "sha256": "68f4bdacbd36647eec034973784ee23f3f397c5404f753519f8618ba2e580dd7"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/lib/auth_service.php",
+      "size": 21052,
+      "sha256": "afa3548fe36c65277ba5ad984c11799cfa6c64727cf28bd730a5717d232e4373"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/lib/config.php",
+      "size": 1235,
+      "sha256": "dd9c0fe1343eb32a543eb75f042afb9fea396fa9247820f7cecf0593e5f40c96"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/lib/dev_auth_service.php",
+      "size": 1402,
+      "sha256": "5d0519548af1bd3eb2ec29c43557b07c2dd7be2a7dfb36d6d04f018b37f66b59"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/lib/response.php",
+      "size": 1091,
+      "sha256": "ee2fe5fcc32d3c7808d3cca915457a593f359a2db99fc609f098ed1aa2a10421"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/lib/routes.php",
+      "size": 1953,
+      "sha256": "574a6bd47e4906f360f125f7c07523796bc4fd7504999d5f328108bb6c9197ba"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/lib/sms_service.php",
+      "size": 10787,
+      "sha256": "c026cc8ad265ab685566760e8e5e0f3d9c8d438d97c7c9a8389103db85c611b4"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/overview.inc.php",
+      "size": 51,
+      "sha256": "67e74ba8083bebc16edc849e02884b0dff2b03a9fcc5d5b45b2e8340c865735d"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/security_logs.inc.php",
+      "size": 56,
+      "sha256": "7ab01bec9ebf3060d6deeb45d342d4dd3ca44a8477569af0735c8093c1f5ac1c"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/settings.inc.php",
+      "size": 51,
+      "sha256": "763ca31ac0a0f644f3393e335aadfab276248dd3f37ed0f2fbbf4562a2a6ea15"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/sms_settings.inc.php",
+      "size": 55,
+      "sha256": "2040977b361d62ea77b95579a577d921ea1bd9236df40964c6df777454e3f225"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/uninstall.php",
+      "size": 155,
+      "sha256": "36d80262ca12c6dd1912c62d58a7ffc03a2ca10d8be1e87de87c1b426edd8a1f"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/upgrade.php",
+      "size": 7863,
+      "sha256": "948991274713c85554572e261f80c549af7c58f800493f822abbf05423bfc435"
+    },
+    {
+      "path": "discuz/source/plugin/stk_auth/users.inc.php",
+      "size": 96,
+      "sha256": "c848fbbf6ae3441c8a6e5bd25fd8bdfe2d633c68a5715c3ad615fb42ad2bfa8e"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/README_INSTALL.md",
+      "size": 1029,
+      "sha256": "9afc1316fc0dda24f54294df52092e6dda3ab0d3e57ab8f57911ed4c584dc8e7"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/audit_logs.inc.php",
+      "size": 687,
+      "sha256": "cb24a1b606551dcbcdc2695f41e8329d15e534c41352bcd23db8bb59cd79eb3b"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/categories.inc.php",
+      "size": 1846,
+      "sha256": "194f9c39ab30f2159cff052fa97154d474a1b0ef3b680a8b12f7d211c61e0625"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/contact_policy.inc.php",
+      "size": 1542,
+      "sha256": "97196427e4bd9fe7f37e3d1b6d50d8d07f23c2496c69a44d3fdb297cb78a3654"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/deployment_diagnostics.inc.php",
+      "size": 882,
+      "sha256": "05cdbe0c56ec420836cb52688c2291122d9e94d258204bf85f08caebcce1ca8a"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/home_settings.inc.php",
+      "size": 3204,
+      "sha256": "68ad548bcb1958c161a4135df3effd1a1e342f7aee6765439ef08d8f158020d5"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/image_settings.inc.php",
+      "size": 2760,
+      "sha256": "424a24b480b65b12f403f7dd7f33d1945f4cd86220fd81353e7b165f5ec18b64"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/maintenance_settings.inc.php",
+      "size": 1678,
+      "sha256": "94586aa39d8fde6d5a4a07a30dc8e92a0afd02fb2a44b1ef7d6b238f66b1b963"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/me_settings.inc.php",
+      "size": 2291,
+      "sha256": "bc8c43e0802c8c821e0c749a05a56619c4e6cf5edbc609324e5f84e561318891"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/memberships.inc.php",
+      "size": 2180,
+      "sha256": "a85c2c3222ea63e26daa93cd61d37c6ffd8c045c84e0fda524588663af9d3b83"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/overview.inc.php",
+      "size": 711,
+      "sha256": "c7df6411f1db7dc9d0916e5d2c6afcd5b962cfde759bc4bacfefa7c26e259564"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/projects.inc.php",
+      "size": 3921,
+      "sha256": "b2c1464cdbcb249b8fadd43e746e613462048a352a679b98d73a68d89b767950"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/props_settings.inc.php",
+      "size": 1823,
+      "sha256": "26d1afe35c0b241895f83b253bd7bfda0b09c957d987579b95c2c28f4b91e810"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/publish_settings.inc.php",
+      "size": 2401,
+      "sha256": "e16619ba7f5fb32f1868cb028314a6a9ea744157819df3de0947a55b467a5ec9"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/release_settings.inc.php",
+      "size": 2915,
+      "sha256": "01e07d5acff12698db5deba5ceee8a2adc83ec781c3ec8a7150e786685eb1214"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/review.inc.php",
+      "size": 2781,
+      "sha256": "cafb92218d5d3683177d2e2a7a1c009d7b44015ae75927f1b6c64d5c8b3697cc"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/security_audit.inc.php",
+      "size": 621,
+      "sha256": "c4589bf92b8d433a9b6d89d014030e320278eebb33ca53966cefdd3e774a168f"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/support_settings.inc.php",
+      "size": 1612,
+      "sha256": "a0305dd89dc72255ff2e478cadd8c7462986c9f1f31dda72b01ea129ee05f432"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/user_projects.inc.php",
+      "size": 1481,
+      "sha256": "4ab948df65010865020e10b45d15bde7b38d2ac1238231fef468b30d9a13fb4d"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/admin/wallets.inc.php",
+      "size": 1619,
+      "sha256": "b0de4f5993e6a8a0fcd2438208561351d6fe27e175e3aff9a36b490517317416"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/api.inc.php",
+      "size": 31367,
+      "sha256": "676a3f9444d546083e79996e95c809bcd1f571450710f068ca2be61bd9c251f8"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/audit_logs.inc.php",
+      "size": 51,
+      "sha256": "25c9e9d7dbaad832dc9252257ad07244822ea3cf966dac3e1a4cab22ac820f0a"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/categories.inc.php",
+      "size": 53,
+      "sha256": "43f2d6ba28a68014fb73aa09e601ae2918abaa44d3c0e2bd5bdc2ccd099d9a89"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/contact_policy.inc.php",
+      "size": 57,
+      "sha256": "088a66c2bb982b240aedab898467b7922342ef267b6940bd53cd11e53f5763e1"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/deployment_diagnostics.inc.php",
+      "size": 63,
+      "sha256": "209ee5e61b8b699758cabcb1efe33946c3dac62276f5ccc8f9bcec71905f3b03"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/discuz_plugin_stk_project.json",
+      "size": 3372,
+      "sha256": "e05aa0672a8ba5fb70abef3d7a21a8ef448acf8baaf354875d491b4c59b12d27"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/home_settings.inc.php",
+      "size": 56,
+      "sha256": "da0afe60b2032186bdb339b36dce894b4a522267f8005644bb4bf41c3c470853"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/image_settings.inc.php",
+      "size": 55,
+      "sha256": "942c66b79e943a60d6339e4037d32336cb051291270248477a76f7bc78d82b86"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/install.php",
+      "size": 9541,
+      "sha256": "a460bfb8f8a9112d535f932fec985b7716b36392816a5732f4199b75d2420ed2"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/lib/config.php",
+      "size": 4578,
+      "sha256": "ca9ae2e37967321f24cab76091c0e3973fdf816b2c345e78265e64c051bc3c26"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/lib/response.php",
+      "size": 443,
+      "sha256": "53998c3e93c8564cefebc759ad46ba6e4914d538c3f1689ce972e329149faa8f"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/lib/routes.php",
+      "size": 1345,
+      "sha256": "e8ce520674728b7b96c5e308070001589c96e838c51ae11c585c4b0e5ee99683"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/lib/upload.php",
+      "size": 5671,
+      "sha256": "7d21f0aa9f8df5584d35ea7bc233a0578739f931c6278a34cc57c9c05579d5e1"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/maintenance_settings.inc.php",
+      "size": 61,
+      "sha256": "c00db56d09fdbca995eedeee03b4f92c8a637ec89298a21c77e8e2578a1d60b4"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/me_settings.inc.php",
+      "size": 52,
+      "sha256": "2d6f7b4c66c2a5f38b0d229e95b4d7c6061bc75a3826d25ff8b5ceb54f4ab297"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/memberships.inc.php",
+      "size": 52,
+      "sha256": "ae892123a6c25f2a382125243a7c4ef30ca457976543eed24ab0c332eef715d2"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/overview.inc.php",
+      "size": 51,
+      "sha256": "67e74ba8083bebc16edc849e02884b0dff2b03a9fcc5d5b45b2e8340c865735d"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/projects.inc.php",
+      "size": 51,
+      "sha256": "4777c14ead6a2b34fdc239c2cbdfca9d9857979216dbdb6ea8009858b6aea6d1"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/props_settings.inc.php",
+      "size": 55,
+      "sha256": "2184923ef7937773223c549be1af1f5c1b46db87c03db7c8a920e2f985229fee"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/publish_settings.inc.php",
+      "size": 57,
+      "sha256": "1978d9cac15d82548b6f20084b30f2a6b0c458550f1878eb9be04c42fdecc425"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/release_settings.inc.php",
+      "size": 57,
+      "sha256": "5cecc51dd3be24582f12642a7766ebf80db00c6a866406342ecafdc6469a5a36"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/review.inc.php",
+      "size": 49,
+      "sha256": "8fafca21f15c5b6190ee36c3df544d68c9e3b53ebff790bccac991681d1e36e1"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/security_audit.inc.php",
+      "size": 55,
+      "sha256": "e93482b2f7980994a5aecf0b2c65af35f6c5bacefe06f459846a7c61776ce9a1"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/support_settings.inc.php",
+      "size": 57,
+      "sha256": "b0c0f92742c0536772e8605169ea9a1da3a991fce2c0680bb1bcaca6a3c40627"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/uninstall.php",
+      "size": 70,
+      "sha256": "61504e0265e6c1a1943497cc7c5b376928c27a07642b9718ea244d21215641c6"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/upgrade.php",
+      "size": 6527,
+      "sha256": "684dadbe91117f1055ff94aff1f312093d987cc3021bd27c42b13b1d88b7b961"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/user_projects.inc.php",
+      "size": 54,
+      "sha256": "800c32377c33c2787426b85e900ce439676298886468ba00f09371002cd7073c"
+    },
+    {
+      "path": "discuz/source/plugin/stk_project/wallets.inc.php",
+      "size": 48,
+      "sha256": "7db32606bfb159f7842e446e271a5c9856250737c45e18d7f0065102bd6c699e"
+    },
+    {
+      "path": "discuz/tests/auth_contract_test.php",
+      "size": 5406,
+      "sha256": "dc9336c8990cfe29c0f74a1d7a9d056021bad9b69dcae07b4b09a1ef5863cd64"
+    },
+    {
+      "path": "discuz/tests/auth_service_unit_test.php",
+      "size": 1982,
+      "sha256": "52dd4770d7125f5ac93baf68e03037dc15da48c9e26744d14a7f926269dd0acb"
+    },
+    {
+      "path": "discuz/tests/dev_auth_service_test.php",
+      "size": 639,
+      "sha256": "4f5d4b0d5e4a870c984b9db5b7f595c9088b1b96f7c239efdc59b287743712ac"
+    },
+    {
+      "path": "discuz/tests/full_spec_contract_test.php",
+      "size": 12200,
+      "sha256": "ea3a3798472e276d3a3f43d64093e034bf0e2d01a9b5e07c43a61c0c247cbc19"
+    },
+    {
+      "path": "discuz/tests/project_contract_test.php",
+      "size": 4294,
+      "sha256": "a98a536f989ef8c5d1c0edb0d0a1fcbd92a9b80c7fa2889866a5dbc4718c98bf"
+    },
+    {
+      "path": "discuz/tests/route_contract_test.php",
+      "size": 3427,
+      "sha256": "1333189b8d27ca4f4efd9934088949bb92f16ac88bf35d04eecbd709c1a4ac93"
+    },
+    {
+      "path": "gradle/libs.versions.toml",
+      "size": 3198,
+      "sha256": "692bd63122f3751a12d377fa0a3922bf75472a8c0fcc928f9f7efe063cb70aac"
+    },
+    {
+      "path": "gradle/wrapper/gradle-wrapper.jar",
+      "size": 43705,
+      "sha256": "81a82aaea5abcc8ff68b3dfcb58b3c3c429378efd98e7433460610fecd7ae45f"
+    },
+    {
+      "path": "gradle/wrapper/gradle-wrapper.properties",
+      "size": 338,
+      "sha256": "3b6b8df392b92f86332d907707f3d952a32c8d6e1fedabafe2b5ec3d933a78c4"
+    },
+    {
+      "path": "gradle.properties",
+      "size": 408,
+      "sha256": "79b71f7964b46a3281eb8a5d4bc79b6790c3f23e1f1e60d30111eb64ff87882c"
+    },
+    {
+      "path": "gradlew",
+      "size": 725,
+      "sha256": "948e8264ecb33dee3dab3a7da3cb7cbfdb96b1752a9730b12fa240143a21b1ff"
+    },
+    {
+      "path": "gradlew.bat",
+      "size": 824,
+      "sha256": "e0eaad4eeb92750e9ecd4c11eedefe877ecfe8981c3fa4fe68019e84cbfe101c"
+    },
+    {
+      "path": "offline-spec/README.md",
+      "size": 447,
+      "sha256": "c94d8f2097bf13bbeb3c47e2ceead352a7eaf960725d1d1e39a775e3acb6919b"
+    },
+    {
+      "path": "offline-spec/STK_FULL_SPEC_OFFLINE.zip",
+      "size": 23211423,
+      "sha256": "e5beafb6074b40d5073960012cf44d53c751b6a0ee822bc21bdc17eb8a4de83f"
+    },
+    {
+      "path": "optional/RC_SMOKE_NOT_ACTIVE.md",
+      "size": 430,
+      "sha256": "f05788a8e895c6d4fb85f8852653f37ea221c70b556bccf9982ad9bac8fd9bdb"
+    },
+    {
+      "path": "reference/PRODUCT_SCOPE_FIVE_RELEASES.md",
+      "size": 2071,
+      "sha256": "b1fb5946ee729a8cc323b86950327e88e38a81999d3d86ad26817b1ba8d7ff5d"
+    },
+    {
+      "path": "reference/TOOLCHAIN_LOCK.md",
+      "size": 828,
+      "sha256": "043bec446b9f181a79f00ec5f0f71253e1f47e07c4dbca565eb6ee6fd208e8dd"
+    },
+    {
+      "path": "release/.well-known/assetlinks.json",
+      "size": 289,
+      "sha256": "bef060aca31122b7c3d7ae5cb0f79d174c2bd4a75a1ba88fd96a4a4ee90627e6"
+    },
+    {
+      "path": "release/backup-20260807023807/.well-known/assetlinks.json",
+      "size": 229,
+      "sha256": "9ee39fc0215328dc4b6a9ae5877bfec0f82092b0737ba6e9168cb3d9483f32cf"
+    },
+    {
+      "path": "release/backup-20260807023807/domains.env.example",
+      "size": 215,
+      "sha256": "efc9db49dff1978e6d04af6a24826d6964c970172da77595c9364f92d87836b3"
+    },
+    {
+      "path": "release/backup-20260807023807/download/index.html",
+      "size": 336,
+      "sha256": "1a171ca7c82b555386d7890ba243607c28e6c4d2082810e045834ee7d7508264"
+    },
+    {
+      "path": "release/backup-20260807023807/nginx/stk-download.conf.example",
+      "size": 404,
+      "sha256": "690a55cfe9a4110c57b1186558096baf8e0957c062f31be435671d4f1d4d55b4"
+    },
+    {
+      "path": "release/backup-20260807023807/update.json",
+      "size": 292,
+      "sha256": "f14981967800a10bf071f0c6be25fd66c834b18b53816edb0b52c709ba2ac625"
+    },
+    {
+      "path": "release/backup-20260807024103/.well-known/assetlinks.json",
+      "size": 229,
+      "sha256": "9ee39fc0215328dc4b6a9ae5877bfec0f82092b0737ba6e9168cb3d9483f32cf"
+    },
+    {
+      "path": "release/backup-20260807024103/backup-20260807023807/.well-known/assetlinks.json",
+      "size": 229,
+      "sha256": "9ee39fc0215328dc4b6a9ae5877bfec0f82092b0737ba6e9168cb3d9483f32cf"
+    },
+    {
+      "path": "release/backup-20260807024103/backup-20260807023807/domains.env.example",
+      "size": 215,
+      "sha256": "efc9db49dff1978e6d04af6a24826d6964c970172da77595c9364f92d87836b3"
+    },
+    {
+      "path": "release/backup-20260807024103/backup-20260807023807/download/index.html",
+      "size": 336,
+      "sha256": "1a171ca7c82b555386d7890ba243607c28e6c4d2082810e045834ee7d7508264"
+    },
+    {
+      "path": "release/backup-20260807024103/backup-20260807023807/nginx/stk-download.conf.example",
+      "size": 404,
+      "sha256": "690a55cfe9a4110c57b1186558096baf8e0957c062f31be435671d4f1d4d55b4"
+    },
+    {
+      "path": "release/backup-20260807024103/backup-20260807023807/update.json",
+      "size": 292,
+      "sha256": "f14981967800a10bf071f0c6be25fd66c834b18b53816edb0b52c709ba2ac625"
+    },
+    {
+      "path": "release/backup-20260807024103/domains.env.example",
+      "size": 215,
+      "sha256": "efc9db49dff1978e6d04af6a24826d6964c970172da77595c9364f92d87836b3"
+    },
+    {
+      "path": "release/backup-20260807024103/download/index.html",
+      "size": 336,
+      "sha256": "1a171ca7c82b555386d7890ba243607c28e6c4d2082810e045834ee7d7508264"
+    },
+    {
+      "path": "release/backup-20260807024103/nginx/stk-download.conf.example",
+      "size": 404,
+      "sha256": "690a55cfe9a4110c57b1186558096baf8e0957c062f31be435671d4f1d4d55b4"
+    },
+    {
+      "path": "release/backup-20260807024103/update.json",
+      "size": 335,
+      "sha256": "440e36f84e337c9d263ceaa9ea8eabb268821b2c42e834c624d1a3157ddb398e"
+    },
+    {
+      "path": "release/domains.env.example",
+      "size": 255,
+      "sha256": "2e4fe601b65be47cbb001099b8329ab43a3929015821075f215135e7d9cbeaea"
+    },
+    {
+      "path": "release/download/index.html",
+      "size": 375,
+      "sha256": "c4210f5d567e2b16521e8c09272adccf38c493a52289bdbb73933b0a566f46e4"
+    },
+    {
+      "path": "release/nginx/stk-app-links-location.conf.example",
+      "size": 367,
+      "sha256": "98b966a3ef8acd402f080bfc63ebdaa1cb0730633a1dfeeb27bf14a87762ac4d"
+    },
+    {
+      "path": "release/nginx/stk-download.conf.example",
+      "size": 292,
+      "sha256": "6b9c2ba8969baddb88e15cd9f039863d932ee5fd2521e8aebdfae668b3faf855"
+    },
+    {
+      "path": "release/update.json",
+      "size": 616,
+      "sha256": "a68f3a3a1f7971576b44afca8bc67b4f16fcd2e28780edaff968e5c1c5c0cfd7"
+    },
+    {
+      "path": "scripts/build-beta-apk.ps1",
+      "size": 167,
+      "sha256": "20a3b16a09c8aab1c3088d99539f5419c553e27b7e7a61ad8b8698023020ee0d"
+    },
+    {
+      "path": "scripts/build-beta-apk.sh",
+      "size": 414,
+      "sha256": "f94d869706d5b66c399abbdf3a4949a74c793c0679333c6769acd0e120c3a4b4"
+    },
+    {
+      "path": "scripts/copy-delivery-to-desktop.ps1",
+      "size": 561,
+      "sha256": "8e821fe567fac3796d61a9d9ecf1e8b8ee0b8a681438ee03aba277a69bb37b7f"
+    },
+    {
+      "path": "scripts/fast-check.ps1",
+      "size": 1205,
+      "sha256": "23ab0a68de825adcb06bae0826df1d29ac23325808ee34f68c02865481581ec9"
+    },
+    {
+      "path": "scripts/fast-check.sh",
+      "size": 323,
+      "sha256": "f9a2c70af0a71e79cc44b32eae9e600df31682820cd8bcb02ee644ca71905390"
+    },
+    {
+      "path": "scripts/generate-package-metadata.py",
+      "size": 1845,
+      "sha256": "c99a06657c745fcd1618f8afa44ac5d200274aabbf3ae3d74d4dbe5a6c930a9e"
+    },
+    {
+      "path": "scripts/package-beta.ps1",
+      "size": 1316,
+      "sha256": "6d6d89e23c0b950452814d39608b9dde3857859a10ff5feddf85734a495116a4"
+    },
+    {
+      "path": "scripts/package-beta.sh",
+      "size": 800,
+      "sha256": "d9d0ceb3554a4380a29a87acff9a7fbcef4fc68d016ede8370e09243d040032b"
+    },
+    {
+      "path": "scripts/php-lint.sh",
+      "size": 416,
+      "sha256": "cb83fe2a32984ef021e95e6d36d2b253e6cace1b51752055de3bc9251637d357"
+    },
+    {
+      "path": "scripts/release-backup.sh",
+      "size": 254,
+      "sha256": "4423a72fc58198c9b87c1d33115e158c8c7913f3c09b66bed49b9a61f7719f64"
+    },
+    {
+      "path": "scripts/release-maintenance.ps1",
+      "size": 4340,
+      "sha256": "7f44eaba78dfcdc7d4a1ce8339b53ac182faec6da9f58be90a0c534253c4efe7"
+    },
+    {
+      "path": "scripts/validate-kit.py",
+      "size": 6510,
+      "sha256": "bf7ec8a41124a2d0ffcaeeda6fc8d731bb49a77474111b7a82577b611217986c"
+    },
+    {
+      "path": "settings.gradle.kts",
+      "size": 379,
+      "sha256": "c3c18739cb196cbe65a5daa7d119d02be20b9b0432c8a3012ed77b9f8bd88f14"
+    },
+    {
+      "path": "templates/FUNCTION_COMPLETION.md",
+      "size": 794,
+      "sha256": "986236ac3f702964d4425cee7cf39ddc32a023db10490a9583305d8d65472453"
+    },
+    {
+      "path": "templates/KNOWN_ISSUES.md",
+      "size": 727,
+      "sha256": "1699ebb60010b4502ea2d0514a54f2569e8e20eac86ae01c7d7fec241cb9ba6d"
+    },
+    {
+      "path": "templates/OWNER_TEST_GUIDE.md",
+      "size": 1121,
+      "sha256": "5d710e668989f5499ea06536b14422dddf8c9ef89ae503859e864b1184963e97"
+    },
+    {
+      "path": "ui-reference/current/AUTH-001-S01.png",
       "size": 108791,
       "sha256": "4352bf9e9a1a2f2b64cd54656c0878991f74ef0c4a0b977b6f9de4137ef7905f"
     },
     {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S02__SMS_DEFAULT__1170x2532.png",
+      "path": "ui-reference/current/AUTH-001-S02.png",
       "size": 110922,
       "sha256": "5f1cc2580b2e59b73fc66185b5c63dbd2ad5c9fa41f31f7525ef565b736aae0f"
     },
     {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S03__FIELD_FOCUSED__1170x2532.png",
-      "size": 98930,
-      "sha256": "731a0ebc78403ff0e154c100619850218f84c2c9574b390b7c08c7e088bd1886"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S04__VALIDATION_ERROR__1170x2532.png",
-      "size": 113791,
-      "sha256": "6cb7274be5decff550028466d4a9c56badd2ed07114e481ec6686958580829c9"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S05__SMS_SENDING__1170x2532.png",
-      "size": 103350,
-      "sha256": "284a479d9be94a005b54d786ee0aa478804c3d94287d24848d850c98743e91f6"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S06__SMS_SENT__1170x2532.png",
-      "size": 117181,
-      "sha256": "1cb38e15391acd37ea535ab5f5d5a0db536a794297715853f2a9903196071de6"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S07__CAPTCHA_REQUIRED__1170x2532.png",
-      "size": 99662,
-      "sha256": "cc97f8f3f2edbf819b6cf62f37f0885a0d3b0ccac4eae4e720b238b2514e164b"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S08__SUBMITTING__1170x2532.png",
-      "size": 100213,
-      "sha256": "66aaf418aa3ed2dc1c47c28305048d1ed15b77b10ae96b05b1fd76eb19027329"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S09__SUCCESS__1170x2532.png",
-      "size": 110176,
-      "sha256": "7cd9b96dddc5f9f726743c00866da5924c4dd9ffffc86f6b367930148d4121b7"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S10__CREDENTIAL_ERROR__1170x2532.png",
+      "path": "ui-reference/current/AUTH-001-S10.png",
       "size": 106636,
       "sha256": "fb6f2863f45cc148379a511ec277c062b23c38ea4ef597b0896af4cab594a452"
     },
     {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S11__SMS_CODE_ERROR__1170x2532.png",
-      "size": 115930,
-      "sha256": "9e7a5ba725a2f73e4572bda5d2324cef9aa762c33b5e37a1134cfbb4a8685d07"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S12__SMS_CODE_EXPIRED__1170x2532.png",
-      "size": 115595,
-      "sha256": "72b76049f4ac9f049bd6f8378dd79ce949051ade00da11b3f0fc46c6494ba717"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S13__RATE_LIMITED__1170x2532.png",
-      "size": 112481,
-      "sha256": "c223fbd193c42aea4c30a4c889dbef4a917aabb220b44bf593fabe45033fc38e"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S14__ACCOUNT_BLOCKED__1170x2532.png",
-      "size": 108092,
-      "sha256": "1d28459892684cc1d78c36817f0696ace63eefe4358e75d407bc89a613d928d0"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S15__NETWORK_ERROR__1170x2532.png",
-      "size": 117951,
-      "sha256": "b6b0fa5f9183d24c09ae360c93c4d77bad35389dcff1a95fe50076a389d9c3af"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-001/M-AUTH-001-S16__TIMEOUT__1170x2532.png",
-      "size": 110221,
-      "sha256": "6669f5e715787cef13b89050b22c021ffbec898d75da96874b82bb8023e9bee4"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-002/M-AUTH-002-S01__DEFAULT__1170x2532.png",
+      "path": "ui-reference/current/AUTH-002-S01.png",
       "size": 111178,
       "sha256": "9cad417b3fd585dfa9fc53a8d4fd10ba4994e5f824e34819245fc9ff0898ddd0"
     },
     {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-002/M-AUTH-002-S02__FIELD_FOCUSED__1170x2532.png",
-      "size": 100840,
-      "sha256": "de71d0f0cc71f63e5645956f9b78b17cd33457139ec15717ada130aa417db3fa"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-002/M-AUTH-002-S03__PHONE_EXISTS__1170x2532.png",
-      "size": 108882,
-      "sha256": "9b5d7b07ef21391b4c8180af8199a5958419f80f844b42aaf6d99d2f3c3e6f49"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-002/M-AUTH-002-S04__PASSWORD_MISMATCH__1170x2532.png",
-      "size": 105135,
-      "sha256": "47f5e7ccaa1507f1d1c4e349bc790475a8a1cda189857e15afaaa5e26b2e2ea1"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-002/M-AUTH-002-S05__AGREEMENT_REQUIRED__1170x2532.png",
-      "size": 103306,
-      "sha256": "81421b6b690b38d5f7e9c298c12c548bccac09ee25cf80449aef696a2f075bff"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-002/M-AUTH-002-S06__VALIDATION_ERROR__1170x2532.png",
-      "size": 106690,
-      "sha256": "eb2b7fbc1953d26e76e05c53051b554a9ef5b7301be41319b06599cff5bcadff"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-002/M-AUTH-002-S07__CAPTCHA_REQUIRED__1170x2532.png",
-      "size": 97574,
-      "sha256": "aaf6c48807604ba24bcc24b902e4cc675574393d4888e6548e020d996c16eba8"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-002/M-AUTH-002-S08__SUBMITTING__1170x2532.png",
-      "size": 95074,
-      "sha256": "e6ed4b18b00b38ef57c554e7c0069e3487e25c2fa5bfd524ff79d5053bdeb251"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-002/M-AUTH-002-S09__SUCCESS__1170x2532.png",
+      "path": "ui-reference/current/AUTH-002-S09.png",
       "size": 96176,
       "sha256": "30c5fc2b1e6ec6794c9bf16ff442c20fb1ab2aff2f8def09d5367c4841f51d07"
     },
     {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-002/M-AUTH-002-S10__RATE_LIMITED__1170x2532.png",
-      "size": 110105,
-      "sha256": "29de7b18fddd321ab31f5cbd0ef6b746d2eae7b58ba513a882035494f9796e92"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-002/M-AUTH-002-S11__NETWORK_ERROR__1170x2532.png",
-      "size": 112742,
-      "sha256": "632297ae555c3e6efa76dfd5f553f75bdbb3c018f140c30dfcdd9ab1cd32fab7"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-002/M-AUTH-002-S12__SERVER_ERROR__1170x2532.png",
-      "size": 109744,
-      "sha256": "e3f36ab19fbaa3e6b2adccd1e58e4889d470fdde6350ff686eb8a3282452aa62"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-003/M-AUTH-003-S01__DEFAULT__1170x2532.png",
-      "size": 99775,
-      "sha256": "0cd56841a6f3e5fa81498cf6da9ab5bd115b7bc9f472ca2548299a958fd63b67"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-003/M-AUTH-003-S02__CAPTCHA_REQUIRED__1170x2532.png",
-      "size": 97158,
-      "sha256": "6a8037a533650b212030fb7e7882241a63291a7a244333beb1f51e9c1b190d64"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-003/M-AUTH-003-S03__SMS_SENDING__1170x2532.png",
-      "size": 76640,
-      "sha256": "a670199b6343b99c9b14d669fa675809d2c51890082d00be777d5e0df3ccd4ca"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-003/M-AUTH-003-S04__SMS_SENT__1170x2532.png",
-      "size": 91651,
-      "sha256": "57fba2a51ffd5681409a77e722554a05118d8f3c560efc6710825415ada35dc2"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-003/M-AUTH-003-S05__VALIDATION_ERROR__1170x2532.png",
-      "size": 91016,
-      "sha256": "7cfbcdcc33e02f812e8f5f406491d49bba0aba0d7b7966d5565969ae75bdb881"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-003/M-AUTH-003-S06__SUBMITTING__1170x2532.png",
-      "size": 78579,
-      "sha256": "815a48b99f6c1c38de69f8d5975dc5c48564c7372bcbff6ef79ef357108f19ab"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-003/M-AUTH-003-S07__SUCCESS__1170x2532.png",
-      "size": 85689,
-      "sha256": "fe48066eda83c30c84b7e3e3b99694eeb333c75e5bb3cccb55159decada0d7fc"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-003/M-AUTH-003-S08__CODE_EXPIRED__1170x2532.png",
-      "size": 89588,
-      "sha256": "1303abe9b184c9cd68d78a1554c7f19736358d51a0f05d8a2ae6b575afba422d"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-003/M-AUTH-003-S09__RATE_LIMITED__1170x2532.png",
-      "size": 92579,
-      "sha256": "eec7da77631d9c7ab0547e51322d60ea4c73d64392575c76cdb6af7f844312d2"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-003/M-AUTH-003-S10__NETWORK_ERROR__1170x2532.png",
-      "size": 98449,
-      "sha256": "9020794c25c3475cf89d9e5f6e806888e2d011107e7b55f06be2b1100e673203"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-003/M-AUTH-003-S11__SERVER_ERROR__1170x2532.png",
-      "size": 96388,
-      "sha256": "29ddc2c98ba7a9f44f1882d2f67d832873ea1d43735916630c2ec4ddd7f6c925"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-004/M-AUTH-004-S01__LOADING__1170x2532.png",
-      "size": 25250,
-      "sha256": "49cfe7cd712aa415cf88c253d43f762af58aea12442cdf4b3c30fb30697808de"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-004/M-AUTH-004-S02__CONTENT__1170x2532.png",
-      "size": 249996,
-      "sha256": "155505cc8fae32c6c4afef1cb258ecb5e30fceba8bacb8693abfc3cb950647dd"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-004/M-AUTH-004-S03__OFFLINE_CACHED__1170x2532.png",
-      "size": 272923,
-      "sha256": "82b8bf70671bd7238ceee755e5eb36826a41616b8ac49a8d9b68275f1242c9e0"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-004/M-AUTH-004-S04__ERROR__1170x2532.png",
-      "size": 62815,
-      "sha256": "ff571155e9efd5b0583db47b51f7a7d9332d8d22666cac320ab070fa0733ce95"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-005/M-AUTH-005-S01__LOADING__1170x2532.png",
-      "size": 27563,
-      "sha256": "65b12c726954503b0ad4492bd358362b1a3f81a6971339e2d34c2b178e2be607"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-005/M-AUTH-005-S02__CONTENT__1170x2532.png",
-      "size": 254503,
-      "sha256": "0706cc427790d31426bb83ebe50ed4771857011f58d3fcf9fe14e3066a3736bd"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-005/M-AUTH-005-S03__OFFLINE_CACHED__1170x2532.png",
-      "size": 277437,
-      "sha256": "9fc4df9da5587d9d3b866a309f8a51fd9813e0e11f5bf6ccfae3c9e9135eaf7a"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-005/M-AUTH-005-S04__ERROR__1170x2532.png",
-      "size": 64995,
-      "sha256": "71cf706f550c1c9da239172ebff29aa669876bbd37d16f17aedc163c67f8aeb5"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S01__LOADING__1170x2532.png",
-      "size": 86193,
-      "sha256": "f5c9eadd3ac8d328f00153e0e23676cff595ec445bf7ad9eef31b0f30bc41cd9"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S02__READY__1170x2532.png",
+      "path": "ui-reference/current/AUTH-OV-001-S02.png",
       "size": 97104,
       "sha256": "3bc6429b658b53997504b59c0369d57e3860c11536fbb3f0beb52d80d99d0355"
     },
     {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S03__INPUT_ERROR__1170x2532.png",
-      "size": 104323,
-      "sha256": "2a184ead639846b94c47ee2cdef24f0b7df2c19f9ef8d77988768a26fe7e8d40"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S04__EXPIRED__1170x2532.png",
-      "size": 107927,
-      "sha256": "44eb551ebb88bad08dd87ed6a4be97b3e479601da2cf85c63e90464797c8b92a"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S05__REFRESHING__1170x2532.png",
-      "size": 91988,
-      "sha256": "1775263e7340b07a36ae7a2592d1fc03d426c3c797be16084b797aecd6188bf1"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S06__VERIFYING__1170x2532.png",
-      "size": 93505,
-      "sha256": "363c9b5a56f433af9c25e51ca7efb3accf739d8a1f6a8fcc68c6b715ed6b6bdf"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S07__SUCCESS__1170x2532.png",
-      "size": 95840,
-      "sha256": "10f694d2fb0732062b2f81ccaea2b8c19f3e8fe7ead6fa944366b56adc72e55a"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-OV-001/M-AUTH-OV-001-S08__NETWORK_ERROR__1170x2532.png",
-      "size": 97098,
-      "sha256": "e2d3dc2f302002f31703234be3af10de9100961d7179681872f45d32fcac62bd"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-OV-002/M-AUTH-OV-002-S01__LOGIN_LOCKED__1170x2532.png",
-      "size": 101136,
-      "sha256": "d05ac8ef699b726f5179fc14866aeb2bc09e61dfd6cb5a052e280037b1db4c6b"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-OV-002/M-AUTH-OV-002-S02__ACCOUNT_DISABLED__1170x2532.png",
-      "size": 97029,
-      "sha256": "fa732ee4cb7290ba5a49395b8572d35c196b6204338df091fb95c50873e700b0"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-OV-002/M-AUTH-OV-002-S03__RISK_REVIEW__1170x2532.png",
-      "size": 104556,
-      "sha256": "5d28972c780b0d40d368aa1f39c48d0bf0304cf877dda916c7fed18b54aad1cf"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/AUTH-OV-002/M-AUTH-OV-002-S04__SERVICE_DISABLED__1170x2532.png",
-      "size": 99226,
-      "sha256": "279f92dd785dcb83cf2cfe7653e733ab5e59d61b3ced8b928484469b5ebff27d"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/COM-OV-002/M-COM-OV-002-S01__PUBLISH_STAGE__1170x2532.png",
-      "size": 162990,
-      "sha256": "96c58e70971d064f4926eed34108b5eb96717273837d9f2fa5d7b8b2ee56a97c"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/DS-001/M-DS-001-S01__REFERENCE__1170x2532.png",
-      "size": 165291,
-      "sha256": "ef1320047d4a5e88a783335f3eaab0ce6e59bdd60ff3aec94259dd6fdf18bfdf"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/DS-002/M-DS-002-S01__REFERENCE__1170x2532.png",
-      "size": 157785,
-      "sha256": "b2fa4265749d402580dff911b3853ab0e0de595be8132b6c11a76665d76048b0"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/DS-003/M-DS-003-S01__REFERENCE__1170x2532.png",
-      "size": 120118,
-      "sha256": "b4ae90c772e4c4a3f177678088ed6020856d35c31923e14f4849ee822f808f73"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S01__FIRST_LOADING__1170x2532.png",
-      "size": 62912,
-      "sha256": "6544a69e7a4461e2bed2905df8717d8b9ede96ac09faba2b09047616a5c817fd"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S02__CONTENT__1170x2532.png",
-      "size": 214617,
-      "sha256": "924b3c0791d6da625e66919e425435706326b61cc4f699a93e4b2a1e9373a7e3"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S03__REFRESHING__1170x2532.png",
-      "size": 221226,
-      "sha256": "9ab390f0fb21f2d46d74180875db8b9e296046a27213b79bb6bf0733c108a019"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S05__PAGINATING__1170x2532.png",
-      "size": 220618,
-      "sha256": "f91a9d74393bb883c54890583a568fc946b12d42aa408267321ead6a70795618"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S06__PAGINATION_FAILED__1170x2532.png",
-      "size": 222849,
-      "sha256": "5e8d0b5e3b0f011bd41c8cfa9c341a47d47d958d38764e87101430af8ed36330"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S07__EMPTY__1170x2532.png",
+      "path": "ui-reference/current/HOME-001-S07.png",
       "size": 86383,
       "sha256": "0ff2fdafcf3d847c4b9f1a2fdcd16aee68f0c057f26fed1a50ad9f9aaf30c5f9"
     },
     {
-      "path": "ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S10__NETWORK_ERROR__1170x2532.png",
-      "size": 92424,
-      "sha256": "fc927d86dbc1b9e89c5da7fc8ef3979d0d065f03e490bc36a69029a9036c7e51"
+      "path": "ui-reference/current/INDEX.md",
+      "size": 735,
+      "sha256": "b7e21f6bbae7981b108a9676be43266c78e08bd6700c33b9e9790f122be287e4"
     },
     {
-      "path": "ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S11__TIMEOUT__1170x2532.png",
-      "size": 88408,
-      "sha256": "805c693823b768b3f5c8e208dc30cb1783b69f177d83826406b5a06e67c9449e"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S12__SERVER_ERROR__1170x2532.png",
-      "size": 97912,
-      "sha256": "95bc3eeb8b90772dc4c416dbb28b55d6aa84ce0ffd3815f50696e7f6650b4948"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/HOME-001/M-HOME-001-S13__SESSION_EXPIRED__1170x2532.png",
-      "size": 131203,
-      "sha256": "5643f69ac4f2e19e16f01ac0ab788588c49990f71eaec9ad067af384530db82e"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/HOME-004/M-HOME-004-S01__LOADING__1170x2532.png",
-      "size": 23701,
-      "sha256": "8ab9314d8be6316a8ac415532d080f4a12744cfbefd95295353974a6a24f94de"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/HOME-004/M-HOME-004-S02__PUBLIC_CONTENT__1170x2532.png",
-      "size": 147358,
-      "sha256": "b00ca891f5f717f98dbc25165073f05c13a54f3c0b37b4242d2e0ba64eb7e71f"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/HOME-004/M-HOME-004-S07__IMAGE_FAILED__1170x2532.png",
-      "size": 138711,
-      "sha256": "2f750fac594a9d09dd1d64d30250c1061c34388a87ab870a831f01ed844a109a"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/HOME-004/M-HOME-004-S08__NOT_FOUND__1170x2532.png",
-      "size": 48410,
-      "sha256": "5d1fa20e59623801cf5400c834fe6a312c00e055ae42581de77662b118f7ffc8"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/HOME-004/M-HOME-004-S09__UNAVAILABLE__1170x2532.png",
-      "size": 47644,
-      "sha256": "1173dca770dc1dd11949672d948d694f6decac013cc5fe0ecee75f16c4e83c6f"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/HOME-004/M-HOME-004-S10__NETWORK_ERROR__1170x2532.png",
-      "size": 54623,
-      "sha256": "9a07b7794b0e3fc8b2c55ef1b3b4e0b885c61739ebd28d80a484b4152d777dac"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/HOME-004/M-HOME-004-S11__SERVER_ERROR__1170x2532.png",
-      "size": 62713,
-      "sha256": "e6f3f5a34b5fa79a7c00708333564b781c7bba78b72c753eeb55f91dbfc5c585"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/ME-001/M-ME-001-S01__LOADING__1170x2532.png",
-      "size": 47831,
-      "sha256": "0ac13e10ee75dac2c99e245d422a0a007895c2838c6028cd3d7a4a2d556d7931"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/ME-001/M-ME-001-S02__BASIC_V1__1170x2532.png",
+      "path": "ui-reference/current/ME-001-S02.png",
       "size": 103329,
       "sha256": "5273499be9706bd44262bb9bacd7d20d82e52d620467789f248a3c7cdfe3fcc1"
     },
     {
-      "path": "ui/mockups/approved/V1.0.0/ME-001/M-ME-001-S07__ERROR__1170x2532.png",
-      "size": 84530,
-      "sha256": "996303fb00c51ba0f0c235b6cf023ee67676e2d560d31c964f7079a73ce02359"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/ME-001/M-ME-001-S08__SESSION_EXPIRED__1170x2532.png",
-      "size": 85199,
-      "sha256": "3ae418b1a69435ce0ea19c9e0acab031835af95c11df91952e342e8d7554b199"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/ME-OV-001/M-ME-OV-001-S01__DEFAULT__1170x2532.png",
+      "path": "ui-reference/current/ME-OV-001-S01.png",
       "size": 122066,
       "sha256": "eb113325f84fb11f10d4206fb49195bc5bcf3c7930fcfdc9bc8ce5ce03fe006b"
     },
     {
-      "path": "ui/mockups/approved/V1.0.0/ME-OV-001/M-ME-OV-001-S02__SUBMITTING__1170x2532.png",
-      "size": 105126,
-      "sha256": "88fb9fad0457a9105af9169fb512a1fe49df5fa64a0a477fe7a25a7a336fec71"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/ME-OV-001/M-ME-OV-001-S03__FAILED__1170x2532.png",
-      "size": 113541,
-      "sha256": "c7b27544faa71b5dcbb02baebf5363510e6c5d6be8c696dd728a1d9363bb6759"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/SYS-001/M-SYS-001-S01__CHECKING__1170x2532.png",
+      "path": "ui-reference/current/SYS-001-S01.png",
       "size": 61575,
       "sha256": "71b0bfb9f36c7e2b16aad5ea59753d06943e41da8c4be0b9380d105908ad2623"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/SYS-001/M-SYS-001-S02__AUTH_REQUIRED__1170x2532.png",
-      "size": 57644,
-      "sha256": "c4586581ef9b33dc51b1144cf3f29620607209c78d611239dbd1d356fcd983c9"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/SYS-001/M-SYS-001-S03__READY__1170x2532.png",
-      "size": 61075,
-      "sha256": "9f499701232b0ae63f89de95bce1f84017b190f9e3f9945d7962dd6b8f662183"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/SYS-001/M-SYS-001-S08__BOOTSTRAP_FAILED__1170x2532.png",
-      "size": 72294,
-      "sha256": "04b26d0c3da930bf1c63303450b5f4fa927ca554a22df87210da7ae22b6d293f"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/SYS-002/M-SYS-002-S01__MAINTENANCE__1170x2532.png",
-      "size": 63379,
-      "sha256": "7db0f21fdf7b0700e182bf0f09b4a7dac8007d8f9da935a05bf7d8e06ebea8cd"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/SYS-002/M-SYS-002-S02__SERVICE_UNAVAILABLE__1170x2532.png",
-      "size": 65430,
-      "sha256": "9326bed8e9dadd3e487f4a2cd428318d789f9a4c643fa361f4c81a688fb90257"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/SYS-002/M-SYS-002-S03__OFFLINE_NO_CACHE__1170x2532.png",
-      "size": 71067,
-      "sha256": "c7cbc1582b17b076ac5ce903580504182fc692a66cbced30859faeaf852fa4fb"
-    },
-    {
-      "path": "ui/mockups/approved/V1.0.0/SYS-002/M-SYS-002-S04__SERVER_ERROR__1170x2532.png",
-      "size": 73758,
-      "sha256": "7a2fab33083f0cb017f818d95e66e4bbcf5cb89bf609be710c4a09298c0ee730"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/COM-OV-001/M-COM-OV-001-S01__ALLOWED__1170x2532.png",
-      "size": 130625,
-      "sha256": "386e8ffb218dd0e1adea4defd2cb847402e1b79abd4d84723edf5f2c5331d633"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/COM-OV-001/M-COM-OV-001-S02__BLOCKED__1170x2532.png",
-      "size": 158639,
-      "sha256": "19b86666aa8686adfdaa3f95caa3f42bf70e7de507c68e085336308b7165dd26"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/COM-OV-001/M-COM-OV-001-S03__APP_UNAVAILABLE__1170x2532.png",
-      "size": 156389,
-      "sha256": "f984de5ac0bc03853204397b8dadd9fd785bb76326fd0a8f4e6344bc5380bd2e"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-001/M-HOME-001-S04__FILTERED__1170x2532.png",
-      "size": 163322,
-      "sha256": "d60c1d4e74da5d5eb2110f8ba322cdfa282b842551f44e6470937acf731d1c67"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-001/M-HOME-001-S08__OFFLINE_WITH_CACHE__1170x2532.png",
-      "size": 229620,
-      "sha256": "e081cfb288b4952fada3d055c345f63fa7ca37a8a3b8441bb162a34fa69f9dff"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-001/M-HOME-001-S09__OFFLINE_EMPTY__1170x2532.png",
-      "size": 92568,
-      "sha256": "bed6e4f5389f2b7e55b959b1d8e38193c5045bf78696a2cfd1454a14d6c0ad57"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-002/M-HOME-002-S01__DEFAULT__1170x2532.png",
-      "size": 68628,
-      "sha256": "196cc5abf9bcc4f9093af7a8a6d72f52abdfe6e85f884db6827e1d10774a5653"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-002/M-HOME-002-S02__TYPING__1170x2532.png",
-      "size": 55523,
-      "sha256": "3e80c477946d17d029b1daedeac8960a0a7e42380b0da1faea221b258473712e"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-002/M-HOME-002-S03__LOADING__1170x2532.png",
-      "size": 33228,
-      "sha256": "8e2f530e10312777aba3b7877f05e82acb532f17dc422afce296db25e470b645"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-002/M-HOME-002-S04__RESULTS__1170x2532.png",
-      "size": 141978,
-      "sha256": "6825478442e06d721273f8e953999e4fddc47451514de54c8fe2a94af9d786d9"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-002/M-HOME-002-S05__NO_RESULTS__1170x2532.png",
-      "size": 66408,
-      "sha256": "30919f6aeee84a91130d09f08ac5d32b9302d466ebd154f9391527e329e16b65"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-002/M-HOME-002-S06__OFFLINE_CACHED__1170x2532.png",
-      "size": 151871,
-      "sha256": "2a29a7764193fff00af0e312306261824c55c796ff11d25a2a984b5122ad3157"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-002/M-HOME-002-S07__ERROR__1170x2532.png",
-      "size": 60077,
-      "sha256": "e30d7a0d8120519859b79c4bff68cd63d5f60db8709abbff857cebf407a804c0"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-003/M-HOME-003-S01__DEFAULT__1170x2532.png",
-      "size": 146023,
-      "sha256": "03af431181847eb1c93ff8102430f9390a1f22c2ed8dd932aca4c48fd9905e29"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-003/M-HOME-003-S02__SELECTED__1170x2532.png",
-      "size": 145800,
-      "sha256": "52031857626c2809e39004da1903f9fa2a85c2abb6a228b44fce3833a9fcee63"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-003/M-HOME-003-S03__EMPTY__1170x2532.png",
-      "size": 140652,
-      "sha256": "192b75a84fa79881c53d6f298be715b15eb8cdcaebdd875603ac593bd595d693"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-003/M-HOME-003-S04__ERROR__1170x2532.png",
-      "size": 160878,
-      "sha256": "021a107b36485a42e96ea2c4c68baba588348f857e7515b396c7bb9d747b68f8"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-004/M-HOME-004-S06__OFFLINE_CACHED__1170x2532.png",
-      "size": 166989,
-      "sha256": "70534798e5aff37582fc1936e81be23d3298c61dd61f2f447543485a5b57f84f"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-OV-001/M-HOME-OV-001-S01__CONTENT__1170x2532.png",
-      "size": 43408,
-      "sha256": "c7e628fdc7d6e39bc77c29dc521c7aa71460b64be1d2ea2fdcca864193d28cdf"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-OV-001/M-HOME-OV-001-S02__ZOOMED__1170x2532.png",
-      "size": 39820,
-      "sha256": "b21952d83f63300aceb4c022c272b5bca94a4f8632b25bb351ad99633bf613f3"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-OV-001/M-HOME-OV-001-S03__LOAD_FAILED__1170x2532.png",
-      "size": 49444,
-      "sha256": "7df26e85270461ccafd766ac53037223068de8d3fb2d74ae171c138d2cefc2cb"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-OV-002/M-HOME-OV-002-S01__PHONE__1170x2532.png",
-      "size": 120437,
-      "sha256": "b0dc59a8b861ae9f151a8079927486d409f341a5672bdbe72b2f5ad2a74828ce"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-OV-002/M-HOME-OV-002-S02__WECHAT__1170x2532.png",
-      "size": 120334,
-      "sha256": "e9de5e643ed5bb622a61f9d8f84201556dd5af426b35f87972cb9f19f1b73127"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-OV-002/M-HOME-OV-002-S03__QQ__1170x2532.png",
-      "size": 113719,
-      "sha256": "7332cbbfac91f927342c1eca6a1419bcd3259ffd18dac99b5343bb28be57e7d4"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-OV-002/M-HOME-OV-002-S04__WEBSITE__1170x2532.png",
-      "size": 117595,
-      "sha256": "9a39d0a64a29e3096cc19409e081eb3b7bbc3b8ce7874e096171302169f63717"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-OV-002/M-HOME-OV-002-S05__CONFIRM_EXTERNAL__1170x2532.png",
-      "size": 109418,
-      "sha256": "4ce0f1f672292788086e25618c59ee11b7ffc14d6d9085d327c868d9df67e0d5"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-OV-002/M-HOME-OV-002-S06__APP_UNAVAILABLE__1170x2532.png",
-      "size": 104547,
-      "sha256": "307de7a16f62eeb6e4aa77351f3f7a7f222d114d462585b30fd3f3aa8b7670e3"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/HOME-OV-002/M-HOME-OV-002-S07__INVALID_TARGET__1170x2532.png",
-      "size": 99740,
-      "sha256": "2dc4623d9432533eafea827f81e1f2697fb185be3646a181adf42ef6642a17c3"
-    },
-    {
-      "path": "ui/mockups/approved/V1.1.0/SYS-001/M-SYS-001-S04__OFFLINE_WITH_SESSION__1170x2532.png",
-      "size": 75502,
-      "sha256": "81c83d2c0205137c0d70e606b5f4ff678f5bf778c07e02c1e80dcea68c09d333"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/HOME-004/M-HOME-004-S03__OWNER_PENDING__1170x2532.png",
-      "size": 169927,
-      "sha256": "45c0443bb67baec0771c70151327e86c91dbb5367df89385ddb672a5fad9fd15"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/HOME-004/M-HOME-004-S04__OWNER_REJECTED__1170x2532.png",
-      "size": 170437,
-      "sha256": "0e83e7d2b17805993a0ea5d1fc2a61f173aeecf8e8de71bd2a1608093a765b9f"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/HOME-004/M-HOME-004-S05__OWNER_OFFLINE__1170x2532.png",
-      "size": 163146,
-      "sha256": "c3c4680d7dfa6cfaf981b70d56dbc550df17a8de08259360765809f962b72a9a"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S01__LOADING__1170x2532.png",
-      "size": 44110,
-      "sha256": "3a09483b163b690d8a9a1b3dd0b7c01623e6ecdfdab7e98b09fc87d8a864b56c"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S02__ALL__1170x2532.png",
-      "size": 179752,
-      "sha256": "29fd8ab96ce8e0c4787a10ab070d2a562a66aff2434ac3d45e227aa485e5b775"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S03__PENDING__1170x2532.png",
-      "size": 180984,
-      "sha256": "ddc39bee1c4770a4a718fe0a35e6ed9721e6e85168a23de6a09f6db45833f8f0"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S04__PUBLISHED__1170x2532.png",
-      "size": 180300,
-      "sha256": "76629c0de96a28ce0a33d21c64e87420cb3381a738de3967e6d1bf5877d5d3e3"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S05__REJECTED__1170x2532.png",
-      "size": 179947,
-      "sha256": "4cc6cadca4d49ff4f1510e962404649782689cd55b8e032d939a60e5688d867e"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S06__OFFLINE__1170x2532.png",
-      "size": 178256,
-      "sha256": "e644be2873aecb5f175c6673d2af09dab537f023fdc82feee1fe312e7717601a"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S07__EMPTY__1170x2532.png",
-      "size": 66792,
-      "sha256": "758b36312845402fd7d8d6b6191651979c9671f7678527f77f44f825d4bdc324"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S08__PAGINATING__1170x2532.png",
-      "size": 185845,
-      "sha256": "77846824fe6391af274a03ae459f85ef0c2e6bd79ffb9368741b2956c66e18ed"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S09__PAGINATION_FAILED__1170x2532.png",
-      "size": 189169,
-      "sha256": "df4bfaa831038896953b563f71d7c022f6c510f88fbebf693fc24c372376b777"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S10__OFFLINE_CACHED__1170x2532.png",
-      "size": 196467,
-      "sha256": "aa164841d1ceb0d4edb2f822134af751ecb35e7b214147a76ca4d2eb0c6191b4"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/ME-002/M-ME-002-S11__ERROR__1170x2532.png",
-      "size": 70630,
-      "sha256": "265ba8d0dd5d8b0dd3635fb1dc20df53b6f8ef9565438fcbe45ddaa88818232f"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/ME-OV-002/M-ME-OV-002-S01__PENDING__1170x2532.png",
-      "size": 147737,
-      "sha256": "7ea5f77ecf5245abec8dd643870c6b0dea7f27200c9506d9d3ac6b7429eaf41c"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/ME-OV-002/M-ME-OV-002-S02__PUBLISHED__1170x2532.png",
-      "size": 146376,
-      "sha256": "61e061759c430332258a7e2eb54f1f13eb1d2cf56160fc09cffbee15d55fc58f"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/ME-OV-002/M-ME-OV-002-S03__REJECTED__1170x2532.png",
-      "size": 156742,
-      "sha256": "a8b18c94354178aa657ac92e764b3674a9db65c7cacc8eeaf8d2955ca0c082d8"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/ME-OV-002/M-ME-OV-002-S04__OFFLINE__1170x2532.png",
-      "size": 147080,
-      "sha256": "2c33144651e1afe7fce296d7f49b8076118da40535680900cfda32b436fdea3b"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-001/M-PUB-001-S01__DEFAULT__1170x2532.png",
-      "size": 123662,
-      "sha256": "401236eb6571f81f218b2137d15c3408d9ff439740538c4612b35a69422ebefd"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-001/M-PUB-001-S02__DRAFT__1170x2532.png",
-      "size": 164509,
-      "sha256": "ad3f768f7fbb428f36ad30c5d5feb1347b0a79451bb69fb14843bb87bd37521c"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-001/M-PUB-001-S03__IMAGE_PICKING__1170x2532.png",
-      "size": 190531,
-      "sha256": "4ebab6b563d6164ad5f24ed379727f0684d24e9947a15afacb23fa6027cc22ef"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-001/M-PUB-001-S04__COMPRESSING__1170x2532.png",
-      "size": 138189,
-      "sha256": "30742e93782c24ef8ed3f2fef3cae41d4f61739bbab2d4f61578b1a19d59f1e4"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-001/M-PUB-001-S05__UPLOADING__1170x2532.png",
-      "size": 140632,
-      "sha256": "c4dbd374e7baeecba93ead5cd40e207a7a6faf98ec23f36fcfc05a4c81151d9a"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-001/M-PUB-001-S06__UPLOAD_FAILED__1170x2532.png",
-      "size": 140476,
-      "sha256": "457e6882179ac29747b917e60a298ea054ce5a28aed6cc4759133c7399e32772"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-001/M-PUB-001-S07__VALIDATION_ERROR__1170x2532.png",
-      "size": 182451,
-      "sha256": "7a15de73f04513ab9dbc862a7bf2936b9fd72e8d4d4b0fcbb6e485928d7e384f"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-001/M-PUB-001-S08__SUBMITTING__1170x2532.png",
-      "size": 162577,
-      "sha256": "fabb25ab3da363481638b8a5348860844803443ccadb85203612d9224fdd708d"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-001/M-PUB-001-S09__SUBMIT_SUCCESS__1170x2532.png",
-      "size": 175824,
-      "sha256": "f352d9f125d9824280305523622d28a402ce6a21eca21fa5fd74f3715a07dd8e"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-001/M-PUB-001-S10__NETWORK_ERROR__1170x2532.png",
-      "size": 180599,
-      "sha256": "877b2c37b9265ba5dde8ece5564925ca549a65c502eb2de971238f99be78a77f"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-001/M-PUB-001-S11__DAILY_LIMIT__1170x2532.png",
-      "size": 147778,
-      "sha256": "7d9efdd6550c78618e8c5489da81d4e85ce725a2d32d392960f9c4e673b208e4"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-001/M-PUB-001-S12__PENDING_LIMIT__1170x2532.png",
-      "size": 143803,
-      "sha256": "e3c4bcec943de525e63a84797e359de88def6e0174e3ab4bb711a8ceb104a148"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-001/M-PUB-001-S13__SESSION_EXPIRED__1170x2532.png",
-      "size": 147186,
-      "sha256": "b966b9a6b4a0ca8cb01a9068a0b14dcb4cf708557b02c4f3f9393934485136e7"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-002/M-PUB-002-S01__CONTENT__1170x2532.png",
-      "size": 103913,
-      "sha256": "f23e68a76a5be9b16f43cab63a27c5ff9b7bb15f4ae9e0a9ea4f8ff925d07212"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-002/M-PUB-002-S02__DRAGGING__1170x2532.png",
-      "size": 96175,
-      "sha256": "4f262b3fb5804313cd536a63d2cb3b5cb86261c243346900872cf19659a32a85"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-002/M-PUB-002-S03__COVER_CHANGED__1170x2532.png",
-      "size": 115131,
-      "sha256": "22db750cc0c5ae807b004d6131e16a0f346d71ca3b72f96f39f7b45815b9f1da"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-002/M-PUB-002-S04__SAVE_FAILED__1170x2532.png",
-      "size": 118299,
-      "sha256": "292e68c0037518f477092315f3e627ea27824d15d02ba041f2fa38f70cc99116"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-003/M-PUB-003-S01__PENDING__1170x2532.png",
-      "size": 68983,
-      "sha256": "8514e2af37002f80e97dd2c5f182dfee2504414fcc9610f8c856638f1e1ce2d8"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-003/M-PUB-003-S02__PUBLISHED__1170x2532.png",
-      "size": 58271,
-      "sha256": "e7d34d96eae2160823237bda49930a741681aeff30bfbb9766737f9845683ede"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-003/M-PUB-003-S03__FAILED__1170x2532.png",
-      "size": 68547,
-      "sha256": "2e513aadff1b84da5e7503906c588685ef56d301ef39404f9090aaa3e450638d"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-004/M-PUB-004-S01__LOADING__1170x2532.png",
-      "size": 24428,
-      "sha256": "c6e69bda1ed5609cb983de3f497f5598631242716c33da42ca636a53fe6f7425"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-004/M-PUB-004-S02__CONTENT__1170x2532.png",
-      "size": 164879,
-      "sha256": "94732c49f30942581f07f946312cc3aa480805806be42c5950da8d0ae9ffaca6"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-004/M-PUB-004-S03__REVIEW_WARNING__1170x2532.png",
-      "size": 183269,
-      "sha256": "9c71c761c24febbad8de6fc8a3340a6901c83e8125f7f3935c96be6b6aca1139"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-004/M-PUB-004-S04__SAVING__1170x2532.png",
-      "size": 162190,
-      "sha256": "01ded6df88b8efbf8bad91491af2f962fb6e80576b490fcb4448ca5493d84d7a"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-004/M-PUB-004-S05__SUCCESS__1170x2532.png",
-      "size": 179684,
-      "sha256": "4d5b13fc91cc5b247d884cc2e836674d3676c9e1595ccbc5dfe2f242a82897b9"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-004/M-PUB-004-S06__CONFLICT__1170x2532.png",
-      "size": 138991,
-      "sha256": "0dcba7eb822901353563f90d1ee1ad962826d9b1d1d0f875ab3cf2b662640e9a"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-004/M-PUB-004-S07__UNAVAILABLE__1170x2532.png",
-      "size": 59394,
-      "sha256": "2a8724f9ca800c0829db9887a8cc394ea1aa89a40638c76fb8697c7910bcd194"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-004/M-PUB-004-S08__NETWORK_ERROR__1170x2532.png",
-      "size": 177354,
-      "sha256": "f80f159fe22d14beee32e007a89f34a9216e8aa890c304985131115550dd2e4e"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-OV-001/M-PUB-OV-001-S01__DEFAULT__1170x2532.png",
-      "size": 141982,
-      "sha256": "7e7cdae3a45df5a5cfadf082f7514e5343632f3f3cf8dc69d4e01b3513caadf9"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-OV-001/M-PUB-OV-001-S02__DELETING__1170x2532.png",
-      "size": 141906,
-      "sha256": "ece0dcc12a918f047e4da57ed3acb5fabb04a363c006eed10b30b0a9df3b9138"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-OV-001/M-PUB-OV-001-S03__FAILED__1170x2532.png",
-      "size": 143948,
-      "sha256": "1ffb7449b42217c5d169fb5f8ffbd29c53750fe2d7708d096cc547fbb066eca9"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-OV-002/M-PUB-OV-002-S01__DEFAULT__1170x2532.png",
-      "size": 148330,
-      "sha256": "4cb703be06b7f950f373a397b5e25700fcadaad281dee86cf021e712fe21c038"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-OV-003/M-PUB-OV-003-S01__DEFAULT__1170x2532.png",
-      "size": 126304,
-      "sha256": "0666d1a5ec27c4cb63057dbde6164cab93331e1c3f092308fd3e9f3103dc6d47"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-OV-003/M-PUB-OV-003-S02__TYPE_SELECTED__1170x2532.png",
-      "size": 126108,
-      "sha256": "2e41e882ae8fe1311fd5ec168000e60b524ee3cdbfdf8f7d2159b552c12e7b53"
-    },
-    {
-      "path": "ui/mockups/approved/V1.2.0/PUB-OV-003/M-PUB-OV-003-S03__EMPTY__1170x2532.png",
-      "size": 149961,
-      "sha256": "a1df12aadbe6901f34f9c657b08cd3bfd2d7288fe0541996d9e7b4c52fcf9553"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/COM-OV-002/M-COM-OV-002-S02__MEMBER_STAGE__1170x2532.png",
-      "size": 164842,
-      "sha256": "15f84e151f5b72c610f6c5c68e5b672fe2e289ddaf648f28192f1e8980878e43"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/COM-OV-002/M-COM-OV-002-S03__WALLET_STAGE__1170x2532.png",
-      "size": 159048,
-      "sha256": "e63f2b848d612609ad18c6cf0e2715a6ec5c20ea3e7fef8bb57e3cbce203264e"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/COM-OV-002/M-COM-OV-002-S04__PROP_STAGE__1170x2532.png",
-      "size": 159935,
-      "sha256": "612e201fdb8d9feb03cfa5cd5ce3fb9e9436ca0de78c8b7aaf334d797e723f17"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-001/M-ME-001-S03__INACTIVE_MEMBER__1170x2532.png",
-      "size": 122780,
-      "sha256": "118411f4faaaf5b5eb4f09901c58ca1f1c7837b2981293214840500aa3976e6a"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-001/M-ME-001-S04__ACTIVE_MEMBER__1170x2532.png",
-      "size": 133046,
-      "sha256": "a81e334a10f05ea50ea099c33a10544ff36410e58dc34571df76f348c54c2a63"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-001/M-ME-001-S05__EXPIRED_MEMBER__1170x2532.png",
-      "size": 120904,
-      "sha256": "e837aaa9df05825e70c51eb6e652bee26aa99eaa305a1d5aba94234f4f19ab63"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-001/M-ME-001-S06__OFFLINE_CACHED__1170x2532.png",
-      "size": 140289,
-      "sha256": "2cdf3e6fe83eea65a15ea6f4dbb3c71650b362ab378bdc1f35aaaa896ced849f"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-003/M-ME-003-S01__LOADING__1170x2532.png",
-      "size": 27419,
-      "sha256": "972cd026da69012449f2d88bdaafab4a818822190670f7f5648c2ca200dce8c5"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-003/M-ME-003-S02__CONTENT__1170x2532.png",
-      "size": 95687,
-      "sha256": "40b31ef509ab95c9d064149e87a0d972c4a1f640f5065714133bfc795f9652ac"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-003/M-ME-003-S03__ERROR__1170x2532.png",
-      "size": 57960,
-      "sha256": "c86209e64f34a2d120948f9e44bd7303a83f47f2d442093627a544fd0e323066"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-004/M-ME-004-S01__LOADING__1170x2532.png",
-      "size": 23405,
-      "sha256": "ec86cbe3ae677e9ee3115648bd743a66b897dfcc5e14d3405a8259cf1853b434"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-004/M-ME-004-S02__INACTIVE__1170x2532.png",
-      "size": 134143,
-      "sha256": "1733f3e4120d540b5b0662346fea5ab2a2af5de0502e822dde303f0a15e1fc7b"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-004/M-ME-004-S03__ACTIVE__1170x2532.png",
-      "size": 154632,
-      "sha256": "2b83c40ee6067816e999847a7543ac424e025f5d43a6f57083e31afcb96ee650"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-004/M-ME-004-S04__EXPIRED__1170x2532.png",
-      "size": 143082,
-      "sha256": "0b1c4c4477c9372c93115d3f0fa32296fb524fac24b950313c4564ed2530656e"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-004/M-ME-004-S05__ERROR__1170x2532.png",
-      "size": 64378,
-      "sha256": "32c3a28acc02bf2faf37be70742f9baf0becb9137a61caff0b4cb3ac09943de6"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-005/M-ME-005-S01__LOADING__1170x2532.png",
-      "size": 32325,
-      "sha256": "7d7fc65ec9221a3bae54848e02b43230a49cee53b74a5f9de1f61616276c23b4"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-005/M-ME-005-S02__CONTENT__1170x2532.png",
-      "size": 92176,
-      "sha256": "dd872ad3a3cea402cc08589fe4bd94d43292cf5c4d6a72c58c2178df1702b60e"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-005/M-ME-005-S03__ERROR__1170x2532.png",
-      "size": 70546,
-      "sha256": "40237f564bfca96787e3b913bafc24a5eae63936cbe634d99fd59f48daf701d1"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-006/M-ME-006-S01__LOADING__1170x2532.png",
-      "size": 23529,
-      "sha256": "23a26936eeadcd6a02adaace513f39760ee7e6ca392da064c02bc4e03f7e4d31"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-006/M-ME-006-S02__CONTENT__1170x2532.png",
-      "size": 84944,
-      "sha256": "82260fe926ec184167ec85f40c45ec31986a62785fd49ecb97a2ad5cfa5ce8d5"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-006/M-ME-006-S03__EMPTY__1170x2532.png",
-      "size": 42090,
-      "sha256": "286d93a61646046a87cc82399b691d46987b9d5b1fb6a9ef46140f53ac99023e"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-006/M-ME-006-S04__OFFLINE_CACHED__1170x2532.png",
-      "size": 98848,
-      "sha256": "3b13aec2907d409f168526950f8a8385172506b63b5814bc62c578b4d513ee81"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-006/M-ME-006-S05__ERROR__1170x2532.png",
-      "size": 49607,
-      "sha256": "b6c9abd9812f61b687fa483d873db97f8011fd774aad1faaddd31fdf86d7686b"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-007/M-ME-007-S01__SCOPE_PLACEHOLDER__1170x2532.png",
-      "size": 77690,
-      "sha256": "7435dc425ab8ee49bb01560492cc414c7493fa66a1a266a0d314df1d6185a932"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-008/M-ME-008-S01__SCOPE_PLACEHOLDER__1170x2532.png",
-      "size": 70904,
-      "sha256": "029169f8b0d4fa9dbd8c6ed168d3aaa0989d63a851ad68a8b4847de7a2b8aa15"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-009/M-ME-009-S01__SCOPE_PLACEHOLDER__1170x2532.png",
-      "size": 78509,
-      "sha256": "13336adf3d0d51e3cd80c4724d816dd36b565170125aa0526eea681a92193969"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-010/M-ME-010-S01__LOADING__1170x2532.png",
-      "size": 26430,
-      "sha256": "b65137f3f7dc56b3bbb5bbb12706006a397e6050303547b6bc01a2f7bc5da688"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-010/M-ME-010-S02__CONTENT__1170x2532.png",
-      "size": 71008,
-      "sha256": "47a2dd48de5553ddbdb46eb8dfc7172037caba535520e09d4c6aa9d611b133b2"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-010/M-ME-010-S03__COPY_SUCCESS__1170x2532.png",
-      "size": 78989,
-      "sha256": "5462fac806cf11805a83da8133203d40fb265d12aa4d827948c88f020ac7ef70"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-010/M-ME-010-S04__APP_UNAVAILABLE__1170x2532.png",
-      "size": 87309,
-      "sha256": "0bc63af8b5d79f380137cdbd11e710251c8f7ef95297d04a3020081f2e527b3b"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-010/M-ME-010-S05__ERROR__1170x2532.png",
-      "size": 60167,
-      "sha256": "4d789217705f814ae3bc1e667fb6bbdd0cb72eb873a956aee462c78594db65d3"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-011/M-ME-011-S01__CONTENT__1170x2532.png",
-      "size": 61655,
-      "sha256": "210e699a76ade5697c9fc905085f0b8637aa97da3d1f43256d2cf845d467502b"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-011/M-ME-011-S02__CLEARING_CACHE__1170x2532.png",
-      "size": 68663,
-      "sha256": "8f1f35dbf7d90eb72d596ea4f27c058f6ef2246ffd654370b5b0ac6536408d72"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-011/M-ME-011-S03__CACHE_CLEARED__1170x2532.png",
-      "size": 68327,
-      "sha256": "9b07bfbf9fdff0b3a18162b291aeb0f21954afa55d49d90a433961efaa51b672"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-011/M-ME-011-S04__CACHE_CLEAR_FAILED__1170x2532.png",
-      "size": 78159,
-      "sha256": "34864b18551d0dcb9f8f4976f1b9f0abb2fb2ad11de88eddb658c6c984c9b06f"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-011/M-ME-011-S05__OFFLINE__1170x2532.png",
-      "size": 86489,
-      "sha256": "78e41a6c51c8026ebc0632d8cbe5cd99a0db2cb159ee64ed598d8b253c7f71d1"
-    },
-    {
-      "path": "ui/mockups/approved/V1.3.0/ME-012/M-ME-012-S01__CONTENT__1170x2532.png",
-      "size": 80899,
-      "sha256": "b7f08bc9c718f4ea2e8c4c3a03e2d09cbdf127a47b6a3da5e982b459e573e270"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/ME-012/M-ME-012-S02__CHECKING_UPDATE__1170x2532.png",
-      "size": 69928,
-      "sha256": "aca86335d5bcb673f76469f4371a33fb15dd61f073a6d8524211c35a8828ccde"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/ME-012/M-ME-012-S03__UP_TO_DATE__1170x2532.png",
-      "size": 88582,
-      "sha256": "0adcd111f2085d0c8b94eae9bdc97b21415e03053ed2a25348c43d15b2295e9e"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/ME-012/M-ME-012-S04__UPDATE_AVAILABLE__1170x2532.png",
-      "size": 77579,
-      "sha256": "8ce9788aa47db8d72f0423ae666eb90b7b14ab379a2567bee2b3f9295c54b5cb"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/ME-012/M-ME-012-S05__CHECK_FAILED__1170x2532.png",
-      "size": 91762,
-      "sha256": "9e977522c1daa31f52ff430a61980c6b10cc1c41860e00a01a1e8b4f93992db6"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-001/M-SYS-001-S05__OPTIONAL_UPDATE__1170x2532.png",
-      "size": 62780,
-      "sha256": "7aa9ee471b25cd5a35b54a4eee65c3a5bfa494e8cf191a44ec5d576c3d3c157a"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-001/M-SYS-001-S06__FORCED_UPDATE__1170x2532.png",
-      "size": 60114,
-      "sha256": "dcc5e89581686e684424a80ac6369d350220d8d949e3c87cba8fb9b531bb9b0b"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-001/M-SYS-001-S07__MAINTENANCE__1170x2532.png",
-      "size": 71509,
-      "sha256": "27c12ee14a3a91dcd46ec569f6d9b0e0367eb69a7bfd86b117677954106f21e8"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-002/M-SYS-002-S05__RECOVERED__1170x2532.png",
-      "size": 62775,
-      "sha256": "e06e40a1d3741ebd0772a763b58b829cb5a1c2fa3a65b86b09f175805c3ca0f1"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S01__LOADING__1170x2532.png",
-      "size": 70099,
-      "sha256": "54f56317e62fe1c4743c9adf78506b65d66d1adced2d79bdf39fbfaf5f1793e6"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S02__UP_TO_DATE__1170x2532.png",
-      "size": 77203,
-      "sha256": "75fa18b40d4a0a0d448dc41eaea90264ab71edd2e626dd1dc7ca5b862ab31c64"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S03__OPTIONAL_AVAILABLE__1170x2532.png",
-      "size": 115481,
-      "sha256": "c740cf1fb066d92fca849d570f3cd5b3188fa740e1cd198de9707fac9728f8b9"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S04__FORCED_AVAILABLE__1170x2532.png",
-      "size": 131613,
-      "sha256": "fa428610777a44b92264690069f1f82ce28329db67ab61653c7e367fb4c63ebe"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S05__DOWNLOADING__1170x2532.png",
-      "size": 123469,
-      "sha256": "9a9040ca6bf0513b39c8cd33c66b3c6e963f3d4e38c202506aa650c8ca8feced"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S06__DOWNLOAD_FAILED__1170x2532.png",
-      "size": 131059,
-      "sha256": "0d0448e073632a25ddf8450f8b8332a81d2a48d28aaf91fa1bc02dd755ea14bd"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S07__READY_TO_INSTALL__1170x2532.png",
-      "size": 134952,
-      "sha256": "675bec65ac60f3176618837eb7f163834ca1aedfe3b4810e2585a00aae64b253"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-003/M-SYS-003-S08__INSTALL_BLOCKED__1170x2532.png",
-      "size": 137332,
-      "sha256": "ad4cb5c8ce66da8f330c5c0680d51c6a5205ee2aef0ee509a35073b9d9516754"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-OV-001/M-SYS-OV-001-S01__DEFAULT__1170x2532.png",
-      "size": 65639,
-      "sha256": "146ead3dae4e03327c5e12e5fcdf13acc67676b980c91952987929464026eee4"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-OV-001/M-SYS-OV-001-S02__DOWNLOADING__1170x2532.png",
-      "size": 71630,
-      "sha256": "f9086d2bb0caab582c94ff3de1c8b95fb98bb5cc7bae1d4d2df014b930505525"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-OV-001/M-SYS-OV-001-S03__FAILED__1170x2532.png",
-      "size": 62869,
-      "sha256": "dcf62920d65ab02abe81ca423a98131cb5b30123ecb8e6e48a421ceb27e416d5"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-OV-002/M-SYS-OV-002-S01__DEFAULT__1170x2532.png",
-      "size": 65433,
-      "sha256": "3a7aa2f24cd65fc9af6338dd4b2dadca871abef167ce013ab21c89ae2a3f85ce"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-OV-002/M-SYS-OV-002-S02__DOWNLOADING__1170x2532.png",
-      "size": 67904,
-      "sha256": "240d849834131f3a7655c8ecdeaadcaae2d4541c881a440209d85eac909be80b"
-    },
-    {
-      "path": "ui/mockups/approved/V1.4.0/SYS-OV-002/M-SYS-OV-002-S03__FAILED__1170x2532.png",
-      "size": 67132,
-      "sha256": "50a37d5a00d83bd4d577e668d0bcae56798cdf22cbb51fea2d7c21f6b37a5f50"
-    },
-    {
-      "path": "ui/mockups/review-sheets/AUTH-001__REVIEW_SHEET.png",
-      "size": 290572,
-      "sha256": "cb06ce9f1664a63350704b89a8cb385fab7c631257c60a42bd5fa8ddb355580b"
-    },
-    {
-      "path": "ui/mockups/review-sheets/AUTH-002__REVIEW_SHEET.png",
-      "size": 233146,
-      "sha256": "913dbc36079b79e1e7ea43dc3c40a4291b92321015abea273fbe51ea863496ae"
-    },
-    {
-      "path": "ui/mockups/review-sheets/AUTH-003__REVIEW_SHEET.png",
-      "size": 202267,
-      "sha256": "18ad513d544c86d0fdca2c6a8f7c1b67a77955cd11432a5bd1d56a52d2d1e2e5"
-    },
-    {
-      "path": "ui/mockups/review-sheets/AUTH-004__REVIEW_SHEET.png",
-      "size": 151126,
-      "sha256": "d1447ac54c2207643587f0eab6394e3731f26830afb85ff376810ad541483c83"
-    },
-    {
-      "path": "ui/mockups/review-sheets/AUTH-005__REVIEW_SHEET.png",
-      "size": 152070,
-      "sha256": "d08acdd2ae6fef78b5e08baf02e0828105ec5de8efef1832cf6a377102dcd04b"
-    },
-    {
-      "path": "ui/mockups/review-sheets/AUTH-OV-001__REVIEW_SHEET.png",
-      "size": 104826,
-      "sha256": "f56d6c38553d416c81a000609a477196f259f9e76a92250e98e65788d31249be"
-    },
-    {
-      "path": "ui/mockups/review-sheets/AUTH-OV-002__REVIEW_SHEET.png",
-      "size": 64736,
-      "sha256": "ebf9a608f980523c8da6e457f1386f7a42343ff43039753f78c93fb0218cde51"
-    },
-    {
-      "path": "ui/mockups/review-sheets/COM-OV-001__REVIEW_SHEET.png",
-      "size": 90469,
-      "sha256": "9e574050ff23e2bc6bdebd34edc232570e5c784dde44b634a87a21582f3338cf"
-    },
-    {
-      "path": "ui/mockups/review-sheets/COM-OV-002__REVIEW_SHEET.png",
-      "size": 81856,
-      "sha256": "7cf94ba81a910e3fb0f42413cda15b636967ea3e6a2ae75c81ae0c8003a926a0"
-    },
-    {
-      "path": "ui/mockups/review-sheets/DS-001__REVIEW_SHEET.png",
-      "size": 56777,
-      "sha256": "64055d3d587db62afb065512e22bfb359d3c3151d1a9738bbbaaf7dfb6071c68"
-    },
-    {
-      "path": "ui/mockups/review-sheets/DS-002__REVIEW_SHEET.png",
-      "size": 50346,
-      "sha256": "c2dca0643a98c10ad12c0fec17514c7ba35447c6c7222f266e83505e18eb153c"
-    },
-    {
-      "path": "ui/mockups/review-sheets/DS-003__REVIEW_SHEET.png",
-      "size": 38432,
-      "sha256": "59d08429553c9717359b5c9bf74f893d6ea8b40095b5578ae96900534ddadbb7"
-    },
-    {
-      "path": "ui/mockups/review-sheets/HOME-001__REVIEW_SHEET.png",
-      "size": 357833,
-      "sha256": "051fc852d248d81e1565440cec97a948abcfa9d487e71a34a5cf4e915f0873c4"
-    },
-    {
-      "path": "ui/mockups/review-sheets/HOME-002__REVIEW_SHEET.png",
-      "size": 141922,
-      "sha256": "6d90f73a97f0db4565de05ab742283450c4704332d30527943086813cb2e6817"
-    },
-    {
-      "path": "ui/mockups/review-sheets/HOME-003__REVIEW_SHEET.png",
-      "size": 71811,
-      "sha256": "b98b57d360c7f73552e1e020fd2bb7533b90c6b6f8f1cc3abaeffcd8e040d547"
-    },
-    {
-      "path": "ui/mockups/review-sheets/HOME-004__REVIEW_SHEET.png",
-      "size": 253704,
-      "sha256": "7de3c08608c41eb6ae12733c64dcdb382ce974561964e5a63f2160d1c496598e"
-    },
-    {
-      "path": "ui/mockups/review-sheets/HOME-OV-001__REVIEW_SHEET.png",
-      "size": 46136,
-      "sha256": "278cb8ea955ebc105c8edab3bbf0dfe79d685b4f944cd1aa0a2bdeeda8bf9faa"
-    },
-    {
-      "path": "ui/mockups/review-sheets/HOME-OV-002__REVIEW_SHEET.png",
-      "size": 131513,
-      "sha256": "432147d5cb6e3f7aa338cc422c992ee8ea8efaba5a5f87794d22708ae923c235"
-    },
-    {
-      "path": "ui/mockups/review-sheets/ME-001__REVIEW_SHEET.png",
-      "size": 195148,
-      "sha256": "4b8cca712a3f353dd8e8eced05f3d4d1c486c3ff9ba1c99b6132abcead0b29b3"
-    },
-    {
-      "path": "ui/mockups/review-sheets/ME-002__REVIEW_SHEET.png",
-      "size": 264939,
-      "sha256": "f04830bf6dca9016cddd1931be4aedced6fc5515b9e2b214e8bca9532a2ed433"
-    },
-    {
-      "path": "ui/mockups/review-sheets/ME-003__REVIEW_SHEET.png",
-      "size": 45716,
-      "sha256": "cfd713bbc03c2dafa6c262a4dc8e30c7495df60866774305664ae841e02e405d"
-    },
-    {
-      "path": "ui/mockups/review-sheets/ME-004__REVIEW_SHEET.png",
-      "size": 92590,
-      "sha256": "c28d6528f8f75ae8c083386326ba73a56a6f478a80f94f5a2a1c337011acf08f"
-    },
-    {
-      "path": "ui/mockups/review-sheets/ME-005__REVIEW_SHEET.png",
-      "size": 45241,
-      "sha256": "d9f6ad892036685d2261ab1dbde0c4d6469f79348e9b99cfc68eb8bc6fd39347"
-    },
-    {
-      "path": "ui/mockups/review-sheets/ME-006__REVIEW_SHEET.png",
-      "size": 85981,
-      "sha256": "05782ec0c2adb8031b642872a1b4a50ad34bb6042f8c12efd01462d45687d58f"
-    },
-    {
-      "path": "ui/mockups/review-sheets/ME-007__REVIEW_SHEET.png",
-      "size": 28030,
-      "sha256": "c9992ab73567bc5e93753b0837f48bb84db4c3830abd7b87f4bc2072f8f338f6"
-    },
-    {
-      "path": "ui/mockups/review-sheets/ME-008__REVIEW_SHEET.png",
-      "size": 25649,
-      "sha256": "d52635fca471a7c39b3c10e946a95b0b1acb0312c2efc18aed64a26f9b565313"
-    },
-    {
-      "path": "ui/mockups/review-sheets/ME-009__REVIEW_SHEET.png",
-      "size": 28275,
-      "sha256": "f613fcb416ac0a7554c7fc27c8fec7408d45745aa483395522323bcf137d507e"
-    },
-    {
-      "path": "ui/mockups/review-sheets/ME-010__REVIEW_SHEET.png",
-      "size": 81253,
-      "sha256": "b88cd00df9734859f51242f232c2f0a5579f6493478f21f0d7535f4ef7ee4eae"
-    },
-    {
-      "path": "ui/mockups/review-sheets/ME-011__REVIEW_SHEET.png",
-      "size": 85233,
-      "sha256": "172c21470856f07ac92b297c9f8b6ea9ee97c34ea08f4798e393eaf39e3df89a"
-    },
-    {
-      "path": "ui/mockups/review-sheets/ME-012__REVIEW_SHEET.png",
-      "size": 104884,
-      "sha256": "13a8cdd431cf55784782d8dd66cd2ebb6334db3779014f0b3392398588d1d743"
-    },
-    {
-      "path": "ui/mockups/review-sheets/ME-OV-001__REVIEW_SHEET.png",
-      "size": 66892,
-      "sha256": "ebd0298f254d15603ddb5ab52f4ecb14b62050604ddbac2f90aab6f611b5dc29"
-    },
-    {
-      "path": "ui/mockups/review-sheets/ME-OV-002__REVIEW_SHEET.png",
-      "size": 66512,
-      "sha256": "1f104b641c012947be3033d8b9cc785c1a9e19b44894556d55ad14137b2ad3e0"
-    },
-    {
-      "path": "ui/mockups/review-sheets/PUB-001__REVIEW_SHEET.png",
-      "size": 418363,
-      "sha256": "12424331d90588be23653e1d5976d5637376f484099bf0d1523f0ecf468926d6"
-    },
-    {
-      "path": "ui/mockups/review-sheets/PUB-002__REVIEW_SHEET.png",
-      "size": 61001,
-      "sha256": "6447b73a7efdece33d19abfe6658499973ed905831e502106ed0436b64d970f8"
-    },
-    {
-      "path": "ui/mockups/review-sheets/PUB-003__REVIEW_SHEET.png",
-      "size": 50815,
-      "sha256": "b375e510dfb465d06e547c4fad794691a2e811ea61251eccfd2ea6c61de18e7f"
-    },
-    {
-      "path": "ui/mockups/review-sheets/PUB-004__REVIEW_SHEET.png",
-      "size": 228239,
-      "sha256": "1d51190c3c1b68845ce681511cff5ae445fe377ffe9665c725c7493b222ededb"
-    },
-    {
-      "path": "ui/mockups/review-sheets/PUB-OV-001__REVIEW_SHEET.png",
-      "size": 71560,
-      "sha256": "eb23d2b4fdfee2284b34a4ab0d03459116bfb21a63376346a27cbc9981907951"
-    },
-    {
-      "path": "ui/mockups/review-sheets/PUB-OV-002__REVIEW_SHEET.png",
-      "size": 49075,
-      "sha256": "67a2e09659cf580fd8e2278150a2db416641852c2f082b229b61c1e121c0d3c6"
-    },
-    {
-      "path": "ui/mockups/review-sheets/PUB-OV-003__REVIEW_SHEET.png",
-      "size": 62599,
-      "sha256": "d6aeca78c1c2df563087c73a93b5831239763da38c476be4bfa30940ef486b44"
-    },
-    {
-      "path": "ui/mockups/review-sheets/SYS-001__REVIEW_SHEET.png",
-      "size": 120036,
-      "sha256": "3ce27bbabbc1329c4b49dd5b2e96ccff4e18c0c8a7e871623a78779680db7708"
-    },
-    {
-      "path": "ui/mockups/review-sheets/SYS-002__REVIEW_SHEET.png",
-      "size": 82226,
-      "sha256": "5284564f56c418cb25366617d2787489302d82d9cf2f126f209403c3a208cced"
-    },
-    {
-      "path": "ui/mockups/review-sheets/SYS-003__REVIEW_SHEET.png",
-      "size": 129880,
-      "sha256": "6064dda6330bcdf49d3e4f746e2d0cd2975435c18f1973fda28813a247488988"
-    },
-    {
-      "path": "ui/mockups/review-sheets/SYS-OV-001__REVIEW_SHEET.png",
-      "size": 52195,
-      "sha256": "b3b0bc011e372b0159a45e50ea74532a1da94dd674e9f29d86e6439558d27cd5"
-    },
-    {
-      "path": "ui/mockups/review-sheets/SYS-OV-002__REVIEW_SHEET.png",
-      "size": 53752,
-      "sha256": "d7a67aac9603df81803af196ec8a7b40c3c7f5e1c87257fc36bdf5967852d5f6"
-    },
-    {
-      "path": "ui/page-contracts/AUTH-001.yaml",
-      "size": 10341,
-      "sha256": "1455dad1ec2a7ee6b2b4f8fbf2d93720d9c4d510541e4095d252eb5827476f8a"
-    },
-    {
-      "path": "ui/page-contracts/AUTH-002.yaml",
-      "size": 7862,
-      "sha256": "c880cb16be173c406f71db7dcb3aa7aa48367be5ed12ffb54b26cbdfc7597cf0"
-    },
-    {
-      "path": "ui/page-contracts/AUTH-003.yaml",
-      "size": 6849,
-      "sha256": "49df87cb1e225dd3123f2ff1dd0537e51a9c269f61b840a451ff85e99c54d0b1"
-    },
-    {
-      "path": "ui/page-contracts/AUTH-004.yaml",
-      "size": 3178,
-      "sha256": "e0cb9aa447454bc50dea031887a6e68bd5d074274d63cd2bba0dd172ba225980"
-    },
-    {
-      "path": "ui/page-contracts/AUTH-005.yaml",
-      "size": 3180,
-      "sha256": "9a94a35058ed9fcef6bf164272601320443c844e477d99a9d389b0064e7d4f61"
-    },
-    {
-      "path": "ui/page-contracts/AUTH-OV-001.yaml",
-      "size": 5059,
-      "sha256": "0b39459c3c9ed1c03fb2327384026123fedef227eb1ccf7e6029c9607a6c8d91"
-    },
-    {
-      "path": "ui/page-contracts/AUTH-OV-002.yaml",
-      "size": 3015,
-      "sha256": "03dcc24adb4ff18228d35a2ae41c3dd9973147e95c9754822bb946886a013788"
-    },
-    {
-      "path": "ui/page-contracts/COM-OV-001.yaml",
-      "size": 2985,
-      "sha256": "4ca5783f65743710bc921f4de069124f5baf2aed55d7baf3113e2f723d5b06c0"
-    },
-    {
-      "path": "ui/page-contracts/COM-OV-002.yaml",
-      "size": 3029,
-      "sha256": "d8c8b8ba0cae17ae7d389b3b54c8731d03b15f40c11f9fcfa43aee61fabb78b9"
-    },
-    {
-      "path": "ui/page-contracts/DS-001.yaml",
-      "size": 1827,
-      "sha256": "fc9022c666b72476b2c01dfd8c360d6118ba97b7a2ca43f62790aafcc899be93"
-    },
-    {
-      "path": "ui/page-contracts/DS-002.yaml",
-      "size": 1805,
-      "sha256": "0291d99c18c782c98f2f4c4d0b82ffec184e3dc0adcab944feaa2597de287fcc"
-    },
-    {
-      "path": "ui/page-contracts/DS-003.yaml",
-      "size": 1836,
-      "sha256": "128516ee048c0fffaba7452331739d8e9442b89022118c59e3fbb6777e753ec0"
-    },
-    {
-      "path": "ui/page-contracts/HOME-001.yaml",
-      "size": 8524,
-      "sha256": "db4877b0d56d3468e0c224b1ff022c9db97401342e5d58055cc82fefda41ed7c"
-    },
-    {
-      "path": "ui/page-contracts/HOME-002.yaml",
-      "size": 5106,
-      "sha256": "68f9f7ad5acdda4069091297004c8fcce1d8a7531056b0c3b77855dafb89b3f3"
-    },
-    {
-      "path": "ui/page-contracts/HOME-003.yaml",
-      "size": 3703,
-      "sha256": "1c7697b19b5bd49e0e1945145d59d1a6b6b0c3ec3b089fe7f4bb27ed9c95cb0f"
-    },
-    {
-      "path": "ui/page-contracts/HOME-004.yaml",
-      "size": 7175,
-      "sha256": "0bc9bb6da396d2b410f5fef41d22284bda81468219abb1377c33ba47e02e21de"
-    },
-    {
-      "path": "ui/page-contracts/HOME-OV-001.yaml",
-      "size": 3535,
-      "sha256": "4c8f839341fa3739d6d9fe2dec6fad1152a6d05fcb83bf42207e0238e5e20028"
-    },
-    {
-      "path": "ui/page-contracts/HOME-OV-002.yaml",
-      "size": 5328,
-      "sha256": "4dd0fd034bc984caca6ff87695e0b20ac9a2d3f05369ac478502248f5a5ca996"
-    },
-    {
-      "path": "ui/page-contracts/ME-001.yaml",
-      "size": 6998,
-      "sha256": "1f2e170b5876d266b1e6791d134be1be67d7acb98269837546101235dc276353"
-    },
-    {
-      "path": "ui/page-contracts/ME-002.yaml",
-      "size": 6199,
-      "sha256": "ab7d71590b22d6d80318776fe71908d17ac8ea739648da380f99ed19f5f6dd35"
-    },
-    {
-      "path": "ui/page-contracts/ME-003.yaml",
-      "size": 2522,
-      "sha256": "f8a9ac6dfc67e6bdc68d6b8dcf2a910afe3a2dae355db2c85d70a59359604afe"
-    },
-    {
-      "path": "ui/page-contracts/ME-004.yaml",
-      "size": 3409,
-      "sha256": "1d4c7f7645c96fa62da3928cfe5ba026bf9d78454750ada961161eb11dd4e431"
-    },
-    {
-      "path": "ui/page-contracts/ME-005.yaml",
-      "size": 2846,
-      "sha256": "a320950e458df045e4fc7a40f55d0ca1f74390a6d78d713a23185f6ad8978434"
-    },
-    {
-      "path": "ui/page-contracts/ME-006.yaml",
-      "size": 3341,
-      "sha256": "5b4673ed4f4ee873fb362728843b97562cbca74b7ae6d953f74dbc56556d4cb7"
-    },
-    {
-      "path": "ui/page-contracts/ME-007.yaml",
-      "size": 2027,
-      "sha256": "0e9e2a42061a59123daa5ba3ca0898e3f0dbb4d5cc68b2d9446daecb32dc7bf1"
-    },
-    {
-      "path": "ui/page-contracts/ME-008.yaml",
-      "size": 2007,
-      "sha256": "7d6935905d8bff1a4391af45848ce2998ea65d5fbcbe8f1395adf55f3a7e1b75"
-    },
-    {
-      "path": "ui/page-contracts/ME-009.yaml",
-      "size": 2025,
-      "sha256": "e75fdbb7cc101c1ab8fdd3787640f05968d427228d9387ca67a332d30169c01d"
-    },
-    {
-      "path": "ui/page-contracts/ME-010.yaml",
-      "size": 3688,
-      "sha256": "9951bf54dbf628f9135ea3e69d2e51b0b4ab6676df30e0f37b3e31e2800bdbcb"
-    },
-    {
-      "path": "ui/page-contracts/ME-011.yaml",
-      "size": 4302,
-      "sha256": "531378f86ed089286e8f7ca9aa968c650c2c7fc3b1a1f0e4db85e8093ffc05ae"
-    },
-    {
-      "path": "ui/page-contracts/ME-012.yaml",
-      "size": 3384,
-      "sha256": "746ed8ea2c7685ed5e9dc8911706c03f360f3e8c803c2479c34528d7cdf25a82"
-    },
-    {
-      "path": "ui/page-contracts/ME-OV-001.yaml",
-      "size": 2914,
-      "sha256": "b98652ac5ec85297156bb8f5fd46aa0821ff15464769fb1602f42051124c0840"
-    },
-    {
-      "path": "ui/page-contracts/ME-OV-002.yaml",
-      "size": 4448,
-      "sha256": "c2e96d7a84777a2841bd124e6a15ee329c1646b844ea4656cc37ce45c7195a57"
-    },
-    {
-      "path": "ui/page-contracts/PUB-001.yaml",
-      "size": 9496,
-      "sha256": "34a018721856f9fad55c763f45a435c7721d7fc63d04a7b2f513d77e1173e321"
-    },
-    {
-      "path": "ui/page-contracts/PUB-002.yaml",
-      "size": 3868,
-      "sha256": "62f7840e8e1e5c9d38c6289a56b4f6e20fc35e99bac8c9ca213442bb74f9c376"
-    },
-    {
-      "path": "ui/page-contracts/PUB-003.yaml",
-      "size": 3199,
-      "sha256": "4d4bbbf41534fa87930fc92cb632a679991634103199024a7ae757e4c87e08ef"
-    },
-    {
-      "path": "ui/page-contracts/PUB-004.yaml",
-      "size": 4309,
-      "sha256": "f0d63c8a045ad9fb0fd8195784ecb2769da147ad594ebd8b61c694fe55e38c07"
-    },
-    {
-      "path": "ui/page-contracts/PUB-OV-001.yaml",
-      "size": 2936,
-      "sha256": "07ba310cc8780da6d9d7a061879aff5bf42623fd83026220bfd9bbbbc5b3ff71"
-    },
-    {
-      "path": "ui/page-contracts/PUB-OV-002.yaml",
-      "size": 2326,
-      "sha256": "1610f224ecd4f34bb60fb06870a62f58119ee216507883c01ccb45dc01a49002"
-    },
-    {
-      "path": "ui/page-contracts/PUB-OV-003.yaml",
-      "size": 2980,
-      "sha256": "8bed6103f43220ffa5d464bddde47ebc64f899a29d58d5af4cb5821557b7dd7c"
-    },
-    {
-      "path": "ui/page-contracts/SYS-001.yaml",
-      "size": 4447,
-      "sha256": "37882a0aeed0b68a73d816d7360d337d9f5481dc02d1cca1aa78cd23b25509aa"
-    },
-    {
-      "path": "ui/page-contracts/SYS-002.yaml",
-      "size": 3609,
-      "sha256": "49ce1463d684f120d9c3d9efdbfb9fe6a6f6e5ae9b93b3f9ae80633ebabe6eb6"
-    },
-    {
-      "path": "ui/page-contracts/SYS-003.yaml",
-      "size": 5090,
-      "sha256": "52c374fc6d25c5555b116348229f4ce7a63b02b67a9bef42e58bb92f56293110"
-    },
-    {
-      "path": "ui/page-contracts/SYS-OV-001.yaml",
-      "size": 2901,
-      "sha256": "5ef3a4a4ba9b07b8d1f6c296090edf4e6c3f160880e9d6eef510d42b0a70c066"
-    },
-    {
-      "path": "ui/page-contracts/SYS-OV-002.yaml",
-      "size": 2637,
-      "sha256": "f05e3499f22b54d1d460104de32294edbf1ea8ecb7cc6a434239d0f52b1f17e4"
-    },
-    {
-      "path": "ui/README.md",
-      "size": 725,
-      "sha256": "794ff468b28e8cf0813c55333bc90b249878dde2e47035ade0ec2d4c5d31d27a"
-    },
-    {
-      "path": "versions/V1.0.0/BACKEND_ADMIN_SCOPE.md",
-      "size": 16835,
-      "sha256": "72615f600c0af8aa76ee36cdbbe803da45251cc8b03b91ef3d85bc1b04f43bad"
-    },
-    {
-      "path": "versions/V1.0.0/CODEX_START_PROMPT.md",
-      "size": 1946,
-      "sha256": "ff0042227e831903a14fb06da1a4b225fb1f9a9d367cbb4cae4a34bfdb244054"
-    },
-    {
-      "path": "versions/V1.0.0/DELIVERY_CHECKLIST.md",
-      "size": 818,
-      "sha256": "ff872e63b93936536ac457f555539d04f608b95d42dfd4607509e54445d8ae5f"
-    },
-    {
-      "path": "versions/V1.0.0/DNS_ACTION_REQUIRED.md",
-      "size": 1205,
-      "sha256": "025b99a97e11d4ab18f94989a823d4c77057dcad56509767497386b84620c825"
-    },
-    {
-      "path": "versions/V1.0.0/FEATURE_TRACEABILITY.csv",
-      "size": 18930,
-      "sha256": "1f2fa2725376e0d2a42cad1956371a2f1d331e2de5feb5796e3cbda1b8efa815"
-    },
-    {
-      "path": "versions/V1.0.0/FRONTEND_SCOPE.md",
-      "size": 24697,
-      "sha256": "eeef5e709871f292fba080897b1740404c95f2e489806f1c1993140499f39240"
-    },
-    {
-      "path": "versions/V1.0.0/PAGE_STATE_MOCKUP_BINDINGS.csv",
-      "size": 42880,
-      "sha256": "e2c0cb87938c0e1f061cbb62147836f2b7525455860aa6e9eef66bff6b578f28"
-    },
-    {
-      "path": "versions/V1.0.0/TEST_AND_OWNER_ACCEPTANCE.md",
-      "size": 36661,
-      "sha256": "08b941ed27ced08e53ee44f983d24d7d9bdceb5a4661066367b3ae5fcbda373d"
-    },
-    {
-      "path": "versions/V1.0.0/UI_FIXED_RULES.md",
-      "size": 3594,
-      "sha256": "bca408fcd56aa3683d8e5aaf848446137fe17169738781f620e057368d66398b"
-    },
-    {
-      "path": "versions/V1.0.0/VERSION_DEVELOPMENT_SPEC.md",
-      "size": 6994,
-      "sha256": "ef3f9abbf44b2040cdba99330e408d114fdcba1a482549239668257e0e868d48"
-    },
-    {
-      "path": "versions/V1.0.0/VERSION_STATUS.yaml",
-      "size": 791,
-      "sha256": "58779d2f5495b30c74654e9c7a2308d89a594237f6f4b5ce12a3a628e478da99"
-    },
-    {
-      "path": "versions/V1.1.0/BACKEND_ADMIN_SCOPE.md",
-      "size": 3098,
-      "sha256": "92d1a39ade823f87cea2578141ff16e70b03c21256b7fdf075bba328daa665f7"
-    },
-    {
-      "path": "versions/V1.1.0/CODEX_START_PROMPT.md",
-      "size": 1958,
-      "sha256": "1e803c9cd1a442c147efc85cd46ace3f2f642ab84691372a215a39996a76ad07"
-    },
-    {
-      "path": "versions/V1.1.0/DELIVERY_CHECKLIST.md",
-      "size": 849,
-      "sha256": "e9e5ef052ba4e0ee74f726461d7e4f9d6a561d14911db8c03321e46830ca31ea"
-    },
-    {
-      "path": "versions/V1.1.0/DNS_ACTION_REQUIRED.md",
-      "size": 901,
-      "sha256": "104dc14bcef5daba02f7819eaee86bace50bd5c8e2d180c875c3dc7effb26378"
-    },
-    {
-      "path": "versions/V1.1.0/FEATURE_TRACEABILITY.csv",
-      "size": 4277,
-      "sha256": "20e556de9f726c8680e01319fdb5348d116ff5cff95eed1f74eceb8da3bfe1fc"
-    },
-    {
-      "path": "versions/V1.1.0/FRONTEND_SCOPE.md",
-      "size": 9276,
-      "sha256": "93c4efd25a8e1052e3ec613a98409f9c320f8c520c3cc6b46b053fdad42789d4"
-    },
-    {
-      "path": "versions/V1.1.0/PAGE_STATE_MOCKUP_BINDINGS.csv",
-      "size": 13442,
-      "sha256": "656faa8cc974677f005b2ad4d4bb0a7c5ee3f265229c8b1f742e565b7bbebbbc"
-    },
-    {
-      "path": "versions/V1.1.0/TEST_AND_OWNER_ACCEPTANCE.md",
-      "size": 11428,
-      "sha256": "a3643210afd2b83883ff5aabbb7a39e3035aefa5774793a08a92e54639d82014"
-    },
-    {
-      "path": "versions/V1.1.0/UI_FIXED_RULES.md",
-      "size": 3594,
-      "sha256": "bca408fcd56aa3683d8e5aaf848446137fe17169738781f620e057368d66398b"
-    },
-    {
-      "path": "versions/V1.1.0/VERSION_DEVELOPMENT_SPEC.md",
-      "size": 3441,
-      "sha256": "3c25b0af14402ce11470f3d6c7ccb8783dbc25ae109687de2dcaeca800c56023"
-    },
-    {
-      "path": "versions/V1.1.0/VERSION_STATUS.yaml",
-      "size": 814,
-      "sha256": "8d8eada3b4dc2335ebb2e2bab690d269a9bb05e168c40d18afb1d020365dafd7"
-    },
-    {
-      "path": "versions/V1.2.0/BACKEND_ADMIN_SCOPE.md",
-      "size": 6277,
-      "sha256": "559edcb940c5ef6509fe1de31e6508080b266b88295a42df8c8f68b4b30d730e"
-    },
-    {
-      "path": "versions/V1.2.0/CODEX_START_PROMPT.md",
-      "size": 1958,
-      "sha256": "2668e184fe963688eb99f556ec84e7bb13387ceab119bad0e1f899d663ab2a08"
-    },
-    {
-      "path": "versions/V1.2.0/DELIVERY_CHECKLIST.md",
-      "size": 849,
-      "sha256": "ca7ee227a71b3f5b6da7ed82489291b50af0964847fc2daca70fa609704992ab"
-    },
-    {
-      "path": "versions/V1.2.0/DNS_ACTION_REQUIRED.md",
-      "size": 1156,
-      "sha256": "c46ddfb6154cac13802e89c794842439e56cf793e38f6324097a7f8d2ebcfeb5"
-    },
-    {
-      "path": "versions/V1.2.0/FEATURE_TRACEABILITY.csv",
-      "size": 7490,
-      "sha256": "0dd4de1a47720e57a2bfb27c08844b30244ec47cfb82733345d0a907f3da93b3"
-    },
-    {
-      "path": "versions/V1.2.0/FRONTEND_SCOPE.md",
-      "size": 15231,
-      "sha256": "485cdbefece53f33042fd0be5ec65ecff38d5f8fba50f7f3b86acfff79190389"
-    },
-    {
-      "path": "versions/V1.2.0/PAGE_STATE_MOCKUP_BINDINGS.csv",
-      "size": 23727,
-      "sha256": "6e0ae0619ed6a40583b46e9e72ffc7391e7212b46ed4cea90960a2fcb401d1e5"
-    },
-    {
-      "path": "versions/V1.2.0/TEST_AND_OWNER_ACCEPTANCE.md",
-      "size": 20594,
-      "sha256": "b0566cb86a70adc3f408b5c9f7aa3ed3d765422cfd36bf5626b53377a3494eb9"
-    },
-    {
-      "path": "versions/V1.2.0/UI_FIXED_RULES.md",
-      "size": 3594,
-      "sha256": "bca408fcd56aa3683d8e5aaf848446137fe17169738781f620e057368d66398b"
-    },
-    {
-      "path": "versions/V1.2.0/VERSION_DEVELOPMENT_SPEC.md",
-      "size": 4109,
-      "sha256": "6da32c6e78e68acc21a5dcc90b1c28b815777aedcc25c94e55f4dc4ccf768f66"
-    },
-    {
-      "path": "versions/V1.2.0/VERSION_STATUS.yaml",
-      "size": 814,
-      "sha256": "2c6d446df5ff83f7802c386486cf1531f18e1d0acf39f0e562aefffee2b2a263"
-    },
-    {
-      "path": "versions/V1.3.0/BACKEND_ADMIN_SCOPE.md",
-      "size": 5620,
-      "sha256": "a7fad018e29b571a1344f40924ea2e8d35a8962f71ccd5e4f5c0d39ad2891448"
-    },
-    {
-      "path": "versions/V1.3.0/CODEX_START_PROMPT.md",
-      "size": 1958,
-      "sha256": "44714b0ea381124819649c48db81d66bd77e9564a90d3b7e5423742a0927cdfa"
-    },
-    {
-      "path": "versions/V1.3.0/DELIVERY_CHECKLIST.md",
-      "size": 849,
-      "sha256": "1e9e9c4317672f13d6d306b756fb54b04fc6d403583be4a2c05a0237ee3ca3bc"
-    },
-    {
-      "path": "versions/V1.3.0/DNS_ACTION_REQUIRED.md",
-      "size": 1016,
-      "sha256": "fbc8f3dfaa1226a084cb91a8f0b948063694835a0c304cb10cd5d264404e5d8e"
-    },
-    {
-      "path": "versions/V1.3.0/FEATURE_TRACEABILITY.csv",
-      "size": 5486,
-      "sha256": "7da55c55a32981c0d66e881590a856b3a6cc1ea0437c0e4620d77de4d9f8327a"
-    },
-    {
-      "path": "versions/V1.3.0/FRONTEND_SCOPE.md",
-      "size": 10558,
-      "sha256": "59654ab87288494ce10a95b6af361a10f077177190192938f4d09f33961c6516"
-    },
-    {
-      "path": "versions/V1.3.0/PAGE_STATE_MOCKUP_BINDINGS.csv",
-      "size": 16405,
-      "sha256": "7a3416522f24219ba0331843d7112a7c8796c428b9670bdbd2b8a0555fedf299"
-    },
-    {
-      "path": "versions/V1.3.0/TEST_AND_OWNER_ACCEPTANCE.md",
-      "size": 14572,
-      "sha256": "357f553be16f3b1121b16077ba1f4c1f8a6f3a1cd7ecb34dfb7e0b1df0925ed2"
-    },
-    {
-      "path": "versions/V1.3.0/UI_FIXED_RULES.md",
-      "size": 3594,
-      "sha256": "bca408fcd56aa3683d8e5aaf848446137fe17169738781f620e057368d66398b"
-    },
-    {
-      "path": "versions/V1.3.0/VERSION_DEVELOPMENT_SPEC.md",
-      "size": 3804,
-      "sha256": "87d0b10494db12ba13894954a3ca2bdec92fc06f75fb3508a247030123cd0b0d"
-    },
-    {
-      "path": "versions/V1.3.0/VERSION_STATUS.yaml",
-      "size": 814,
-      "sha256": "ee7806acc933075887c8395b1afcc641689c9032716ee890e22ec270cf115c0d"
-    },
-    {
-      "path": "versions/V1.4.0/BACKEND_ADMIN_SCOPE.md",
-      "size": 2941,
-      "sha256": "63515fc70f1c01e7c5547046be775154b4038fdfd1f120b6cfecbfd7687bc401"
-    },
-    {
-      "path": "versions/V1.4.0/CODEX_START_PROMPT.md",
-      "size": 1958,
-      "sha256": "993e6534e7610d16892e0b46c29503c79eb015b2b57a6a6f723c3b9cbf60a3ed"
-    },
-    {
-      "path": "versions/V1.4.0/DELIVERY_CHECKLIST.md",
-      "size": 849,
-      "sha256": "5d6d67f5a69c08ec950617ffce90ab9079a530cdcaa2721650fca52467e0c5c8"
-    },
-    {
-      "path": "versions/V1.4.0/DNS_ACTION_REQUIRED.md",
-      "size": 1401,
-      "sha256": "45dc8f0510a51e30c4c917b3777e74ce2792a3c02345fc024c65e5e4c0ff7286"
-    },
-    {
-      "path": "versions/V1.4.0/FEATURE_TRACEABILITY.csv",
-      "size": 2717,
-      "sha256": "7ee8668053dfe53a55d771de446738d1618d596bc93d8ebaca1e2468f075ff51"
-    },
-    {
-      "path": "versions/V1.4.0/FRONTEND_SCOPE.md",
-      "size": 5621,
-      "sha256": "f6e25e04fb91e2799b07495b9455f62329f92a534f690304cd8ca2a2ec4721c2"
-    },
-    {
-      "path": "versions/V1.4.0/PAGE_STATE_MOCKUP_BINDINGS.csv",
-      "size": 10219,
-      "sha256": "333c48010c60d8ae14f0f49e4ab2c66e9095f5369c587109220b0ab0d1f2d62a"
-    },
-    {
-      "path": "versions/V1.4.0/TEST_AND_OWNER_ACCEPTANCE.md",
-      "size": 7817,
-      "sha256": "c05e676e2a994d11d12b1aba36a58a9cdc8ea749395f99afbe4ec2739658ae53"
-    },
-    {
-      "path": "versions/V1.4.0/UI_FIXED_RULES.md",
-      "size": 3594,
-      "sha256": "bca408fcd56aa3683d8e5aaf848446137fe17169738781f620e057368d66398b"
-    },
-    {
-      "path": "versions/V1.4.0/VERSION_DEVELOPMENT_SPEC.md",
-      "size": 3286,
-      "sha256": "393270a4efc9b6cec83d6dbb4cfa1134b2ba51046ed770b9e7b9281bacc301d5"
-    },
-    {
-      "path": "versions/V1.4.0/VERSION_STATUS.yaml",
-      "size": 814,
-      "sha256": "9ae230455c2930bf0c0285d0ab65d736f226d902a27a4ed728924a48ec16b98e"
     }
-  ],
-  "file_count": 493,
-  "mockup_review_sheets_included": true,
-  "mockup_rendering": "deterministic code rendering; Noto Sans CJK SC text; STK-DS-1.0",
-  "edition": "236_APPROVED_MOCKUPS",
-  "manifested_file_count": 493
+  ]
 }

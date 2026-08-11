@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.zzyihao.stk",
+    "sha256_cert_fingerprints": ["8D:82:DA:03:E9:13:3C:1D:60:08:7E:73:5B:2A:BC:9D:9D:2E:CB:B0:F1:81:51:64:29:70:79:D8:EB:A5:37:EE"]
+  }
+}]

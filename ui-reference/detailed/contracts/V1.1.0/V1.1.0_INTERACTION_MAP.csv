@@ -1,0 +1,35 @@
+﻿interaction_id,page_id,name,action,target,api_operation_id,implementation_version,test_level,version_close_required,expected_result
+INT-EXT-001,COM-OV-001,确认打开白名单外链,点击继续,Custom Tabs 或目标 App,LOCAL_EXTERNAL_OPEN,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-EXT-002,COM-OV-001,取消外部跳转,点击取消,关闭弹层,LOCAL_DISMISS,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-HOME-001,HOME-001,下拉刷新项目流,下拉刷新,最新游标,listProjects,V1.1.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-HOME-002,HOME-001,打开搜索,点击搜索框,stk://search,LOCAL_NAVIGATION,V1.1.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-HOME-003,HOME-001,打开分类筛选,点击分类,HOME-003,LOCAL_OVERLAY,V1.1.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-HOME-004,HOME-001,打开项目详情,点击项目卡,stk://project/{project_id},getProjectDetail,V1.1.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-HOME-005,HOME-001,下一页自动加载,滚动接近底部,下一游标,listProjects,V1.1.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-HOME-006,HOME-001,重试首屏,点击重试,项目流,listProjects,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-HOME-007,HOME-001,重试下一页,点击重试,下一游标,listProjects,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-SEARCH-001,HOME-002,输入搜索关键词,输入关键词,搜索字段,LOCAL_DEBOUNCE,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-SEARCH-002,HOME-002,提交搜索,键盘搜索,搜索 API,listProjects,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-SEARCH-003,HOME-002,清空搜索,点击清除,默认搜索页,LOCAL_UI_STATE,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-SEARCH-004,HOME-002,打开搜索结果详情,点击项目,stk://project/{project_id},getProjectDetail,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-SEARCH-005,HOME-002,搜索重试,点击重试,搜索 API,listProjects,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-SEARCH-006,HOME-002,返回首页,点击返回,stk://home,LOCAL_BACK,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-CAT-001,HOME-003,选择分类,点击分类,选中状态,LOCAL_UI_STATE,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-CAT-002,HOME-003,确认分类,点击确认,筛选首页,listProjects,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-CAT-003,HOME-003,重置分类,点击重置,全部分类,LOCAL_UI_STATE,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-CAT-004,HOME-003,关闭分类,点击关闭,关闭面板,LOCAL_DISMISS,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-DETAIL-001,HOME-004,详情返回,点击返回,上一页,LOCAL_BACK,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-DETAIL-002,HOME-004,打开图片查看器,点击图片,HOME-OV-001,LOCAL_OVERLAY,V1.1.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-DETAIL-003,HOME-004,打开联系方式,点击联系,HOME-OV-002,LOCAL_OVERLAY,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-DETAIL-004,HOME-004,复制项目链接,点击分享,系统分享面板,LOCAL_SHARE,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-DETAIL-005,HOME-004,详情重试,点击重试,详情 API,getProjectDetail,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-IMG-001,HOME-OV-001,切换项目图片,左右滑动,相邻图片,LOCAL_UI_STATE,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-IMG-002,HOME-OV-001,缩放项目图片,双指缩放,当前图片,LOCAL_UI_STATE,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-IMG-003,HOME-OV-001,重试图片加载,点击重试,当前图片 URL,LOCAL_IMAGE_RETRY,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-IMG-004,HOME-OV-001,关闭图片查看器,点击关闭,项目详情,LOCAL_DISMISS,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-CONTACT-001,HOME-OV-002,复制联系方式,点击复制,系统剪贴板,LOCAL_CLIPBOARD,V1.1.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-CONTACT-002,HOME-OV-002,拨打手机号,点击拨打,系统拨号器,LOCAL_DIAL,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-CONTACT-003,HOME-OV-002,打开微信,点击打开微信,微信或回退,LOCAL_EXTERNAL_OPEN,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-CONTACT-004,HOME-OV-002,打开 QQ,点击打开 QQ,QQ 或回退,LOCAL_EXTERNAL_OPEN,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-CONTACT-005,HOME-OV-002,打开网址,点击打开网址,外链确认,LOCAL_EXTERNAL_OPEN,V1.1.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-CONTACT-006,HOME-OV-002,关闭联系面板,点击关闭,项目详情,LOCAL_DISMISS,V1.1.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果

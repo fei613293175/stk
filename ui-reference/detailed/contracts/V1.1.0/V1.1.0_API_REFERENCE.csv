@@ -1,0 +1,5 @@
+﻿operation_id,version,method,path,plugin,auth,purpose,transport,response_envelope,write_protection,notes
+listProjectCategories,V1.1.0,GET,/api/v1/project/categories,stk_project,BEARER,可用项目分类和排序,HTTPS_JSON,"{code,message,data,request_id}",N/A,服务端校验 UID/资源归属；不得信任客户端字段
+listProjects,V1.1.0,GET,/api/v1/projects,stk_project,BEARER,首页、搜索、分类和游标分页,HTTPS_JSON,"{code,message,data,request_id}",N/A,服务端校验 UID/资源归属；不得信任客户端字段
+getProjectDetail,V1.1.0,GET,/api/v1/projects/{project_id},stk_project,BEARER,项目详情、图片、发布者和联系方式,HTTPS_JSON,"{code,message,data,request_id}",N/A,服务端校验 UID/资源归属；不得信任客户端字段
+recordProjectView,V1.1.0,POST,/api/v1/projects/{project_id}/view,stk_project,BEARER,防重复的浏览计数,HTTPS_JSON,"{code,message,data,request_id}",FORMHASH_OR_APP_CSRF+RATE_LIMIT,服务端校验 UID/资源归属；不得信任客户端字段

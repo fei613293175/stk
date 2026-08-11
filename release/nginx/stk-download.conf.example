@@ -1,0 +1,7 @@
+server {
+    listen 443 ssl http2;
+    server_name stk-download.zz-yihao.com;
+    root /srv/stk-download;
+    location = /update.json { try_files /update.json =404; default_type application/json; }
+    location /app/ { try_files $uri =404; add_header Cache-Control "public, max-age=300"; }
+}

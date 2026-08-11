@@ -1,0 +1,34 @@
+{
+  "package": "STK_FAST_EXECUTION_V1_5_0_SERVER_RELEASE",
+  "date": "2026-08-08",
+  "status": "V1_5_0_SERVER_BUILT_DEPLOYED_WITH_OWNER_DEVICE_LIMIT",
+  "checks": {
+    "static_contract": "PASS",
+    "android_unit_tests": "PASS_28_OF_28_SERVER",
+    "android_assemble_release_v1_5_0": "PASS_SERVER",
+    "android_release_lint": "PASS_0_ERRORS_33_WARNINGS_3_HINTS",
+    "apk_signature_v1": false,
+    "apk_signature_v2": true,
+    "php_syntax": "PASS_ONLINE_PHP_7_4_33",
+    "php_contract_tests": "PASS_6_OF_6",
+    "release_backup": "PASS_SERVER",
+    "device_manual_flows": "NOT_RUN_OWNER_REQUEST",
+    "production_signing": "NOT_RUN_BETA_KEY_ONLY",
+    "real_dns_tls_discuz_deployment": "PASS_STK_ZZ_YIHAO_COM",
+    "database_migration": "PASS",
+    "plugin_registry": "PASS_2_AVAILABLE_ADMIN",
+    "captcha_image": "PASS_HTTP_200_PNG",
+    "captcha_wrong_code": "PASS_HTTP_400_CODE_4002",
+    "public_apk_sha256": "PASS_MATCH_5BA14F...C542",
+    "assetlinks_content_type": "PASS_APPLICATION_JSON",
+    "current_visual_references": 10,
+    "offline_visual_states": 236,
+    "active_fast_workflows": 1
+  },
+  "deliveries": {
+    "v1_3": {"path": "deliveries/1.3.0/STK-1.3.0.apk", "version_code": 10300},
+    "v1_4": {"path": "deliveries/1.4.0/STK-1.4.0.apk", "version_name": "1.4.0", "version_code": 10400},
+    "v1_4_1": {"path": "deliveries/1.4.1/STK-1.4.1.apk", "version_name": "1.4.1", "version_code": 10401, "sha256": "3af8bbc5c15d6c79bb29b48253987764b60420623315aefb74b0a041be530e6d", "certificate_sha256": "8d82da03e9133c1d60087e735b2abc9d9d2ecbb0f1815164297079d8eba537ee"},
+    "v1_5_0": {"path": "deliveries/1.5.0/STK-1.5.0.apk", "version_name": "1.5.0", "version_code": 10500, "sha256": "70c140a6c13a563440fdc13c89fa4fcb5c5f1ebc4ab5b606f497cd889a0e6114", "certificate_sha256": "8d82da03e9133c1d60087e735b2abc9d9d2ecbb0f1815164297079d8eba537ee"}
+  }
+}

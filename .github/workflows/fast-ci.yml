@@ -1,0 +1,64 @@
+name: STK Fast CI
+
+on:
+  push:
+    branches: [ main, develop, 'feature/**', 'fix/**' ]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: stk-fast-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Ensure PHP CLI
+        shell: bash
+        run: |
+          if ! command -v php >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y php-cli
+          fi
+          php --version
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK 36
+        shell: bash
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager "platform-tools" "platforms;android-36" "build-tools;35.0.0"
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Fast static checks
+        shell: bash
+        run: bash scripts/fast-check.sh
+
+      - name: Unit test and build Beta APK
+        shell: bash
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon testDebugUnitTest assembleDebug
+          bash scripts/package-beta.sh
+
+      - name: Upload Beta delivery
+        uses: actions/upload-artifact@v4
+        with:
+          name: STK-1.0.0-beta.1-${{ github.sha }}
+          path: deliveries/1.0.0-beta.1/
+          if-no-files-found: error
+          retention-days: 14

@@ -1,0 +1,6 @@
+﻿feature_id,version,name,frontend_pages,apis,database,admin_pages,status
+PUBLISH-001,V1.2.0,Photo Picker、多图处理与上传,PUB-001|PUB-002|PUB-OV-001,uploadProjectImage|deleteUploadedImage,pre_stk_upload_asset|pre_stk_project_image|pre_stk_idempotency_key,ADM-PROJ-010,VERIFY_EXISTING_THEN_COMPLETE
+PUBLISH-002,V1.2.0,发布项目,PUB-001|PUB-003|PUB-OV-002|PUB-OV-003,createProject|listProjectCategories,pre_stk_project|pre_stk_upload_asset|pre_stk_project_image|pre_stk_project_audit_log|pre_stk_idempotency_key,ADM-PROJ-008|ADM-PROJ-009|ADM-PROJ-010,VERIFY_EXISTING_THEN_COMPLETE
+PUBLISH-003,V1.2.0,项目编辑和状态机,PUB-004|ME-OV-002|HOME-004,updateProject|offlineProject|resubmitProject|deleteProject,pre_stk_project|pre_stk_project_audit_log|pre_stk_idempotency_key,ADM-PROJ-002|ADM-PROJ-008|ADM-PROJ-012,VERIFY_EXISTING_THEN_COMPLETE
+PUBLISH-004,V1.2.0,我的发布,ME-002|ME-OV-002,listMyProjects|getProjectDetail,pre_stk_project|pre_stk_project_audit_log,ADM-PROJ-011,VERIFY_EXISTING_THEN_COMPLETE
+PUBLISH-005,V1.2.0,项目后台审核闭环,ADMIN_ONLY,ADMIN_LOCAL_ONLY,pre_stk_project|pre_stk_project_audit_log|pre_stk_admin_audit,ADM-PROJ-001|ADM-PROJ-002|ADM-PROJ-008|ADM-PROJ-011|ADM-PROJ-012,VERIFY_EXISTING_THEN_COMPLETE

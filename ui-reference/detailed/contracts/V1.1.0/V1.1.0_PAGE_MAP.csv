@@ -1,0 +1,10 @@
+﻿page_id,page_name,visual_type,route,implementation_version,active_state_versions,version_state_count,catalog_total_state_count,runtime_or_reference,notes
+SYS-001,启动与路由判定,PAGE,stk://bootstrap,V1.0.0,V1.0.0|V1.1.0|V1.4.0,1,8,RUNTIME,只做路由判定，不展示广告
+SYS-002,维护、离线与服务不可用,PAGE,stk://system/unavailable,V1.0.0,V1.0.0|V1.1.0|V1.4.0,1,5,RUNTIME,不能用空白页或系统异常堆栈
+COM-OV-001,受控外部链接确认,OVERLAY,overlay://external-link,V1.1.0,V1.1.0,3,3,RUNTIME,非白名单地址必须阻断
+HOME-001,首页项目流,PAGE,stk://home,V1.1.0,V1.0.0|V1.1.0,11,13,RUNTIME,首页只展示 published 项目
+HOME-002,项目搜索,PAGE,stk://search,V1.1.0,V1.1.0,7,7,RUNTIME,不在一期保存个人搜索历史
+HOME-003,项目分类筛选,OVERLAY,overlay://categories,V1.1.0,V1.1.0,4,4,RUNTIME,分类排序和可见性由后台控制
+HOME-004,项目详情,PAGE,stk://project/{project_id},V1.1.0,V1.1.0|V1.2.0,8,11,RUNTIME,公开详情不显示完整手机号作为用户名
+HOME-OV-001,项目图片查看器,OVERLAY,overlay://project-images,V1.1.0,V1.1.0,3,3,RUNTIME,不提供未规划的保存到相册按钮
+HOME-OV-002,联系方式操作面板,OVERLAY,overlay://contact-actions,V1.1.0,V1.1.0,7,7,RUNTIME,根据 contact_type 白名单显示动作

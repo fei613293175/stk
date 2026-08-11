@@ -1,0 +1,5 @@
+﻿entity,version,owner,purpose,migration_rule
+pre_stk_project_category,V1.1.0,stk_project,项目分类、排序和启停,版本化 SQL；前向迁移；升级测试；业务删除默认软删除
+pre_stk_project,V1.1.0,stk_project,项目主体、发布者、状态、联系方式和审计字段,版本化 SQL；前向迁移；升级测试；业务删除默认软删除
+pre_stk_project_image,V1.1.0,stk_project,项目图片、缩略图、封面和排序,版本化 SQL；前向迁移；升级测试；业务删除默认软删除
+pre_stk_project_view_daily,V1.1.0,stk_project,按项目和日期统计浏览，支持防重复,版本化 SQL；前向迁移；升级测试；业务删除默认软删除

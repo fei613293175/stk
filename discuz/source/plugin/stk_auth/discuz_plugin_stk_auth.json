@@ -1,0 +1,35 @@
+{
+  "Title": "Discuz! Plugin",
+  "Data": {
+    "plugin": {
+      "available": "1",
+      "adminid": "1",
+      "name": "商推客账户与认证",
+      "identifier": "stk_auth",
+      "description": "商推客移动端认证、令牌与账户运营后台",
+      "datatables": "stk_auth_config,stk_auth_mobile,stk_auth_sms_code,stk_auth_captcha,stk_auth_captcha_ticket,stk_auth_token,stk_auth_refresh_token,stk_auth_request_guard,stk_security_event,stk_member_status,stk_wallet_account,stk_account_membership,stk_account_balance",
+      "directory": "stk_auth/",
+      "copyright": "商推客",
+      "version": "1.5.0",
+      "__modules": [
+        {"name": "api", "menu": "", "url": "", "type": "1", "adminid": "0", "displayorder": "0"},
+        {"name": "captcha", "menu": "", "url": "", "type": "1", "adminid": "0", "displayorder": "0"},
+        {"name": "overview", "menu": "概览", "url": "", "type": "3", "adminid": "1", "displayorder": "0"},
+        {"name": "settings", "menu": "认证设置", "url": "", "type": "3", "adminid": "1", "displayorder": "1"},
+        {"name": "sms_settings", "menu": "阿里云短信", "url": "", "type": "3", "adminid": "1", "displayorder": "2"},
+        {"name": "captcha_records", "menu": "验证码记录", "url": "", "type": "3", "adminid": "1", "displayorder": "3"},
+        {"name": "users", "menu": "注册用户", "url": "", "type": "3", "adminid": "1", "displayorder": "4"},
+        {"name": "security_logs", "menu": "登录与安全日志", "url": "", "type": "3", "adminid": "1", "displayorder": "5"},
+        {"name": "diagnostics", "menu": "系统检测", "url": "", "type": "3", "adminid": "1", "displayorder": "6"},
+        {"name": "accounts", "menu": "账户运营", "url": "", "type": "3", "adminid": "1", "displayorder": "7"},
+        {"name": "display_settings", "menu": "运营展示", "url": "", "type": "3", "adminid": "1", "displayorder": "8"}
+      ]
+    },
+    "version": "X5.0",
+    "var": [],
+    "intro": "商推客移动端认证、访问令牌和账户数据管理。",
+    "installfile": "install.php",
+    "uninstallfile": "uninstall.php",
+    "upgradefile": "upgrade.php"
+  }
+}

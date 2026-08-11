@@ -1,0 +1,23 @@
+﻿config_id,required_for_version,key,name,type,default,validation,admin_menu_id,sensitive,runtime_behavior,audit_required
+CFG-PUB-001,V1.2.0,publish.enabled,用户发布开关,boolean,true,true|false,ADM-PROJ-009,NO,hot_reload,YES
+CFG-PUB-002,V1.2.0,publish.review_required,先审后发,boolean,true,true|false,ADM-PROJ-009,NO,hot_reload,YES
+CFG-PUB-003,V1.2.0,publish.title_min,标题最短长度,integer,4,2..20,ADM-PROJ-009,NO,hot_reload,YES
+CFG-PUB-004,V1.2.0,publish.title_max,标题最长长度,integer,40,20..80,ADM-PROJ-009,NO,hot_reload,YES
+CFG-PUB-005,V1.2.0,publish.summary_min,简介最短长度,integer,20,10..100,ADM-PROJ-009,NO,hot_reload,YES
+CFG-PUB-006,V1.2.0,publish.summary_max,简介最长长度,integer,1000,200..5000,ADM-PROJ-009,NO,hot_reload,YES
+CFG-PUB-007,V1.2.0,publish.contact_name_max,联系人最长长度,integer,30,0..60,ADM-PROJ-009,NO,hot_reload,YES
+CFG-PUB-008,V1.2.0,publish.daily_limit,单用户每日发布上限,integer,10,1..100,ADM-PROJ-009,NO,hot_reload,YES
+CFG-PUB-009,V1.2.0,publish.pending_limit,单用户待审核上限,integer,5,1..50,ADM-PROJ-009,NO,hot_reload,YES
+CFG-PUB-010,V1.2.0,publish.edit_requires_review,已发布项目编辑后重新审核,boolean,true,建议保持 true,ADM-PROJ-009,NO,hot_reload,YES
+CFG-PUB-011,V1.2.0,publish.user_offline_enabled,允许用户下架,boolean,true,true|false,ADM-PROJ-009,NO,hot_reload,YES
+CFG-PUB-012,V1.2.0,publish.user_delete_enabled,允许用户删除,boolean,true,true|false,ADM-PROJ-009,NO,hot_reload,YES
+CFG-PUB-013,V1.2.0,publish.agreement_version,发布规范版本,string,1.0,有效已发布版本,ADM-PROJ-009,NO,hot_reload,YES
+CFG-UPL-001,V1.2.0,upload.image_min_count,最少图片数,integer,1,0..20 且不大于最大数,ADM-PROJ-010,NO,hot_reload,YES
+CFG-UPL-002,V1.2.0,upload.image_max_count,最多图片数,integer,9,1..20,ADM-PROJ-010,NO,hot_reload,YES
+CFG-UPL-003,V1.2.0,upload.max_bytes,单图最大字节数,integer,10485760,1048576..20971520,ADM-PROJ-010,NO,hot_reload,YES
+CFG-UPL-004,V1.2.0,upload.allowed_mime,允许 MIME,string_set,"image/jpeg,image/png,image/webp",仅安全位图格式,ADM-PROJ-010,NO,hot_reload,YES
+CFG-UPL-005,V1.2.0,upload.max_long_edge_px,最长边限制,integer,1920,1080..4096,ADM-PROJ-010,NO,hot_reload,YES
+CFG-UPL-006,V1.2.0,upload.jpeg_quality,JPEG 目标质量,integer,82,70..92,ADM-PROJ-010,NO,hot_reload,YES
+CFG-UPL-007,V1.2.0,upload.concurrent_count,客户端上传并发,integer,2,1..3,ADM-PROJ-010,NO,hot_reload,YES
+CFG-UPL-008,V1.2.0,upload.unattached_cleanup_hours,未绑定图片清理小时,integer,24,6..168,ADM-PROJ-010,NO,hot_reload,YES
+CFG-UPL-009,V1.2.0,upload.strip_exif,移除 EXIF,boolean,true,必须为 true,ADM-PROJ-010,NO,hot_reload,YES

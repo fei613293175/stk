@@ -1,0 +1,68 @@
+﻿state_id,page_id,state_name,description,implementation_version,visual_reference,automation,release_blocking
+DS-001-S01,DS-001,完整规范,展示最终色值、字号、行高、字重、间距和圆角标尺,V1.0.0,visual/states/DS-001-S01.png,STATE_OR_COMPONENT_TEST,NO
+DS-002-S01,DS-002,完整组件,展示所有公共组件默认、按下、禁用和错误样式,V1.0.0,visual/states/DS-002-S01.png,STATE_OR_COMPONENT_TEST,NO
+DS-003-S01,DS-003,完整状态,展示加载、空、离线、错误、成功、Snackbar、Dialog 和 Bottom Sheet,V1.0.0,visual/states/DS-003-S01.png,STATE_OR_COMPONENT_TEST,NO
+SYS-001-S01,SYS-001,启动检查,本地原生首帧，检查配置、登录态和版本,V1.0.0,visual/states/SYS-001-S01.png,EMULATOR_VISUAL_SMOKE,YES
+SYS-001-S02,SYS-001,需要登录,无有效令牌，转入登录页前的短暂状态,V1.0.0,visual/states/SYS-001-S02.png,STATE_OR_COMPONENT_TEST,NO
+SYS-001-S03,SYS-001,进入首页,引导进入已缓存首页内容,V1.0.0,visual/states/SYS-001-S03.png,STATE_OR_COMPONENT_TEST,NO
+SYS-001-S08,SYS-001,启动配置失败,显示重试，不出现白屏,V1.0.0,visual/states/SYS-001-S08.png,STATE_OR_COMPONENT_TEST,NO
+SYS-002-S02,SYS-002,服务不可用,后端暂时不可用并提供重试,V1.0.0,visual/states/SYS-002-S02.png,STATE_OR_COMPONENT_TEST,NO
+SYS-002-S04,SYS-002,系统异常,服务端错误，显示请求编号供排查,V1.0.0,visual/states/SYS-002-S04.png,STATE_OR_COMPONENT_TEST,NO
+COM-OV-002-S01,COM-OV-002,发布尚未开放,V1.0/V1.1 点击发布时显示 V1.2 开放,V1.0.0,visual/states/COM-OV-002-S01.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-001-S01,AUTH-001,密码登录默认,手机号与密码表单,V1.0.0,visual/states/AUTH-001-S01.png,EMULATOR_VISUAL_SMOKE,YES
+AUTH-001-S02,AUTH-001,短信登录默认,手机号、短信码和发送按钮,V1.0.0,visual/states/AUTH-001-S02.png,EMULATOR_VISUAL_SMOKE,YES
+AUTH-001-S03,AUTH-001,输入聚焦,键盘和输入高亮,V1.0.0,visual/states/AUTH-001-S03.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-001-S04,AUTH-001,本地校验错误,手机号/密码/验证码格式提示,V1.0.0,visual/states/AUTH-001-S04.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-001-S05,AUTH-001,短信发送中,发送按钮加载且防重复,V1.0.0,visual/states/AUTH-001-S05.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-001-S06,AUTH-001,短信已发送,倒计时和有效期提示,V1.0.0,visual/states/AUTH-001-S06.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-001-S07,AUTH-001,等待安全验证码,弹出验证码且主表单保持,V1.0.0,visual/states/AUTH-001-S07.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-001-S08,AUTH-001,登录提交中,主按钮加载且输入锁定,V1.0.0,visual/states/AUTH-001-S08.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-001-S09,AUTH-001,登录成功,短暂成功反馈后按规则跳转,V1.0.0,visual/states/AUTH-001-S09.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-001-S10,AUTH-001,手机号或密码错误,统一错误文案，避免账户枚举,V1.0.0,visual/states/AUTH-001-S10.png,EMULATOR_VISUAL_SMOKE,YES
+AUTH-001-S11,AUTH-001,短信验证码错误,保留手机号并允许重试,V1.0.0,visual/states/AUTH-001-S11.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-001-S12,AUTH-001,短信验证码过期,提示重新发送,V1.0.0,visual/states/AUTH-001-S12.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-001-S13,AUTH-001,操作过于频繁,展示可重试时间,V1.0.0,visual/states/AUTH-001-S13.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-001-S14,AUTH-001,账号受限,打开风控提示,V1.0.0,visual/states/AUTH-001-S14.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-001-S15,AUTH-001,网络错误,保留输入并提供重试,V1.0.0,visual/states/AUTH-001-S15.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-001-S16,AUTH-001,请求超时,保留输入并提供重试,V1.0.0,visual/states/AUTH-001-S16.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-002-S01,AUTH-002,注册默认,手机号、密码、确认密码和协议,V1.0.0,visual/states/AUTH-002-S01.png,EMULATOR_VISUAL_SMOKE,YES
+AUTH-002-S02,AUTH-002,输入聚焦,键盘与聚焦样式,V1.0.0,visual/states/AUTH-002-S02.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-002-S03,AUTH-002,手机号已注册,引导返回登录或找回密码,V1.0.0,visual/states/AUTH-002-S03.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-002-S04,AUTH-002,两次密码不一致,确认密码错误提示,V1.0.0,visual/states/AUTH-002-S04.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-002-S05,AUTH-002,未同意协议,协议勾选区域高亮,V1.0.0,visual/states/AUTH-002-S05.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-002-S06,AUTH-002,其他校验错误,密码强度或手机号格式,V1.0.0,visual/states/AUTH-002-S06.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-002-S07,AUTH-002,等待安全验证码,注册提交前弹出,V1.0.0,visual/states/AUTH-002-S07.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-002-S08,AUTH-002,注册提交中,禁止重复提交,V1.0.0,visual/states/AUTH-002-S08.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-002-S09,AUTH-002,注册成功,创建真实 Discuz UID 后进入配置跳转,V1.0.0,visual/states/AUTH-002-S09.png,EMULATOR_VISUAL_SMOKE,YES
+AUTH-002-S10,AUTH-002,注册限流,展示重试时间,V1.0.0,visual/states/AUTH-002-S10.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-002-S11,AUTH-002,网络错误,保留表单,V1.0.0,visual/states/AUTH-002-S11.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-002-S12,AUTH-002,注册失败,显示请求编号并可重试,V1.0.0,visual/states/AUTH-002-S12.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-004-S01,AUTH-004,协议加载,读取版本化协议,V1.0.0,visual/states/AUTH-004-S01.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-004-S02,AUTH-004,协议正文,显示完整正文和生效日期,V1.0.0,visual/states/AUTH-004-S02.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-004-S03,AUTH-004,离线缓存,显示已缓存版本和离线标识,V1.0.0,visual/states/AUTH-004-S03.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-004-S04,AUTH-004,加载失败,重试,V1.0.0,visual/states/AUTH-004-S04.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-005-S01,AUTH-005,政策加载,读取版本化隐私政策,V1.0.0,visual/states/AUTH-005-S01.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-005-S02,AUTH-005,政策正文,显示完整正文和生效日期,V1.0.0,visual/states/AUTH-005-S02.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-005-S03,AUTH-005,离线缓存,显示已缓存版本和离线标识,V1.0.0,visual/states/AUTH-005-S03.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-005-S04,AUTH-005,加载失败,重试,V1.0.0,visual/states/AUTH-005-S04.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-OV-001-S01,AUTH-OV-001,验证码加载,加载图片和 challenge,V1.0.0,visual/states/AUTH-OV-001-S01.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-OV-001-S02,AUTH-OV-001,等待输入,验证码图片、输入和刷新,V1.0.0,visual/states/AUTH-OV-001-S02.png,EMULATOR_VISUAL_SMOKE,YES
+AUTH-OV-001-S03,AUTH-OV-001,输入错误,错误反馈并计数,V1.0.0,visual/states/AUTH-OV-001-S03.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-OV-001-S04,AUTH-OV-001,验证码已过期,自动刷新 challenge,V1.0.0,visual/states/AUTH-OV-001-S04.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-OV-001-S05,AUTH-OV-001,刷新中,防连续刷新,V1.0.0,visual/states/AUTH-OV-001-S05.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-OV-001-S06,AUTH-OV-001,验证中,确认按钮加载,V1.0.0,visual/states/AUTH-OV-001-S06.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-OV-001-S07,AUTH-OV-001,验证成功,返回一次性 ticket,V1.0.0,visual/states/AUTH-OV-001-S07.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-OV-001-S08,AUTH-OV-001,验证码网络失败,重试或取消,V1.0.0,visual/states/AUTH-OV-001-S08.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-OV-002-S01,AUTH-OV-002,登录暂时锁定,显示解锁时间,V1.0.0,visual/states/AUTH-OV-002-S01.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-OV-002-S02,AUTH-OV-002,账号被禁用,显示客服入口,V1.0.0,visual/states/AUTH-OV-002-S02.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-OV-002-S03,AUTH-OV-002,需要人工核验,不暴露内部风控规则,V1.0.0,visual/states/AUTH-OV-002-S03.png,STATE_OR_COMPONENT_TEST,NO
+AUTH-OV-002-S04,AUTH-OV-002,登录方式暂不可用,提示使用另一登录方式,V1.0.0,visual/states/AUTH-OV-002-S04.png,STATE_OR_COMPONENT_TEST,NO
+HOME-001-S07,HOME-001,暂无项目,后台无 published 项目,V1.0.0,visual/states/HOME-001-S07.png,EMULATOR_VISUAL_SMOKE,YES
+HOME-001-S13,HOME-001,登录过期,转登录前提示,V1.0.0,visual/states/HOME-001-S13.png,STATE_OR_COMPONENT_TEST,NO
+ME-001-S01,ME-001,资料加载,资料卡与模块骨架,V1.0.0,visual/states/ME-001-S01.png,STATE_OR_COMPONENT_TEST,NO
+ME-001-S02,ME-001,V1 基础资料,头像、昵称、UID、脱敏手机号和我的发布阶段入口,V1.0.0,visual/states/ME-001-S02.png,EMULATOR_VISUAL_SMOKE,YES
+ME-001-S07,ME-001,资料加载失败,重试,V1.0.0,visual/states/ME-001-S07.png,STATE_OR_COMPONENT_TEST,NO
+ME-001-S08,ME-001,登录过期,清理敏感内容并登录,V1.0.0,visual/states/ME-001-S08.png,STATE_OR_COMPONENT_TEST,NO
+ME-OV-001-S01,ME-OV-001,确认退出,取消或退出,V1.0.0,visual/states/ME-OV-001-S01.png,EMULATOR_VISUAL_SMOKE,YES
+ME-OV-001-S02,ME-OV-001,退出中,撤销令牌,V1.0.0,visual/states/ME-OV-001-S02.png,STATE_OR_COMPONENT_TEST,NO
+ME-OV-001-S03,ME-OV-001,退出请求失败,本地安全退出并记录待撤销,V1.0.0,visual/states/ME-OV-001-S03.png,STATE_OR_COMPONENT_TEST,NO

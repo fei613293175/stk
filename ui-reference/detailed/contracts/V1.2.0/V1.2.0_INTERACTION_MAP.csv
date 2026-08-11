@@ -1,0 +1,46 @@
+﻿interaction_id,page_id,name,action,target,api_operation_id,implementation_version,test_level,blocking_emulator_gate,expected_result
+INT-DETAIL-006,HOME-004,本人项目编辑,点击编辑,PUB-004,LOCAL_NAVIGATION,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-DETAIL-007,HOME-004,本人项目下架,点击下架,状态 API,offlineProject,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-DETAIL-008,HOME-004,本人驳回项目重提,点击重新提交,状态 API,resubmitProject,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-PUB-001,PUB-001,输入项目标题,输入标题,标题字段,LOCAL_VALIDATION,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-PUB-002,PUB-001,输入项目简介,输入简介,简介字段,LOCAL_VALIDATION,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-PUB-003,PUB-001,选择项目分类,点击分类,分类选择,listProjectCategories,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-PUB-004,PUB-001,打开系统相册,点击添加图片,Android Photo Picker,LOCAL_PHOTO_PICKER,V1.2.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-PUB-005,PUB-001,上传已选图片,Photo Picker 返回,上传队列,uploadProjectImage,V1.2.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-PUB-006,PUB-001,重试单张图片上传,点击重试,上传队列,uploadProjectImage,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-PUB-007,PUB-001,删除已选图片,点击删除,PUB-OV-001,LOCAL_OVERLAY,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-PUB-008,PUB-001,进入图片排序,点击排序,PUB-002,LOCAL_NAVIGATION,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-PUB-009,PUB-001,选择联系方式类型,点击类型,PUB-OV-003,LOCAL_OVERLAY,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-PUB-010,PUB-001,输入联系方式,输入联系方式,联系方式字段,LOCAL_VALIDATION,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-PUB-011,PUB-001,输入联系人,输入联系人,联系人字段,LOCAL_VALIDATION,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-PUB-012,PUB-001,同意发布规范,点击勾选,协议状态,LOCAL_UI_STATE,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-PUB-013,PUB-001,提交发布,点击发布,创建项目,createProject,V1.2.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-PUB-014,PUB-001,发布页返回,点击返回,未保存检查,LOCAL_BACK,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-SORT-001,PUB-002,拖动图片排序,拖动图片,本地排序,LOCAL_UI_STATE,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-SORT-002,PUB-002,设为封面,点击设为封面,封面状态,LOCAL_UI_STATE,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-SORT-003,PUB-002,完成图片排序,点击完成,发布表单,LOCAL_BACK_WITH_RESULT,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-SORT-004,PUB-002,排序页返回,点击返回,发布表单,LOCAL_BACK,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-RESULT-001,PUB-003,查看已提交项目,点击查看,项目详情,getProjectDetail,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-RESULT-002,PUB-003,继续发布,点击继续发布,PUB-001,LOCAL_NAVIGATION,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-RESULT-003,PUB-003,进入我的发布,点击我的发布,ME-002,LOCAL_NAVIGATION,V1.2.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-EDIT-001,PUB-004,保存项目修改,点击保存,更新项目,updateProject,V1.2.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-EDIT-002,PUB-004,编辑页返回,点击返回,未保存检查,LOCAL_BACK,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-DELIMG-001,PUB-OV-001,确认删除图片,点击删除,删除上传资产,deleteUploadedImage,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-DELIMG-002,PUB-OV-001,取消删除图片,点击取消,关闭弹层,LOCAL_DISMISS,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-DRAFT-001,PUB-OV-002,继续编辑草稿,点击继续编辑,发布表单,LOCAL_DISMISS,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-DRAFT-002,PUB-OV-002,放弃草稿,点击放弃,安全返回,LOCAL_DISCARD,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-CTYPE-001,PUB-OV-003,选择联系方式类型,点击类型,发布表单,LOCAL_BACK_WITH_RESULT,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-CTYPE-002,PUB-OV-003,关闭类型选择,点击关闭,发布表单,LOCAL_DISMISS,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-ME-002,ME-001,打开我的发布,点击我的发布,ME-002,listMyProjects,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-MYPROJ-001,ME-002,切换项目状态标签,点击状态标签,本人项目列表,listMyProjects,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-MYPROJ-002,ME-002,打开本人项目详情,点击项目,HOME-004,getProjectDetail,V1.2.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-MYPROJ-003,ME-002,打开项目操作面板,点击更多,ME-OV-002,LOCAL_OVERLAY,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-MYPROJ-004,ME-002,我的项目加载更多,滚动到底部,下一游标,listMyProjects,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-MYPROJ-005,ME-002,我的项目重试,点击重试,本人项目列表,listMyProjects,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-MYPROJ-006,ME-002,空列表去发布,点击发布项目,PUB-001,LOCAL_NAVIGATION,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-ACT-001,ME-OV-002,项目操作查看,点击查看,HOME-004,getProjectDetail,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-ACT-002,ME-OV-002,项目操作编辑,点击编辑,PUB-004,LOCAL_NAVIGATION,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-ACT-003,ME-OV-002,项目操作下架,点击下架,状态 API,offlineProject,V1.2.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-ACT-004,ME-OV-002,项目操作重提,点击重提,状态 API,resubmitProject,V1.2.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-ACT-005,ME-OV-002,项目操作删除,点击删除,删除 API,deleteProject,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果
+INT-ACT-006,ME-OV-002,关闭项目操作,点击关闭,我的发布,LOCAL_DISMISS,V1.2.0,GROUPED_COMPOSE_UI,NO,产生合同规定的唯一结果

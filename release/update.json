@@ -1,0 +1,17 @@
+{
+  "version_name": "1.5.4",
+  "version_code": 10504,
+  "minimum_version_code": 10401,
+  "apk_url": "https://stk.zz-yihao.com/stk-release/app/STK-1.5.4.apk",
+  "sha256": "831c708b332517d8035a7408f778eb4eede54a195e384d378f8ec1a892239363",
+  "mandatory": false,
+  "maintenance": {
+    "enabled": false,
+    "message": "服务维护中，请稍后再试。",
+    "resume_at": null
+  },
+  "notes": [
+    "修复快速切换首页分类和我的发布筛选时错误显示协程取消信息",
+    "完成 Redmi 真机注册、登录、发布审核、上下架删除及逐页视觉回归"
+  ]
+}

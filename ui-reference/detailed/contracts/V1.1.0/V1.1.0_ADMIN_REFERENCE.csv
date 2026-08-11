@@ -1,0 +1,6 @@
+﻿admin_id,version,name,plugin,capabilities,audit_required
+ADM-PROJ-01,V1.1.0,项目概览,stk_project,项目总数、公开项目、浏览和发布者摘要,YES
+ADM-PROJ-02,V1.1.0,项目管理,stk_project,查询、查看、后台创建/编辑测试项目、上下架,YES
+ADM-PROJ-03,V1.1.0,项目分类,stk_project,分类增删改、排序和启停,YES
+ADM-PROJ-04,V1.1.0,首页展示设置,stk_project,页大小、默认排序、卡片字段和空状态文案,YES
+ADM-PROJ-05,V1.1.0,联系方式与外链策略,stk_project,联系方式类型、网址白名单和回退策略,YES

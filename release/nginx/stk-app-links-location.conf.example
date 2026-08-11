@@ -1,0 +1,7 @@
+## Include this location block in the existing TLS server for stk.zz-yihao.com.
+## It deliberately has no certificate fingerprint: inject only the protected production signing SHA-256.
+location = /.well-known/assetlinks.json {
+    alias /srv/stk-static/.well-known/assetlinks.json;
+    default_type application/json;
+    add_header Cache-Control "no-store" always;
+}

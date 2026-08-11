@@ -1,0 +1,7 @@
+﻿batch_id,batch_name,page_ids,state_ids,state_count,rule,delivery_phase
+B01,发布表单核心、草稿退出与联系方式类型,PUB-001|PUB-OV-002|PUB-OV-003,PUB-001-S01|PUB-001-S02|PUB-001-S07|PUB-OV-002-S01|PUB-OV-003-S01|PUB-OV-003-S02|PUB-OV-003-S03,7,先完成可填写、可校验、可选择后台允许联系方式的真实表单；有改动返回时才显示未保存确认，不得增加未配置类型。,BETA1_CORE
+B02,Photo Picker、压缩上传、图片排序与删除,PUB-001|PUB-002|PUB-OV-001,PUB-001-S03|PUB-001-S04|PUB-001-S05|PUB-001-S06|PUB-002-S01|PUB-002-S02|PUB-002-S03|PUB-002-S04|PUB-OV-001-S01|PUB-OV-001-S02|PUB-OV-001-S03,11,使用系统 Photo Picker，不申请读取整个相册；上传进度、失败、重试、删除、排序和封面必须复用统一图片组件并由服务端二次校验。,BETA1_CORE_THEN_BETA2_STATES
+B03,提交、幂等、限制、会话过期与结果页,PUB-001|PUB-003,PUB-001-S08|PUB-001-S09|PUB-001-S10|PUB-001-S11|PUB-001-S12|PUB-001-S13|PUB-003-S01|PUB-003-S02|PUB-003-S03,9,提交必须使用真实服务端状态与幂等键；失败保留表单和已上传资产，成功结果只能显示 pending 或 published 的真实响应。,BETA1_CORE_THEN_BETA2_STATES
+B04,项目编辑、版本冲突与本人详情状态,PUB-004|HOME-004,PUB-004-S01|PUB-004-S02|PUB-004-S03|PUB-004-S04|PUB-004-S05|PUB-004-S06|PUB-004-S07|PUB-004-S08|HOME-004-S03|HOME-004-S04|HOME-004-S05,11,复用 V1.1.0 详情页，不得破坏公开详情；编辑使用版本号并处理冲突，published 编辑后是否重新审核以后台配置和服务端状态机为准。,BETA2_COMPLETE
+B05,我的发布列表全部状态,ME-002,ME-002-S01|ME-002-S02|ME-002-S03|ME-002-S04|ME-002-S05|ME-002-S06|ME-002-S07|ME-002-S08|ME-002-S09|ME-002-S10|ME-002-S11,11,同一个列表 Screen 通过状态标签和 UI State 展示全部、待审核、已发布、已驳回、已下架、分页、离线和错误；只能查询本人项目。,BETA1_CORE_THEN_BETA2_STATES
+B06,本人项目操作面板与状态机动作,ME-OV-002,ME-OV-002-S01|ME-OV-002-S02|ME-OV-002-S03|ME-OV-002-S04,4,操作项必须由服务端 owner_actions/状态白名单决定；查看、编辑、下架、重提和删除均需服务端归属校验，不得仅靠前端隐藏按钮。,BETA2_COMPLETE

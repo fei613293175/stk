@@ -1,0 +1,3 @@
+<?php
+if (!defined('IN_ADMINCP')) exit('Access Denied');
+$rows=DB::fetch_all('SELECT audit_id,project_id,operator_uid,action,from_status,to_status,reason,payload_json,created_at FROM %t ORDER BY audit_id DESC LIMIT 300',['stk_project_audit_log']);showtableheader('项目审核与操作日志');showtablerow('',[],['ID','项目','操作人','动作','原状态','新状态','原因','时间']);foreach($rows as $r)showtablerow('',[],[(int)$r['audit_id'],(int)$r['project_id'],(int)$r['operator_uid'],dhtmlspecialchars($r['action']),dhtmlspecialchars($r['from_status']),dhtmlspecialchars($r['to_status']),dhtmlspecialchars($r['reason']),dgmdate((int)$r['created_at'])]);showtablefooter();

@@ -1,0 +1,5 @@
+﻿feature_id,version,name,frontend_pages,apis,database,admin_pages,status
+PROJ-01,V1.1.0,首页项目流与游标分页,HOME-001,listProjects|recordProjectView,pre_stk_project|pre_stk_project_image|pre_stk_project_view_daily,ADM-PROJ-01|ADM-PROJ-02|ADM-PROJ-04,PLANNED
+PROJ-02,V1.1.0,搜索与分类,HOME-002|HOME-003,listProjects|listProjectCategories,pre_stk_project_category|pre_stk_project,ADM-PROJ-03|ADM-PROJ-04,PLANNED
+PROJ-03,V1.1.0,项目详情与图片查看,HOME-004|HOME-OV-001,getProjectDetail,pre_stk_project|pre_stk_project_image,ADM-PROJ-02,PLANNED
+PROJ-04,V1.1.0,联系方式与受控外链,HOME-OV-002|COM-OV-001,getProjectDetail,pre_stk_project,ADM-PROJ-05,PLANNED

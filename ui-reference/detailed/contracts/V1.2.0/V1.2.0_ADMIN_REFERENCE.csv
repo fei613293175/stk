@@ -1,0 +1,8 @@
+﻿admin_id,required_for_version,introduced_in,name,plugin,capabilities,roles,audit_required,dependency_type
+ADM-PROJ-001,V1.2.0,V1.0.0,项目运营概览,stk_project,项目状态、发布者、浏览和审核摘要,超级管理员|项目运营,YES,INHERITED_REQUIRED
+ADM-PROJ-002,V1.2.0,V1.0.0,项目管理,stk_project,查询、查看、创建测试数据、编辑、推荐、上下架、删除,超级管理员|项目运营,YES,INHERITED_REQUIRED
+ADM-PROJ-008,V1.2.0,V1.2.0,待审核项目,stk_project,批量/单项审核、驳回原因,超级管理员|项目审核员,YES,NEW_IN_V1.2.0
+ADM-PROJ-009,V1.2.0,V1.2.0,发布规则,stk_project,字段长度、每日上限、待审核上限、编辑后审核,超级管理员|项目运营,YES,NEW_IN_V1.2.0
+ADM-PROJ-010,V1.2.0,V1.2.0,图片上传设置,stk_project,数量、体积、格式、尺寸、压缩、清理,超级管理员,YES,NEW_IN_V1.2.0
+ADM-PROJ-011,V1.2.0,V1.2.0,用户项目查询,stk_project,按 UID/手机号/昵称/状态查询,超级管理员|项目审核员,YES,NEW_IN_V1.2.0
+ADM-PROJ-012,V1.2.0,V1.2.0,项目审核与状态日志,stk_project,全部审核/上下架/删除动作审计,超级管理员|安全审计员,YES,NEW_IN_V1.2.0

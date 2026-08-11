@@ -1,0 +1,44 @@
+{
+  "Title": "Discuz! Plugin",
+  "Data": {
+    "plugin": {
+      "available": "1",
+      "adminid": "1",
+      "name": "商推客项目发布与审核",
+      "identifier": "stk_project",
+      "description": "商推客项目浏览、发布、图片上传、审核与运营后台",
+      "datatables": "stk_app_config,stk_project_config,stk_project_category,stk_project,stk_project_image,stk_project_upload,stk_project_view_daily,stk_project_request_guard,stk_project_audit_log,stk_project_audit,stk_prop_catalog,stk_release,stk_admin_audit",
+      "directory": "stk_project/",
+      "copyright": "商推客",
+      "version": "1.5.0",
+      "__modules": [
+        {"name": "api", "menu": "", "url": "", "type": "1", "adminid": "0", "displayorder": "0"},
+        {"name": "overview", "menu": "概览", "url": "", "type": "3", "adminid": "1", "displayorder": "0"},
+        {"name": "projects", "menu": "项目管理", "url": "", "type": "3", "adminid": "1", "displayorder": "1"},
+        {"name": "categories", "menu": "分类管理", "url": "", "type": "3", "adminid": "1", "displayorder": "2"},
+        {"name": "home_settings", "menu": "发布设置", "url": "", "type": "3", "adminid": "1", "displayorder": "3"},
+        {"name": "contact_policy", "menu": "联系方式策略", "url": "", "type": "3", "adminid": "1", "displayorder": "4"},
+        {"name": "review", "menu": "项目审核", "url": "", "type": "3", "adminid": "1", "displayorder": "5"},
+        {"name": "publish_settings", "menu": "发布规则", "url": "", "type": "3", "adminid": "1", "displayorder": "6"},
+        {"name": "image_settings", "menu": "图片与存储", "url": "", "type": "3", "adminid": "1", "displayorder": "7"},
+        {"name": "audit_logs", "menu": "审核与操作日志", "url": "", "type": "3", "adminid": "1", "displayorder": "8"},
+        {"name": "user_projects", "menu": "用户项目查询", "url": "", "type": "3", "adminid": "1", "displayorder": "9"},
+        {"name": "me_settings", "menu": "我的页面配置", "url": "", "type": "3", "adminid": "1", "displayorder": "10"},
+        {"name": "memberships", "menu": "会员状态管理", "url": "", "type": "3", "adminid": "1", "displayorder": "11"},
+        {"name": "wallets", "menu": "账户展示管理", "url": "", "type": "3", "adminid": "1", "displayorder": "12"},
+        {"name": "props_settings", "menu": "道具展示配置", "url": "", "type": "3", "adminid": "1", "displayorder": "13"},
+        {"name": "support_settings", "menu": "客服与协议入口", "url": "", "type": "3", "adminid": "1", "displayorder": "14"},
+        {"name": "release_settings", "menu": "Android 版本发布", "url": "", "type": "3", "adminid": "1", "displayorder": "15"},
+        {"name": "maintenance_settings", "menu": "维护与运行配置", "url": "", "type": "3", "adminid": "1", "displayorder": "16"},
+        {"name": "deployment_diagnostics", "menu": "域名与部署检测", "url": "", "type": "3", "adminid": "1", "displayorder": "17"},
+        {"name": "security_audit", "menu": "生产安全审计", "url": "", "type": "3", "adminid": "1", "displayorder": "18"}
+      ]
+    },
+    "version": "X5.0",
+    "var": [],
+    "intro": "商推客项目发布、图片上传、项目审核和分类运营。",
+    "installfile": "install.php",
+    "uninstallfile": "uninstall.php",
+    "upgradefile": "upgrade.php"
+  }
+}

@@ -1,0 +1,16 @@
+﻿page_id,page_name,visual_type,route,implementation_version,active_state_versions,state_count,runtime_or_reference,notes
+DS-001,色彩、字体、间距与圆角规范板,DESIGN_BOARD,design://tokens,V1.0.0,V1.0.0,1,REFERENCE_ONLY,仅用于设计与验收，不是业务页面
+DS-002,公共组件规范板,COMPONENT_BOARD,design://components,V1.0.0,V1.0.0,1,REFERENCE_ONLY,组件板不得实现成独立业务页面
+DS-003,全局状态与反馈规范板,SYSTEM_STATE_BOARD,design://states,V1.0.0,V1.0.0,1,REFERENCE_ONLY,统一所有页面反馈，不得逐页自由设计
+SYS-001,启动与路由判定,PAGE,stk://bootstrap,V1.0.0,V1.0.0|V1.1.0|V1.4.0,8,RUNTIME,只做路由判定，不展示广告
+SYS-002,维护、离线与服务不可用,PAGE,stk://system/unavailable,V1.0.0,V1.0.0|V1.1.0|V1.4.0,5,RUNTIME,不能用空白页或系统异常堆栈
+COM-OV-002,阶段功能说明弹窗,OVERLAY,overlay://stage-scope,V1.0.0,V1.0.0|V1.3.0,4,RUNTIME,用于早期版本的发布/会员等明确占位，禁止无响应
+AUTH-001,登录,PAGE,stk://auth/login,V1.0.0,V1.0.0,16,RUNTIME,登录、注册、发送短信均受安全验证码约束
+AUTH-002,注册,PAGE,stk://auth/register,V1.0.0,V1.0.0,12,RUNTIME,注册不发送短信验证码
+AUTH-004,用户协议,PAGE,stk://legal/user-agreement,V1.0.0,V1.0.0,4,RUNTIME,内容来自受版本管理的后台协议配置
+AUTH-005,隐私政策,PAGE,stk://legal/privacy-policy,V1.0.0,V1.0.0,4,RUNTIME,内容来自受版本管理的后台协议配置
+AUTH-OV-001,安全验证码弹窗,OVERLAY,overlay://captcha,V1.0.0,V1.0.0,8,RUNTIME,challenge/ticket 与动作、会话、IP、设备绑定且一次一用
+AUTH-OV-002,账号与风控提示,OVERLAY,overlay://auth-risk,V1.0.0,V1.0.0,4,RUNTIME,不能暴露账户是否存在等敏感细节
+HOME-001,首页项目流,PAGE,stk://home,V1.1.0,V1.0.0|V1.1.0,13,RUNTIME,首页只展示 published 项目
+ME-001,我的,PAGE,stk://me,V1.3.0,V1.0.0|V1.3.0,8,RUNTIME,V1.0 提供基础资料；V1.3 完成全部展示区
+ME-OV-001,退出登录确认,OVERLAY,overlay://logout,V1.0.0,V1.0.0,3,RUNTIME,服务端撤销刷新令牌，客户端清理敏感数据

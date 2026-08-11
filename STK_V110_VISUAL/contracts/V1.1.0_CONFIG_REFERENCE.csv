@@ -1,0 +1,13 @@
+﻿config_id,version,key,type,default,description,sensitive,audit_required
+CFG-110-01,V1.1.0,project.browse_enabled,BOOL,true,项目浏览总开关,NO,NO
+CFG-110-02,V1.1.0,project.page_size,INT,20,首页每次加载数量,NO,NO
+CFG-110-03,V1.1.0,project.default_sort,ENUM,latest,默认排序,NO,NO
+CFG-110-04,V1.1.0,project.categories_enabled,BOOL,true,显示分类,NO,NO
+CFG-110-05,V1.1.0,project.show_publisher_avatar,BOOL,true,卡片显示头像,NO,NO
+CFG-110-06,V1.1.0,project.show_member_badge,BOOL,true,卡片显示会员标识,NO,NO
+CFG-110-07,V1.1.0,project.show_view_count,BOOL,true,卡片显示浏览量,NO,NO
+CFG-110-08,V1.1.0,project.show_publish_time,BOOL,true,卡片显示发布时间,NO,NO
+CFG-110-09,V1.1.0,project.contact_types,LIST,"phone,wechat,qq,url",允许的联系方式,NO,NO
+CFG-110-10,V1.1.0,project.external_url_allowlist,LIST,stk.zz-yihao.com,可直接打开的网址域名白名单,NO,NO
+CFG-110-11,V1.1.0,project.empty_text,STRING,暂无项目,首页空状态文案,NO,NO
+CFG-110-12,V1.1.0,project.default_cover_url,URL,,默认封面,NO,NO

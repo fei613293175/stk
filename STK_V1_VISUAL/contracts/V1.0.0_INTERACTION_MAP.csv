@@ -1,0 +1,43 @@
+﻿interaction_id,page_id,name,action,target,api_operation_id,implementation_version,test_level,version_close_required,expected_result
+INT-NAV-001,HOME-001,底部导航进入首页,点击首页,stk://home,LOCAL_NAVIGATION,V1.0.0,GROUPED_COMPOSE_UI,YES,进入首页并保留或恢复滚动位置；在首页再次点击回到顶部
+INT-NAV-002,HOME-001,底部导航进入发布,点击发布,版本化路由,LOCAL_VERSIONED_NAVIGATION,V1.0.0,GROUPED_COMPOSE_UI,YES,V1.0/V1.1 打开阶段说明；V1.2 起进入 PUB-001
+INT-NAV-003,HOME-001,底部导航进入我的,点击我的,stk://me,LOCAL_NAVIGATION,V1.0.0,GROUPED_COMPOSE_UI,YES,进入我的页面并保留首页状态
+INT-SYS-001,SYS-001,重试启动配置,点击重试,重新执行启动编排,getBootstrap,V1.0.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-SYS-002,SYS-001,离线进入缓存首页,点击离线进入,stk://home,LOCAL_CACHE_ROUTE,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-SYS-003,SYS-002,服务异常重试,点击重试,上一次安全请求,LOCAL_RETRY,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-SYS-004,SYS-002,打开客服,点击联系客服,stk://me/support,LOCAL_NAVIGATION,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-STAGE-001,COM-OV-002,关闭阶段说明,点击返回,关闭弹层,LOCAL_DISMISS,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-AUTH-001,AUTH-001,切换密码登录,点击密码登录,密码表单,LOCAL_UI_STATE,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-AUTH-002,AUTH-001,切换短信登录,点击短信登录,短信表单,LOCAL_UI_STATE,V1.0.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-AUTH-003,AUTH-001,输入手机号,输入并格式化手机号,手机号字段,LOCAL_VALIDATION,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-AUTH-004,AUTH-001,输入登录密码,输入密码,密码字段,LOCAL_VALIDATION,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-AUTH-005,AUTH-001,切换密码可见性,点击眼睛图标,密码可见性,LOCAL_UI_STATE,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-AUTH-006,AUTH-001,输入短信验证码,输入 6 位验证码,短信码字段,LOCAL_VALIDATION,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-AUTH-007,AUTH-001,发送登录短信验证码,点击发送验证码,先打开安全验证码,sendSmsCode,V1.0.0,EMULATOR_E2E_SMOKE,YES,安全验证码通过后服务端发送阿里云短信并启动倒计时
+INT-AUTH-008,AUTH-001,提交密码登录,点击登录,先打开安全验证码,loginWithPassword,V1.0.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-AUTH-009,AUTH-001,提交短信登录,点击登录,先打开安全验证码,loginWithSms,V1.0.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-AUTH-010,AUTH-001,进入注册,点击注册,stk://auth/register,LOCAL_NAVIGATION,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-AUTH-012,AUTH-001,打开用户协议,点击用户协议,stk://legal/user-agreement,LOCAL_NAVIGATION,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-AUTH-013,AUTH-001,打开隐私政策,点击隐私政策,stk://legal/privacy-policy,LOCAL_NAVIGATION,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-REG-001,AUTH-002,输入注册手机号,输入手机号,手机号字段,LOCAL_VALIDATION,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-REG-002,AUTH-002,输入注册密码,输入密码,密码字段,LOCAL_VALIDATION,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-REG-003,AUTH-002,输入确认密码,再次输入密码,确认密码字段,LOCAL_VALIDATION,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-REG-004,AUTH-002,切换密码可见性,点击眼睛图标,密码可见性,LOCAL_UI_STATE,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-REG-005,AUTH-002,同意用户协议,点击勾选,协议状态,LOCAL_UI_STATE,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-REG-006,AUTH-002,提交注册,点击注册,先打开安全验证码,registerUser,V1.0.0,EMULATOR_E2E_SMOKE,YES,不发送短信；创建 Discuz UID、手机号绑定、会员基础记录和双账户记录
+INT-REG-007,AUTH-002,返回登录,点击已有账号登录,stk://auth/login,LOCAL_NAVIGATION,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-REG-008,AUTH-002,注册页打开协议,点击用户协议,stk://legal/user-agreement,LOCAL_NAVIGATION,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-REG-009,AUTH-002,注册页打开隐私政策,点击隐私政策,stk://legal/privacy-policy,LOCAL_NAVIGATION,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-LEGAL-001,AUTH-004,用户协议返回,点击返回,上一页,LOCAL_BACK,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-LEGAL-002,AUTH-004,重试加载用户协议,点击重试,协议服务,getLegalDocument,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-LEGAL-003,AUTH-005,隐私政策返回,点击返回,上一页,LOCAL_BACK,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-LEGAL-004,AUTH-005,重试加载隐私政策,点击重试,协议服务,getLegalDocument,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-CAPTCHA-001,AUTH-OV-001,输入安全验证码,输入验证码,验证码字段,LOCAL_VALIDATION,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-CAPTCHA-002,AUTH-OV-001,刷新安全验证码,点击刷新,新 challenge,getCaptchaChallenge,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-CAPTCHA-003,AUTH-OV-001,确认安全验证码,点击确认,一次性 ticket,verifyCaptcha,V1.0.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-CAPTCHA-004,AUTH-OV-001,取消安全验证码,点击取消,关闭弹窗,LOCAL_DISMISS,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-RISK-001,AUTH-OV-002,关闭风控提示,点击我知道了,关闭弹窗,LOCAL_DISMISS,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-HOME-008,HOME-001,顶部头像进入我的,点击头像,stk://me,LOCAL_NAVIGATION,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-ME-011,ME-001,我的页面重试,点击重试,资料摘要,getMySummary,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
+INT-LOGOUT-001,ME-OV-001,确认退出登录,点击退出,撤销令牌并清理本地,logout,V1.0.0,EMULATOR_E2E_SMOKE,YES,产生合同规定的唯一结果
+INT-LOGOUT-002,ME-OV-001,取消退出登录,点击取消,关闭弹层,LOCAL_DISMISS,V1.0.0,GROUPED_COMPOSE_UI,YES,产生合同规定的唯一结果
